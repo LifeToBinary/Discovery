@@ -224,18 +224,26 @@ namespace Discovery.Service
             using (WebResponse response = ftpWebRequest.GetResponse())
             using (var reader = new StreamReader(response.GetResponseStream()))
             {
-                return new List<string>(GetAllFileListFromStream(reader));
+                return GetAllFileListFromStream(reader)
+                           .Select(file => file.Split(' ').Last())
+                           .Where(fileName => !String.IsNullOrEmpty(fileName) && 
+                                              !String.IsNullOrEmpty(Path.GetExtension(fileName)))
+                           .ToList();
             }
 
             // 获取一个流中的所有文件
             IEnumerable<string> GetAllFileListFromStream(StreamReader reader)
             {
-                string content = String.Empty;
-                do
+                string fileName = String.Empty;
+                while (true)
                 {
-                    content = reader.ReadLine();
-                    yield return content;
-                } while (!String.IsNullOrEmpty(content));
+                    fileName = reader.ReadLine();
+                    if (fileName is null)
+                    {
+                        break;
+                    }
+                    yield return fileName;
+                };
             }
 
             // 创建 FtpWebRequest 对象, 用于获取服务器指定目录下的所有文件
