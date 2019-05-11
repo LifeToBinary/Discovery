@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Text;
 
@@ -248,6 +249,19 @@ namespace Discovery.Service
                 newFtpWebRequest.UsePassive = false;
                 return newFtpWebRequest;
             }
+        }
+
+        /// <summary>
+        /// 检查一个文件是否存在与 FTP 服务器上
+        /// </summary>
+        /// <param name="originFilePath">文件的相对路径</param>
+        /// <returns>True: 存在, False: 不存在</returns>
+        public bool IsExistsOnTheFtpServer(string originFilePath)
+        {
+            string directoryPath = Path.GetDirectoryName(originFilePath);
+            string fileFullName = Path.GetFileName(originFilePath);
+            List<string> filesListInTheDirectory = GetAllFilesList(directoryPath);
+            return filesListInTheDirectory.Count(file => file == fileFullName) >= 1;
         }
     }
 }
