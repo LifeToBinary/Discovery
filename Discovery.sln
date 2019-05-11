@@ -23,6 +23,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Discovery.Service", "SRC\Cl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Discovery.Service.Test", "TEST\IntegrationTest\Discovery.Service.UnitTest\Discovery.Service.Test\Discovery.Service.Test.csproj", "{D2AF3792-6A7E-41F8-BAAF-0B6859E2BA23}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Discovery.Model", "SRC\Client\Discovery.Model\Discovery.Model.csproj", "{2D972883-5262-43B3-95CB-B3DFCE95C869}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,10 @@ Global
 		{D2AF3792-6A7E-41F8-BAAF-0B6859E2BA23}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D2AF3792-6A7E-41F8-BAAF-0B6859E2BA23}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D2AF3792-6A7E-41F8-BAAF-0B6859E2BA23}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D972883-5262-43B3-95CB-B3DFCE95C869}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D972883-5262-43B3-95CB-B3DFCE95C869}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D972883-5262-43B3-95CB-B3DFCE95C869}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D972883-5262-43B3-95CB-B3DFCE95C869}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -53,6 +59,7 @@ Global
 		{DBFD6E0A-1CBE-4FC7-B87C-BDD11AE41F89} = {DDCAF0CA-24B5-4F2D-852B-1BEA79B39438}
 		{7A8F89C2-4B4A-4072-B4A7-7B6B50F8250D} = {DDCAF0CA-24B5-4F2D-852B-1BEA79B39438}
 		{D2AF3792-6A7E-41F8-BAAF-0B6859E2BA23} = {33685104-A503-4509-A345-C25DBDEEC1FB}
+		{2D972883-5262-43B3-95CB-B3DFCE95C869} = {DDCAF0CA-24B5-4F2D-852B-1BEA79B39438}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FC5D8408-B1C7-4D5A-A61D-2D0829D02BA4}
