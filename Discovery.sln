@@ -3,9 +3,42 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28803.352
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "README", "README", "{129D6664-A778-407A-9DF6-63299BD2E530}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TEST", "TEST", "{DBA35C58-4434-4D8A-B159-2743B6E8AB93}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SRC", "SRC", "{F4F686D5-6F56-45D6-AD42-AD3F8317CE16}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IntegrationTest", "IntegrationTest", "{33685104-A503-4509-A345-C25DBDEEC1FB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTest", "UnitTest", "{1E824CF4-B937-4C0D-B823-A1EAA05B8007}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Client", "Client", "{DDCAF0CA-24B5-4F2D-852B-1BEA79B39438}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Server", "Server", "{2B29ED5D-852C-4832-B3FC-FC3AC509F7FA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Discovery.Core", "SRC\Client\Discovery.Core\Discovery.Core.csproj", "{DBFD6E0A-1CBE-4FC7-B87C-BDD11AE41F89}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DBFD6E0A-1CBE-4FC7-B87C-BDD11AE41F89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DBFD6E0A-1CBE-4FC7-B87C-BDD11AE41F89}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DBFD6E0A-1CBE-4FC7-B87C-BDD11AE41F89}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DBFD6E0A-1CBE-4FC7-B87C-BDD11AE41F89}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{33685104-A503-4509-A345-C25DBDEEC1FB} = {DBA35C58-4434-4D8A-B159-2743B6E8AB93}
+		{1E824CF4-B937-4C0D-B823-A1EAA05B8007} = {DBA35C58-4434-4D8A-B159-2743B6E8AB93}
+		{DDCAF0CA-24B5-4F2D-852B-1BEA79B39438} = {F4F686D5-6F56-45D6-AD42-AD3F8317CE16}
+		{2B29ED5D-852C-4832-B3FC-FC3AC509F7FA} = {F4F686D5-6F56-45D6-AD42-AD3F8317CE16}
+		{DBFD6E0A-1CBE-4FC7-B87C-BDD11AE41F89} = {DDCAF0CA-24B5-4F2D-852B-1BEA79B39438}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FC5D8408-B1C7-4D5A-A61D-2D0829D02BA4}
