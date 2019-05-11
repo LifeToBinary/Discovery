@@ -51,20 +51,16 @@ namespace Discovery.Service
         /// </summary>
         /// <param name="localFilePath">本地文件完整路径</param>
         /// <param name="originFilePath">FTP服务器相对路径</param>
-        /// <param name="isSuccess">如果上传成功 为True, 否则为 False</param>
-        /// <returns> 当前 FTPService 实例</returns>
-        public FTPService Upload(string localFilePath, 
-                                 string originFilePath, 
-                                 out bool isSuccess)
+        /// <returns> True: 上传成功, False: 上传失败, 上传过程中, 发生了错误</returns>
+        public bool Upload(string localFilePath, string originFilePath)
         {
             try
             {
-                return UploadCore(localFilePath, originFilePath, out isSuccess);
+                return UploadCore(localFilePath, originFilePath);
             }
             catch
             {
-                isSuccess = false;
-                return this;
+                return false;
             }
         }
 
@@ -72,20 +68,16 @@ namespace Discovery.Service
         /// 上传文件到 FTP 服务器
         /// </summary>
         /// <param name="localFilePath">本地文件完整路径</param>
-        /// <param name="isSuccess">如果上传成功 为True </param>
         /// <param name="originFilePath">FTP服务器相对路径</param>
         /// <returns>如果在上传过程中没有发生错误, 则返回 True, 否则抛出异常</returns>
-        private FTPService UploadCore(string localFilePath, 
-                                      string originFilePath, 
-                                      out bool isSuccess)
+        private bool UploadCore(string localFilePath, string originFilePath)
         {
             FtpWebRequest ftpWebRequest = MakeNewFTPWebRequest();
             using (FileStream localFileStream = File.OpenRead(localFilePath))
             using (Stream originFileStream = ftpWebRequest.GetRequestStream())
             {
                 CopyData(localFileStream, originFileStream, new byte[2048]);
-                isSuccess = true;
-                return this;
+                return true;
             }
 
             // 创建一个 FtpWebRequest 对象用于上传文件
