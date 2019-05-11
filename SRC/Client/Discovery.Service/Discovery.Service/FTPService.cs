@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Discovery.Service
 {
-    public class FTPService
+    public class FtpService
     {
         /// <summary>
         /// FTP 服务器完整路径
@@ -27,8 +27,8 @@ namespace Discovery.Service
         /// 实例化一个FTPService 对象
         /// </summary>
         /// <param name="ftpServiceAddress"> FTP 服务器完整路径</param>
-        public FTPService(string ftpServiceAddress)
-            => new FTPService(ftpServiceAddress, String.Empty, String.Empty);
+        public FtpService(string ftpServiceAddress)
+            => new FtpService(ftpServiceAddress, String.Empty, String.Empty);
 
         /// <summary>
         /// 实例化一个FTPService 对象
@@ -36,7 +36,7 @@ namespace Discovery.Service
         /// <param name="ftpServiceAddress">FTP 服务器完整路径</param>
         /// <param name="userName">登录用户名(匿名登录留空)</param>
         /// <param name="password">登录密码(匿名登录留空)</param>
-        public FTPService(
+        public FtpService(
             string ftpServiceAddress,
             string userName,
             string password)
