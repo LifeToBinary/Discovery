@@ -67,7 +67,7 @@ namespace Discovery.Service
         /// <summary>
         /// 上传文件到 FTP 服务器
         /// </summary>
-        /// <param name="localFilePath">本地文件完整路径</param>
+        /// <param name="localFilePath">本地文件绝对路径</param>
         /// <param name="originFilePath">FTP服务器相对路径</param>
         /// <returns>如果在上传过程中没有发生错误, 则返回 True, 否则抛出异常</returns>
         private bool UploadCore(string localFilePath, string originFilePath)
@@ -84,8 +84,8 @@ namespace Discovery.Service
             FtpWebRequest MakeNewFTPWebRequest()
             {
                 var newFtpWebRequest =
-                    WebRequest.Create(
-                        new Uri(Path.Combine(_ftpServiceAddress, originFilePath))) as FtpWebRequest;
+                    WebRequest.Create(new Uri(
+                        Path.Combine(_ftpServiceAddress, originFilePath))) as FtpWebRequest;
                 newFtpWebRequest.Credentials = new NetworkCredential(_userName, _password);
                 newFtpWebRequest.KeepAlive = false;
                 newFtpWebRequest.Method = WebRequestMethods.Ftp.UploadFile;
@@ -102,8 +102,8 @@ namespace Discovery.Service
         /// <param name="sourceStream">源</param>
         /// <param name="targetStream">目标</param>
         /// <param name="buffer">中间缓存</param>
-        private void CopyData(Stream sourceStream, 
-                              Stream targetStream, 
+        private void CopyData(Stream sourceStream,
+                              Stream targetStream,
                               byte[] buffer)
         {
             int readLength = sourceStream.Read(buffer, 0, buffer.Length);
@@ -113,6 +113,54 @@ namespace Discovery.Service
                 return;
             }
             CopyData(sourceStream, targetStream, buffer);
+        }
+
+        /// <summary>
+        /// 从 FTP 服务器下载文件到本地
+        /// </summary>
+        /// <param name="originFilePath">FTP服务器相对路径</param>
+        /// <param name="localFilePath">本地绝对路径</param>
+        /// <returns>True: 下载成功, 否则返回False</returns>
+        public bool DownLoad(string originFilepath, string localFilePath)
+        {
+            try
+            {
+                return DownloadCore(originFilepath, localFilePath);
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// 从 FTP 服务器下载文件到本地
+        /// </summary>
+        /// <param name="originFilePath">FTP服务器相对路径</param>
+        /// <param name="localFilePath">本地绝对路径</param>
+        /// <returns>True: 下载成功, 否则抛出异常</returns>
+        private bool DownloadCore(string originFilePath, string localFilePath)
+        {
+            FtpWebRequest ftpWebRequest = MakeNewFTPWebRequest();
+            using (var response = ftpWebRequest.GetResponse() as FtpWebResponse)
+            using (var localFileStream = new FileStream(localFilePath, FileMode.Create))
+            using (Stream originFileStream = response.GetResponseStream())
+            {
+                CopyData(originFileStream, localFileStream, new byte[2048]);
+                return true;
+            }
+
+            FtpWebRequest MakeNewFTPWebRequest()
+            {
+                var newFtpWebRequest =
+                    WebRequest.Create(new Uri(
+                        Path.Combine(_ftpServiceAddress, originFilePath))) as FtpWebRequest;
+                newFtpWebRequest.Credentials = new NetworkCredential(_userName, _password);
+                newFtpWebRequest.Method = WebRequestMethods.Ftp.DownloadFile;
+                newFtpWebRequest.UseBinary = true;
+                newFtpWebRequest.UsePassive = false;
+                return newFtpWebRequest;
+            }
         }
     }
 }
