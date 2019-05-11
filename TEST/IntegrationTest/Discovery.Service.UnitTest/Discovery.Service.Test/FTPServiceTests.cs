@@ -11,6 +11,6 @@ namespace Discovery.Service.Test
     public class FTPServiceTests
     {
         private FTPService MakeNewFTPService()
-            => new FTPService(string ftpAddress, string ftpRemotePath);
+            => new FTPService(@"ftp://47.240.12.27");
     }
 }

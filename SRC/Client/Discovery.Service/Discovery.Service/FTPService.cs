@@ -4,7 +4,10 @@ using System.Text;
 
 namespace Discovery.Service
 {
-    class FTPService
+    public class FTPService
     {
+        private readonly string _ftpServiceAddress;
+        public FTPService(string ftpServiceAddress)
+            => _ftpServiceAddress = ftpServiceAddress;
     }
 }
