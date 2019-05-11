@@ -2,7 +2,7 @@
 using Discovery.Core.Enums;
 using Prism.Mvvm;
 
-namespace Discovery.Model
+namespace Discovery.Core.Models
 {
     /// <summary>
     /// 表示用户的基本信息
