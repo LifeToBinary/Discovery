@@ -150,6 +150,7 @@ namespace Discovery.Service
                 return true;
             }
 
+            // 创建一个FtpWebRequest 实例, 用于从 FTP 服务器下载文件
             FtpWebRequest MakeNewFTPWebRequest()
             {
                 var newFtpWebRequest =
@@ -160,6 +161,54 @@ namespace Discovery.Service
                 newFtpWebRequest.UseBinary = true;
                 newFtpWebRequest.UsePassive = false;
                 return newFtpWebRequest;
+            }
+        }
+
+        /// <summary>
+        /// 删除 FTP 服务器上的指定文件
+        /// </summary>
+        /// <param name="originFilePath">文件的相对路径(包括文件名)</param>
+        /// <returns>True: 删除成功, 否则返回False</returns>
+        public bool Delete(string originFilePath)
+        {
+            try
+            {
+                return DeleteCore(originFilePath);
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// 删除 FTP 服务器上的指定文件
+        /// </summary>
+        /// <param name="originFilePath">文件的相对路径(包括文件名)</param>
+        /// <returns>True: 删除成功, 否则抛出异常</returns>
+        private bool DeleteCore(string originFilePath)
+        {
+            FtpWebRequest ftpWebRequest = MakeNewFtpWebRequest();
+            using (var response = ftpWebRequest.GetResponse() as FtpWebResponse)
+            using (Stream originFileStream = response.GetResponseStream())
+            using (var originFileReader = new StreamReader(originFileStream))
+            {
+                originFileReader.ReadToEnd();
+                return true;
+            }
+
+            // 创建一个 FtpWebRequest 实例, 用于删除 FTP 服务器上的文件
+            FtpWebRequest MakeNewFtpWebRequest()
+            {
+                var newFtpWebRequest =
+                    WebRequest.Create(new Uri(
+                        Path.Combine(_ftpServiceAddress, originFilePath))) as FtpWebRequest;
+                newFtpWebRequest.Credentials = new NetworkCredential(_userName, _password);
+                newFtpWebRequest.KeepAlive = false;
+                newFtpWebRequest.Method = WebRequestMethods.Ftp.DeleteFile;
+                newFtpWebRequest.UsePassive = false;
+                return newFtpWebRequest;
+
             }
         }
     }
