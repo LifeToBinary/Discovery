@@ -211,5 +211,43 @@ namespace Discovery.Service
 
             }
         }
+
+        /// <summary>
+        /// 获取服务器指定目录下的文件名列表
+        /// </summary>
+        /// <param name="originDirectoryPath">目录相对路径</param>
+        /// <returns>此目录下的文件名列表</returns>
+        public List<string> GetAllFilesList(string originDirectoryPath)
+        {
+            FtpWebRequest ftpWebRequest = MakeNewFtpWebRequest();
+            using (WebResponse response = ftpWebRequest.GetResponse())
+            using (var reader = new StreamReader(response.GetResponseStream()))
+            {
+                return new List<string>(GetAllFileListFromStream(reader));
+            }
+
+            // 获取一个流中的所有文件
+            IEnumerable<string> GetAllFileListFromStream(StreamReader reader)
+            {
+                string content = String.Empty;
+                do
+                {
+                    content = reader.ReadLine();
+                    yield return content;
+                } while (!String.IsNullOrEmpty(content));
+            }
+
+            // 创建 FtpWebRequest 对象, 用于获取服务器指定目录下的所有文件
+            FtpWebRequest MakeNewFtpWebRequest()
+            {
+                var newFtpWebRequest =
+                    WebRequest.Create(new Uri(
+                        Path.Combine(_ftpServiceAddress, originDirectoryPath))) as FtpWebRequest;
+                newFtpWebRequest.Credentials = new NetworkCredential(_userName, _password);
+                newFtpWebRequest.Method = WebRequestMethods.Ftp.ListDirectory;
+                newFtpWebRequest.UsePassive = false;
+                return newFtpWebRequest;
+            }
+        }
     }
 }
