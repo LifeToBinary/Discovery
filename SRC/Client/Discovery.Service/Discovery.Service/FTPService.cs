@@ -271,5 +271,14 @@ namespace Discovery.Service
             List<string> filesListInTheDirectory = GetAllFilesList(directoryPath);
             return filesListInTheDirectory.Count(file => file == fileFullName) >= 1;
         }
+
+        /// <summary>
+        /// 更新 FTP 服务器上的文件
+        /// </summary>
+        /// <param name="localFilePath">本地文件完整路径</param>
+        /// <param name="originFilePath">FTP 服务器相对路径</param>
+        /// <returns>True: 更新成功  False: 更新失败, 更新过程中, 发生了错误</returns>
+        public bool UpdateFile(string localFilePath, string originFilePath)
+            => Upload(localFilePath, originFilePath);
     }
 }
