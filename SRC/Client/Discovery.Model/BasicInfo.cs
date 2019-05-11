@@ -1,12 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using Prism.Mvvm;
 
 namespace Discovery.Model
 {
+    /// <summary>
+    /// 表示用户的基本信息
+    /// </summary>
     public class BasicInfo : BindableBase
     {
+        /// <summary>
+        /// 用户ID
+        /// </summary>
         private int _id;
         public int ID
         {
@@ -14,6 +18,9 @@ namespace Discovery.Model
             set => SetProperty(ref _id, value);
         }
 
+        /// <summary>
+        /// 登录名
+        /// </summary>
         private string _signInName;
         public string SignInName
         {
@@ -21,6 +28,9 @@ namespace Discovery.Model
             set => SetProperty(ref _signInName, value);
         }
 
+        /// <summary>
+        /// 登录密码
+        /// </summary>
         private string _password;
         public string Password
         {
@@ -28,6 +38,9 @@ namespace Discovery.Model
             set => SetProperty(ref _password, value);
         }
 
+        /// <summary>
+        /// 性别
+        /// </summary>
         private Sex _sex;
         public Sex Sex
         {
@@ -35,6 +48,9 @@ namespace Discovery.Model
             set => SetProperty(ref _sex, value);
         }
 
+        /// <summary>
+        /// 注册时间
+        /// </summary>
         private DateTime _signUpTime;
         public DateTime SignUpTime
         {
@@ -42,6 +58,9 @@ namespace Discovery.Model
             set => SetProperty(ref _signUpTime, value);
         }
 
+        /// <summary>
+        /// 头像图片的路径
+        /// </summary>
         private string _avatarPath;
         public string AvatarPath
         {
@@ -49,6 +68,9 @@ namespace Discovery.Model
             set => SetProperty(ref _avatarPath, value);
         }
 
+        /// <summary>
+        /// 主页背景图片的路径
+        /// </summary>
         private string _profileBackgroundImagePath;
         public string ProfileBackgroundImagePath
         {
