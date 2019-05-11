@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Discovery.Model
+namespace Discovery.Core.Enums
 {
     /// <summary>
     /// 表示 Post 的类别

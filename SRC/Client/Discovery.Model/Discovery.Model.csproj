@@ -8,4 +8,8 @@
     <PackageReference Include="Prism.Core" Version="7.1.0.431" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Discovery.Core\Discovery.Core.csproj" />
+  </ItemGroup>
+
 </Project>

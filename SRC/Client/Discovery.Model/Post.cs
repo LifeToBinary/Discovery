@@ -1,4 +1,5 @@
 ﻿using System;
+using Discovery.Core.Enums;
 using Prism.Mvvm;
 
 namespace Discovery.Model
