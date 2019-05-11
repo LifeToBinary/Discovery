@@ -28,8 +28,8 @@ namespace Discovery.Model
             set => SetProperty(ref _password, value);
         }
 
-        private int _sex;
-        public int Sex
+        private Sex _sex;
+        public Sex Sex
         {
             get => _sex;
             set => SetProperty(ref _sex, value);
