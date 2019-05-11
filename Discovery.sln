@@ -17,7 +17,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Client", "Client", "{DDCAF0
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Server", "Server", "{2B29ED5D-852C-4832-B3FC-FC3AC509F7FA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Discovery.Core", "SRC\Client\Discovery.Core\Discovery.Core.csproj", "{DBFD6E0A-1CBE-4FC7-B87C-BDD11AE41F89}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Discovery.Core", "SRC\Client\Discovery.Core\Discovery.Core.csproj", "{DBFD6E0A-1CBE-4FC7-B87C-BDD11AE41F89}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Discovery.Service", "SRC\Client\Discovery.Service\Discovery.Service\Discovery.Service.csproj", "{7A8F89C2-4B4A-4072-B4A7-7B6B50F8250D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,6 +31,10 @@ Global
 		{DBFD6E0A-1CBE-4FC7-B87C-BDD11AE41F89}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DBFD6E0A-1CBE-4FC7-B87C-BDD11AE41F89}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DBFD6E0A-1CBE-4FC7-B87C-BDD11AE41F89}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A8F89C2-4B4A-4072-B4A7-7B6B50F8250D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A8F89C2-4B4A-4072-B4A7-7B6B50F8250D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A8F89C2-4B4A-4072-B4A7-7B6B50F8250D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A8F89C2-4B4A-4072-B4A7-7B6B50F8250D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -39,6 +45,7 @@ Global
 		{DDCAF0CA-24B5-4F2D-852B-1BEA79B39438} = {F4F686D5-6F56-45D6-AD42-AD3F8317CE16}
 		{2B29ED5D-852C-4832-B3FC-FC3AC509F7FA} = {F4F686D5-6F56-45D6-AD42-AD3F8317CE16}
 		{DBFD6E0A-1CBE-4FC7-B87C-BDD11AE41F89} = {DDCAF0CA-24B5-4F2D-852B-1BEA79B39438}
+		{7A8F89C2-4B4A-4072-B4A7-7B6B50F8250D} = {DDCAF0CA-24B5-4F2D-852B-1BEA79B39438}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FC5D8408-B1C7-4D5A-A61D-2D0829D02BA4}
