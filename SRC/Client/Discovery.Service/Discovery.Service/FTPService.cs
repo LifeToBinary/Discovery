@@ -4,13 +4,14 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
+using Discovery.Core.Interfaces;
 
 namespace Discovery.Service
 {
     /// <summary>
     /// 用于与服务器上的 FTP 服务交互
     /// </summary>
-    public class FtpService
+    public class FtpService : IWebFileService
     {
         /// <summary>
         /// FTP 服务器完整路径
@@ -125,7 +126,7 @@ namespace Discovery.Service
         /// <param name="originFilePath">FTP服务器相对路径</param>
         /// <param name="localFilePath">本地绝对路径</param>
         /// <returns>True: 下载成功, 否则返回False</returns>
-        public bool DownLoad(string originFilepath, string localFilePath)
+        public bool Download(string originFilepath, string localFilePath)
         {
             try
             {
@@ -267,7 +268,7 @@ namespace Discovery.Service
         /// </summary>
         /// <param name="originFilePath">文件的相对路径</param>
         /// <returns>True: 存在, False: 不存在</returns>
-        public bool IsExistsOnTheFtpServer(string originFilePath)
+        public bool FileIsExists(string originFilePath)
         {
             string directoryPath = Path.GetDirectoryName(originFilePath);
             string fileFullName = Path.GetFileName(originFilePath);
