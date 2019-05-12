@@ -7,6 +7,9 @@ using System.Text;
 
 namespace Discovery.Service
 {
+    /// <summary>
+    /// 用于与服务器上的 FTP 服务交互
+    /// </summary>
     public class FtpService
     {
         /// <summary>
