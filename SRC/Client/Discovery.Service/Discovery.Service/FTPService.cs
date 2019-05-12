@@ -60,7 +60,7 @@ namespace Discovery.Service
             ftpServiceAddress = ftpServiceAddress.StartsWith("ftp://") ||
                                 ftpServiceAddress.StartsWith("FTP://")
                                 ? ftpServiceAddress
-                                : ftpServiceAddress + "ftp://";
+                                : "ftp://" + ftpServiceAddress;
 
             ftpServiceAddress = ftpServiceAddress.EndsWith(@"/")
                                 ? ftpServiceAddress
