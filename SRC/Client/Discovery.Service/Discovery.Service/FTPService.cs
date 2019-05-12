@@ -226,7 +226,7 @@ namespace Discovery.Service
             {
                 return GetAllFileListFromStream(reader)
                            .Select(file => file.Split(' ').Last())
-                           .Where(fileName => !String.IsNullOrEmpty(fileName) && 
+                           .Where(fileName => !String.IsNullOrEmpty(fileName) &&
                                               !String.IsNullOrEmpty(Path.GetExtension(fileName)))
                            .ToList();
             }
@@ -280,5 +280,47 @@ namespace Discovery.Service
         /// <returns>True: 更新成功  False: 更新失败, 更新过程中, 发生了错误</returns>
         public bool UpdateFile(string localFilePath, string originFilePath)
             => Upload(localFilePath, originFilePath);
+
+        /// <summary>
+        /// 在FTP服务器指定路径创建一个新的目录
+        /// </summary>
+        /// <param name="originDirectoryPath">目录相对路径(包括目录名)</param>
+        /// <returns>True: 创建成功。 否则返回 False</returns>
+        public bool MakeDirectory(string originDirectoryPath)
+        {
+            try
+            {
+                return MakeDirectoryCore(originDirectoryPath);
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// 在FTP服务器指定路径创建一个新的目录
+        /// </summary>
+        /// <param name="originDirectoryPath">目录相对路径(包括目录名)</param>
+        /// <returns>True: 创建成功。 否则抛出异常</returns>
+        private bool MakeDirectoryCore(string originDirectoryPath)
+        {
+            FtpWebRequest ftpWebRequest = MakeNewFtpWebRequest();
+            using (var response = ftpWebRequest.GetResponse() as FtpWebResponse)
+            using (Stream originFileStream = response.GetResponseStream())
+            {
+                return true;
+            }
+            FtpWebRequest MakeNewFtpWebRequest()
+            {
+                var newFtpWebRequest = WebRequest.Create(new Uri(
+                    Path.Combine(_ftpServiceAddress, originDirectoryPath))) as FtpWebRequest;
+                newFtpWebRequest.Method = WebRequestMethods.Ftp.MakeDirectory;
+                newFtpWebRequest.UseBinary = true;
+                newFtpWebRequest.Credentials = new NetworkCredential(_userName, _password);
+                newFtpWebRequest.UsePassive = false;
+                return newFtpWebRequest;
+            }
+        }
     }
 }
