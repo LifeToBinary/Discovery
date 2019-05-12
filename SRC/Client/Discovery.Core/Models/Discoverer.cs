@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Discovery.Core.Models;
 using Prism.Mvvm;
 
 namespace Discovery.Model
