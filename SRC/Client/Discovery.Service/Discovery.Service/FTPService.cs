@@ -4,10 +4,14 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
+using Discovery.Core.Interfaces;
 
 namespace Discovery.Service
 {
-    public class FtpService
+    /// <summary>
+    /// 用于与服务器上的 FTP 服务交互
+    /// </summary>
+    public class FtpService : IWebFileService
     {
         /// <summary>
         /// FTP 服务器完整路径
@@ -122,7 +126,7 @@ namespace Discovery.Service
         /// <param name="originFilePath">FTP服务器相对路径</param>
         /// <param name="localFilePath">本地绝对路径</param>
         /// <returns>True: 下载成功, 否则返回False</returns>
-        public bool DownLoad(string originFilepath, string localFilePath)
+        public bool Download(string originFilepath, string localFilePath)
         {
             try
             {
@@ -226,7 +230,7 @@ namespace Discovery.Service
             {
                 return GetAllFileListFromStream(reader)
                            .Select(file => file.Split(' ').Last())
-                           .Where(fileName => !String.IsNullOrEmpty(fileName) && 
+                           .Where(fileName => !String.IsNullOrEmpty(fileName) &&
                                               !String.IsNullOrEmpty(Path.GetExtension(fileName)))
                            .ToList();
             }
@@ -264,7 +268,7 @@ namespace Discovery.Service
         /// </summary>
         /// <param name="originFilePath">文件的相对路径</param>
         /// <returns>True: 存在, False: 不存在</returns>
-        public bool IsExistsOnTheFtpServer(string originFilePath)
+        public bool FileIsExists(string originFilePath)
         {
             string directoryPath = Path.GetDirectoryName(originFilePath);
             string fileFullName = Path.GetFileName(originFilePath);
@@ -280,5 +284,47 @@ namespace Discovery.Service
         /// <returns>True: 更新成功  False: 更新失败, 更新过程中, 发生了错误</returns>
         public bool UpdateFile(string localFilePath, string originFilePath)
             => Upload(localFilePath, originFilePath);
+
+        /// <summary>
+        /// 在FTP服务器指定路径创建一个新的目录
+        /// </summary>
+        /// <param name="originDirectoryPath">目录相对路径(包括目录名)</param>
+        /// <returns>True: 创建成功。 否则返回 False</returns>
+        public bool MakeDirectory(string originDirectoryPath)
+        {
+            try
+            {
+                return MakeDirectoryCore(originDirectoryPath);
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// 在FTP服务器指定路径创建一个新的目录
+        /// </summary>
+        /// <param name="originDirectoryPath">目录相对路径(包括目录名)</param>
+        /// <returns>True: 创建成功。 否则抛出异常</returns>
+        private bool MakeDirectoryCore(string originDirectoryPath)
+        {
+            FtpWebRequest ftpWebRequest = MakeNewFtpWebRequest();
+            using (var response = ftpWebRequest.GetResponse() as FtpWebResponse)
+            using (Stream originFileStream = response.GetResponseStream())
+            {
+                return true;
+            }
+            FtpWebRequest MakeNewFtpWebRequest()
+            {
+                var newFtpWebRequest = WebRequest.Create(new Uri(
+                    Path.Combine(_ftpServiceAddress, originDirectoryPath))) as FtpWebRequest;
+                newFtpWebRequest.Method = WebRequestMethods.Ftp.MakeDirectory;
+                newFtpWebRequest.UseBinary = true;
+                newFtpWebRequest.Credentials = new NetworkCredential(_userName, _password);
+                newFtpWebRequest.UsePassive = false;
+                return newFtpWebRequest;
+            }
+        }
     }
 }
