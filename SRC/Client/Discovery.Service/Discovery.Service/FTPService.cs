@@ -16,7 +16,7 @@ namespace Discovery.Service
         /// <summary>
         /// FTP 服务器完整路径
         /// </summary>
-        private readonly string _ftpServiceAddress;
+        private readonly Uri _ftpServiceAddress;
 
         /// <summary>
         /// FTP 服务器登录用户名
@@ -27,13 +27,14 @@ namespace Discovery.Service
         /// FTP 服务器登录密码
         /// </summary>
         private readonly string _password;
-
         /// <summary>
         /// 实例化一个FTPService 对象
         /// </summary>
         /// <param name="ftpServiceAddress"> FTP 服务器完整路径</param>
         public FtpService(string ftpServiceAddress)
-            => new FtpService(ftpServiceAddress, String.Empty, String.Empty);
+            : this(ftpServiceAddress, String.Empty, String.Empty)
+        {
+        }
 
         /// <summary>
         /// 实例化一个FTPService 对象
@@ -46,9 +47,23 @@ namespace Discovery.Service
             string userName,
             string password)
         {
-            _ftpServiceAddress = ftpServiceAddress;
+            _ftpServiceAddress = new Uri(CorrectionFtpServiceAddress(ftpServiceAddress));
             _userName = userName;
             _password = password;
+        }
+
+        /// <summary>
+        /// 校正 Ftp 服务器路径
+        /// </summary>
+        /// <param name="ftpServiceAddress">FTP 服务器路径</param>
+        /// <returns>一个友好的Ftp服务器路径</returns>
+        private string CorrectionFtpServiceAddress(string ftpServiceAddress)
+        {
+            ftpServiceAddress = ftpServiceAddress.Replace(@"\", @"/");
+            return ftpServiceAddress.EndsWith(@"/")
+                   ? ftpServiceAddress
+                   : ftpServiceAddress + "/";
+
         }
 
         /// <summary>
@@ -89,8 +104,8 @@ namespace Discovery.Service
             FtpWebRequest MakeNewFTPWebRequest()
             {
                 var newFtpWebRequest =
-                    WebRequest.Create(new Uri(
-                        Path.Combine(_ftpServiceAddress, originFilePath))) as FtpWebRequest;
+                    WebRequest.Create(
+                        new Uri(_ftpServiceAddress, originFilePath)) as FtpWebRequest;
                 newFtpWebRequest.Credentials = new NetworkCredential(_userName, _password);
                 newFtpWebRequest.KeepAlive = false;
                 newFtpWebRequest.Method = WebRequestMethods.Ftp.UploadFile;
@@ -159,8 +174,8 @@ namespace Discovery.Service
             FtpWebRequest MakeNewFTPWebRequest()
             {
                 var newFtpWebRequest =
-                    WebRequest.Create(new Uri(
-                        Path.Combine(_ftpServiceAddress, originFilePath))) as FtpWebRequest;
+                    WebRequest.Create(
+                        new Uri(_ftpServiceAddress, originFilePath)) as FtpWebRequest;
                 newFtpWebRequest.Credentials = new NetworkCredential(_userName, _password);
                 newFtpWebRequest.Method = WebRequestMethods.Ftp.DownloadFile;
                 newFtpWebRequest.UseBinary = true;
@@ -206,8 +221,8 @@ namespace Discovery.Service
             FtpWebRequest MakeNewFtpWebRequest()
             {
                 var newFtpWebRequest =
-                    WebRequest.Create(new Uri(
-                        Path.Combine(_ftpServiceAddress, originFilePath))) as FtpWebRequest;
+                    WebRequest.Create(
+                        new Uri(_ftpServiceAddress, originFilePath)) as FtpWebRequest;
                 newFtpWebRequest.Credentials = new NetworkCredential(_userName, _password);
                 newFtpWebRequest.KeepAlive = false;
                 newFtpWebRequest.Method = WebRequestMethods.Ftp.DeleteFile;
@@ -254,8 +269,8 @@ namespace Discovery.Service
             FtpWebRequest MakeNewFtpWebRequest()
             {
                 var newFtpWebRequest =
-                    WebRequest.Create(new Uri(
-                        Path.Combine(_ftpServiceAddress, originDirectoryPath))) as FtpWebRequest;
+                    WebRequest.Create(
+                        new Uri(_ftpServiceAddress, originDirectoryPath)) as FtpWebRequest;
                 newFtpWebRequest.Credentials = new NetworkCredential(_userName, _password);
                 newFtpWebRequest.Method = WebRequestMethods.Ftp.ListDirectory;
                 newFtpWebRequest.UsePassive = false;
@@ -317,8 +332,9 @@ namespace Discovery.Service
             }
             FtpWebRequest MakeNewFtpWebRequest()
             {
-                var newFtpWebRequest = WebRequest.Create(new Uri(
-                    Path.Combine(_ftpServiceAddress, originDirectoryPath))) as FtpWebRequest;
+                var newFtpWebRequest = 
+                    WebRequest.Create(
+                        new Uri(_ftpServiceAddress, originDirectoryPath)) as FtpWebRequest;
                 newFtpWebRequest.Method = WebRequestMethods.Ftp.MakeDirectory;
                 newFtpWebRequest.UseBinary = true;
                 newFtpWebRequest.Credentials = new NetworkCredential(_userName, _password);
