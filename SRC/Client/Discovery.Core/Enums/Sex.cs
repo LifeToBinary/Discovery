@@ -16,6 +16,10 @@ namespace Discovery.Core.Enums
         /// <summary>
         /// 女
         /// </summary>
-        Female
+        Female,
+        /// <summary>
+        /// 保密
+        /// </summary>
+        Secret
     }
 }
