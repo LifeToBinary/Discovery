@@ -93,8 +93,8 @@ namespace Discovery.Model
         /// <summary>
         /// 所属标签分类
         /// </summary>
-        private PostCategory _postCategory;
-        public PostCategory PostCategory
+        private Field _postCategory;
+        public Field PostCategory
         {
             get => _postCategory;
             set => SetProperty(ref _postCategory, value);
