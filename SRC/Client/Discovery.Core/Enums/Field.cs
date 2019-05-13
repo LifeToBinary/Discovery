@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Discovery.Core.Enums
+﻿namespace Discovery.Core.Enums
 {
     /// <summary>
     /// 表示 Post 的类别
@@ -48,7 +44,6 @@ namespace Discovery.Core.Enums
         /// <summary>
         /// 政治
         /// </summary>
-        Administrative,
-
+        Administrative
     }
 }

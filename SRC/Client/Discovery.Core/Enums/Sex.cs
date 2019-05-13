@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Discovery.Core.Enums
+﻿namespace Discovery.Core.Enums
 {
     /// <summary>
     /// 表示一个性别
