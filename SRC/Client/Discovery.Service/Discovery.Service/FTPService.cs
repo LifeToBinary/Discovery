@@ -127,13 +127,12 @@ namespace Discovery.Service
                               Stream targetStream,
                               byte[] buffer)
         {
-            int readLength = sourceStream.Read(buffer, 0, buffer.Length);
-            targetStream.Write(buffer, 0, readLength);
-            if (readLength < buffer.Length)
+            int readedLength;
+            do
             {
-                return;
-            }
-            CopyData(sourceStream, targetStream, buffer);
+                readedLength = sourceStream.Read(buffer, 0, buffer.Length);
+                targetStream.Write(buffer, 0, readedLength);
+            } while (readedLength == buffer.Length);
         }
 
         /// <summary>
