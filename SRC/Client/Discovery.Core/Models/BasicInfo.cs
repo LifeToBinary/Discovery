@@ -78,5 +78,15 @@ namespace Discovery.Core.Models
             get => _profileBackgroundImagePath;
             set => SetProperty(ref _profileBackgroundImagePath, value);
         }
+
+        /// <summary>
+        /// 感兴趣的领域
+        /// </summary>
+        private Field _areaOfInterest;
+        public Field AreaOfInterest
+        {
+            get => _areaOfInterest;
+            set => SetProperty(ref _areaOfInterest, value);
+        }
     }
 }
