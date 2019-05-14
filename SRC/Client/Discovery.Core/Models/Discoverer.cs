@@ -1,7 +1,7 @@
 ﻿using Discovery.Core.Models;
 using Prism.Mvvm;
 
-namespace Discovery.Model
+namespace Discovery.Core.Model
 {
     /// <summary>
     /// 用户类

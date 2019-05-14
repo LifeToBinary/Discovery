@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Prism.Mvvm;
 
-namespace Discovery.Model
+namespace Discovery.Core.Model
 {
     /// <summary>
     /// 表示用户的联系方式

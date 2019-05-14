@@ -2,7 +2,7 @@
 using Discovery.Core.Enums;
 using Prism.Mvvm;
 
-namespace Discovery.Model
+namespace Discovery.Core.Model
 {
     /// <summary>
     /// 表示一个帖子
