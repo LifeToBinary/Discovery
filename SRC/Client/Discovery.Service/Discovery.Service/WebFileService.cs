@@ -10,7 +10,7 @@ namespace Discovery.Service
     /// <summary>
     /// 用于与服务器上的 FTP 服务交互
     /// </summary>
-    public class FtpService : IWebFileService
+    public class WebFileService : IWebFileService
     {
         /// <summary>
         /// FTP 服务器完整路径
@@ -28,7 +28,7 @@ namespace Discovery.Service
         /// <param name="ftpServiceAddress">FTP 服务器完整路径</param>
         /// <param name="userName">登录用户名(匿名登录留空)</param>
         /// <param name="password">登录密码(匿名登录留空)</param>
-        public FtpService(
+        public WebFileService(
             string ftpServiceAddress,
             string userName = "",
             string password = "")
@@ -42,7 +42,7 @@ namespace Discovery.Service
         /// </summary>
         /// <param name="ftpServiceAddress"></param>
         /// <param name="credential"></param>
-        public FtpService(
+        public WebFileService(
             Uri ftpServiceAddress,
             NetworkCredential credential)
             => (_ftpServiceAddress, _credentials) = (ftpServiceAddress, credential);

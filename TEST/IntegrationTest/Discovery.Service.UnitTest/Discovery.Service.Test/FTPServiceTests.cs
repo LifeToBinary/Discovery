@@ -10,7 +10,7 @@ namespace Discovery.Service.Test
     [TestFixture]
     public class FtpServiceTests
     {
-        private FtpService MakeNewFTPService()
-            => new FtpService(@"ftp://47.240.12.27");
+        private WebFileService MakeNewFTPService()
+            => new WebFileService(@"ftp://47.240.12.27");
     }
 }
