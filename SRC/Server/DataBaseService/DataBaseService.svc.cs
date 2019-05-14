@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using Discovery.Core.Enums;
+using Discovery.Core.Model;
 using Discovery.Core.Models;
-using Discovery.Model;
 
 namespace DataBaseService
 {
@@ -50,7 +51,7 @@ namespace DataBaseService
         /// </summary>
         /// <returns>数据库连接字符串</returns>
         private string GetDataBaseConnectionString()
-            => "server=.;database=Discovery;uid=sa;pwd=1234";
+            => ConfigurationManager.ConnectionStrings["DiscoveryDataBase"].ConnectionString;
 
         /// <summary>
         /// 取消关注一个用户
@@ -423,8 +424,6 @@ namespace DataBaseService
         /// <returns>用户可能感兴趣的帖子</returns>
         public IEnumerable<Post> GetRecommendedForTheDiscoverer(string discovererID)
         {
-            var posts = new List<Post>();
-
             using (var connection = new SqlConnection(GetDataBaseConnectionString()))
             using (SqlCommand command = connection.CreateCommand())
             {
