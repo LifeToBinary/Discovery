@@ -33,7 +33,7 @@ namespace DataBaseService
         int AddANewPost(Post post);
 
         [OperationContract]
-        IEnumerable<Post> FindPostsOfTheDiscoverer(string postTitle);
+        IEnumerable<Post> FindPostsOfTheDiscoverer(string discovererID, string postTitle);
 
         [OperationContract]
         IEnumerable<Discoverer> GetFunsOfTheIdol(string idolID);
@@ -72,9 +72,15 @@ namespace DataBaseService
         bool IsFuns(string funsID, string idolID);
 
         [OperationContract]
-        bool IsFavorite(string discovererID, string postID);
+        bool IsFavoritedAPost(string discovererID, string postID);
 
         [OperationContract]
         int GetFavoritesCountOfThePost(string postID);
+
+        [OperationContract]
+        IEnumerable<Discoverer> GetIdols(string funsID);
+
+        [OperationContract]
+        int GetIdolsCount(string funsID);
     }
 }
