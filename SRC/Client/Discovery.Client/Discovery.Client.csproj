@@ -123,5 +123,11 @@
   <ItemGroup>
     <Folder Include="ViewModels\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Discovery.Core\Discovery.Core.csproj">
+      <Project>{dbfd6e0a-1cbe-4fc7-b87c-bdd11ae41f89}</Project>
+      <Name>Discovery.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

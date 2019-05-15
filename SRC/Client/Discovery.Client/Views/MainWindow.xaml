@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Discovery.Client.Views"
         mc:Ignorable="d"
+        xmlns:constants="clr-namespace:Discovery.Core.Constants;assembly=Discovery.Core"
         xmlns:prism="http://prismlibrary.com/"
         Title="MainWindow"
         Height="450"
@@ -15,9 +16,9 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <ContentControl Grid.Row="0"
-                        prism:RegionManager.RegionName="ShellTitle" />
+                        prism:RegionManager.RegionName="{x:Static constants:RegionNames.ShellTitle}" />
 
         <ContentControl Grid.Row="1"
-                        prism:RegionManager.RegionName="ShellContent" />
+                        prism:RegionManager.RegionName="{x:Static constants:RegionNames.ShellContent}" />
     </Grid>
 </Window>
