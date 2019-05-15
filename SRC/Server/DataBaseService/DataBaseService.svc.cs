@@ -21,19 +21,28 @@ namespace DataBaseService
         /// <returns>数据库为此Post分配的ID</returns>
         public int AddANewPost(Post post)
         {
+            // AddANewPost 存储过程的参数名称和参数值的映射表
+            var addANewPostParameterValues =
+                new Dictionary<string, object>
+                {
+                    ["@id"] = post.ID,
+                    ["@title"] = post.Title,
+                    ["@url"] = post.Url,
+                    ["@creationTime"] = post.CreationTime,
+                    ["@authorID"] = post.AuthorID,
+                    ["@content"] = post.Content,
+                    ["@postCategory"] = post.PostCategory,
+                    ["@lastEditedTime"] = post.LastEditedTime
+                };
             using (var connection = new SqlConnection(GetDataBaseConnectionString()))
             using (SqlCommand command = connection.CreateCommand())
             {
                 command.CommandType = CommandType.StoredProcedure;
                 command.CommandText = "AddANewPost";
-                command.Parameters.AddWithValue("@title", post.Title);
-                command.Parameters.AddWithValue("@url", post.Url);
-                command.Parameters.AddWithValue("@creationTime", post.CreationTime);
-                command.Parameters.AddWithValue("@authorID", post.AuthorID);
-                command.Parameters.AddWithValue("@content", post.Content);
-                command.Parameters.AddWithValue("@postCategory", post.PostCategory);
-                command.Parameters.AddWithValue("@lastEditedTime", post.LastEditedTime);
-                command.Parameters.AddWithValue("@iconPath", post.IconPath);
+                foreach (KeyValuePair<string, object> parameter in addANewPostParameterValues)
+                {
+                    command.Parameters.AddWithValue(parameter.Key, parameter.Value);
+                }
                 command.Parameters.Add(new SqlParameter
                 {
                     ParameterName = "@newPostID",
@@ -51,7 +60,8 @@ namespace DataBaseService
         /// </summary>
         /// <returns>数据库连接字符串</returns>
         private string GetDataBaseConnectionString()
-            => ConfigurationManager.ConnectionStrings["DiscoveryDataBase"].ConnectionString;
+            => ConfigurationManager.ConnectionStrings["DiscoveryDataBase"]
+                                   .ConnectionString;
 
         /// <summary>
         /// 取消关注一个用户
@@ -182,23 +192,30 @@ namespace DataBaseService
                 {
                     while (reader.Read())
                     {
-                        yield return new Post
-                        {
-                            ID = reader.GetInt32(0),
-                            Title = reader.GetString(1),
-                            Url = reader.GetString(2),
-                            CreationTime = reader.GetDateTime(3),
-                            AuthorID = reader.GetInt32(4),
-                            Content = reader.GetString(5),
-                            PostCategory = (Field)reader.GetInt32(6),
-                            LastEditedTime = reader.GetDateTime(7),
-                            IconPath = reader.GetString(8)
-                        };
+                        yield return CreatePostFromSqlDataReader(reader);
                     }
                 }
             }
         }
 
+        /// <summary>
+        /// 读取一个 SqlDataReader 的数据以创建Post对象
+        /// </summary>
+        /// <param name="reader">一个用于读取数据的 SqlDataReader 实例</param>
+        /// <returns>一个新的 Post 对象</returns>
+        private Post CreatePostFromSqlDataReader(SqlDataReader reader)
+            => new Post
+            {
+                ID = reader.GetInt32(0),
+                Title = reader.GetString(1),
+                Url = reader.GetString(2),
+                CreationTime = reader.GetDateTime(3),
+                AuthorID = reader.GetInt32(4),
+                Content = reader.GetString(5),
+                PostCategory = (Field)reader.GetInt32(6),
+                LastEditedTime = reader.GetDateTime(7),
+                IconPath = reader.GetString(8)
+            };
         /// <summary>
         /// 搜索一个用户的帖子
         /// </summary>
@@ -218,18 +235,7 @@ namespace DataBaseService
                 SqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    yield return new Post
-                    {
-                        ID = reader.GetInt32(0),
-                        Title = reader.GetString(1),
-                        Url = reader.GetString(2),
-                        CreationTime = reader.GetDateTime(3),
-                        AuthorID = reader.GetInt32(4),
-                        Content = reader.GetString(5),
-                        PostCategory = (Field)reader.GetInt32(6),
-                        LastEditedTime = reader.GetDateTime(7),
-                        IconPath = reader.GetString(8)
-                    };
+                    yield return CreatePostFromSqlDataReader(reader);
                 }
             }
         }
@@ -251,18 +257,7 @@ namespace DataBaseService
                 SqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    yield return new Post
-                    {
-                        ID = reader.GetInt32(0),
-                        Title = reader.GetString(1),
-                        Url = reader.GetString(2),
-                        CreationTime = reader.GetDateTime(3),
-                        AuthorID = reader.GetInt32(4),
-                        Content = reader.GetString(5),
-                        PostCategory = (Field)reader.GetInt32(6),
-                        LastEditedTime = reader.GetDateTime(7),
-                        IconPath = reader.GetString(8)
-                    };
+                    yield return CreatePostFromSqlDataReader(reader);
                 }
             }
         }
@@ -334,31 +329,38 @@ namespace DataBaseService
                 SqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    yield return new Discoverer
-                    {
-                        BasicInfo = new BasicInfo
-                        {
-                            ID = reader.GetInt32(0),
-                            SignInName = reader.GetString(1),
-                            Password = reader.GetString(2),
-                            Sex = (Sex)reader.GetInt32(3),
-                            AreaOfInterest = (Field)reader.GetInt32(4),
-                            SignUpTime = reader.GetDateTime(5),
-                            AvatarPath = reader.GetString(6),
-                            ProfileBackgroundImagePath = reader.GetString(7)
-                        },
-                        ContactInfo = new ContactInfo
-                        {
-                            Email = reader.IsDBNull(8) ? null : reader.GetString(8),
-                            QQ = reader.IsDBNull(9) ? null : reader.GetString(9),
-                            WeChat = reader.IsDBNull(10) ? null : reader.GetString(10),
-                            BlogAddress = reader.IsDBNull(11) ? null : reader.GetString(11)
-                        }
-                    };
+                    yield return CreateDiscovererFromSqlDataReader(reader);
                 }
             }
         }
 
+        /// <summary>
+        /// 读取一个 SqlDataReader 的数据以创建 Discoverer 对象
+        /// </summary>
+        /// <param name="reader">一个用于读取数据的 SqlDataReader 实例</param>
+        /// <returns>一个新的 Discoverer 对象</returns>
+        private Discoverer CreateDiscovererFromSqlDataReader(SqlDataReader reader)
+            => new Discoverer
+            {
+                BasicInfo = new BasicInfo
+                {
+                    ID = reader.GetInt32(0),
+                    SignInName = reader.GetString(1),
+                    Password = reader.GetString(2),
+                    Sex = (Sex)reader.GetInt32(3),
+                    AreaOfInterest = (Field)reader.GetInt32(4),
+                    SignUpTime = reader.GetDateTime(5),
+                    AvatarPath = reader.GetString(6),
+                    ProfileBackgroundImagePath = reader.GetString(7)
+                },
+                ContactInfo = new ContactInfo
+                {
+                    Email = reader.IsDBNull(8) ? null : reader.GetString(8),
+                    QQ = reader.IsDBNull(9) ? null : reader.GetString(9),
+                    WeChat = reader.IsDBNull(10) ? null : reader.GetString(10),
+                    BlogAddress = reader.IsDBNull(11) ? null : reader.GetString(11)
+                }
+            };
         /// <summary>
         /// 获取一个用户的帖子数量
         /// </summary>
@@ -401,18 +403,7 @@ namespace DataBaseService
                 SqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    yield return new Post
-                    {
-                        ID = reader.GetInt32(0),
-                        Title = reader.GetString(1),
-                        Url = reader.GetString(2),
-                        CreationTime = reader.GetDateTime(3),
-                        AuthorID = reader.GetInt32(4),
-                        Content = reader.GetString(5),
-                        PostCategory = (Field)reader.GetInt32(6),
-                        LastEditedTime = reader.GetDateTime(7),
-                        IconPath = reader.GetString(8)
-                    };
+                    yield return CreatePostFromSqlDataReader(reader);
                 }
             }
         }
@@ -434,18 +425,7 @@ namespace DataBaseService
                 SqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    yield return new Post
-                    {
-                        ID = reader.GetInt32(0),
-                        Title = reader.GetString(1),
-                        Url = reader.GetString(2),
-                        CreationTime = reader.GetDateTime(3),
-                        AuthorID = reader.GetInt32(4),
-                        Content = reader.GetString(5),
-                        PostCategory = (Field)reader.GetInt32(6),
-                        LastEditedTime = reader.GetDateTime(7),
-                        IconPath = reader.GetString(8)
-                    };
+                    yield return CreatePostFromSqlDataReader(reader);
                 }
             }
         }
@@ -539,27 +519,7 @@ namespace DataBaseService
                 SqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    yield return new Discoverer
-                    {
-                        BasicInfo = new BasicInfo
-                        {
-                            ID = reader.GetInt32(0),
-                            SignInName = reader.GetString(1),
-                            Password = reader.GetString(2),
-                            Sex = (Sex)reader.GetInt32(3),
-                            AreaOfInterest = (Field)reader.GetInt32(4),
-                            SignUpTime = reader.GetDateTime(5),
-                            AvatarPath = reader.GetString(6),
-                            ProfileBackgroundImagePath = reader.GetString(7)
-                        },
-                        ContactInfo = new ContactInfo
-                        {
-                            Email = reader.IsDBNull(8) ? null : reader.GetString(8),
-                            QQ = reader.IsDBNull(9) ? null : reader.GetString(9),
-                            WeChat = reader.IsDBNull(10) ? null : reader.GetString(10),
-                            BlogAddress = reader.IsDBNull(11) ? null : reader.GetString(11)
-                        }
-                    };
+                    yield return CreateDiscovererFromSqlDataReader(reader);
                 }
             }
         }
@@ -632,23 +592,35 @@ namespace DataBaseService
         /// <param name="discoverer">用户资料</param>
         public void UpdateDiscovererInfo(Discoverer discoverer)
         {
+            // UpdateDiscovererProfile 存储过程的参数名称和参数值的映射表
+            var updateDiscovererProfileParameterValues =
+                new Dictionary<string, object>
+                {
+                    ["@id"] = discoverer.BasicInfo.ID,
+                    ["@signInName"] = discoverer.BasicInfo.SignInName,
+                    ["@password"] = discoverer.BasicInfo.Password,
+                    ["@sex"] = discoverer.BasicInfo.Sex,
+                    ["@areaOfInterest"] = discoverer.BasicInfo.AreaOfInterest,
+                    ["@signUpTime"] = discoverer.BasicInfo.SignUpTime,
+                    ["@avatarPath"] = discoverer.BasicInfo.AvatarPath,
+                    ["@profileBackgroundImagePath"] = discoverer.BasicInfo.ProfileBackgroundImagePath,
+                    ["@email"] = discoverer.ContactInfo.Email,
+                    ["@qq"] = discoverer.ContactInfo.QQ,
+                    ["@weChat"] = discoverer.ContactInfo.WeChat,
+                    ["@blogAddress"] = discoverer.ContactInfo.BlogAddress
+                };
             using (var connection = new SqlConnection(GetDataBaseConnectionString()))
             using (SqlCommand command = connection.CreateCommand())
             {
                 command.CommandType = CommandType.StoredProcedure;
                 command.CommandText = "UpdateDiscovererProfile";
-                command.Parameters.AddWithValue("@id", discoverer.BasicInfo.ID);
-                command.Parameters.AddWithValue("@signInName", discoverer.BasicInfo.SignInName);
-                command.Parameters.AddWithValue("@password", discoverer.BasicInfo.Password);
-                command.Parameters.AddWithValue("@sex", discoverer.BasicInfo.Sex);
-                command.Parameters.AddWithValue("@areaOfInterest", discoverer.BasicInfo.AreaOfInterest);
-                command.Parameters.AddWithValue("@signUpTime", discoverer.BasicInfo.SignUpTime);
-                command.Parameters.AddWithValue("@avatarPath", discoverer.BasicInfo.AvatarPath);
-                command.Parameters.AddWithValue("@profileBackgroundImagePath", discoverer.BasicInfo.ProfileBackgroundImagePath);
-                command.Parameters.AddWithValue("@email", discoverer.ContactInfo.Email);
-                command.Parameters.AddWithValue("@qq", discoverer.ContactInfo.QQ);
-                command.Parameters.AddWithValue("@weChat", discoverer.ContactInfo.WeChat);
-                command.Parameters.AddWithValue("@blogAddress", discoverer.ContactInfo.BlogAddress);
+
+                foreach (KeyValuePair<string, object> parameter in
+                         updateDiscovererProfileParameterValues)
+                {
+                    command.Parameters
+                           .AddWithValue(parameter.Key, parameter.Value);
+                }
                 connection.Open();
                 command.ExecuteNonQuery();
             }
@@ -660,20 +632,31 @@ namespace DataBaseService
         /// <param name="post"></param>
         public void UpdatePostInfo(Post post)
         {
+            // UpdatePostInfo 存储过程的参数名称和参数值的映射表
+            var updatePostInfoParameterValues =
+                new Dictionary<string, object>
+                {
+                    ["@id"] = post.ID,
+                    ["@title"] = post.Title,
+                    ["@url"] = post.Url,
+                    ["@creationTime"] = post.CreationTime,
+                    ["@authorID"] = post.AuthorID,
+                    ["@content"] = post.Content,
+                    ["@postCategory"] = post.PostCategory,
+                    ["@lastEditedTime"] = post.LastEditedTime,
+                    ["@iconPath"] = post.IconPath
+                };
+
             using (var connection = new SqlConnection(GetDataBaseConnectionString()))
             using (SqlCommand command = connection.CreateCommand())
             {
                 command.CommandType = CommandType.StoredProcedure;
                 command.CommandText = "UpdatePostInfo";
-                command.Parameters.AddWithValue("@id", post.ID);
-                command.Parameters.AddWithValue("@title", post.Title);
-                command.Parameters.AddWithValue("@url", post.Url);
-                command.Parameters.AddWithValue("@creationTime", post.CreationTime);
-                command.Parameters.AddWithValue("@authorID", post.AuthorID);
-                command.Parameters.AddWithValue("@content", post.Content);
-                command.Parameters.AddWithValue("@postCategory", post.PostCategory);
-                command.Parameters.AddWithValue("@lastEditedTime", post.LastEditedTime);
-                command.Parameters.AddWithValue("@iconPath", post.IconPath);
+                foreach (KeyValuePair<string, object> parameter in updatePostInfoParameterValues)
+                {
+                    command.Parameters
+                           .AddWithValue(parameter.Key, parameter.Value);
+                }
                 connection.Open();
                 command.ExecuteNonQuery();
             }
@@ -696,27 +679,7 @@ namespace DataBaseService
                 SqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    yield return new Discoverer
-                    {
-                        BasicInfo = new BasicInfo
-                        {
-                            ID = reader.GetInt32(0),
-                            SignInName = reader.GetString(1),
-                            Password = reader.GetString(2),
-                            Sex = (Sex)reader.GetInt32(3),
-                            AreaOfInterest = (Field)reader.GetInt32(4),
-                            SignUpTime = reader.GetDateTime(5),
-                            AvatarPath = reader.GetString(6),
-                            ProfileBackgroundImagePath = reader.GetString(7)
-                        },
-                        ContactInfo = new ContactInfo
-                        {
-                            Email = reader.IsDBNull(8) ? null : reader.GetString(8),
-                            QQ = reader.IsDBNull(9) ? null : reader.GetString(9),
-                            WeChat = reader.IsDBNull(10) ? null : reader.GetString(10),
-                            BlogAddress = reader.IsDBNull(11) ? null : reader.GetString(11)
-                        }
-                    };
+                    yield return CreateDiscovererFromSqlDataReader(reader);
                 }
             }
         }
@@ -743,6 +706,65 @@ namespace DataBaseService
                 connection.Open();
                 command.ExecuteNonQuery();
                 return Convert.ToInt32(command.Parameters[1].Value);
+            }
+        }
+
+        /// <summary>
+        /// 用户注册
+        /// </summary>
+        /// <param name="signInName">登录名</param>
+        /// <param name="password">密码</param>
+        /// <param name="sex">性别</param>
+        /// <param name="areaOfInterest">感兴趣的领域</param>
+        /// <param name="signUpTime">注册时间</param>
+        public void SignUp(string signInName,
+                           string password,
+                           Sex sex,
+                           Field areaOfInterest,
+                           DateTime signUpTime)
+        {
+            var SignUpParameterValues
+                = new Dictionary<string, object>
+                {
+                    ["@signInName"] = signInName,
+                    ["@password"] = password,
+                    ["@sex"] = sex,
+                    ["@areaOfInterest"] = areaOfInterest,
+                    ["@signUpTime"] = signUpTime
+                };
+
+            using (var connection = new SqlConnection(GetDataBaseConnectionString()))
+            using (SqlCommand command = connection.CreateCommand())
+            {
+                command.CommandType = CommandType.StoredProcedure;
+                command.CommandText = "SignUp";
+                foreach (KeyValuePair<string, object> parameter in SignUpParameterValues)
+                {
+                    command.Parameters.AddWithValue(parameter.Key, parameter.Value);
+                }
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+        }
+
+        /// <summary>
+        /// 通过 ID 查找用户
+        /// </summary>
+        /// <param name="discovererID">用户ID</param>
+        /// <returns>查找到的用户或null(找不到此用户)</returns>
+        public Discoverer GetDiscovererByID(int discovererID)
+        {
+            using (var connection = new SqlConnection(GetDataBaseConnectionString()))
+            using (SqlCommand command = connection.CreateCommand())
+            {
+                command.CommandType = CommandType.StoredProcedure;
+                command.CommandText = "GetDiscovererByID";
+                command.Parameters.AddWithValue("discovererID", discovererID);
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                return reader.Read()
+                       ? CreateDiscovererFromSqlDataReader(reader)
+                       : null;   
             }
         }
     }

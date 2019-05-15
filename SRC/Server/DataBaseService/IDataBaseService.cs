@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ServiceModel;
+using Discovery.Core.Enums;
 using Discovery.Core.Model;
 
 namespace DataBaseService
@@ -12,6 +14,16 @@ namespace DataBaseService
 
         [OperationContract]
         Discoverer SignIn(string signInName, string password);
+
+        [OperationContract]
+        void SignUp(string signInName, 
+                    string password, 
+                    Sex sex, 
+                    Field areaOfInterest, 
+                    DateTime signUpTime);
+
+        [OperationContract]
+        Discoverer GetDiscovererByID(int discovererID);
 
         [OperationContract]
         void UpdateDiscovererInfo(Discoverer discoverer);
