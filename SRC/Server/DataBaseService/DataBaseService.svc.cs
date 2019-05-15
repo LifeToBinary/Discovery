@@ -582,23 +582,30 @@ namespace DataBaseService
         /// <param name="discoverer">用户资料</param>
         public void UpdateDiscovererInfo(Discoverer discoverer)
         {
+            // UpdateDiscovererProfile 存储过程的参数名称和参数值的映射表
+            var updateDiscovererProfileParameterValues =
+                new Dictionary<string, object>
+                {
+                    ["@id"] = discoverer.BasicInfo.ID,
+                    ["@signInName"] = discoverer.BasicInfo.SignInName,
+                    ["@password"] = discoverer.BasicInfo.Password,
+                    ["@sex"] = discoverer.BasicInfo.Sex,
+                    ["@areaOfInterest"] = discoverer.BasicInfo.AreaOfInterest,
+                    ["@signUpTime"] = discoverer.BasicInfo.SignUpTime,
+                    ["@avatarPath"] = discoverer.BasicInfo.AvatarPath,
+                    ["@profileBackgroundImagePath"] = discoverer.BasicInfo.ProfileBackgroundImagePath,
+                    ["@email"] = discoverer.ContactInfo.Email,
+                    ["@qq"] = discoverer.ContactInfo.QQ,
+                    ["@weChat"] = discoverer.ContactInfo.WeChat,
+                    ["@blogAddress"] = discoverer.ContactInfo.BlogAddress
+                };
             using (var connection = new SqlConnection(GetDataBaseConnectionString()))
             using (SqlCommand command = connection.CreateCommand())
             {
                 command.CommandType = CommandType.StoredProcedure;
                 command.CommandText = "UpdateDiscovererProfile";
-                command.Parameters.AddWithValue("@id", discoverer.BasicInfo.ID);
-                command.Parameters.AddWithValue("@signInName", discoverer.BasicInfo.SignInName);
-                command.Parameters.AddWithValue("@password", discoverer.BasicInfo.Password);
-                command.Parameters.AddWithValue("@sex", discoverer.BasicInfo.Sex);
-                command.Parameters.AddWithValue("@areaOfInterest", discoverer.BasicInfo.AreaOfInterest);
-                command.Parameters.AddWithValue("@signUpTime", discoverer.BasicInfo.SignUpTime);
-                command.Parameters.AddWithValue("@avatarPath", discoverer.BasicInfo.AvatarPath);
-                command.Parameters.AddWithValue("@profileBackgroundImagePath", discoverer.BasicInfo.ProfileBackgroundImagePath);
-                command.Parameters.AddWithValue("@email", discoverer.ContactInfo.Email);
-                command.Parameters.AddWithValue("@qq", discoverer.ContactInfo.QQ);
-                command.Parameters.AddWithValue("@weChat", discoverer.ContactInfo.WeChat);
-                command.Parameters.AddWithValue("@blogAddress", discoverer.ContactInfo.BlogAddress);
+
+                foreach (KeyValuePair<string, object> parameter in updateDiscovererProfileParameterValues)
                 connection.Open();
                 command.ExecuteNonQuery();
             }
@@ -610,20 +617,31 @@ namespace DataBaseService
         /// <param name="post"></param>
         public void UpdatePostInfo(Post post)
         {
+            // UpdatePostInfo 存储过程的参数名称和参数值的映射表
+            var updatePostInfoParameterValues =
+                new Dictionary<string, object>
+                {
+                    ["@id"] = post.ID,
+                    ["@title"] = post.Title,
+                    ["@url"] = post.Url,
+                    ["@creationTime"] = post.CreationTime,
+                    ["@authorID"] = post.AuthorID,
+                    ["@content"] = post.Content,
+                    ["@postCategory"] = post.PostCategory,
+                    ["@lastEditedTime"] = post.LastEditedTime,
+                    ["@iconPath"] = post.IconPath
+                };
+
             using (var connection = new SqlConnection(GetDataBaseConnectionString()))
             using (SqlCommand command = connection.CreateCommand())
             {
                 command.CommandType = CommandType.StoredProcedure;
                 command.CommandText = "UpdatePostInfo";
-                command.Parameters.AddWithValue("@id", post.ID);
-                command.Parameters.AddWithValue("@title", post.Title);
-                command.Parameters.AddWithValue("@url", post.Url);
-                command.Parameters.AddWithValue("@creationTime", post.CreationTime);
-                command.Parameters.AddWithValue("@authorID", post.AuthorID);
-                command.Parameters.AddWithValue("@content", post.Content);
-                command.Parameters.AddWithValue("@postCategory", post.PostCategory);
-                command.Parameters.AddWithValue("@lastEditedTime", post.LastEditedTime);
-                command.Parameters.AddWithValue("@iconPath", post.IconPath);
+                foreach (KeyValuePair<string, object> parameter in updatePostInfoParameterValues)
+                {
+                    command.Parameters
+                           .AddWithValue(parameter.Key, parameter.Value);
+                }
                 connection.Open();
                 command.ExecuteNonQuery();
             }
