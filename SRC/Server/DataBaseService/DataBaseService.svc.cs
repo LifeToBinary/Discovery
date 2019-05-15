@@ -182,23 +182,30 @@ namespace DataBaseService
                 {
                     while (reader.Read())
                     {
-                        yield return new Post
-                        {
-                            ID = reader.GetInt32(0),
-                            Title = reader.GetString(1),
-                            Url = reader.GetString(2),
-                            CreationTime = reader.GetDateTime(3),
-                            AuthorID = reader.GetInt32(4),
-                            Content = reader.GetString(5),
-                            PostCategory = (Field)reader.GetInt32(6),
-                            LastEditedTime = reader.GetDateTime(7),
-                            IconPath = reader.GetString(8)
-                        };
+                        yield return CreatePostFromSqlDataReader(reader);
                     }
                 }
             }
         }
 
+        /// <summary>
+        /// 读取一个 SqlDataReader 的数据以创建Post对象
+        /// </summary>
+        /// <param name="reader">一个用于读取数据的 SqlDataReader 实例</param>
+        /// <returns>一个新的 Post 对象</returns>
+        private Post CreatePostFromSqlDataReader(SqlDataReader reader)
+            => new Post
+            {
+                ID = reader.GetInt32(0),
+                Title = reader.GetString(1),
+                Url = reader.GetString(2),
+                CreationTime = reader.GetDateTime(3),
+                AuthorID = reader.GetInt32(4),
+                Content = reader.GetString(5),
+                PostCategory = (Field)reader.GetInt32(6),
+                LastEditedTime = reader.GetDateTime(7),
+                IconPath = reader.GetString(8)
+            };
         /// <summary>
         /// 搜索一个用户的帖子
         /// </summary>
@@ -218,18 +225,7 @@ namespace DataBaseService
                 SqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    yield return new Post
-                    {
-                        ID = reader.GetInt32(0),
-                        Title = reader.GetString(1),
-                        Url = reader.GetString(2),
-                        CreationTime = reader.GetDateTime(3),
-                        AuthorID = reader.GetInt32(4),
-                        Content = reader.GetString(5),
-                        PostCategory = (Field)reader.GetInt32(6),
-                        LastEditedTime = reader.GetDateTime(7),
-                        IconPath = reader.GetString(8)
-                    };
+                    yield return CreatePostFromSqlDataReader(reader);
                 }
             }
         }
@@ -251,18 +247,7 @@ namespace DataBaseService
                 SqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    yield return new Post
-                    {
-                        ID = reader.GetInt32(0),
-                        Title = reader.GetString(1),
-                        Url = reader.GetString(2),
-                        CreationTime = reader.GetDateTime(3),
-                        AuthorID = reader.GetInt32(4),
-                        Content = reader.GetString(5),
-                        PostCategory = (Field)reader.GetInt32(6),
-                        LastEditedTime = reader.GetDateTime(7),
-                        IconPath = reader.GetString(8)
-                    };
+                    yield return CreatePostFromSqlDataReader(reader);
                 }
             }
         }
@@ -334,31 +319,38 @@ namespace DataBaseService
                 SqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    yield return new Discoverer
-                    {
-                        BasicInfo = new BasicInfo
-                        {
-                            ID = reader.GetInt32(0),
-                            SignInName = reader.GetString(1),
-                            Password = reader.GetString(2),
-                            Sex = (Sex)reader.GetInt32(3),
-                            AreaOfInterest = (Field)reader.GetInt32(4),
-                            SignUpTime = reader.GetDateTime(5),
-                            AvatarPath = reader.GetString(6),
-                            ProfileBackgroundImagePath = reader.GetString(7)
-                        },
-                        ContactInfo = new ContactInfo
-                        {
-                            Email = reader.IsDBNull(8) ? null : reader.GetString(8),
-                            QQ = reader.IsDBNull(9) ? null : reader.GetString(9),
-                            WeChat = reader.IsDBNull(10) ? null : reader.GetString(10),
-                            BlogAddress = reader.IsDBNull(11) ? null : reader.GetString(11)
-                        }
-                    };
+                    yield return CreateDiscovererFromSqlDataReader(reader);
                 }
             }
         }
 
+        /// <summary>
+        /// 读取一个 SqlDataReader 的数据以创建 Discoverer 对象
+        /// </summary>
+        /// <param name="reader">一个用于读取数据的 SqlDataReader 实例</param>
+        /// <returns>一个新的 Discoverer 对象</returns>
+        private Discoverer CreateDiscovererFromSqlDataReader(SqlDataReader reader)
+            => new Discoverer
+            {
+                BasicInfo = new BasicInfo
+                {
+                    ID = reader.GetInt32(0),
+                    SignInName = reader.GetString(1),
+                    Password = reader.GetString(2),
+                    Sex = (Sex)reader.GetInt32(3),
+                    AreaOfInterest = (Field)reader.GetInt32(4),
+                    SignUpTime = reader.GetDateTime(5),
+                    AvatarPath = reader.GetString(6),
+                    ProfileBackgroundImagePath = reader.GetString(7)
+                },
+                ContactInfo = new ContactInfo
+                {
+                    Email = reader.IsDBNull(8) ? null : reader.GetString(8),
+                    QQ = reader.IsDBNull(9) ? null : reader.GetString(9),
+                    WeChat = reader.IsDBNull(10) ? null : reader.GetString(10),
+                    BlogAddress = reader.IsDBNull(11) ? null : reader.GetString(11)
+                }
+            };
         /// <summary>
         /// 获取一个用户的帖子数量
         /// </summary>
@@ -401,18 +393,7 @@ namespace DataBaseService
                 SqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    yield return new Post
-                    {
-                        ID = reader.GetInt32(0),
-                        Title = reader.GetString(1),
-                        Url = reader.GetString(2),
-                        CreationTime = reader.GetDateTime(3),
-                        AuthorID = reader.GetInt32(4),
-                        Content = reader.GetString(5),
-                        PostCategory = (Field)reader.GetInt32(6),
-                        LastEditedTime = reader.GetDateTime(7),
-                        IconPath = reader.GetString(8)
-                    };
+                    yield return CreatePostFromSqlDataReader(reader);
                 }
             }
         }
@@ -434,18 +415,7 @@ namespace DataBaseService
                 SqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    yield return new Post
-                    {
-                        ID = reader.GetInt32(0),
-                        Title = reader.GetString(1),
-                        Url = reader.GetString(2),
-                        CreationTime = reader.GetDateTime(3),
-                        AuthorID = reader.GetInt32(4),
-                        Content = reader.GetString(5),
-                        PostCategory = (Field)reader.GetInt32(6),
-                        LastEditedTime = reader.GetDateTime(7),
-                        IconPath = reader.GetString(8)
-                    };
+                    yield return CreatePostFromSqlDataReader(reader);
                 }
             }
         }
@@ -539,27 +509,7 @@ namespace DataBaseService
                 SqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    yield return new Discoverer
-                    {
-                        BasicInfo = new BasicInfo
-                        {
-                            ID = reader.GetInt32(0),
-                            SignInName = reader.GetString(1),
-                            Password = reader.GetString(2),
-                            Sex = (Sex)reader.GetInt32(3),
-                            AreaOfInterest = (Field)reader.GetInt32(4),
-                            SignUpTime = reader.GetDateTime(5),
-                            AvatarPath = reader.GetString(6),
-                            ProfileBackgroundImagePath = reader.GetString(7)
-                        },
-                        ContactInfo = new ContactInfo
-                        {
-                            Email = reader.IsDBNull(8) ? null : reader.GetString(8),
-                            QQ = reader.IsDBNull(9) ? null : reader.GetString(9),
-                            WeChat = reader.IsDBNull(10) ? null : reader.GetString(10),
-                            BlogAddress = reader.IsDBNull(11) ? null : reader.GetString(11)
-                        }
-                    };
+                    yield return CreateDiscovererFromSqlDataReader(reader);
                 }
             }
         }
@@ -696,27 +646,7 @@ namespace DataBaseService
                 SqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    yield return new Discoverer
-                    {
-                        BasicInfo = new BasicInfo
-                        {
-                            ID = reader.GetInt32(0),
-                            SignInName = reader.GetString(1),
-                            Password = reader.GetString(2),
-                            Sex = (Sex)reader.GetInt32(3),
-                            AreaOfInterest = (Field)reader.GetInt32(4),
-                            SignUpTime = reader.GetDateTime(5),
-                            AvatarPath = reader.GetString(6),
-                            ProfileBackgroundImagePath = reader.GetString(7)
-                        },
-                        ContactInfo = new ContactInfo
-                        {
-                            Email = reader.IsDBNull(8) ? null : reader.GetString(8),
-                            QQ = reader.IsDBNull(9) ? null : reader.GetString(9),
-                            WeChat = reader.IsDBNull(10) ? null : reader.GetString(10),
-                            BlogAddress = reader.IsDBNull(11) ? null : reader.GetString(11)
-                        }
-                    };
+                    yield return CreateDiscovererFromSqlDataReader(reader);
                 }
             }
         }
