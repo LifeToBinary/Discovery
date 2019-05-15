@@ -361,6 +361,7 @@ namespace DataBaseService
                     BlogAddress = reader.IsDBNull(11) ? null : reader.GetString(11)
                 }
             };
+
         /// <summary>
         /// 获取一个用户的帖子数量
         /// </summary>
