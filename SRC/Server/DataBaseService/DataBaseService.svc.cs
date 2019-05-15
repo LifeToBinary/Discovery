@@ -21,19 +21,28 @@ namespace DataBaseService
         /// <returns>数据库为此Post分配的ID</returns>
         public int AddANewPost(Post post)
         {
+            // AddANewPost 存储过程的参数名称和参数值的映射表
+            var addANewPostParameterValues =
+                new Dictionary<string, object>
+                {
+                    ["@id"] = post.ID,
+                    ["@title"] = post.Title,
+                    ["@url"] = post.Url,
+                    ["@creationTime"] = post.CreationTime,
+                    ["@authorID"] = post.AuthorID,
+                    ["@content"] = post.Content,
+                    ["@postCategory"] = post.PostCategory,
+                    ["@lastEditedTime"] = post.LastEditedTime
+                };
             using (var connection = new SqlConnection(GetDataBaseConnectionString()))
             using (SqlCommand command = connection.CreateCommand())
             {
                 command.CommandType = CommandType.StoredProcedure;
                 command.CommandText = "AddANewPost";
-                command.Parameters.AddWithValue("@title", post.Title);
-                command.Parameters.AddWithValue("@url", post.Url);
-                command.Parameters.AddWithValue("@creationTime", post.CreationTime);
-                command.Parameters.AddWithValue("@authorID", post.AuthorID);
-                command.Parameters.AddWithValue("@content", post.Content);
-                command.Parameters.AddWithValue("@postCategory", post.PostCategory);
-                command.Parameters.AddWithValue("@lastEditedTime", post.LastEditedTime);
-                command.Parameters.AddWithValue("@iconPath", post.IconPath);
+                foreach (KeyValuePair<string, object> parameter in addANewPostParameterValues)
+                {
+                    command.Parameters.AddWithValue(parameter.Key, parameter.Value);
+                }
                 command.Parameters.Add(new SqlParameter
                 {
                     ParameterName = "@newPostID",
@@ -51,7 +60,8 @@ namespace DataBaseService
         /// </summary>
         /// <returns>数据库连接字符串</returns>
         private string GetDataBaseConnectionString()
-            => ConfigurationManager.ConnectionStrings["DiscoveryDataBase"].ConnectionString;
+            => ConfigurationManager.ConnectionStrings["DiscoveryDataBase"]
+                                   .ConnectionString;
 
         /// <summary>
         /// 取消关注一个用户
@@ -605,7 +615,12 @@ namespace DataBaseService
                 command.CommandType = CommandType.StoredProcedure;
                 command.CommandText = "UpdateDiscovererProfile";
 
-                foreach (KeyValuePair<string, object> parameter in updateDiscovererProfileParameterValues)
+                foreach (KeyValuePair<string, object> parameter in
+                         updateDiscovererProfileParameterValues)
+                {
+                    command.Parameters
+                           .AddWithValue(parameter.Key, parameter.Value);
+                }
                 connection.Open();
                 command.ExecuteNonQuery();
             }
@@ -691,6 +706,65 @@ namespace DataBaseService
                 connection.Open();
                 command.ExecuteNonQuery();
                 return Convert.ToInt32(command.Parameters[1].Value);
+            }
+        }
+
+        /// <summary>
+        /// 用户注册
+        /// </summary>
+        /// <param name="signInName">登录名</param>
+        /// <param name="password">密码</param>
+        /// <param name="sex">性别</param>
+        /// <param name="areaOfInterest">感兴趣的领域</param>
+        /// <param name="signUpTime">注册时间</param>
+        public void SignUp(string signInName,
+                           string password,
+                           Sex sex,
+                           Field areaOfInterest,
+                           DateTime signUpTime)
+        {
+            var SignUpParameterValues
+                = new Dictionary<string, object>
+                {
+                    ["@signInName"] = signInName,
+                    ["@password"] = password,
+                    ["@sex"] = sex,
+                    ["@areaOfInterest"] = areaOfInterest,
+                    ["@signUpTime"] = signUpTime
+                };
+
+            using (var connection = new SqlConnection(GetDataBaseConnectionString()))
+            using (SqlCommand command = connection.CreateCommand())
+            {
+                command.CommandType = CommandType.StoredProcedure;
+                command.CommandText = "SignUp";
+                foreach (KeyValuePair<string, object> parameter in SignUpParameterValues)
+                {
+                    command.Parameters.AddWithValue(parameter.Key, parameter.Value);
+                }
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+        }
+
+        /// <summary>
+        /// 通过 ID 查找用户
+        /// </summary>
+        /// <param name="discovererID">用户ID</param>
+        /// <returns>查找到的用户或null(找不到此用户)</returns>
+        public Discoverer GetDiscovererByID(int discovererID)
+        {
+            using (var connection = new SqlConnection(GetDataBaseConnectionString()))
+            using (SqlCommand command = connection.CreateCommand())
+            {
+                command.CommandType = CommandType.StoredProcedure;
+                command.CommandText = "GetDiscovererByID";
+                command.Parameters.AddWithValue("discovererID", discovererID);
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                return reader.Read()
+                       ? CreateDiscovererFromSqlDataReader(reader)
+                       : null;   
             }
         }
     }
