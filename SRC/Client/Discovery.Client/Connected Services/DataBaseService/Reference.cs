@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Discovery.Client.SignIn.DataBaseService {
+namespace Discovery.Client.DataBaseService {
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -173,12 +173,12 @@ namespace Discovery.Client.SignIn.DataBaseService {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IDataBaseServiceChannel : Discovery.Client.SignIn.DataBaseService.IDataBaseService, System.ServiceModel.IClientChannel {
+    public interface IDataBaseServiceChannel : Discovery.Client.DataBaseService.IDataBaseService, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class DataBaseServiceClient : System.ServiceModel.ClientBase<Discovery.Client.SignIn.DataBaseService.IDataBaseService>, Discovery.Client.SignIn.DataBaseService.IDataBaseService {
+    public partial class DataBaseServiceClient : System.ServiceModel.ClientBase<Discovery.Client.DataBaseService.IDataBaseService>, Discovery.Client.DataBaseService.IDataBaseService {
         
         public DataBaseServiceClient() {
         }

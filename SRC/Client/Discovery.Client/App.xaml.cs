@@ -1,5 +1,8 @@
-﻿using Discovery.Client.Views;
+﻿using Discovery.Client.MainMenu;
+using Discovery.Client.SignIn;
+using Discovery.Client.Views;
 using Prism.Ioc;
+using Prism.Modularity;
 using Prism.Unity;
 using System;
 using System.Collections.Generic;
@@ -22,5 +25,9 @@ namespace Discovery.Client
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
         }
+
+        protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
+            => moduleCatalog.AddModule<SignInModule>()
+                            .AddModule<MainMenuModule>();
     }
 }
