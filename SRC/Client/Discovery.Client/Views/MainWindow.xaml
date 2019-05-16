@@ -1,0 +1,24 @@
+﻿<Window x:Class="Discovery.Client.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Discovery.Client.Views"
+        xmlns:prism="http://prismlibrary.com/"
+        xmlns:core="clr-namespace:Discovery.Core.Constants;assembly=Discovery.Core"
+        mc:Ignorable="d"
+        prism:ViewModelLocator.AutoWireViewModel="True"
+        Title="MainWindow"
+        Height="450"
+        Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <ContentControl Grid.Row="0"
+                        prism:RegionManager.RegionName="{x:Static core:RegionNames.ShellTitle}" />
+        <ContentControl Grid.Row="1"
+                        prism:RegionManager.RegionName="{x:Static core:RegionNames.ShellContent}" />
+    </Grid>
+</Window>
