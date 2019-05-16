@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Discovery.Core.Models" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Discovery.Core.Models" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://47.240.12.27:10004/DataBaseService.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/Discovery.Core.Enums" />
+  <xs:import schemaLocation="http://47.240.12.27:10004/DataBaseService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Prism.Mvvm" />
+  <xs:complexType name="BasicInfo">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/Prism.Mvvm" base="q1:BindableBase">
+        <xs:sequence>
+          <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Discovery.Core.Enums" minOccurs="0" name="AreaOfInterest" type="q2:Field" />
+          <xs:element minOccurs="0" name="AvatarPath" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ID" type="xs:int" />
+          <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ProfileBackgroundImagePath" nillable="true" type="xs:string" />
+          <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Discovery.Core.Enums" minOccurs="0" name="Sex" type="q3:Sex" />
+          <xs:element minOccurs="0" name="SignInName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="SignUpTime" type="xs:dateTime" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BasicInfo" nillable="true" type="tns:BasicInfo" />
+</xs:schema>

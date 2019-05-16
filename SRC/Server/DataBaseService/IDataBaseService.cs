@@ -32,25 +32,25 @@ namespace DataBaseService
         void UpdatePostInfo(Post post);
 
         [OperationContract]
-        IEnumerable<Post> GetPostsOfTheDiscoverer(string discovererId);
+        IEnumerable<Post> GetPostsOfTheDiscoverer(int discovererId);
 
         [OperationContract]
-        void RemoveAPost(string postID);
+        void RemoveAPost(int postID);
 
         [OperationContract]
         int AddANewPost(Post post);
 
         [OperationContract]
-        IEnumerable<Post> FindPostsOfTheDiscoverer(string discovererID, string postTitle);
+        IEnumerable<Post> FindPostsOfTheDiscoverer(int discovererID, string postTitle);
 
         [OperationContract]
-        IEnumerable<Discoverer> GetFunsOfTheIdol(string idolID);
+        IEnumerable<Discoverer> GetFunsOfTheIdol(int idolID);
 
         [OperationContract]
-        IEnumerable<Post> GetFavoritePosts(string discovererID);
+        IEnumerable<Post> GetFavoritePosts(int discovererID);
 
         [OperationContract]
-        IEnumerable<Post> GetRecommendedForTheDiscoverer(string discovererID);
+        IEnumerable<Post> GetRecommendedForTheDiscoverer(int discovererID);
 
         [OperationContract]
         IEnumerable<Post> FindPostFromAllDiscoverers(string postTitle);
@@ -59,36 +59,36 @@ namespace DataBaseService
         IEnumerable<Discoverer> SearchDiscoverers(string discovererSignInName);
 
         [OperationContract]
-        int GetPostsCountOfTheDiscoverer(string discovererID);
+        int GetPostsCountOfTheDiscoverer(int discovererID);
 
         [OperationContract]
-        void CancelConcern(string funsID, string idolID);
+        void CancelConcern(int funsID, int idolID);
 
         [OperationContract]
-        void CancelFavorite(string discovererID, string postId);
+        void CancelFavorite(int discovererID, int postId);
 
         [OperationContract]
-        void ConcernADiscoverer(string funsID, string idolID);
+        void ConcernADiscoverer(int funsID, int idolID);
 
         [OperationContract]
-        void FavoriteAPost(string discovererID, string postID);
+        void FavoriteAPost(int discovererID, int postID);
 
         [OperationContract]
-        int GetFunsCountOfTheIdol(string idolID);
+        int GetFunsCountOfTheIdol(int idolID);
 
         [OperationContract]
-        bool IsFuns(string funsID, string idolID);
+        bool IsFuns(int funsID, int idolID);
 
         [OperationContract]
-        bool IsFavoritedAPost(string discovererID, string postID);
+        bool IsFavoritedAPost(int discovererID, int postID);
 
         [OperationContract]
-        int GetFavoritesCountOfThePost(string postID);
+        int GetFavoritesCountOfThePost(int postID);
 
         [OperationContract]
-        IEnumerable<Discoverer> GetIdols(string funsID);
+        IEnumerable<Discoverer> GetIdols(int funsID);
 
         [OperationContract]
-        int GetIdolsCount(string funsID);
+        int GetIdolsCount(int funsID);
     }
 }
