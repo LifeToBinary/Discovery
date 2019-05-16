@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Discovery.Client.ShellTitle.Views
+namespace Discovery.Client.SignIn.Views
 {
     /// <summary>
-    /// ShellTitle.xaml 的交互逻辑
+    /// SignIn.xaml 的交互逻辑
     /// </summary>
-    public partial class ShellTitle : UserControl
+    public partial class SignIn : UserControl
     {
-        public ShellTitle()
+        public SignIn()
         {
             InitializeComponent();
         }

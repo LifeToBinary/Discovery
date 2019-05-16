@@ -68,7 +68,7 @@ namespace DataBaseService
         /// </summary>
         /// <param name="funsID">关注者ID</param>
         /// <param name="idolID">被关注者ID</param>
-        public void CancelConcern(string funsID, string idolID)
+        public void CancelConcern(int funsID, int idolID)
         {
             using (var connection = new SqlConnection(GetDataBaseConnectionString()))
             using (SqlCommand command = connection.CreateCommand())
@@ -87,7 +87,7 @@ namespace DataBaseService
         /// </summary>
         /// <param name="discovererID">收藏者ID</param>
         /// <param name="postId">帖子ID</param>
-        public void CancelFavorite(string discovererID, string postId)
+        public void CancelFavorite(int discovererID, int postId)
         {
             using (var connection = new SqlConnection(GetDataBaseConnectionString()))
             using (SqlCommand command = connection.CreateCommand())
@@ -106,7 +106,7 @@ namespace DataBaseService
         /// </summary>
         /// <param name="funsID">关注者ID</param>
         /// <param name="idolID">被关注者ID</param>
-        public void ConcernADiscoverer(string funsID, string idolID)
+        public void ConcernADiscoverer(int funsID, int idolID)
         {
             using (var connection = new SqlConnection(GetDataBaseConnectionString()))
             using (SqlCommand command = connection.CreateCommand())
@@ -160,7 +160,7 @@ namespace DataBaseService
         /// </summary>
         /// <param name="discovererID">收藏者ID</param>
         /// <param name="postID">帖子ID</param>
-        public void FavoriteAPost(string discovererID, string postID)
+        public void FavoriteAPost(int discovererID, int postID)
         {
             using (var connection = new SqlConnection(GetDataBaseConnectionString()))
             using (SqlCommand command = connection.CreateCommand())
@@ -222,7 +222,7 @@ namespace DataBaseService
         /// <param name="discovererID">用户ID</param>
         /// <param name="postTitle">帖子标题</param>
         /// <returns>搜索到的帖子列表</returns>
-        public IEnumerable<Post> FindPostsOfTheDiscoverer(string discovererID, string postTitle)
+        public IEnumerable<Post> FindPostsOfTheDiscoverer(int discovererID, string postTitle)
         {
             using (var connection = new SqlConnection(GetDataBaseConnectionString()))
             using (SqlCommand command = connection.CreateCommand())
@@ -245,7 +245,7 @@ namespace DataBaseService
         /// </summary>
         /// <param name="discovererID"></param>
         /// <returns></returns>
-        public IEnumerable<Post> GetFavoritePosts(string discovererID)
+        public IEnumerable<Post> GetFavoritePosts(int discovererID)
         {
             using (var connection = new SqlConnection(GetDataBaseConnectionString()))
             using (SqlCommand command = connection.CreateCommand())
@@ -267,7 +267,7 @@ namespace DataBaseService
         /// </summary>
         /// <param name="postID">帖子ID</param>
         /// <returns>此帖子被收藏的次数</returns>
-        public int GetFavoritesCountOfThePost(string postID)
+        public int GetFavoritesCountOfThePost(int postID)
         {
             using (var connection = new SqlConnection(GetDataBaseConnectionString()))
             using (SqlCommand command = connection.CreateCommand())
@@ -292,7 +292,7 @@ namespace DataBaseService
         /// </summary>
         /// <param name="idolID">用户ID</param>
         /// <returns>粉丝数量</returns>
-        public int GetFunsCountOfTheIdol(string idolID)
+        public int GetFunsCountOfTheIdol(int idolID)
         {
             using (var connection = new SqlConnection(GetDataBaseConnectionString()))
             using (SqlCommand command = connection.CreateCommand())
@@ -317,7 +317,7 @@ namespace DataBaseService
         /// </summary>
         /// <param name="idolID">用户ID</param>
         /// <returns>此用户的所有粉丝</returns>
-        public IEnumerable<Discoverer> GetFunsOfTheIdol(string idolID)
+        public IEnumerable<Discoverer> GetFunsOfTheIdol(int idolID)
         {
             using (var connection = new SqlConnection(GetDataBaseConnectionString()))
             using (SqlCommand command = connection.CreateCommand())
@@ -367,7 +367,7 @@ namespace DataBaseService
         /// </summary>
         /// <param name="discovererID">用户ID</param>
         /// <returns>此用户的帖子数量</returns>
-        public int GetPostsCountOfTheDiscoverer(string discovererID)
+        public int GetPostsCountOfTheDiscoverer(int discovererID)
         {
             using (var connection = new SqlConnection(GetDataBaseConnectionString()))
             using (SqlCommand command = connection.CreateCommand())
@@ -392,7 +392,7 @@ namespace DataBaseService
         /// </summary>
         /// <param name="discovererId">用户ID</param>
         /// <returns>此用户的所有帖子</returns>
-        public IEnumerable<Post> GetPostsOfTheDiscoverer(string discovererId)
+        public IEnumerable<Post> GetPostsOfTheDiscoverer(int discovererId)
         {
             using (var connection = new SqlConnection(GetDataBaseConnectionString()))
             using (SqlCommand command = connection.CreateCommand())
@@ -414,7 +414,7 @@ namespace DataBaseService
         /// </summary>
         /// <param name="discovererID">用户ID</param>
         /// <returns>用户可能感兴趣的帖子</returns>
-        public IEnumerable<Post> GetRecommendedForTheDiscoverer(string discovererID)
+        public IEnumerable<Post> GetRecommendedForTheDiscoverer(int discovererID)
         {
             using (var connection = new SqlConnection(GetDataBaseConnectionString()))
             using (SqlCommand command = connection.CreateCommand())
@@ -437,7 +437,7 @@ namespace DataBaseService
         /// <param name="discovererID">用户ID</param>
         /// <param name="postID">帖子ID</param>
         /// <returns>True: 帖子已经被此用户已经收藏过了</returns>
-        public bool IsFavoritedAPost(string discovererID, string postID)
+        public bool IsFavoritedAPost(int discovererID, int postID)
         {
             using (var connection = new SqlConnection(GetDataBaseConnectionString()))
             using (SqlCommand command = connection.CreateCommand())
@@ -464,7 +464,7 @@ namespace DataBaseService
         /// <param name="funsID">粉丝ID</param>
         /// <param name="idolID">被关注者ID</param>
         /// <returns>True: 已经是另一个用户的粉丝, 否则 False</returns>
-        public bool IsFuns(string funsID, string idolID)
+        public bool IsFuns(int funsID, int idolID)
         {
             using (var connection = new SqlConnection(GetDataBaseConnectionString()))
             using (SqlCommand command = connection.CreateCommand())
@@ -489,7 +489,7 @@ namespace DataBaseService
         /// 删除一个帖子
         /// </summary>
         /// <param name="postID"></param>
-        public void RemoveAPost(string postID)
+        public void RemoveAPost(int postID)
         {
             using (var connection = new SqlConnection(GetDataBaseConnectionString()))
             using (SqlCommand command = connection.CreateCommand())
@@ -668,7 +668,7 @@ namespace DataBaseService
         /// </summary>
         /// <param name="funsID">用户ID</param>
         /// <returns>Ta 关注的所有用户的列表</returns>
-        public IEnumerable<Discoverer> GetIdols(string funsID)
+        public IEnumerable<Discoverer> GetIdols(int funsID)
         {
             using (var connection = new SqlConnection(GetDataBaseConnectionString()))
             using (SqlCommand command = connection.CreateCommand())
@@ -690,7 +690,7 @@ namespace DataBaseService
         /// </summary>
         /// <param name="funsID">用户ID</param>
         /// <returns>Ta 关注的人数</returns>
-        public int GetIdolsCount(string funsID)
+        public int GetIdolsCount(int funsID)
         {
             using (var connection = new SqlConnection(GetDataBaseConnectionString()))
             using (SqlCommand command = connection.CreateCommand())

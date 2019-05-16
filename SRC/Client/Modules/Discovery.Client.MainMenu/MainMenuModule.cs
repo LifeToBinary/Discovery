@@ -6,16 +6,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Discovery.Client.ShellTitle
+namespace Discovery.Client.MainMenu
 {
-    public class ShellTitleModule : IModule
+    public class MainMenuModule : IModule
     {
         public void OnInitialized(IContainerProvider containerProvider)
         {
-            
         }
 
         public void RegisterTypes(IContainerRegistry containerRegistry)
-            => containerRegistry.RegisterForNavigation<Views.ShellTitle>();
+            => containerRegistry.RegisterForNavigation<Views.MainMenu>();
     }
 }

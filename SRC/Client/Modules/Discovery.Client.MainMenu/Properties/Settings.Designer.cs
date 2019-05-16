@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Discovery.Client.ShellTitle.Properties
+namespace Discovery.Client.MainMenu.Properties
 {
     
     
