@@ -43,6 +43,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Discovery.Client.MainMenuTi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Discovery.Client.Option", "SRC\Client\Modules\Discovery.Client.Option\Discovery.Client.Option.csproj", "{97C85164-6A4B-442E-B7AE-0A357A92EF81}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Discovery.Client.Feedback", "SRC\Client\Modules\Discovery.Client.Feedback\Discovery.Client.Feedback.csproj", "{CAAA6918-B628-4751-AB5D-68A8A6DB096E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -97,6 +99,10 @@ Global
 		{97C85164-6A4B-442E-B7AE-0A357A92EF81}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{97C85164-6A4B-442E-B7AE-0A357A92EF81}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{97C85164-6A4B-442E-B7AE-0A357A92EF81}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CAAA6918-B628-4751-AB5D-68A8A6DB096E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CAAA6918-B628-4751-AB5D-68A8A6DB096E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CAAA6918-B628-4751-AB5D-68A8A6DB096E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CAAA6918-B628-4751-AB5D-68A8A6DB096E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -119,6 +125,7 @@ Global
 		{A74E1265-5FD4-4FF7-BCEB-A4F2EFE32BF7} = {7ACDBD46-5E5F-48D4-9DDE-A07DB9CE178A}
 		{9EEBECBD-8634-44DE-ADAE-CF87903715F5} = {7ACDBD46-5E5F-48D4-9DDE-A07DB9CE178A}
 		{97C85164-6A4B-442E-B7AE-0A357A92EF81} = {7ACDBD46-5E5F-48D4-9DDE-A07DB9CE178A}
+		{CAAA6918-B628-4751-AB5D-68A8A6DB096E} = {7ACDBD46-5E5F-48D4-9DDE-A07DB9CE178A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FC5D8408-B1C7-4D5A-A61D-2D0829D02BA4}

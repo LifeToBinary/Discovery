@@ -1,6 +1,7 @@
 ﻿using Discovery.Client.DiscovererHomePage;
 using Discovery.Client.MainMenu;
 using Discovery.Client.MainMenuTitle;
+using Discovery.Client.Option;
 using Discovery.Client.Recommended;
 using Discovery.Client.SignIn;
 using Discovery.Client.Views;
@@ -34,6 +35,7 @@ namespace Discovery.Client
                             .AddModule<MainMenuModule>()
                             .AddModule<MainMenuTitleModule>()
                             .AddModule<DiscovererHomePageModule>()
-                            .AddModule<RecommendedModule>();
+                            .AddModule<RecommendedModule>()
+                            .AddModule<OptionModule>();
     }
 }
