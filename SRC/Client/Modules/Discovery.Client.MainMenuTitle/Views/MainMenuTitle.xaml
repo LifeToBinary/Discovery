@@ -47,6 +47,8 @@
                     BorderThickness="0" />
             <Button Grid.Column="2"
                     Content="反馈"
+                    Command="{Binding NavigationToMainMenuContentRegionCommand}"
+                    CommandParameter="{x:Static constants:ViewNames.Feedback}"
                     Background="Transparent"
                     BorderThickness="0" />
             <Button Grid.Column="3"
