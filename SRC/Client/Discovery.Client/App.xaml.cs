@@ -1,4 +1,5 @@
 ﻿using Discovery.Client.MainMenu;
+using Discovery.Client.MainMenuTitle;
 using Discovery.Client.SignIn;
 using Discovery.Client.Views;
 using Prism.Ioc;
@@ -28,6 +29,7 @@ namespace Discovery.Client
 
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
             => moduleCatalog.AddModule<SignInModule>()
-                            .AddModule<MainMenuModule>();
+                            .AddModule<MainMenuModule>()
+                            .AddModule<MainMenuTitleModule>();
     }
 }

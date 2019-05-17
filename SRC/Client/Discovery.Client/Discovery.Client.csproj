@@ -155,6 +155,10 @@
       <Project>{0032ad15-d812-4407-8588-77dbd3ac33c2}</Project>
       <Name>Discovery.Client.MainMenu</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Modules\Discovery.Client.ShellTitle\Discovery.Client.MainMenuTitle\Discovery.Client.MainMenuTitle.csproj">
+      <Project>{9EEBECBD-8634-44DE-ADAE-CF87903715F5}</Project>
+      <Name>Discovery.Client.MainMenuTitle</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Modules\Discovery.Client.SignIn\Discovery.Client.SignIn.csproj">
       <Project>{1484968b-bb5f-4e32-b8f7-3305c920735f}</Project>
       <Name>Discovery.Client.SignIn</Name>
