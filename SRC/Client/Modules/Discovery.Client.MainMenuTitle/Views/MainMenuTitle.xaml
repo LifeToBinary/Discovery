@@ -53,6 +53,8 @@
                     BorderThickness="0" />
             <Button Grid.Column="3"
                     Content="关于"
+                    Command="{Binding NavigationToMainMenuContentRegionCommand}"
+                    CommandParameter="{x:Static constants:ViewNames.About}"
                     Background="Transparent"
                     BorderThickness="0" />
         </Grid>

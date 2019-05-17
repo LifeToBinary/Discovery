@@ -1,4 +1,5 @@
-﻿using Discovery.Client.DiscovererHomePage;
+﻿using Discovery.Client.About;
+using Discovery.Client.DiscovererHomePage;
 using Discovery.Client.Feedback;
 using Discovery.Client.MainMenu;
 using Discovery.Client.MainMenuTitle;
@@ -38,6 +39,7 @@ namespace Discovery.Client
                             .AddModule<DiscovererHomePageModule>()
                             .AddModule<RecommendedModule>()
                             .AddModule<OptionModule>()
-                            .AddModule<FeedbackModule>();
+                            .AddModule<FeedbackModule>()
+                            .AddModule<AboutModule>();
     }
 }
