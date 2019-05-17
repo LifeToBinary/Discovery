@@ -1,4 +1,5 @@
-﻿using Discovery.Core.Model;
+﻿using Discovery.Core.GlobalData;
+using Discovery.Core.Model;
 using Prism.Mvvm;
 using Prism.Regions;
 using System;
@@ -9,22 +10,12 @@ using System.Threading.Tasks;
 
 namespace Discovery.Client.MainMenu.ViewModels
 {
-    public class MainMenuViewModel : BindableBase, INavigationAware
+    public class MainMenuViewModel : BindableBase
     {
-        private Discoverer _currentUser;
-        public Discoverer CurrentUser
+        public Discoverer CurrentUser { get; }
+        public MainMenuViewModel()
         {
-            get => _currentUser;
-            set => SetProperty(ref _currentUser, value);
+            CurrentUser = GlobalObjectHolder.CurrentUser;
         }
-        public bool IsNavigationTarget(NavigationContext navigationContext)
-            => true;
-
-        public void OnNavigatedFrom(NavigationContext navigationContext)
-        {
-        }
-
-        public void OnNavigatedTo(NavigationContext navigationContext)
-            => CurrentUser = navigationContext.Parameters["CurrentUser"] as Discoverer;
     }
 }
