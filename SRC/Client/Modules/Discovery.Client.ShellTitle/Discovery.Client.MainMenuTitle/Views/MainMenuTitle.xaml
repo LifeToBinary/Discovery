@@ -35,6 +35,8 @@
             </Grid.ColumnDefinitions>
             <Button Grid.Column="0"
                     Content="推荐"
+                    Command="{Binding NavigationToMainMenuContentRegionCommand}"
+                    CommandParameter="{x:Static constants:ViewNames.Recommended}"
                     Background="Transparent"
                     BorderThickness="0" />
             <Button Grid.Column="1"
