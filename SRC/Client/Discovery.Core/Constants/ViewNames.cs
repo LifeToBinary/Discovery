@@ -11,5 +11,6 @@ namespace Discovery.Core.Constants
         public const string Recommended = "Recommended";
         public const string Option = "Option";
         public const string Feedback = "Feedback";
+        public const string About = "About";
     }
 }
