@@ -7,5 +7,6 @@ namespace Discovery.Core.Constants
     public class ViewNames
     {
         public const string MainMenu = "MainMenu";
+        public const string DiscovererHomePage = "DiscovererHomePage";
     }
 }

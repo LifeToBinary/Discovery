@@ -23,7 +23,11 @@ namespace Discovery.Core.UI.Converters
             CultureInfo culture)
             => new BitmapImage(new Uri(value as string));
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        public object ConvertBack(
+            object value, 
+            Type targetType, 
+            object parameter, 
+            CultureInfo culture)
             => throw new NotSupportedException();
     }
 }

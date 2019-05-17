@@ -151,6 +151,14 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Discovery.Core.UI\Discovery.Core.UI.csproj">
+      <Project>{597de2c5-7801-484a-a9b0-8112da78c076}</Project>
+      <Name>Discovery.Core.UI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modules\Discovery.Client.DiscovererHomePage\Discovery.Client.DiscovererHomePage.csproj">
+      <Project>{7291a7f0-101f-4faa-b8c5-63777bdb4ecb}</Project>
+      <Name>Discovery.Client.DiscovererHomePage</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Modules\Discovery.Client.MainMenu\Discovery.Client.MainMenu.csproj">
       <Project>{0032ad15-d812-4407-8588-77dbd3ac33c2}</Project>
       <Name>Discovery.Client.MainMenu</Name>

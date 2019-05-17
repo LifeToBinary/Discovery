@@ -1,4 +1,5 @@
-﻿using Discovery.Client.MainMenu;
+﻿using Discovery.Client.DiscovererHomePage;
+using Discovery.Client.MainMenu;
 using Discovery.Client.MainMenuTitle;
 using Discovery.Client.SignIn;
 using Discovery.Client.Views;
@@ -30,6 +31,7 @@ namespace Discovery.Client
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
             => moduleCatalog.AddModule<SignInModule>()
                             .AddModule<MainMenuModule>()
-                            .AddModule<MainMenuTitleModule>();
+                            .AddModule<MainMenuTitleModule>()
+                            .AddModule<DiscovererHomePageModule>();
     }
 }

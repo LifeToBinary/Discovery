@@ -10,6 +10,9 @@
              d:DesignHeight="450"
              d:DesignWidth="800">
     <Grid>
-
+        <TextBlock Text="DiscovererHomePage"
+                   FontSize="50"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center" />
     </Grid>
 </UserControl>
