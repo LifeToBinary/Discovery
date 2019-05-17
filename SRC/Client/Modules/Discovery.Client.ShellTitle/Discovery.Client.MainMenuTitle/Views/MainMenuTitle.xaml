@@ -7,9 +7,55 @@
              xmlns:prism="http://prismlibrary.com/"
              prism:ViewModelLocator.AutoWireViewModel="True"
              mc:Ignorable="d"
-             d:DesignHeight="450"
-             d:DesignWidth="800">
+             d:DesignHeight="66.264"
+             d:DesignWidth="798.022">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <Rectangle Grid.Column="0"
+                   Width="70"
+                   Fill="Gray" />
+        <Grid Grid.Column="1"
+              HorizontalAlignment="Center"
+              Width="400"
+              TextBlock.FontSize="20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0"
+                    Content="推荐"
+                    Background="Transparent"
+                    BorderThickness="0" />
+            <Button Grid.Column="1"
+                    Content="设置"
+                    Background="Transparent"
+                    BorderThickness="0" />
+            <Button Grid.Column="2"
+                    Content="反馈"
+                    Background="Transparent"
+                    BorderThickness="0" />
+            <Button Grid.Column="3"
+                    Content="关于"
+                    Background="Transparent"
+                    BorderThickness="0" />
+        </Grid>
+        <StackPanel Grid.Column="2"
+                    HorizontalAlignment="Right"
+                    Orientation="Horizontal">
+            <Ellipse Width="70"
+                     Margin="10"
+                     Fill="Gray" />
+            <Button Content="三"
+                    Width="80" 
+                    FontSize="20"
+                    Background="Transparent"
+                    BorderThickness="0" />
+        </StackPanel>
     </Grid>
 </UserControl>
