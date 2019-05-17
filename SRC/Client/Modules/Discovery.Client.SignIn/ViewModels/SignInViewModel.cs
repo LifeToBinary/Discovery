@@ -1,5 +1,6 @@
 ﻿using Discovery.Client.SignIn.DataBaseService;
 using Discovery.Core.Constants;
+using Discovery.Core.GlobalData;
 using Discovery.Core.Model;
 using Prism.Commands;
 using Prism.Mvvm;
@@ -51,14 +52,8 @@ namespace Discovery.Client.SignIn.ViewModels
                     MessageBox.Show("密码不正确");
                     return;
                 }
-
-                _regionManager.RequestNavigate(
-                    RegionNames.MainRegion, 
-                    ViewNames.MainMenu,
-                    new NavigationParameters
-                    {
-                        { "CurrentUser", _currentUser }
-                    });
+                GlobalObjectHolder.CurrentUser = _currentUser;
+                _regionManager.RequestNavigate(RegionNames.MainRegion, ViewNames.MainMenu);
             }
         }
     }
