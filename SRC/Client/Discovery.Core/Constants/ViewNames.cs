@@ -9,5 +9,6 @@ namespace Discovery.Core.Constants
         public const string MainMenu = "MainMenu";
         public const string DiscovererHomePage = "DiscovererHomePage";
         public const string Recommended = "Recommended";
+        public const string Option = "Option";
     }
 }
