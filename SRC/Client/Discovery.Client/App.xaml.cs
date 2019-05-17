@@ -1,6 +1,7 @@
 ﻿using Discovery.Client.DiscovererHomePage;
 using Discovery.Client.MainMenu;
 using Discovery.Client.MainMenuTitle;
+using Discovery.Client.Recommended;
 using Discovery.Client.SignIn;
 using Discovery.Client.Views;
 using Prism.Ioc;
@@ -32,6 +33,7 @@ namespace Discovery.Client
             => moduleCatalog.AddModule<SignInModule>()
                             .AddModule<MainMenuModule>()
                             .AddModule<MainMenuTitleModule>()
-                            .AddModule<DiscovererHomePageModule>();
+                            .AddModule<DiscovererHomePageModule>()
+                            .AddModule<RecommendedModule>();
     }
 }

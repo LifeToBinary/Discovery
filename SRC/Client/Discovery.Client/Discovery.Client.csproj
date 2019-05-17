@@ -163,6 +163,10 @@
       <Project>{0032ad15-d812-4407-8588-77dbd3ac33c2}</Project>
       <Name>Discovery.Client.MainMenu</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Modules\Discovery.Client.Recommended\Discovery.Client.Recommended.csproj">
+      <Project>{A74E1265-5FD4-4FF7-BCEB-A4F2EFE32BF7}</Project>
+      <Name>Discovery.Client.Recommended</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Modules\Discovery.Client.ShellTitle\Discovery.Client.MainMenuTitle\Discovery.Client.MainMenuTitle.csproj">
       <Project>{9EEBECBD-8634-44DE-ADAE-CF87903715F5}</Project>
       <Name>Discovery.Client.MainMenuTitle</Name>
