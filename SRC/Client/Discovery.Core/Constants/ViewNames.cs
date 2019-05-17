@@ -10,5 +10,6 @@ namespace Discovery.Core.Constants
         public const string DiscovererHomePage = "DiscovererHomePage";
         public const string Recommended = "Recommended";
         public const string Option = "Option";
+        public const string Feedback = "Feedback";
     }
 }
