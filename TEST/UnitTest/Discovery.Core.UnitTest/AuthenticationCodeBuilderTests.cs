@@ -17,6 +17,7 @@ namespace Discovery.Core.UnitTest
         /// <returns>新的 AuthenticationCodeBuilder 实例</returns>
         private AuthenticationCodeBuilder MakeAuthenticationCodeBuilder()
             => new AuthenticationCodeBuilder();
+
         /// <summary>
         /// 如果 CodeLength 为 4, 则生成的验证码的长度应该为 4
         /// </summary>
