@@ -69,13 +69,18 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="DataBaseService.svc" />
+    <Content Include="EmailService.svc" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataBaseService.svc.cs">
       <DependentUpon>DataBaseService.svc</DependentUpon>
     </Compile>
+    <Compile Include="EmailService.svc.cs">
+      <DependentUpon>EmailService.svc</DependentUpon>
+    </Compile>
     <Compile Include="IDataBaseService.cs" />
+    <Compile Include="IEmailService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

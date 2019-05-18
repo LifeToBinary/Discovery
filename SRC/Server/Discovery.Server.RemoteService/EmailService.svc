@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="Discovery.Server.RemoteService.EmailService" CodeBehind="EmailService.svc.cs" %>
