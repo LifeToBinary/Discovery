@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using Discovery.Core.Tools;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,8 @@ namespace Discovery.Core.UnitTest
         public void Build_CountIs4_ResultCountIs4()
         {
             AuthenticationCodeBuilder builder = MakeAuthenticationCodeBuilder();
-            builder.CodeCount = 4;
+            builder.CodeLength = 4;
+            builder.CharsSource = "ABCDEFG12345";
             int expected = 4;
 
             int actual = builder.Build().Length;
