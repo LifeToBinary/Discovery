@@ -7,7 +7,7 @@ using Discovery.Core.Enums;
 using Discovery.Core.Model;
 using Discovery.Core.Models;
 
-namespace DataBaseService
+namespace Discovery.Server.RemoteService
 {
     /// <summary>
     /// 用于与数据库交互

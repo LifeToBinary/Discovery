@@ -4,7 +4,7 @@ using System.ServiceModel;
 using Discovery.Core.Enums;
 using Discovery.Core.Model;
 
-namespace DataBaseService
+namespace Discovery.Server.RemoteService
 {
     [ServiceContract]
     public interface IDataBaseService
