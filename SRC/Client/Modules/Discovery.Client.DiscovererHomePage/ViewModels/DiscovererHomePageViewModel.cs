@@ -1,4 +1,6 @@
-﻿using Prism.Ioc;
+﻿using Discovery.Core.GlobalData;
+using Discovery.Core.Model;
+using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Mvvm;
 using System;
@@ -11,5 +13,8 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
 {
     public class DiscovererHomePageViewModel : BindableBase
     {
+        public Discoverer CurrentUser { get; }
+        public DiscovererHomePageViewModel()
+            => CurrentUser = GlobalObjectHolder.CurrentUser;
     }
 }
