@@ -9,10 +9,89 @@
              mc:Ignorable="d"
              d:DesignHeight="450"
              d:DesignWidth="800">
-    <Grid>
-        <TextBlock Text="我发布的" 
-                   FontSize="40"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center"/>
+    <Grid Margin="50,0">
+        <ListBox ItemsSource="{Binding PostsIPost}"
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                 HorizontalContentAlignment="Stretch">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderBrush="Black"
+                            BorderThickness="2">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Row="0"
+                                       Grid.Column="0"
+                                       Text="ID: " />
+                            <TextBlock Grid.Row="1"
+                                       Grid.Column="0"
+                                       Text="标题: " />
+                            <TextBlock Grid.Row="2"
+                                       Grid.Column="0"
+                                       Text="图像路径: " />
+                            <TextBlock Grid.Row="3"
+                                       Grid.Column="0"
+                                       Text="链接: " />
+                            <TextBlock Grid.Row="4"
+                                       Grid.Column="0"
+                                       Text="创建时间: " />
+                            <TextBlock Grid.Row="5"
+                                       Grid.Column="0"
+                                       Text="最后编辑时间: " />
+                            <TextBlock Grid.Row="6"
+                                       Grid.Column="0"
+                                       Text="作者ID: " />
+                            <TextBlock Grid.Row="7"
+                                       Grid.Column="0"
+                                       Text="内容: " />
+                            <TextBlock Grid.Row="8"
+                                       Grid.Column="0"
+                                       Text="分类: " />
+                            <TextBlock Grid.Row="0"
+                                       Grid.Column="1"
+                                       Text="{Binding ID}" />
+                            <TextBlock Grid.Row="1"
+                                       Grid.Column="1"
+                                       Text="{Binding Title}" />
+                            <TextBlock Grid.Row="2"
+                                       Grid.Column="1"
+                                       Text="{Binding IconPath}" />
+                            <TextBlock Grid.Row="3"
+                                       Grid.Column="1"
+                                       Text="{Binding Url}" />
+                            <TextBlock Grid.Row="4"
+                                       Grid.Column="1"
+                                       Text="{Binding CreationTime}" />
+                            <TextBlock Grid.Row="5"
+                                       Grid.Column="1"
+                                       Text="{Binding LastEditedTime}" />
+                            <TextBlock Grid.Row="6"
+                                       Grid.Column="1"
+                                       Text="{Binding AuthorID}" />
+                            <TextBlock Grid.Row="7"
+                                       Grid.Column="1"
+                                       TextWrapping="Wrap"
+                                       Text="{Binding Content}" />
+                            <TextBlock Grid.Row="8"
+                                       Grid.Column="1"
+                                       Text="{Binding PostCategory}" />
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 </UserControl>
