@@ -10,9 +10,98 @@
              d:DesignHeight="450"
              d:DesignWidth="800">
     <Grid>
-        <TextBlock FontSize="40"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center"
-                   Text="我关注的人" />
+        <Grid Margin="50,0">
+            <ListBox ItemsSource="{Binding Idols}"
+                     ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                     HorizontalContentAlignment="Stretch">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderBrush="Black"
+                                BorderThickness="2">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Grid.Row="0"
+                                           Grid.Column="0"
+                                           Text="用户名: " />
+                                <TextBlock Grid.Row="1"
+                                           Grid.Column="0"
+                                           Text="性别: " />
+                                <TextBlock Grid.Row="2"
+                                           Grid.Column="0"
+                                           Text="注册时间: " />
+                                <TextBlock Grid.Row="3"
+                                           Grid.Column="0"
+                                           Text="头像图片路径: " />
+                                <TextBlock Grid.Row="4"
+                                           Grid.Column="0"
+                                           Text="主页背景图片的路径: " />
+                                <TextBlock Grid.Row="5"
+                                           Grid.Column="0"
+                                           Text="感兴趣的领域" />
+                                <TextBlock Grid.Row="6"
+                                           Grid.Column="0"
+                                           Text="QQ: " />
+                                <TextBlock Grid.Row="7"
+                                           Grid.Column="0"
+                                           Text="微信: " />
+                                <TextBlock Grid.Row="8"
+                                           Grid.Column="0"
+                                           Text="邮箱: " />
+                                <TextBlock Grid.Row="9"
+                                           Grid.Column="0"
+                                           Text="博客地址: " />
+                                <TextBlock Grid.Row="0"
+                                           Grid.Column="1"
+                                           Text="{Binding BasicInfo.SignInName}" />
+                                <TextBlock Grid.Row="1"
+                                           Grid.Column="1"
+                                           Text="{Binding BasicInfo.Sex}" />
+                                <TextBlock Grid.Row="2"
+                                           Grid.Column="1"
+                                           Text="{Binding BasicInfo.SignUpTime}" />
+                                <TextBlock Grid.Row="3"
+                                           Grid.Column="1"
+                                           Text="{Binding BasicInfo.AvatarPath}" />
+                                <TextBlock Grid.Row="4"
+                                           Grid.Column="1"
+                                           Text="{Binding BasicInfo.ProfileBackgroundImagePath}" />
+                                <TextBlock Grid.Row="5"
+                                           Grid.Column="1"
+                                           Text="{Binding BasicInfo.AreaOfInterest}" />
+                                <TextBlock Grid.Row="6"
+                                           Grid.Column="1"
+                                           Text="{Binding ContactInfo.QQ}" />
+                                <TextBlock Grid.Row="7"
+                                           Grid.Column="1"
+                                           TextWrapping="Wrap"
+                                           Text="{Binding ContactInfo.WeChat}" />
+                                <TextBlock Grid.Row="8"
+                                           Grid.Column="1"
+                                           Text="{Binding ContactInfo.Email}" />
+                                <TextBlock Grid.Row="9"
+                                           Grid.Column="1"
+                                           Text="{Binding ContactInfo.BlogAddress}" />
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
     </Grid>
 </UserControl>
