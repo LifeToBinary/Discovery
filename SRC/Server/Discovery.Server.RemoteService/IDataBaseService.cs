@@ -16,10 +16,10 @@ namespace Discovery.Server.RemoteService
         Discoverer SignIn(string signInName, string password);
 
         [OperationContract]
-        void SignUp(string signInName, 
-                    string password, 
-                    Sex sex, 
-                    Field areaOfInterest, 
+        void SignUp(string signInName,
+                    string password,
+                    Sex sex,
+                    Field areaOfInterest,
                     DateTime signUpTime);
 
         [OperationContract]

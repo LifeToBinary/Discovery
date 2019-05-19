@@ -323,8 +323,8 @@ namespace Discovery.Server.RemoteService
             using (SqlCommand command = connection.CreateCommand())
             {
                 command.CommandType = CommandType.StoredProcedure;
-                command.CommandText = "GetFuns";
-                command.Parameters.AddWithValue("@discovererID", idolID);
+                command.CommandText = "GetFunsOfTheIdol";
+                command.Parameters.AddWithValue("@idolID", idolID);
                 connection.Open();
                 SqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
@@ -765,7 +765,7 @@ namespace Discovery.Server.RemoteService
                 SqlDataReader reader = command.ExecuteReader();
                 return reader.Read()
                        ? CreateDiscovererFromSqlDataReader(reader)
-                       : null;   
+                       : null;
             }
         }
     }

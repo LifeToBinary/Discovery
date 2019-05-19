@@ -1,1 +1,1 @@
-﻿<%@ ServiceHost Language="C#" Debug="true" Service="DataBaseService.DataBaseService" CodeBehind="DataBaseService.svc.cs" %>
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="Discovery.Server.RemoteService.DataBaseService" CodeBehind="DataBaseService.svc.cs" %>
