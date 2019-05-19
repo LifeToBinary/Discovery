@@ -16,6 +16,12 @@ namespace Discovery.Client.DiscovererHomePage
         }
 
         public void RegisterTypes(IContainerRegistry containerRegistry)
-            => containerRegistry.RegisterForNavigation<Views.DiscovererHomePage>();
+        {
+            containerRegistry.RegisterForNavigation<Views.DiscovererHomePage>();
+            containerRegistry.RegisterForNavigation<Views.PostedPosts>();
+            containerRegistry.RegisterForNavigation<Views.FavoritedPosts>();
+            containerRegistry.RegisterForNavigation<Views.MyConcern>();
+            containerRegistry.RegisterForNavigation<Views.MyFuns>();
+        }
     }
 }

@@ -76,8 +76,24 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="ViewModels\DiscovererHomePageViewModel.cs" />
+    <Compile Include="ViewModels\FavoritedPostsViewModel.cs" />
+    <Compile Include="ViewModels\MyConcernViewModel.cs" />
+    <Compile Include="ViewModels\MyFunsViewModel.cs" />
+    <Compile Include="ViewModels\PostedPostsViewModel.cs" />
     <Compile Include="Views\DiscovererHomePage.xaml.cs">
       <DependentUpon>DiscovererHomePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FavoritedPosts.xaml.cs">
+      <DependentUpon>FavoritedPosts.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MyConcern.xaml.cs">
+      <DependentUpon>MyConcern.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MyFuns.xaml.cs">
+      <DependentUpon>MyFuns.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PostedPosts.xaml.cs">
+      <DependentUpon>PostedPosts.xaml</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -91,6 +107,22 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Views\DiscovererHomePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\FavoritedPosts.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MyConcern.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MyFuns.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PostedPosts.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
