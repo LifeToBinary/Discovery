@@ -16,6 +16,7 @@ namespace Discovery.Client.MainMenuTitle.ViewModels
     {
         public Discoverer CurrentUser { get; }
         public DelegateCommand<string> NavigationToMainMenuContentRegionCommand { get; }
+        public DelegateCommand<string> NavigationViewToMainRegionCommand { get; }
         private IRegionManager _regionManager;
         public MainMenuTitleViewModel(IRegionManager regionManager)
         {
@@ -23,8 +24,12 @@ namespace Discovery.Client.MainMenuTitle.ViewModels
             CurrentUser = GlobalObjectHolder.CurrentUser;
             NavigationToMainMenuContentRegionCommand = 
                 new DelegateCommand<string>(NavigationViewToMainMenuContentRegion);
+            NavigationViewToMainRegionCommand =
+                new DelegateCommand<string>(NavigationViewToMainRegion);
         }
         private void NavigationViewToMainMenuContentRegion(string viewName)
             => _regionManager.RequestNavigate(RegionNames.MainMenuContent, viewName);
+        private void NavigationViewToMainRegion(string viewName)
+            => _regionManager.RequestNavigate(RegionNames.MainRegion, viewName);
     }
 }
