@@ -17,6 +17,7 @@ namespace Discovery.Client.PostDetail.ViewModels
             get => _currentPost;
             set => SetProperty(ref _currentPost, value);
         }
+
         public MyPostDetailViewModel()
         {
         }

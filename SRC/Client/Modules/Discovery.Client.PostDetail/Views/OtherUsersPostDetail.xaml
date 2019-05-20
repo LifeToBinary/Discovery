@@ -9,10 +9,78 @@
              mc:Ignorable="d"
              d:DesignHeight="450"
              d:DesignWidth="800">
-    <Grid>
-        <TextBlock Text="这是别人的帖子" 
-                   FontSize="40"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center"/>
+    <Grid TextBlock.FontSize="20"
+          HorizontalAlignment="Center"
+          VerticalAlignment="Center">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Row="0"
+                   Grid.Column="0"
+                   Text="ID: " />
+        <TextBlock Grid.Row="1"
+                   Grid.Column="0"
+                   Text="标题: " />
+        <TextBlock Grid.Row="2"
+                   Grid.Column="0"
+                   Text="图像路径: " />
+        <TextBlock Grid.Row="3"
+                   Grid.Column="0"
+                   Text="链接: " />
+        <TextBlock Grid.Row="4"
+                   Grid.Column="0"
+                   Text="创建时间: " />
+        <TextBlock Grid.Row="5"
+                   Grid.Column="0"
+                   Text="最后编辑时间: " />
+        <TextBlock Grid.Row="6"
+                   Grid.Column="0"
+                   Text="作者ID: " />
+        <TextBlock Grid.Row="7"
+                   Grid.Column="0"
+                   Text="内容: " />
+        <TextBlock Grid.Row="8"
+                   Grid.Column="0"
+                   Text="分类: " />
+        <TextBlock Grid.Row="0"
+                   Grid.Column="1"
+                   Text="{Binding CurrentPost.ID}" />
+        <TextBlock Grid.Row="1"
+                   Grid.Column="1"
+                   Text="{Binding CurrentPost.Title}" />
+        <TextBlock Grid.Row="2"
+                   Grid.Column="1"
+                   Text="{Binding CurrentPost.IconPath}" />
+        <TextBlock Grid.Row="3"
+                   Grid.Column="1"
+                   Text="{Binding CurrentPost.Url}" />
+        <TextBlock Grid.Row="4"
+                   Grid.Column="1"
+                   Text="{Binding CurrentPost.CreationTime}" />
+        <TextBlock Grid.Row="5"
+                   Grid.Column="1"
+                   Text="{Binding CurrentPost.LastEditedTime}" />
+        <TextBlock Grid.Row="6"
+                   Grid.Column="1"
+                   Text="{Binding CurrentPost.AuthorID}" />
+        <TextBlock Grid.Row="7"
+                   Grid.Column="1"
+                   TextWrapping="Wrap"
+                   Text="{Binding CurrentPost.Content}" />
+        <TextBlock Grid.Row="8"
+                   Grid.Column="1"
+                   Text="{Binding CurrentPost.PostCategory}" />
     </Grid>
 </UserControl>
