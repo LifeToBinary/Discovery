@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace Discovery.Client.DiscovererHomePage.Views
 {
     /// <summary>
-    /// FavoritedPosts.xaml 的交互逻辑
+    /// DiscovererHomePage.xaml 的交互逻辑
     /// </summary>
-    public partial class FavoritedPosts : UserControl
+    public partial class MyHomePage : UserControl
     {
-        public FavoritedPosts()
+        public MyHomePage()
         {
             InitializeComponent();
         }

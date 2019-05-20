@@ -18,9 +18,9 @@ namespace Discovery.Client.DiscovererHomePage.Views
     /// <summary>
     /// PostedPosts.xaml 的交互逻辑
     /// </summary>
-    public partial class PostedPosts : UserControl
+    public partial class IPostedPosts : UserControl
     {
-        public PostedPosts()
+        public IPostedPosts()
         {
             InitializeComponent();
         }

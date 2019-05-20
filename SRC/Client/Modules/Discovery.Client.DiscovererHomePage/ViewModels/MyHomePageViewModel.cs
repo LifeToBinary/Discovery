@@ -14,11 +14,11 @@ using System.Threading.Tasks;
 
 namespace Discovery.Client.DiscovererHomePage.ViewModels
 {
-    public class DiscovererHomePageViewModel : BindableBase
+    public class MyHomePageViewModel : BindableBase
     {
         public Discoverer CurrentUser { get; }
         private readonly IRegionManager _regionManager;
-        public DiscovererHomePageViewModel(IRegionManager regionManager)
+        public MyHomePageViewModel(IRegionManager regionManager)
         {
             _regionManager = regionManager;
             NavigationToProfileContentRegionCommand =

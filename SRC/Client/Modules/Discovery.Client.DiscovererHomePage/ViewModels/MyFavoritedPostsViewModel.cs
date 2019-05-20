@@ -14,21 +14,22 @@ using System.Threading.Tasks;
 
 namespace Discovery.Client.DiscovererHomePage.ViewModels
 {
-    public class PostedPostsViewModel : BindableBase
+    public class MyFavoritedPostsViewModel : BindableBase
     {
         public Discoverer CurrentUser { get; }
         private IRegionManager _regionManager;
-        private ObservableCollection<Post> _postsIPost;
-        public ObservableCollection<Post> PostsIPost
-        {
-            get => _postsIPost;
-            set => SetProperty(ref _postsIPost, value);
-        }
         public DelegateCommand<Post> ViewPostDetailCommand { get; }
-        public PostedPostsViewModel(IRegionManager regionManager)
+        private ObservableCollection<Post> _myFavorites;
+        public ObservableCollection<Post> MyFavorites
+        {
+            get => _myFavorites;
+            set => SetProperty(ref _myFavorites, value);
+        }
+
+        public MyFavoritedPostsViewModel(IRegionManager regionManager)
         {
             CurrentUser = GlobalObjectHolder.CurrentUser;
-            _postsIPost = new ObservableCollection<Post>(LoadData());
+            _myFavorites = new ObservableCollection<Post>(LoadData());
             _regionManager = regionManager;
             ViewPostDetailCommand = new DelegateCommand<Post>(ViewPostDetail);
         }
@@ -37,17 +38,16 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
         {
             using (var databaseService = new DataBaseServiceClient())
             {
-                return databaseService.GetPostsOfTheDiscoverer(CurrentUser.BasicInfo.ID);
+                return databaseService.GetFavoritePosts(CurrentUser.BasicInfo.ID);
             }
         }
         private void ViewPostDetail(Post post)
             => _regionManager.RequestNavigate(
-                                  RegionNames.MainMenuContent, 
-                                  ViewNames.MyPostDetail,
+                                  RegionNames.MainMenuContent,
+                                  ViewNames.OtherUsersPostDetail,
                                   new NavigationParameters
                                   {
                                       { "Post", post }
                                   });
-
     }
 }

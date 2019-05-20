@@ -8,14 +8,14 @@ namespace Discovery.Core.Constants
     {
         public const string SignIn = "SignIn";
         public const string MainMenu = "MainMenu";
-        public const string DiscovererHomePage = "DiscovererHomePage";
+        public const string DiscovererHomePage = "MyHomePage";
         public const string Recommended = "Recommended";
         public const string Option = "Option";
         public const string Feedback = "Feedback";
         public const string About = "About";
 
-        public const string PostedPosts = "PostedPosts";
-        public const string FavoritedPosts = "FavoritedPosts";
+        public const string PostedPosts = "IPostedPosts";
+        public const string FavoritedPosts = "MyFavoritedPosts";
         public const string MyConcern = "MyConcern";
         public const string MyFuns = "MyFuns";
 

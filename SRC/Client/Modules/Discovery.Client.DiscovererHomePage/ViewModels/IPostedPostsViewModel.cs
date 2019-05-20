@@ -14,22 +14,21 @@ using System.Threading.Tasks;
 
 namespace Discovery.Client.DiscovererHomePage.ViewModels
 {
-    public class FavoritedPostsViewModel : BindableBase
+    public class IPostedPostsViewModel : BindableBase
     {
         public Discoverer CurrentUser { get; }
         private IRegionManager _regionManager;
-        public DelegateCommand<Post> ViewPostDetailCommand { get; }
-        private ObservableCollection<Post> _myFavorites;
-        public ObservableCollection<Post> MyFavorites
+        private ObservableCollection<Post> _postsIPost;
+        public ObservableCollection<Post> PostsIPost
         {
-            get => _myFavorites;
-            set => SetProperty(ref _myFavorites, value);
+            get => _postsIPost;
+            set => SetProperty(ref _postsIPost, value);
         }
-
-        public FavoritedPostsViewModel(IRegionManager regionManager)
+        public DelegateCommand<Post> ViewPostDetailCommand { get; }
+        public IPostedPostsViewModel(IRegionManager regionManager)
         {
             CurrentUser = GlobalObjectHolder.CurrentUser;
-            _myFavorites = new ObservableCollection<Post>(LoadData());
+            _postsIPost = new ObservableCollection<Post>(LoadData());
             _regionManager = regionManager;
             ViewPostDetailCommand = new DelegateCommand<Post>(ViewPostDetail);
         }
@@ -38,16 +37,17 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
         {
             using (var databaseService = new DataBaseServiceClient())
             {
-                return databaseService.GetFavoritePosts(CurrentUser.BasicInfo.ID);
+                return databaseService.GetPostsOfTheDiscoverer(CurrentUser.BasicInfo.ID);
             }
         }
         private void ViewPostDetail(Post post)
             => _regionManager.RequestNavigate(
-                                  RegionNames.MainMenuContent,
-                                  ViewNames.OtherUsersPostDetail,
+                                  RegionNames.MainMenuContent, 
+                                  ViewNames.MyPostDetail,
                                   new NavigationParameters
                                   {
                                       { "Post", post }
                                   });
+
     }
 }
