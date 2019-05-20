@@ -194,6 +194,10 @@
       <Project>{97c85164-6a4b-442e-b7ae-0a357a92ef81}</Project>
       <Name>Discovery.Client.Option</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Modules\Discovery.Client.PostDetail\Discovery.Client.PostDetail.csproj">
+      <Project>{713999d4-5232-4a76-a1c4-916a5b1e0aae}</Project>
+      <Name>Discovery.Client.PostDetail</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Modules\Discovery.Client.Recommended\Discovery.Client.Recommended.csproj">
       <Project>{A74E1265-5FD4-4FF7-BCEB-A4F2EFE32BF7}</Project>
       <Name>Discovery.Client.Recommended</Name>

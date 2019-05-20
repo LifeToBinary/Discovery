@@ -18,5 +18,8 @@ namespace Discovery.Core.Constants
         public const string FavoritedPosts = "FavoritedPosts";
         public const string MyConcern = "MyConcern";
         public const string MyFuns = "MyFuns";
+
+        public const string MyPostDetail = "MyPostDetail";
+        public const string OtherUsersPostDetail = "OtherUsersPostDetail";
     }
 }

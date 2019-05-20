@@ -4,6 +4,7 @@ using Discovery.Client.Feedback;
 using Discovery.Client.MainMenu;
 using Discovery.Client.MainMenuTitle;
 using Discovery.Client.Option;
+using Discovery.Client.PostDetail;
 using Discovery.Client.Recommended;
 using Discovery.Client.SignIn;
 using Discovery.Client.Views;
@@ -40,6 +41,7 @@ namespace Discovery.Client
                             .AddModule<RecommendedModule>()
                             .AddModule<OptionModule>()
                             .AddModule<FeedbackModule>()
-                            .AddModule<AboutModule>();
+                            .AddModule<AboutModule>()
+                            .AddModule<PostDetailModule>();
     }
 }
