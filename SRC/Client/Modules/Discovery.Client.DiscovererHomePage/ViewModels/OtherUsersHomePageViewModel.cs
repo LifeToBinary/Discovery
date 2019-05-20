@@ -28,8 +28,16 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
                 new DelegateCommand<string>(NavigationToProfileContentRegion);
         }
         public DelegateCommand<string> NavigationToProfileContentRegionCommand { get; }
+
         private void NavigationToProfileContentRegion(string viewName)
-            => _regionManager.RequestNavigate(RegionNames.ProfileContent, viewName);
+            => _regionManager.RequestNavigate(
+                                  RegionNames.OtherUsersProfileContent, 
+                                  viewName,
+                                  new NavigationParameters
+                                  {
+                                      { "Discoverer", Discoverer }
+                                  });
+
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
             if (navigationContext.Parameters["Discoverer"] is Discoverer discoverer)

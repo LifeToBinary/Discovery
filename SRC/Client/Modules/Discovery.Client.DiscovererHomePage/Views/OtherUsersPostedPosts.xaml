@@ -1,0 +1,104 @@
+﻿<UserControl x:Class="Discovery.Client.DiscovererHomePage.Views.OtherUsersPostedPosts"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Discovery.Client.DiscovererHomePage.Views"
+             xmlns:prism="http://prismlibrary.com/"
+             prism:ViewModelLocator.AutoWireViewModel="True"
+             mc:Ignorable="d"
+             d:DesignHeight="450"
+             d:DesignWidth="800">
+    <Grid Margin="50,0">
+        <ListBox ItemsSource="{Binding PostedPosts}"
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                 HorizontalContentAlignment="Stretch">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderBrush="Black"
+                            BorderThickness="2">
+                        <Grid>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Row="0"
+                                           Grid.Column="0"
+                                           Text="ID: " />
+                                <TextBlock Grid.Row="1"
+                                           Grid.Column="0"
+                                           Text="标题: " />
+                                <TextBlock Grid.Row="2"
+                                           Grid.Column="0"
+                                           Text="图像路径: " />
+                                <TextBlock Grid.Row="3"
+                                           Grid.Column="0"
+                                           Text="链接: " />
+                                <TextBlock Grid.Row="4"
+                                           Grid.Column="0"
+                                           Text="创建时间: " />
+                                <TextBlock Grid.Row="5"
+                                           Grid.Column="0"
+                                           Text="最后编辑时间: " />
+                                <TextBlock Grid.Row="6"
+                                           Grid.Column="0"
+                                           Text="作者ID: " />
+                                <TextBlock Grid.Row="7"
+                                           Grid.Column="0"
+                                           Text="内容: " />
+                                <TextBlock Grid.Row="8"
+                                           Grid.Column="0"
+                                           Text="分类: " />
+                                <TextBlock Grid.Row="0"
+                                           Grid.Column="1"
+                                           Text="{Binding ID}" />
+                                <TextBlock Grid.Row="1"
+                                           Grid.Column="1"
+                                           Text="{Binding Title}" />
+                                <TextBlock Grid.Row="2"
+                                           Grid.Column="1"
+                                           Text="{Binding IconPath}" />
+                                <TextBlock Grid.Row="3"
+                                           Grid.Column="1"
+                                           Text="{Binding Url}" />
+                                <TextBlock Grid.Row="4"
+                                           Grid.Column="1"
+                                           Text="{Binding CreationTime}" />
+                                <TextBlock Grid.Row="5"
+                                           Grid.Column="1"
+                                           Text="{Binding LastEditedTime}" />
+                                <TextBlock Grid.Row="6"
+                                           Grid.Column="1"
+                                           Text="{Binding AuthorID}" />
+                                <TextBlock Grid.Row="7"
+                                           Grid.Column="1"
+                                           TextWrapping="Wrap"
+                                           Text="{Binding Content}" />
+                                <TextBlock Grid.Row="8"
+                                           Grid.Column="1"
+                                           Text="{Binding PostCategory}" />
+                            </Grid>
+                            <Button Content="查看"
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Top"
+                                    Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.ViewPostDetailCommand}"
+                                    CommandParameter="{Binding}" />
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </Grid>
+</UserControl>

@@ -24,6 +24,10 @@ namespace Discovery.Client.DiscovererHomePage
             containerRegistry.RegisterForNavigation<Views.MyFuns>();
 
             containerRegistry.RegisterForNavigation<Views.OtherUsersHomePage>();
+            containerRegistry.RegisterForNavigation<Views.OtherUsersPostedPosts>();
+            containerRegistry.RegisterForNavigation<Views.OtherUsersFavoritedPosts>();
+            containerRegistry.RegisterForNavigation<Views.OtherUsersConcern>();
+            containerRegistry.RegisterForNavigation<Views.OtherUsersFuns>();
 
         }
     }
