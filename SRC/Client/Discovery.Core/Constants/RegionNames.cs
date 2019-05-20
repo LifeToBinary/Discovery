@@ -10,5 +10,6 @@
         public const string MainMenuContent = "MainMenuContent";
 
         public const string ProfileContent = "ProfileContent";
+        public const string OtherUsersProfileContent = "OtherUsersProfileContent";
     }
 }

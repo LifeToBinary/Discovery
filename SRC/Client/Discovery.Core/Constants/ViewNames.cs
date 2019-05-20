@@ -21,5 +21,7 @@ namespace Discovery.Core.Constants
 
         public const string MyPostDetail = "MyPostDetail";
         public const string OtherUsersPostDetail = "OtherUsersPostDetail";
+
+        public const string OtherUsersHomePage = "OtherUsersHomePage";
     }
 }
