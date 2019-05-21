@@ -182,10 +182,6 @@
       <Project>{caaa6918-b628-4751-ab5d-68a8a6db096e}</Project>
       <Name>Discovery.Client.Feedback</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Modules\Discovery.Client.MainMenuTitle\Discovery.Client.MainMenuTitle.csproj">
-      <Project>{9eebecbd-8634-44de-adae-cf87903715f5}</Project>
-      <Name>Discovery.Client.MainMenuTitle</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Modules\Discovery.Client.MainMenu\Discovery.Client.MainMenu.csproj">
       <Project>{0032ad15-d812-4407-8588-77dbd3ac33c2}</Project>
       <Name>Discovery.Client.MainMenu</Name>
