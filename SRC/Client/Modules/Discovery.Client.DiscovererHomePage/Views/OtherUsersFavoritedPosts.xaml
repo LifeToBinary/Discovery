@@ -4,13 +4,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:Discovery.Client.DiscovererHomePage.Views"
-             xmlns:prism="http://prismlibrary.com/"
-             prism:ViewModelLocator.AutoWireViewModel="True"
              mc:Ignorable="d"
              d:DesignHeight="450"
              d:DesignWidth="800">
-    <Grid Margin="50,0">
-        <ListBox ItemsSource="{Binding FavoritedPosts}"
+    <Grid>
+        <ListBox ItemsSource="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorLevel=2,AncestorType={x:Type UserControl}}, Path=DataContext.FavoritedPosts}"
                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                  HorizontalContentAlignment="Stretch">
             <ListBox.ItemTemplate>
@@ -93,7 +91,7 @@
                             <Button Content="查看"
                                     HorizontalAlignment="Right"
                                     VerticalAlignment="Top"
-                                    Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.ViewPostDetailCommand}"
+                                    Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorLevel=2, AncestorType={x:Type UserControl}}, Path=DataContext.ViewPostDetailCommand}"
                                     CommandParameter="{Binding}" />
                         </Grid>
                     </Border>

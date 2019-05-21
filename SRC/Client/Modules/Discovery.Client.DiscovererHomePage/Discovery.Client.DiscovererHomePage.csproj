@@ -83,15 +83,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="ViewModels\MyHomePageViewModel.cs" />
-    <Compile Include="ViewModels\MyFavoritedPostsViewModel.cs" />
-    <Compile Include="ViewModels\MyConcernViewModel.cs" />
-    <Compile Include="ViewModels\MyFunsViewModel.cs" />
-    <Compile Include="ViewModels\IPostedPostsViewModel.cs" />
-    <Compile Include="ViewModels\OtherUsersConcernViewModel.cs" />
-    <Compile Include="ViewModels\OtherUsersFavoritedPostsViewModel.cs" />
-    <Compile Include="ViewModels\OtherUsersFunsViewModel.cs" />
     <Compile Include="ViewModels\OtherUsersHomePageViewModel.cs" />
-    <Compile Include="ViewModels\OtherUsersPostedPostsViewModel.cs" />
     <Compile Include="Views\MyHomePage.xaml.cs">
       <DependentUpon>MyHomePage.xaml</DependentUpon>
     </Compile>
