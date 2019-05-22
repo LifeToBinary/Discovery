@@ -53,6 +53,7 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
             ViewThisUsersHomePageCommand = new DelegateCommand<Discoverer>(ViewThisUsersHomePage);
             DeleteThisPostCommand = new DelegateCommand<Post>(DeleteThisPost);
             CancelFavoriteCommand = new DelegateCommand<Post>(CancelFavorite);
+            CancelConcernCommand = new DelegateCommand<Discoverer>(CancelConcern);
             LoadData();
         }
 
@@ -131,6 +132,18 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
                     post.ID);
             }
             MyFavorites.Remove(post);
+        }
+
+        public DelegateCommand<Discoverer> CancelConcernCommand { get; }
+        private void CancelConcern(Discoverer idol)
+        {
+            using (var databaseService = new DataBaseServiceClient())
+            {
+                databaseService.CancelConcern(
+                    GlobalObjectHolder.CurrentUser.BasicInfo.ID,
+                    idol.BasicInfo.ID);
+            }
+            Idols.Remove(idol);
         }
         public bool KeepAlive => false;
     }
