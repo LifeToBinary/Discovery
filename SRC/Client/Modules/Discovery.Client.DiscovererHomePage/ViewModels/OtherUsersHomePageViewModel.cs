@@ -80,12 +80,14 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
         public DelegateCommand<Discoverer> ViewThisUsersHomePageCommand { get; }
         private void ViewThisUsersHomePage(Discoverer discoverer)
             => _regionManager.RequestNavigate(
-                                  RegionNames.MainMenuContent,
-                                  ViewNames.OtherUsersHomePage,
-                                  new NavigationParameters
-                                  {
-                                        { "Discoverer", discoverer }
-                                  });
+                RegionNames.MainMenuContent,
+                discoverer.BasicInfo.ID == GlobalObjectHolder.CurrentUser.BasicInfo.ID
+                    ? ViewNames.DiscovererHomePage
+                    : ViewNames.OtherUsersHomePage,
+                new NavigationParameters
+                {
+                    { "Discoverer", discoverer }
+                });
 
         public DelegateCommand<Post> ViewPostDetailCommand { get; }
         private void ViewPostDetail(Post post)
