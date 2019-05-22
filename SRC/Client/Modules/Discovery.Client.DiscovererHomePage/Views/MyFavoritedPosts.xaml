@@ -89,11 +89,20 @@
                                            Grid.Column="1"
                                            Text="{Binding PostCategory}" />
                             </Grid>
-                            <Button Content="查看"
-                                    HorizontalAlignment="Right"
-                                    VerticalAlignment="Top"
-                                    Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorLevel=2, AncestorType={x:Type UserControl}}, Path=DataContext.ViewPostDetailCommand}"
-                                    CommandParameter="{Binding}" />
+                            <StackPanel HorizontalAlignment="Right"
+                                        VerticalAlignment="Top"
+                                        Margin="10">
+                                <Button Content="查看"
+                                        Margin="10"
+                                        Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorLevel=2, AncestorType={x:Type UserControl}}, Path=DataContext.ViewPostDetailCommand}"
+                                        CommandParameter="{Binding}" />
+                                <Button Content="取消收藏"
+                                        Margin="10"
+                                        Background="Red"
+                                        Foreground="White"
+                                        Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorLevel=2, AncestorType={x:Type UserControl}}, Path=DataContext.CancelFavoriteCommand}"
+                                        CommandParameter="{Binding}" />
+                            </StackPanel>
                         </Grid>
                     </Border>
                 </DataTemplate>

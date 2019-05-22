@@ -52,6 +52,7 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
             ViewMyPostDetailCommand = new DelegateCommand<Post>(ViewMyPostDetail);
             ViewThisUsersHomePageCommand = new DelegateCommand<Discoverer>(ViewThisUsersHomePage);
             DeleteThisPostCommand = new DelegateCommand<Post>(DeleteThisPost);
+            CancelFavoriteCommand = new DelegateCommand<Post>(CancelFavorite);
             LoadData();
         }
 
@@ -118,6 +119,18 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
                 databaseService.RemoveAPost(post.ID);
             }
             PostsIPost.Remove(post);
+        }
+
+        public DelegateCommand<Post> CancelFavoriteCommand { get; }
+        private void CancelFavorite(Post post)
+        {
+            using (var databaseService = new DataBaseServiceClient())
+            {
+                databaseService.CancelFavorite(
+                    GlobalObjectHolder.CurrentUser.BasicInfo.ID, 
+                    post.ID);
+            }
+            MyFavorites.Remove(post);
         }
         public bool KeepAlive => false;
     }
