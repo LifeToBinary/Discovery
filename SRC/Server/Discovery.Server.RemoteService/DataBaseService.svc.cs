@@ -25,14 +25,14 @@ namespace Discovery.Server.RemoteService
             var addANewPostParameterValues =
                 new Dictionary<string, object>
                 {
-                    ["@id"] = post.ID,
                     ["@title"] = post.Title,
+                    ["@iconPath"] = post.IconPath,
                     ["@url"] = post.Url,
                     ["@creationTime"] = post.CreationTime,
+                    ["@lastEditedTime"] = post.LastEditedTime,
                     ["@authorID"] = post.AuthorID,
                     ["@content"] = post.Content,
-                    ["@postCategory"] = post.PostCategory,
-                    ["@lastEditedTime"] = post.LastEditedTime
+                    ["@postCategory"] = post.PostCategory
                 };
             using (var connection = new SqlConnection(GetDataBaseConnectionString()))
             using (SqlCommand command = connection.CreateCommand())
