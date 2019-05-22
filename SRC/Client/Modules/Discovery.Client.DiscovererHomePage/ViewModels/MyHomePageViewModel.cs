@@ -54,6 +54,7 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
             DeleteThisPostCommand = new DelegateCommand<Post>(DeleteThisPost);
             CancelFavoriteCommand = new DelegateCommand<Post>(CancelFavorite);
             CancelConcernCommand = new DelegateCommand<Discoverer>(CancelConcern);
+            ConcernThisUserCommand = new DelegateCommand<Discoverer>(ConcernThisUser);
             LoadData();
         }
 
@@ -128,7 +129,7 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
             using (var databaseService = new DataBaseServiceClient())
             {
                 databaseService.CancelFavorite(
-                    GlobalObjectHolder.CurrentUser.BasicInfo.ID, 
+                    CurrentUser.BasicInfo.ID, 
                     post.ID);
             }
             MyFavorites.Remove(post);
@@ -140,10 +141,22 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
             using (var databaseService = new DataBaseServiceClient())
             {
                 databaseService.CancelConcern(
-                    GlobalObjectHolder.CurrentUser.BasicInfo.ID,
+                    CurrentUser.BasicInfo.ID,
                     idol.BasicInfo.ID);
             }
             Idols.Remove(idol);
+        }
+
+        public DelegateCommand<Discoverer> ConcernThisUserCommand { get; }
+        private void ConcernThisUser(Discoverer discoverer)
+        {
+            using (var databaseService = new DataBaseServiceClient())
+            {
+                databaseService.ConcernADiscoverer(
+                    CurrentUser.BasicInfo.ID,
+                    discoverer.BasicInfo.ID);
+            }
+            Idols.Add(discoverer);
         }
         public bool KeepAlive => false;
     }
