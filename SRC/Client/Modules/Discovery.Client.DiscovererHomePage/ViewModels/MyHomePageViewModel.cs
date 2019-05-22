@@ -51,6 +51,7 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
             ViewPostDetailCommand = new DelegateCommand<Post>(ViewPostDetail);
             ViewMyPostDetailCommand = new DelegateCommand<Post>(ViewMyPostDetail);
             ViewThisUsersHomePageCommand = new DelegateCommand<Discoverer>(ViewThisUsersHomePage);
+            DeleteThisPostCommand = new DelegateCommand<Post>(DeleteThisPost);
             LoadData();
         }
 
@@ -109,6 +110,15 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
                     { "Post", post }
                 });
 
+        public DelegateCommand<Post> DeleteThisPostCommand { get; }
+        private void DeleteThisPost(Post post)
+        {
+            using (var databaseService = new DataBaseServiceClient())
+            {
+                databaseService.RemoveAPost(post.ID);
+            }
+            PostsIPost.Remove(post);
+        }
         public bool KeepAlive => false;
     }
 }
