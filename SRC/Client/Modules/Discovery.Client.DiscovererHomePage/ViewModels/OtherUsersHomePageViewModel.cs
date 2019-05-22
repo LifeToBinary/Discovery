@@ -16,45 +16,57 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
 {
     public class OtherUsersHomePageViewModel : BindableBase, INavigationAware, IRegionMemberLifetime
     {
+        #region 字段
+        private readonly IRegionManager _regionManager;
+        private ObservableCollection<Post> _postedPost;
+        private ObservableCollection<Discoverer> _funs;
+        private ObservableCollection<Post> _favoritedPost;
+        private ObservableCollection<Discoverer> _idols;
         private Discoverer _discoverer;
+        #endregion
+
         public Discoverer Discoverer
         {
             get => _discoverer;
             set => SetProperty(ref _discoverer, value);
         }
-        private readonly IRegionManager _regionManager;
-        private ObservableCollection<Post> _postedPost;
         public ObservableCollection<Post> PostedPosts
         {
             get => _postedPost;
             set => SetProperty(ref _postedPost, value);
         }
-        private ObservableCollection<Discoverer> _funs;
         public ObservableCollection<Discoverer> Funs
         {
             get => _funs;
             set => SetProperty(ref _funs, value);
         }
-        private ObservableCollection<Post> _favoritedPost;
         public ObservableCollection<Post> FavoritedPosts
         {
             get => _favoritedPost;
             set => SetProperty(ref _favoritedPost, value);
         }
-        private ObservableCollection<Discoverer> _idols;
         public ObservableCollection<Discoverer> Idols
         {
             get => _idols;
             set => SetProperty(ref _idols, value);
         }
+
         public OtherUsersHomePageViewModel(IRegionManager regionManager)
         {
             _regionManager = regionManager;
-            ViewThisUsersHomePageCommand = new DelegateCommand<Discoverer>(ViewThisUsersHomePage);
-            ViewPostDetailCommand = new DelegateCommand<Post>(ViewPostDetail);
+
+            ViewThisUsersHomePageCommand = 
+                new DelegateCommand<Discoverer>(
+                    ViewThisUsersHomePage);
+
+            ViewPostDetailCommand = 
+                new DelegateCommand<Post>(ViewPostDetail);
+
             NavigationToProfileContentRegionCommand =
-                new DelegateCommand<string>(NavigationToProfileContentRegion);
+                new DelegateCommand<string>(
+                    NavigationToProfileContentRegion);
         }
+
         public DelegateCommand<string> NavigationToProfileContentRegionCommand { get; }
         private void NavigationToProfileContentRegion(string viewName)
             => _regionManager.RequestNavigate(
@@ -74,51 +86,58 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
                                   {
                                         { "Discoverer", discoverer }
                                   });
-        public DelegateCommand<Post> ViewPostDetailCommand { get; }
-        public bool KeepAlive => false;
 
+        public DelegateCommand<Post> ViewPostDetailCommand { get; }
         private void ViewPostDetail(Post post)
             => _regionManager.RequestNavigate(
-                                  RegionNames.MainMenuContent,
-                                  ViewNames.OtherUsersPostDetail,
-                                  new NavigationParameters
-                                  {
-                                      { "Post", post }
-                                  });
-        public void OnNavigatedTo(NavigationContext navigationContext)
+                RegionNames.MainMenuContent,
+                ViewNames.OtherUsersPostDetail,
+                new NavigationParameters
+                {
+                    { "Post", post }
+                });
+
+        private async void LoadData()
         {
-            if (navigationContext.Parameters["Discoverer"] is Discoverer discoverer)
+            using (var databaseService = new DataBaseServiceClient())
+            {
+                PostedPosts = new ObservableCollection<Post>(
+                                  await databaseService.GetPostsOfTheDiscovererAsync(
+                                      Discoverer.BasicInfo.ID));
+
+                Funs = new ObservableCollection<Discoverer>(
+                           await databaseService.GetFunsOfTheIdolAsync(
+                               Discoverer.BasicInfo.ID));
+
+                FavoritedPosts = new ObservableCollection<Post>(
+                                     await databaseService.GetFavoritePostsAsync(
+                                         Discoverer.BasicInfo.ID));
+                Idols = new ObservableCollection<Discoverer>(
+                            await databaseService.GetIdolsAsync(
+                                Discoverer.BasicInfo.ID));
+            }
+        }
+
+        public void OnNavigatedTo(
+            NavigationContext navigationContext)
+        {
+            if (navigationContext.Parameters["Discoverer"] 
+                is Discoverer discoverer)
             {
                 Discoverer = discoverer;
                 LoadData();
             }
         }
-        private void LoadData()
-        {
-            using (var databaseService = new DataBaseServiceClient())
-            {
-                PostedPosts = new ObservableCollection<Post>(
-                                  databaseService.GetPostsOfTheDiscoverer(
-                                      Discoverer.BasicInfo.ID));
 
-                Funs = new ObservableCollection<Discoverer>(
-                           databaseService.GetFunsOfTheIdol(
-                               Discoverer.BasicInfo.ID));
-
-                FavoritedPosts = new ObservableCollection<Post>(
-                                     databaseService.GetFavoritePosts(
-                                         Discoverer.BasicInfo.ID));
-                Idols = new ObservableCollection<Discoverer>(
-                            databaseService.GetIdols(
-                                Discoverer.BasicInfo.ID));
-            }
-        }
-        public bool IsNavigationTarget(NavigationContext navigationContext)
+        public bool IsNavigationTarget(
+            NavigationContext _)
             => true;
 
-        public void OnNavigatedFrom(NavigationContext navigationContext)
+        public void OnNavigatedFrom(
+            NavigationContext _)
         {
-
         }
+
+        public bool KeepAlive => false;
     }
 }

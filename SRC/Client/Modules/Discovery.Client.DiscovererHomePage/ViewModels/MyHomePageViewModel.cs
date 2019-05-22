@@ -53,57 +53,62 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
             ViewThisUsersHomePageCommand = new DelegateCommand<Discoverer>(ViewThisUsersHomePage);
             LoadData();
         }
-        private void LoadData()
+
+        private async void LoadData()
         {
             using (var databaseService = new DataBaseServiceClient())
             {
                 PostsIPost = 
                     new ObservableCollection<Post>(
-                        databaseService.GetPostsOfTheDiscoverer(
+                        await databaseService.GetPostsOfTheDiscovererAsync(
                             CurrentUser.BasicInfo.ID));
                 Idols =
                     new ObservableCollection<Discoverer>(
-                        databaseService.GetIdols(
+                        await databaseService.GetIdolsAsync(
                             CurrentUser.BasicInfo.ID));
 
                 MyFavorites =
                     new ObservableCollection<Post>(
-                        databaseService.GetFavoritePosts(
+                        await databaseService.GetFavoritePostsAsync(
                             CurrentUser.BasicInfo.ID));
 
                 Funs =
                     new ObservableCollection<Discoverer>(
-                        databaseService.GetFunsOfTheIdol(
+                        await databaseService.GetFunsOfTheIdolAsync(
                             CurrentUser.BasicInfo.ID));
             }
         }
+
         public DelegateCommand<Post> ViewPostDetailCommand { get; }
         private void ViewPostDetail(Post post)
             => _regionManager.RequestNavigate(
-                                  RegionNames.MainMenuContent,
-                                  ViewNames.OtherUsersPostDetail,
-                                  new NavigationParameters
-                                  {
-                                      { "Post", post }
-                                  });
+                RegionNames.MainMenuContent,
+                ViewNames.OtherUsersPostDetail,
+                new NavigationParameters
+                {
+                    { "Post", post }
+                });
+
         public DelegateCommand<Discoverer> ViewThisUsersHomePageCommand { get; }
         private void ViewThisUsersHomePage(Discoverer discoverer)
             => _regionManager.RequestNavigate(
-                                  RegionNames.MainMenuContent,
-                                  ViewNames.OtherUsersHomePage,
-                                  new NavigationParameters
-                                  {
-                                      { "Discoverer", discoverer }
-                                  });
+                RegionNames.MainMenuContent,
+                ViewNames.OtherUsersHomePage,
+                new NavigationParameters
+                {
+                    { "Discoverer", discoverer }
+                });
+
         public DelegateCommand<Post> ViewMyPostDetailCommand { get; }
         private void ViewMyPostDetail(Post post)
             => _regionManager.RequestNavigate(
-                          RegionNames.MainMenuContent,
-                          ViewNames.MyPostDetail,
-                          new NavigationParameters
-                          {
-                              { "Post", post }
-                          });
+                RegionNames.MainMenuContent,
+                ViewNames.MyPostDetail,
+                new NavigationParameters
+                {
+                    { "Post", post }
+                });
+
         public bool KeepAlive => false;
     }
 }

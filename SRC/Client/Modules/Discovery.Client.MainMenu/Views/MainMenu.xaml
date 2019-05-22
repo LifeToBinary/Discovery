@@ -39,6 +39,7 @@
                     <ColumnDefinition />
                     <ColumnDefinition />
                     <ColumnDefinition />
+                    <ColumnDefinition />
                 </Grid.ColumnDefinitions>
                 <Button Grid.Column="0"
                         Content="推荐"
@@ -64,6 +65,11 @@
                         CommandParameter="{x:Static constants:ViewNames.About}"
                         Background="Transparent"
                         BorderThickness="0" />
+                <Button Grid.Column="4"
+                        Content="+"
+                        FontSize="50"
+                        Background="Transparent"
+                        Command="{Binding AddNewPostCommand}" />
                 <Popup PopupAnimation="Slide"
                        Width="200"
                        HorizontalOffset="-118"

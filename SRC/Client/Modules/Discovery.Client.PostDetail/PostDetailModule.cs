@@ -18,6 +18,7 @@ namespace Discovery.Client.PostDetail
         {
             containerRegistry.RegisterForNavigation<Views.MyPostDetail>();
             containerRegistry.RegisterForNavigation<Views.OtherUsersPostDetail>();
+            containerRegistry.RegisterForNavigation<Views.NewPost>();
         }
     }
 }
