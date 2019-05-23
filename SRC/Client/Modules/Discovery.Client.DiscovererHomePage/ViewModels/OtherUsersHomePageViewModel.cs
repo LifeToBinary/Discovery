@@ -23,6 +23,7 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
         private ObservableCollection<Post> _favoritedPost;
         private ObservableCollection<Discoverer> _idols;
         private Discoverer _discoverer;
+        private bool _isConcerned;
         #endregion
 
         public Discoverer Discoverer
@@ -51,19 +52,6 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
             set => SetProperty(ref _idols, value);
         }
 
-        private bool _canConcernThisUser;
-        public bool CanConcernThisUser
-        {
-            get => _canConcernThisUser;
-            set => SetProperty(ref _canConcernThisUser, value);
-        }
-        private bool _canCancelConcernThisUser;
-
-        public bool CanCancelConcernThisUser
-        {
-            get => _canCancelConcernThisUser;
-            set => SetProperty(ref _canCancelConcernThisUser, value);
-        }
         public OtherUsersHomePageViewModel(IRegionManager regionManager)
         {
             _regionManager = regionManager;
@@ -78,46 +66,45 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
             NavigationToProfileContentRegionCommand =
                 new DelegateCommand<string>(
                     NavigationToProfileContentRegion);
-            ConcernThisUserCommand = new DelegateCommand(ConcernThisUser);
-            CancelConcernThisUserCommand = new DelegateCommand(CancelConcernThisUser);
+            ConcernOrCancelConcernCommand = new DelegateCommand(ConcernOrCancelConcern);
         }
-        public DelegateCommand ConcernThisUserCommand { get; }
-        private void ConcernThisUser()
+
+        public bool IsConcerned
+        {
+            get => _isConcerned;
+            set => SetProperty(ref _isConcerned, value);
+        }
+
+        public DelegateCommand ConcernOrCancelConcernCommand { get; }
+        private void ConcernOrCancelConcern()
         {
             using (var databaseService = new DataBaseServiceClient())
             {
-                databaseService.ConcernADiscoverer(
-                    GlobalObjectHolder.CurrentUser.BasicInfo.ID,
-                    Discoverer.BasicInfo.ID);
+                if (_isConcerned)
+                {
+                    databaseService.CancelConcern(
+                        GlobalObjectHolder.CurrentUser.BasicInfo.ID,
+                        Discoverer.BasicInfo.ID);
+                    IsConcerned = false;
+                }
+                else
+                {
+                    databaseService.ConcernADiscoverer(
+                        GlobalObjectHolder.CurrentUser.BasicInfo.ID,
+                        Discoverer.BasicInfo.ID);
+                    IsConcerned = true;
+                }
             }
-            CanConcernThisUser = false;
-            CanCancelConcernThisUser = true;
-            Funs.Add(GlobalObjectHolder.CurrentUser);
         }
-
-        public DelegateCommand CancelConcernThisUserCommand { get; }
-        private void CancelConcernThisUser()
-        {
-            using (var databaseService = new DataBaseServiceClient())
-            {
-                databaseService.CancelConcern(
-                    GlobalObjectHolder.CurrentUser.BasicInfo.ID,
-                    Discoverer.BasicInfo.ID);
-            }
-            CanConcernThisUser = true;
-            CanCancelConcernThisUser = false;
-            Funs.Remove(GlobalObjectHolder.CurrentUser);
-        }
-
         public DelegateCommand<string> NavigationToProfileContentRegionCommand { get; }
         private void NavigationToProfileContentRegion(string viewName)
             => _regionManager.RequestNavigate(
-                                  RegionNames.OtherUsersProfileContent,
-                                  viewName,
-                                  new NavigationParameters
-                                  {
-                                      { "Discoverer", Discoverer }
-                                  });
+                RegionNames.OtherUsersProfileContent,
+                viewName,
+                new NavigationParameters
+                {
+                    { "Discoverer", Discoverer }
+                });
 
         public DelegateCommand<Discoverer> ViewThisUsersHomePageCommand { get; }
         private void ViewThisUsersHomePage(Discoverer discoverer)
@@ -161,11 +148,9 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
                                 Discoverer.BasicInfo.ID));
 
                 
-                bool isFuns = databaseService.IsFuns(
+                IsConcerned = databaseService.IsFuns(
                                   GlobalObjectHolder.CurrentUser.BasicInfo.ID,
                                   Discoverer.BasicInfo.ID);
-                CanCancelConcernThisUser = isFuns;
-                CanConcernThisUser = !isFuns;
             }
         }
 

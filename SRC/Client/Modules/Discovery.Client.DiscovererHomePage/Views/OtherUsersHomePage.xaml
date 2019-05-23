@@ -13,7 +13,23 @@
              d:DesignWidth="800">
     <UserControl.Resources>
         <coreui:StringToBitmapImageConverter x:Key="stringToBitmapImage" />
-        <coreui:BooleanToVisibilityConverter x:Key="booleanToVisibility"/>
+        <coreui:BooleanToVisibilityConverter x:Key="booleanToVisibility" />
+        <Style x:Key="ConcernOrCancelConcernButtonStyle"
+               TargetType="{x:Type Button}">
+            <Setter Property="Content"
+                    Value="关注" />
+            <Setter Property="Background"
+                    Value="Green" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsConcerned}"
+                             Value="True">
+                    <Setter Property="Content"
+                            Value="取消关注" />
+                    <Setter Property="Background"
+                            Value="OrangeRed" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -52,16 +68,10 @@
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
-                <Button Content="关注"
-                        Grid.Row="0"
-                        Command="{Binding ConcernThisUserCommand}"
-                        Visibility="{Binding CanConcernThisUser,
-                                             Converter={StaticResource booleanToVisibility}}"/>
-                <Button Content="取消关注"
-                        Grid.Row="0"
-                        Command="{Binding CancelConcernThisUserCommand}"
-                        Visibility="{Binding CanCancelConcernThisUser,
-                                             Converter={StaticResource booleanToVisibility}}" />
+                
+                <Button Grid.Row="0"
+                        Style="{StaticResource ConcernOrCancelConcernButtonStyle}"
+                        Command="{Binding ConcernOrCancelConcernCommand}" />
                 <TextBlock Grid.Row="1"
                            Margin="5"
                            Grid.Column="0"
