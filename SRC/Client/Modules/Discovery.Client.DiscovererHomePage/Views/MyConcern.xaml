@@ -107,7 +107,7 @@
                                         Margin="10"
                                         Background="Red"
                                         Foreground="White"
-                                        Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorLevel=2, AncestorType={x:Type UserControl}}, Path=DataContext.CancelConcernCommand}"
+                                        Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorLevel=2, AncestorType={x:Type UserControl}}, Path=DataContext.CancelConcernThisUserCommand}"
                                         CommandParameter="{Binding}" />
                             </StackPanel>
                         </Grid>
