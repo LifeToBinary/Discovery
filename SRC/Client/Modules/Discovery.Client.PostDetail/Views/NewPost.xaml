@@ -80,12 +80,12 @@
                      AcceptsTab="True"
                      Margin="10"
                      Text="{Binding NewPostForAdd.Content}" />
-            <!-- TODO: Selected Binding -->
             <ComboBox Grid.Row="4"
                       Grid.Column="1"
                       Margin="10"
                       SelectedIndex="0"
-                      ItemsSource="{Binding Source={StaticResource PostFields}}"/>
+                      ItemsSource="{Binding Source={StaticResource PostFields}}"
+                      SelectedItem="{Binding NewPostForAdd.PostCategory}"/>
         </Grid>
         <Button Grid.Row="1"
                 Margin="30"
