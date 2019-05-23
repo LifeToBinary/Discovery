@@ -53,7 +53,7 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
             ViewThisUsersHomePageCommand = new DelegateCommand<Discoverer>(ViewThisUsersHomePage);
             DeleteThisPostCommand = new DelegateCommand<Post>(DeleteThisPost);
             CancelFavoriteCommand = new DelegateCommand<Post>(CancelFavorite);
-            CancelConcernCommand = new DelegateCommand<Discoverer>(CancelConcern);
+            CancelConcernThisUserCommand = new DelegateCommand<Discoverer>(CancelConcern);
             ConcernThisUserCommand = new DelegateCommand<Discoverer>(ConcernThisUser);
             LoadData();
         }
@@ -135,7 +135,7 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
             MyFavorites.Remove(post);
         }
 
-        public DelegateCommand<Discoverer> CancelConcernCommand { get; }
+        public DelegateCommand<Discoverer> CancelConcernThisUserCommand { get; }
         private void CancelConcern(Discoverer idol)
         {
             using (var databaseService = new DataBaseServiceClient())

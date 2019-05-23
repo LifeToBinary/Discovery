@@ -1,4 +1,5 @@
-﻿using Prism.Ioc;
+﻿using Discovery.Client.DiscovererHomePage.Views;
+using Prism.Ioc;
 using Prism.Modularity;
 using System;
 using System.Collections.Generic;
@@ -17,18 +18,17 @@ namespace Discovery.Client.DiscovererHomePage
 
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            containerRegistry.RegisterForNavigation<Views.MyHomePage>();
-            containerRegistry.RegisterForNavigation<Views.IPostedPosts>();
-            containerRegistry.RegisterForNavigation<Views.MyFavoritedPosts>();
-            containerRegistry.RegisterForNavigation<Views.MyConcern>();
-            containerRegistry.RegisterForNavigation<Views.MyFuns>();
+            containerRegistry.RegisterForNavigation<MyHomePage>();
+            containerRegistry.RegisterForNavigation<IPostedPosts>();
+            containerRegistry.RegisterForNavigation<MyFavoritedPosts>();
+            containerRegistry.RegisterForNavigation<MyConcern>();
+            containerRegistry.RegisterForNavigation<MyFuns>();
 
-            containerRegistry.RegisterForNavigation<Views.OtherUsersHomePage>();
-            containerRegistry.RegisterForNavigation<Views.OtherUsersPostedPosts>();
-            containerRegistry.RegisterForNavigation<Views.OtherUsersFavoritedPosts>();
-            containerRegistry.RegisterForNavigation<Views.OtherUsersConcern>();
-            containerRegistry.RegisterForNavigation<Views.OtherUsersFuns>();
-
+            containerRegistry.RegisterForNavigation<OtherUsersHomePage>();
+            containerRegistry.RegisterForNavigation<OtherUsersPostedPosts>();
+            containerRegistry.RegisterForNavigation<OtherUsersFavoritedPosts>();
+            containerRegistry.RegisterForNavigation<OtherUsersConcern>();
+            containerRegistry.RegisterForNavigation<OtherUsersFuns>();
         }
     }
 }

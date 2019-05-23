@@ -51,6 +51,19 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
             set => SetProperty(ref _idols, value);
         }
 
+        private bool _canConcernThisUser;
+        public bool CanConcernThisUser
+        {
+            get => _canConcernThisUser;
+            set => SetProperty(ref _canConcernThisUser, value);
+        }
+        private bool _canCancelConcernThisUser;
+
+        public bool CanCancelConcernThisUser
+        {
+            get => _canCancelConcernThisUser;
+            set => SetProperty(ref _canCancelConcernThisUser, value);
+        }
         public OtherUsersHomePageViewModel(IRegionManager regionManager)
         {
             _regionManager = regionManager;
@@ -65,6 +78,35 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
             NavigationToProfileContentRegionCommand =
                 new DelegateCommand<string>(
                     NavigationToProfileContentRegion);
+            ConcernThisUserCommand = new DelegateCommand(ConcernThisUser);
+            CancelConcernThisUserCommand = new DelegateCommand(CancelConcernThisUser);
+        }
+        public DelegateCommand ConcernThisUserCommand { get; }
+        private void ConcernThisUser()
+        {
+            using (var databaseService = new DataBaseServiceClient())
+            {
+                databaseService.ConcernADiscoverer(
+                    GlobalObjectHolder.CurrentUser.BasicInfo.ID,
+                    Discoverer.BasicInfo.ID);
+            }
+            CanConcernThisUser = false;
+            CanCancelConcernThisUser = true;
+            Funs.Add(GlobalObjectHolder.CurrentUser);
+        }
+
+        public DelegateCommand CancelConcernThisUserCommand { get; }
+        private void CancelConcernThisUser()
+        {
+            using (var databaseService = new DataBaseServiceClient())
+            {
+                databaseService.CancelConcern(
+                    GlobalObjectHolder.CurrentUser.BasicInfo.ID,
+                    Discoverer.BasicInfo.ID);
+            }
+            CanConcernThisUser = true;
+            CanCancelConcernThisUser = false;
+            Funs.Remove(GlobalObjectHolder.CurrentUser);
         }
 
         public DelegateCommand<string> NavigationToProfileContentRegionCommand { get; }
@@ -117,6 +159,13 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
                 Idols = new ObservableCollection<Discoverer>(
                             await databaseService.GetIdolsAsync(
                                 Discoverer.BasicInfo.ID));
+
+                
+                bool isFuns = databaseService.IsFuns(
+                                  GlobalObjectHolder.CurrentUser.BasicInfo.ID,
+                                  Discoverer.BasicInfo.ID);
+                CanCancelConcernThisUser = isFuns;
+                CanConcernThisUser = !isFuns;
             }
         }
 
