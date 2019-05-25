@@ -768,5 +768,33 @@ namespace Discovery.Server.RemoteService
                        : null;
             }
         }
+
+        /// <summary>
+        /// 查询一个用户和另一个用户关注的人的关系
+        /// </summary>
+        /// <param name="userID">此用户的ID</param>
+        /// <param name="anotherUserID">另一个用户的ID</param>
+        /// <returns>关系键值对列表</returns>
+        public IEnumerable<KeyValuePair<Discoverer, bool>> ThisUsersRelationshipWithAnotherUsersIdols(
+            int userID, 
+            int anotherUserID)
+        {
+            using (var connection = new SqlConnection(GetDataBaseConnectionString()))
+            using (SqlCommand command = connection.CreateCommand())
+            {
+                command.CommandType = CommandType.StoredProcedure;
+                command.CommandText = "ThisUsersRelationshipWithAnotherUsersIdols";
+                command.Parameters.AddWithValue("@userID", userID);
+                command.Parameters.AddWithValue("@anotherUserID", anotherUserID);
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    yield return new KeyValuePair<Discoverer, bool>(
+                        CreateDiscovererFromSqlDataReader(reader),
+                        reader.IsDBNull(12) ? false : true);
+                }
+            }
+        }
     }
 }

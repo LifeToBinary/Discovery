@@ -90,5 +90,10 @@ namespace Discovery.Server.RemoteService
 
         [OperationContract]
         int GetIdolsCount(int funsID);
+
+        [OperationContract]
+        IEnumerable<KeyValuePair<Discoverer, bool>> ThisUsersRelationshipWithAnotherUsersIdols(
+            int userID,
+            int anotherUserID);
     }
 }
