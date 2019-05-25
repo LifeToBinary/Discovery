@@ -7,6 +7,24 @@
              mc:Ignorable="d"
              d:DesignHeight="450"
              d:DesignWidth="800">
+    <UserControl.Resources>
+        <Style x:Key="ConcernOrCancelConcernButtonStyle"
+               TargetType="{x:Type Button}">
+            <Setter Property="Content"
+                    Value="关注" />
+            <Setter Property="Background"
+                    Value="Green" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsBeConcerned}"
+                             Value="True">
+                    <Setter Property="Content"
+                            Value="取消关注" />
+                    <Setter Property="Background"
+                            Value="OrangeRed" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
     <Grid>
         <ListBox ItemsSource="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorLevel=2,AncestorType={x:Type UserControl}}, Path=DataContext.Idols}"
                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
@@ -66,41 +84,48 @@
                                            Text="博客地址: " />
                                 <TextBlock Grid.Row="0"
                                            Grid.Column="1"
-                                           Text="{Binding BasicInfo.SignInName}" />
+                                           Text="{Binding Discoverer.BasicInfo.SignInName}" />
                                 <TextBlock Grid.Row="1"
                                            Grid.Column="1"
-                                           Text="{Binding BasicInfo.Sex}" />
+                                           Text="{Binding Discoverer.BasicInfo.Sex}" />
                                 <TextBlock Grid.Row="2"
                                            Grid.Column="1"
-                                           Text="{Binding BasicInfo.SignUpTime}" />
+                                           Text="{Binding Discoverer.BasicInfo.SignUpTime}" />
                                 <TextBlock Grid.Row="3"
                                            Grid.Column="1"
-                                           Text="{Binding BasicInfo.AvatarPath}" />
+                                           Text="{Binding Discoverer.BasicInfo.AvatarPath}" />
                                 <TextBlock Grid.Row="4"
                                            Grid.Column="1"
-                                           Text="{Binding BasicInfo.ProfileBackgroundImagePath}" />
+                                           Text="{Binding Discoverer.BasicInfo.ProfileBackgroundImagePath}" />
                                 <TextBlock Grid.Row="5"
                                            Grid.Column="1"
-                                           Text="{Binding BasicInfo.AreaOfInterest}" />
+                                           Text="{Binding Discoverer.BasicInfo.AreaOfInterest}" />
                                 <TextBlock Grid.Row="6"
                                            Grid.Column="1"
-                                           Text="{Binding ContactInfo.QQ}" />
+                                           Text="{Binding Discoverer.ContactInfo.QQ}" />
                                 <TextBlock Grid.Row="7"
                                            Grid.Column="1"
                                            TextWrapping="Wrap"
-                                           Text="{Binding ContactInfo.WeChat}" />
+                                           Text="{Binding Discoverer.ContactInfo.WeChat}" />
                                 <TextBlock Grid.Row="8"
                                            Grid.Column="1"
-                                           Text="{Binding ContactInfo.Email}" />
+                                           Text="{Binding Discoverer.ContactInfo.Email}" />
                                 <TextBlock Grid.Row="9"
                                            Grid.Column="1"
-                                           Text="{Binding ContactInfo.BlogAddress}" />
+                                           Text="{Binding Discoverer.ContactInfo.BlogAddress}" />
                             </Grid>
-                            <Button Content="查看"
-                                    HorizontalAlignment="Right"
-                                    VerticalAlignment="Top"
-                                    Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorLevel=2, AncestorType={x:Type UserControl}}, Path=DataContext.ViewThisUsersHomePageCommand}"
-                                    CommandParameter="{Binding}" />
+                            <StackPanel HorizontalAlignment="Right"
+                                        VerticalAlignment="Top"
+                                        Margin="10">
+
+                                <Button Content="查看"
+                                        Margin="10"
+                                        Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorLevel=2, AncestorType={x:Type UserControl}}, Path=DataContext.ViewThisUsersHomePageCommand}"
+                                        CommandParameter="{Binding Discoverer}" />
+                                <Button Margin="10"
+                                        Style="{StaticResource ConcernOrCancelConcernButtonStyle}"
+                                        Command="{Binding ConcernOrCancelConcernCommand}" />
+                            </StackPanel>
                         </Grid>
                     </Border>
                 </DataTemplate>

@@ -49,6 +49,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Discovery.Core.UnitTest", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Discovery.Client.PostDetail", "SRC\Client\Modules\Discovery.Client.PostDetail\Discovery.Client.PostDetail.csproj", "{713999D4-5232-4A76-A1C4-916A5B1E0AAE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Discovery.Core.ViewModel", "SRC\Client\Discovery.Core.ViewModel\Discovery.Core.ViewModel.csproj", "{4881949E-10C1-495F-8A02-9AB5D945809E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -115,6 +117,10 @@ Global
 		{713999D4-5232-4A76-A1C4-916A5B1E0AAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{713999D4-5232-4A76-A1C4-916A5B1E0AAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{713999D4-5232-4A76-A1C4-916A5B1E0AAE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4881949E-10C1-495F-8A02-9AB5D945809E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4881949E-10C1-495F-8A02-9AB5D945809E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4881949E-10C1-495F-8A02-9AB5D945809E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4881949E-10C1-495F-8A02-9AB5D945809E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -140,6 +146,7 @@ Global
 		{76182046-0ADA-4496-85EB-BC6F8C8E6AFF} = {7ACDBD46-5E5F-48D4-9DDE-A07DB9CE178A}
 		{90E8A61B-915B-4894-A89B-65DF3087CD22} = {1E824CF4-B937-4C0D-B823-A1EAA05B8007}
 		{713999D4-5232-4A76-A1C4-916A5B1E0AAE} = {7ACDBD46-5E5F-48D4-9DDE-A07DB9CE178A}
+		{4881949E-10C1-495F-8A02-9AB5D945809E} = {DDCAF0CA-24B5-4F2D-852B-1BEA79B39438}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FC5D8408-B1C7-4D5A-A61D-2D0829D02BA4}

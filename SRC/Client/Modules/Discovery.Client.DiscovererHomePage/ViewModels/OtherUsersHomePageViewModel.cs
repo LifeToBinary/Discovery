@@ -2,6 +2,8 @@
 using Discovery.Core.Constants;
 using Discovery.Core.GlobalData;
 using Discovery.Core.Model;
+using Discovery.Core.Models;
+using Discovery.Core.ViewModel;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
@@ -21,7 +23,7 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
         private ObservableCollection<Post> _postedPost;
         private ObservableCollection<Discoverer> _funs;
         private ObservableCollection<Post> _favoritedPost;
-        private ObservableCollection<Discoverer> _idols;
+        private ObservableCollection<DiscovererRelationshipModel> _idols;
         private Discoverer _discoverer;
         private bool _isConcerned;
         #endregion
@@ -46,7 +48,8 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
             get => _favoritedPost;
             set => SetProperty(ref _favoritedPost, value);
         }
-        public ObservableCollection<Discoverer> Idols
+        
+        public ObservableCollection<DiscovererRelationshipModel> Idols
         {
             get => _idols;
             set => SetProperty(ref _idols, value);
@@ -56,11 +59,11 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
         {
             _regionManager = regionManager;
 
-            ViewThisUsersHomePageCommand = 
+            ViewThisUsersHomePageCommand =
                 new DelegateCommand<Discoverer>(
                     ViewThisUsersHomePage);
 
-            ViewPostDetailCommand = 
+            ViewPostDetailCommand =
                 new DelegateCommand<Post>(ViewPostDetail);
 
             NavigationToProfileContentRegionCommand =
@@ -96,6 +99,7 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
                 }
             }
         }
+
         public DelegateCommand<string> NavigationToProfileContentRegionCommand { get; }
         private void NavigationToProfileContentRegion(string viewName)
             => _regionManager.RequestNavigate(
@@ -143,11 +147,18 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
                 FavoritedPosts = new ObservableCollection<Post>(
                                      await databaseService.GetFavoritePostsAsync(
                                          Discoverer.BasicInfo.ID));
-                Idols = new ObservableCollection<Discoverer>(
-                            await databaseService.GetIdolsAsync(
-                                Discoverer.BasicInfo.ID));
 
-                
+                KeyValuePair<Discoverer, bool>[] discoverers =
+                    await databaseService.ThisUsersRelationshipWithAnotherUsersIdolsAsync(
+                        GlobalObjectHolder.CurrentUser.BasicInfo.ID,
+                        Discoverer.BasicInfo.ID);
+
+                Idols = new ObservableCollection<DiscovererRelationshipModel>(
+                            discoverers.Select(item =>
+                                new DiscovererRelationshipModel(
+                                    item.Key,
+                                    item.Value)));
+
                 IsConcerned = databaseService.IsFuns(
                                   GlobalObjectHolder.CurrentUser.BasicInfo.ID,
                                   Discoverer.BasicInfo.ID);
@@ -157,7 +168,7 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
         public void OnNavigatedTo(
             NavigationContext navigationContext)
         {
-            if (navigationContext.Parameters["Discoverer"] 
+            if (navigationContext.Parameters["Discoverer"]
                 is Discoverer discoverer)
             {
                 Discoverer = discoverer;
