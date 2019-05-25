@@ -185,6 +185,12 @@
   <wsdl:message name="IDataBaseService_ThisUsersRelationshipWithAnotherUsersPostedPosts_OutputMessage">
     <wsdl:part name="parameters" element="tns:ThisUsersRelationshipWithAnotherUsersPostedPostsResponse" />
   </wsdl:message>
+  <wsdl:message name="IDataBaseService_ThisUsersRelationshipWithAnotherUsersFavoritedPosts_InputMessage">
+    <wsdl:part name="parameters" element="tns:ThisUsersRelationshipWithAnotherUsersFavoritedPosts" />
+  </wsdl:message>
+  <wsdl:message name="IDataBaseService_ThisUsersRelationshipWithAnotherUsersFavoritedPosts_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ThisUsersRelationshipWithAnotherUsersFavoritedPostsResponse" />
+  </wsdl:message>
   <wsdl:portType name="IDataBaseService">
     <wsdl:operation name="DiscovererIsExists">
       <wsdl:input wsaw:Action="http://tempuri.org/IDataBaseService/DiscovererIsExists" message="tns:IDataBaseService_DiscovererIsExists_InputMessage" />
@@ -301,6 +307,10 @@
     <wsdl:operation name="ThisUsersRelationshipWithAnotherUsersPostedPosts">
       <wsdl:input wsaw:Action="http://tempuri.org/IDataBaseService/ThisUsersRelationshipWithAnotherUsersPostedPosts" message="tns:IDataBaseService_ThisUsersRelationshipWithAnotherUsersPostedPosts_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IDataBaseService/ThisUsersRelationshipWithAnotherUsersPostedPostsResponse" message="tns:IDataBaseService_ThisUsersRelationshipWithAnotherUsersPostedPosts_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ThisUsersRelationshipWithAnotherUsersFavoritedPosts">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDataBaseService/ThisUsersRelationshipWithAnotherUsersFavoritedPosts" message="tns:IDataBaseService_ThisUsersRelationshipWithAnotherUsersFavoritedPosts_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDataBaseService/ThisUsersRelationshipWithAnotherUsersFavoritedPostsResponse" message="tns:IDataBaseService_ThisUsersRelationshipWithAnotherUsersFavoritedPosts_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IDataBaseService" type="tns:IDataBaseService">
@@ -559,6 +569,15 @@
     </wsdl:operation>
     <wsdl:operation name="ThisUsersRelationshipWithAnotherUsersPostedPosts">
       <soap:operation soapAction="http://tempuri.org/IDataBaseService/ThisUsersRelationshipWithAnotherUsersPostedPosts" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ThisUsersRelationshipWithAnotherUsersFavoritedPosts">
+      <soap:operation soapAction="http://tempuri.org/IDataBaseService/ThisUsersRelationshipWithAnotherUsersFavoritedPosts" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

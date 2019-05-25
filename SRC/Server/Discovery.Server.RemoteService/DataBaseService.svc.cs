@@ -849,5 +849,31 @@ namespace Discovery.Server.RemoteService
                 }
             }
         }
+
+        /// <summary>
+        /// 查询一个用户与另一个用户收藏的帖子的关系列表
+        /// </summary>
+        /// <param name="userID">此用户ID</param>
+        /// <param name="anotherUserID">另一个用户ID</param>
+        /// <returns>关系列表键值对列表</returns>
+        public IEnumerable<KeyValuePair<Post, bool>> ThisUsersRelationshipWithAnotherUsersFavoritedPosts(int userID, int anotherUserID)
+        {
+            using (var connection = new SqlConnection(GetDataBaseConnectionString()))
+            using (SqlCommand command = connection.CreateCommand())
+            {
+                command.CommandType = CommandType.StoredProcedure;
+                command.CommandText = StoredProcedureNames.ThisUsersRelationshipWithAnotherUsersFavoritedPosts;
+                command.Parameters.AddWithValue("@userID", userID);
+                command.Parameters.AddWithValue("@anotherUserID", anotherUserID);
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    yield return new KeyValuePair<Post, bool>(
+                        CreatePostFromSqlDataReader(reader),
+                        reader.IsDBNull(9) ? false : true);
+                }
+            }
+        }
     }
 }

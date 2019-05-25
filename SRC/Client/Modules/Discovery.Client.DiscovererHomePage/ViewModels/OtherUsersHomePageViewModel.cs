@@ -22,7 +22,7 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
         private readonly IRegionManager _regionManager;
         private ObservableCollection<PostRelationalModel> _postedPost;
         private ObservableCollection<DiscovererRelationshipModel> _funs;
-        private ObservableCollection<Post> _favoritedPost;
+        private ObservableCollection<PostRelationalModel> _favoritedPost;
         private ObservableCollection<DiscovererRelationshipModel> _idols;
         private Discoverer _discoverer;
         private bool _isConcerned;
@@ -43,7 +43,7 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
             get => _funs;
             set => SetProperty(ref _funs, value);
         }
-        public ObservableCollection<Post> FavoritedPosts
+        public ObservableCollection<PostRelationalModel> FavoritedPosts
         {
             get => _favoritedPost;
             set => SetProperty(ref _favoritedPost, value);
@@ -153,14 +153,21 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
                         Discoverer.BasicInfo.ID);
 
                 Funs = new ObservableCollection<DiscovererRelationshipModel>(
-                    thisUsersRelationshipWithAnotherUsersFuns.Select(item =>
-                                new DiscovererRelationshipModel(
-                                    item.Key,
-                                    item.Value)));
+                           thisUsersRelationshipWithAnotherUsersFuns.Select(
+                               item => new DiscovererRelationshipModel(
+                                           item.Key,
+                                           item.Value)));
 
-                FavoritedPosts = new ObservableCollection<Post>(
-                                     await databaseService.GetFavoritePostsAsync(
-                                         Discoverer.BasicInfo.ID));
+                KeyValuePair<Post, bool>[] thisUsersRelationshipWithAnotherUsersFavoritedPosts =
+                    await databaseService.ThisUsersRelationshipWithAnotherUsersFavoritedPostsAsync(
+                        GlobalObjectHolder.CurrentUser.BasicInfo.ID,
+                        Discoverer.BasicInfo.ID);
+
+                FavoritedPosts = new ObservableCollection<PostRelationalModel>(
+                                     thisUsersRelationshipWithAnotherUsersFavoritedPosts.Select(
+                                         item => new PostRelationalModel(
+                                                     item.Key,
+                                                     item.Value)));
 
                 KeyValuePair<Discoverer, bool>[] thisUsersRelationshipWithAnotherUsersIdols =
                     await databaseService.ThisUsersRelationshipWithAnotherUsersIdolsAsync(
@@ -168,10 +175,10 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
                         Discoverer.BasicInfo.ID);
 
                 Idols = new ObservableCollection<DiscovererRelationshipModel>(
-                            thisUsersRelationshipWithAnotherUsersIdols.Select(item =>
-                                new DiscovererRelationshipModel(
-                                    item.Key,
-                                    item.Value)));
+                            thisUsersRelationshipWithAnotherUsersIdols.Select(
+                                item => new DiscovererRelationshipModel(
+                                            item.Key,
+                                            item.Value)));
 
                 IsConcerned = databaseService.IsFuns(
                                   GlobalObjectHolder.CurrentUser.BasicInfo.ID,

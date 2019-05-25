@@ -105,5 +105,10 @@ namespace Discovery.Server.RemoteService
         IEnumerable<KeyValuePair<Post, bool>> ThisUsersRelationshipWithAnotherUsersPostedPosts(
             int userID,
             int anotherUserID);
+
+        [OperationContract]
+        IEnumerable<KeyValuePair<Post, bool>> ThisUsersRelationshipWithAnotherUsersFavoritedPosts(
+            int userID,
+            int anotherUserID);
     }
 }

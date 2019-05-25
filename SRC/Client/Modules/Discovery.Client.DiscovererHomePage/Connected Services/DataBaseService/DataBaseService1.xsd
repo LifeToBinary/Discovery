@@ -408,4 +408,19 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="ThisUsersRelationshipWithAnotherUsersFavoritedPosts">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userID" type="xs:int" />
+        <xs:element minOccurs="0" name="anotherUserID" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ThisUsersRelationshipWithAnotherUsersFavoritedPostsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/System.Collections.Generic" minOccurs="0" name="ThisUsersRelationshipWithAnotherUsersFavoritedPostsResult" nillable="true" type="q19:ArrayOfKeyValuePairOfPostbooleanU8_PbWge3" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

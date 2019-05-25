@@ -196,6 +196,16 @@ namespace Discovery.Client.DiscovererHomePage.DataBaseService {
             "sts", ReplyAction="http://tempuri.org/IDataBaseService/ThisUsersRelationshipWithAnotherUsersPostedPo" +
             "stsResponse")]
         System.Threading.Tasks.Task<System.Collections.Generic.KeyValuePair<Discovery.Core.Model.Post, bool>[]> ThisUsersRelationshipWithAnotherUsersPostedPostsAsync(int userID, int anotherUserID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataBaseService/ThisUsersRelationshipWithAnotherUsersFavorite" +
+            "dPosts", ReplyAction="http://tempuri.org/IDataBaseService/ThisUsersRelationshipWithAnotherUsersFavorite" +
+            "dPostsResponse")]
+        System.Collections.Generic.KeyValuePair<Discovery.Core.Model.Post, bool>[] ThisUsersRelationshipWithAnotherUsersFavoritedPosts(int userID, int anotherUserID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataBaseService/ThisUsersRelationshipWithAnotherUsersFavorite" +
+            "dPosts", ReplyAction="http://tempuri.org/IDataBaseService/ThisUsersRelationshipWithAnotherUsersFavorite" +
+            "dPostsResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.KeyValuePair<Discovery.Core.Model.Post, bool>[]> ThisUsersRelationshipWithAnotherUsersFavoritedPostsAsync(int userID, int anotherUserID);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -455,6 +465,14 @@ namespace Discovery.Client.DiscovererHomePage.DataBaseService {
         
         public System.Threading.Tasks.Task<System.Collections.Generic.KeyValuePair<Discovery.Core.Model.Post, bool>[]> ThisUsersRelationshipWithAnotherUsersPostedPostsAsync(int userID, int anotherUserID) {
             return base.Channel.ThisUsersRelationshipWithAnotherUsersPostedPostsAsync(userID, anotherUserID);
+        }
+        
+        public System.Collections.Generic.KeyValuePair<Discovery.Core.Model.Post, bool>[] ThisUsersRelationshipWithAnotherUsersFavoritedPosts(int userID, int anotherUserID) {
+            return base.Channel.ThisUsersRelationshipWithAnotherUsersFavoritedPosts(userID, anotherUserID);
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.KeyValuePair<Discovery.Core.Model.Post, bool>[]> ThisUsersRelationshipWithAnotherUsersFavoritedPostsAsync(int userID, int anotherUserID) {
+            return base.Channel.ThisUsersRelationshipWithAnotherUsersFavoritedPostsAsync(userID, anotherUserID);
         }
     }
 }
