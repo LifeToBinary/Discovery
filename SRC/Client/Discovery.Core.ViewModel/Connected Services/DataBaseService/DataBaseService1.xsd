@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://47.240.12.27:10004/DataBaseService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Discovery.Core.Model" />
+  <xs:import schemaLocation="http://47.240.12.27:10004/DataBaseService.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/Discovery.Core.Enums" />
+  <xs:import schemaLocation="http://47.240.12.27:10004/DataBaseService.svc?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/System.Collections.Generic" />
+  <xs:element name="DiscovererIsExists">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="discovererSignInName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DiscovererIsExistsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DiscovererIsExistsResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SignIn">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="signInName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SignInResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Discovery.Core.Model" minOccurs="0" name="SignInResult" nillable="true" type="q1:Discoverer" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SignUp">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="signInName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Discovery.Core.Enums" minOccurs="0" name="sex" type="q2:Sex" />
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Discovery.Core.Enums" minOccurs="0" name="areaOfInterest" type="q3:Field" />
+        <xs:element minOccurs="0" name="signUpTime" type="xs:dateTime" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SignUpResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDiscovererByID">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="discovererID" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDiscovererByIDResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Discovery.Core.Model" minOccurs="0" name="GetDiscovererByIDResult" nillable="true" type="q4:Discoverer" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateDiscovererInfo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Discovery.Core.Model" minOccurs="0" name="discoverer" nillable="true" type="q5:Discoverer" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateDiscovererInfoResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdatePostInfo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Discovery.Core.Model" minOccurs="0" name="post" nillable="true" type="q6:Post" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdatePostInfoResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPostsOfTheDiscoverer">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="discovererId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPostsOfTheDiscovererResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Discovery.Core.Model" minOccurs="0" name="GetPostsOfTheDiscovererResult" nillable="true" type="q7:ArrayOfPost" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveAPost">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="postID" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveAPostResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddANewPost">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Discovery.Core.Model" minOccurs="0" name="post" nillable="true" type="q8:Post" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddANewPostResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="AddANewPostResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="FindPostsOfTheDiscoverer">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="discovererID" type="xs:int" />
+        <xs:element minOccurs="0" name="postTitle" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="FindPostsOfTheDiscovererResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Discovery.Core.Model" minOccurs="0" name="FindPostsOfTheDiscovererResult" nillable="true" type="q9:ArrayOfPost" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetFunsOfTheIdol">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="idolID" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetFunsOfTheIdolResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/Discovery.Core.Model" minOccurs="0" name="GetFunsOfTheIdolResult" nillable="true" type="q10:ArrayOfDiscoverer" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetFavoritePosts">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="discovererID" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetFavoritePostsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/Discovery.Core.Model" minOccurs="0" name="GetFavoritePostsResult" nillable="true" type="q11:ArrayOfPost" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetRecommendedForTheDiscoverer">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="discovererID" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetRecommendedForTheDiscovererResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/Discovery.Core.Model" minOccurs="0" name="GetRecommendedForTheDiscovererResult" nillable="true" type="q12:ArrayOfPost" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="FindPostFromAllDiscoverers">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="postTitle" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="FindPostFromAllDiscoverersResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/Discovery.Core.Model" minOccurs="0" name="FindPostFromAllDiscoverersResult" nillable="true" type="q13:ArrayOfPost" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SearchDiscoverers">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="discovererSignInName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SearchDiscoverersResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/Discovery.Core.Model" minOccurs="0" name="SearchDiscoverersResult" nillable="true" type="q14:ArrayOfDiscoverer" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPostsCountOfTheDiscoverer">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="discovererID" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPostsCountOfTheDiscovererResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetPostsCountOfTheDiscovererResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CancelConcern">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="funsID" type="xs:int" />
+        <xs:element minOccurs="0" name="idolID" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CancelConcernResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CancelFavorite">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="discovererID" type="xs:int" />
+        <xs:element minOccurs="0" name="postId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CancelFavoriteResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ConcernADiscoverer">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="funsID" type="xs:int" />
+        <xs:element minOccurs="0" name="idolID" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ConcernADiscovererResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="FavoriteAPost">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="discovererID" type="xs:int" />
+        <xs:element minOccurs="0" name="postID" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="FavoriteAPostResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetFunsCountOfTheIdol">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="idolID" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetFunsCountOfTheIdolResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetFunsCountOfTheIdolResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IsFuns">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="funsID" type="xs:int" />
+        <xs:element minOccurs="0" name="idolID" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IsFunsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="IsFunsResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IsFavoritedAPost">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="discovererID" type="xs:int" />
+        <xs:element minOccurs="0" name="postID" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IsFavoritedAPostResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="IsFavoritedAPostResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetFavoritesCountOfThePost">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="postID" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetFavoritesCountOfThePostResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetFavoritesCountOfThePostResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetIdols">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="funsID" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetIdolsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/Discovery.Core.Model" minOccurs="0" name="GetIdolsResult" nillable="true" type="q15:ArrayOfDiscoverer" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetIdolsCount">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="funsID" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetIdolsCountResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetIdolsCountResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ThisUsersRelationshipWithAnotherUsersIdols">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userID" type="xs:int" />
+        <xs:element minOccurs="0" name="anotherUserID" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ThisUsersRelationshipWithAnotherUsersIdolsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/System.Collections.Generic" minOccurs="0" name="ThisUsersRelationshipWithAnotherUsersIdolsResult" nillable="true" type="q16:ArrayOfKeyValuePairOfDiscovererbooleanU8_PbWge3" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
