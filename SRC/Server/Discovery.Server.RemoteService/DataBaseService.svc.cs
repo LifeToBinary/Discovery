@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using Discovery.Core.Constants;
 using Discovery.Core.Enums;
 using Discovery.Core.Model;
 using Discovery.Core.Models;
@@ -38,7 +39,7 @@ namespace Discovery.Server.RemoteService
             using (SqlCommand command = connection.CreateCommand())
             {
                 command.CommandType = CommandType.StoredProcedure;
-                command.CommandText = "AddANewPost";
+                command.CommandText = StoredProcedureNames.AddANewPost;
                 foreach (KeyValuePair<string, object> parameter in addANewPostParameterValues)
                 {
                     command.Parameters.AddWithValue(parameter.Key, parameter.Value);
@@ -74,7 +75,7 @@ namespace Discovery.Server.RemoteService
             using (SqlCommand command = connection.CreateCommand())
             {
                 command.CommandType = CommandType.StoredProcedure;
-                command.CommandText = "CancelConcern";
+                command.CommandText = StoredProcedureNames.CancelConcern;
                 command.Parameters.AddWithValue("@funsID", funsID);
                 command.Parameters.AddWithValue("@idolID", idolID);
                 connection.Open();
@@ -93,7 +94,7 @@ namespace Discovery.Server.RemoteService
             using (SqlCommand command = connection.CreateCommand())
             {
                 command.CommandType = CommandType.StoredProcedure;
-                command.CommandText = "CancelFavorite";
+                command.CommandText = StoredProcedureNames.CancelFavorite;
                 command.Parameters.AddWithValue("@discovererID", discovererID);
                 command.Parameters.AddWithValue("@postID", postId);
                 connection.Open();
@@ -112,7 +113,7 @@ namespace Discovery.Server.RemoteService
             using (SqlCommand command = connection.CreateCommand())
             {
                 command.CommandType = CommandType.StoredProcedure;
-                command.CommandText = "ConcernADiscoverer";
+                command.CommandText = StoredProcedureNames.ConcernADiscoverer;
                 command.Parameters.AddWithValue("@funsID", funsID);
                 command.Parameters.AddWithValue("@idolID", idolID);
                 connection.Open();
@@ -131,7 +132,7 @@ namespace Discovery.Server.RemoteService
             using (SqlCommand command = connection.CreateCommand())
             {
                 command.CommandType = CommandType.StoredProcedure;
-                command.CommandText = "CheckUserNameIsExists";
+                command.CommandText = StoredProcedureNames.CheckUserNameIsExists;
                 var parameters = new SqlParameter[]
                 {
                     new SqlParameter
@@ -166,7 +167,7 @@ namespace Discovery.Server.RemoteService
             using (SqlCommand command = connection.CreateCommand())
             {
                 command.CommandType = CommandType.StoredProcedure;
-                command.CommandText = "FavoriteAPost";
+                command.CommandText = StoredProcedureNames.FavoriteAPost;
                 command.Parameters.AddWithValue("@discovererID", discovererID);
                 command.Parameters.AddWithValue("@postID", postID);
                 connection.Open();
@@ -185,7 +186,7 @@ namespace Discovery.Server.RemoteService
             using (SqlCommand command = connection.CreateCommand())
             {
                 command.CommandType = CommandType.StoredProcedure;
-                command.CommandText = "SearchPostsFromAllDiscoverers";
+                command.CommandText = StoredProcedureNames.SearchPostsFromAllDiscoverers;
                 command.Parameters.AddWithValue("@postTitle", postTitle);
                 connection.Open();
                 using (SqlDataReader reader = command.ExecuteReader())
@@ -228,7 +229,7 @@ namespace Discovery.Server.RemoteService
             using (SqlCommand command = connection.CreateCommand())
             {
                 command.CommandType = CommandType.StoredProcedure;
-                command.CommandText = "FindPostsOfTheDiscoverer";
+                command.CommandText = StoredProcedureNames.FindPostsOfTheDiscoverer;
                 command.Parameters.AddWithValue("@discovererID", discovererID);
                 command.Parameters.AddWithValue("@postTitle", postTitle);
                 connection.Open();
@@ -251,7 +252,7 @@ namespace Discovery.Server.RemoteService
             using (SqlCommand command = connection.CreateCommand())
             {
                 command.CommandType = CommandType.StoredProcedure;
-                command.CommandText = "GetFavoritePosts";
+                command.CommandText = StoredProcedureNames.GetFavoritePosts;
                 command.Parameters.AddWithValue("@discovererID", discovererID);
                 connection.Open();
                 SqlDataReader reader = command.ExecuteReader();
@@ -273,7 +274,7 @@ namespace Discovery.Server.RemoteService
             using (SqlCommand command = connection.CreateCommand())
             {
                 command.CommandType = CommandType.StoredProcedure;
-                command.CommandText = "GetFavoritesCountOfThePost";
+                command.CommandText = StoredProcedureNames.GetFavoritesCountOfThePost;
                 command.Parameters.AddWithValue("@postID", postID);
                 command.Parameters.Add(new SqlParameter
                 {
@@ -298,7 +299,7 @@ namespace Discovery.Server.RemoteService
             using (SqlCommand command = connection.CreateCommand())
             {
                 command.CommandType = CommandType.StoredProcedure;
-                command.CommandText = "GetFunsCount";
+                command.CommandText = StoredProcedureNames.GetFunsCount;
                 command.Parameters.AddWithValue("@idolID", idolID);
                 command.Parameters.Add(new SqlParameter
                 {
@@ -323,7 +324,7 @@ namespace Discovery.Server.RemoteService
             using (SqlCommand command = connection.CreateCommand())
             {
                 command.CommandType = CommandType.StoredProcedure;
-                command.CommandText = "GetFunsOfTheIdol";
+                command.CommandText = StoredProcedureNames.GetFunsOfTheIdol;
                 command.Parameters.AddWithValue("@idolID", idolID);
                 connection.Open();
                 SqlDataReader reader = command.ExecuteReader();
@@ -373,7 +374,7 @@ namespace Discovery.Server.RemoteService
             using (SqlCommand command = connection.CreateCommand())
             {
                 command.CommandType = CommandType.StoredProcedure;
-                command.CommandText = "GetPostsCountOfTheDiscoverer";
+                command.CommandText = StoredProcedureNames.GetPostsCountOfTheDiscoverer;
                 command.Parameters.AddWithValue("@discovererID", discovererID);
                 command.Parameters.Add(new SqlParameter
                 {
@@ -398,7 +399,7 @@ namespace Discovery.Server.RemoteService
             using (SqlCommand command = connection.CreateCommand())
             {
                 command.CommandType = CommandType.StoredProcedure;
-                command.CommandText = "GetPostsOfTheDiscoverer";
+                command.CommandText = StoredProcedureNames.GetPostsOfTheDiscoverer;
                 command.Parameters.AddWithValue("@id", discovererId);
                 connection.Open();
                 SqlDataReader reader = command.ExecuteReader();
@@ -420,7 +421,7 @@ namespace Discovery.Server.RemoteService
             using (SqlCommand command = connection.CreateCommand())
             {
                 command.CommandType = CommandType.StoredProcedure;
-                command.CommandText = "GetRecommendedForTheDiscoverer";
+                command.CommandText = StoredProcedureNames.GetRecommendedForTheDiscoverer;
                 command.Parameters.AddWithValue("@discovererID", discovererID);
                 connection.Open();
                 SqlDataReader reader = command.ExecuteReader();
@@ -443,7 +444,7 @@ namespace Discovery.Server.RemoteService
             using (SqlCommand command = connection.CreateCommand())
             {
                 command.CommandType = CommandType.StoredProcedure;
-                command.CommandText = "IsFavoritedAPost";
+                command.CommandText = StoredProcedureNames.IsFavoritedAPost;
                 command.Parameters.AddWithValue("@discovererID", discovererID);
                 command.Parameters.AddWithValue("@postID", postID);
                 command.Parameters.Add(new SqlParameter
@@ -470,7 +471,7 @@ namespace Discovery.Server.RemoteService
             using (SqlCommand command = connection.CreateCommand())
             {
                 command.CommandType = CommandType.StoredProcedure;
-                command.CommandText = "IsFuns";
+                command.CommandText = StoredProcedureNames.IsFuns;
                 command.Parameters.AddWithValue("@funsID", funsID);
                 command.Parameters.AddWithValue("@idolID", idolID);
                 command.Parameters.Add(new SqlParameter
@@ -495,7 +496,7 @@ namespace Discovery.Server.RemoteService
             using (SqlCommand command = connection.CreateCommand())
             {
                 command.CommandType = CommandType.StoredProcedure;
-                command.CommandText = "RemoveAPost";
+                command.CommandText = StoredProcedureNames.RemoveAPost;
                 command.Parameters.AddWithValue("@postID", postID);
                 connection.Open();
                 command.ExecuteNonQuery();
@@ -513,7 +514,7 @@ namespace Discovery.Server.RemoteService
             using (SqlCommand command = connection.CreateCommand())
             {
                 command.CommandType = CommandType.StoredProcedure;
-                command.CommandText = "SearchDiscoverers";
+                command.CommandText = StoredProcedureNames.SearchDiscoverers;
                 command.Parameters.AddWithValue("@discovererName", discovererSignInName);
                 connection.Open();
 
@@ -537,7 +538,7 @@ namespace Discovery.Server.RemoteService
             using (SqlCommand command = connection.CreateCommand())
             {
                 command.CommandType = CommandType.StoredProcedure;
-                command.CommandText = "SignIn";
+                command.CommandText = StoredProcedureNames.SignIn;
                 var parameters = new SqlParameter[]
                 {
                     new SqlParameter
@@ -614,7 +615,7 @@ namespace Discovery.Server.RemoteService
             using (SqlCommand command = connection.CreateCommand())
             {
                 command.CommandType = CommandType.StoredProcedure;
-                command.CommandText = "UpdateDiscovererProfile";
+                command.CommandText = StoredProcedureNames.UpdateDiscovererProfile;
 
                 foreach (KeyValuePair<string, object> parameter in
                          updateDiscovererProfileParameterValues)
@@ -652,7 +653,7 @@ namespace Discovery.Server.RemoteService
             using (SqlCommand command = connection.CreateCommand())
             {
                 command.CommandType = CommandType.StoredProcedure;
-                command.CommandText = "UpdatePostInfo";
+                command.CommandText = StoredProcedureNames.UpdatePostInfo;
                 foreach (KeyValuePair<string, object> parameter in updatePostInfoParameterValues)
                 {
                     command.Parameters
@@ -674,7 +675,7 @@ namespace Discovery.Server.RemoteService
             using (SqlCommand command = connection.CreateCommand())
             {
                 command.CommandType = CommandType.StoredProcedure;
-                command.CommandText = "GetIdols";
+                command.CommandText = StoredProcedureNames.GetIdols;
                 command.Parameters.AddWithValue("@discovererID", funsID);
                 connection.Open();
                 SqlDataReader reader = command.ExecuteReader();
@@ -696,7 +697,7 @@ namespace Discovery.Server.RemoteService
             using (SqlCommand command = connection.CreateCommand())
             {
                 command.CommandType = CommandType.StoredProcedure;
-                command.CommandText = "GetIdolsCount";
+                command.CommandText = StoredProcedureNames.GetIdolsCount;
                 command.Parameters.AddWithValue("@discovererID", funsID);
                 command.Parameters.Add(new SqlParameter
                 {
@@ -738,7 +739,7 @@ namespace Discovery.Server.RemoteService
             using (SqlCommand command = connection.CreateCommand())
             {
                 command.CommandType = CommandType.StoredProcedure;
-                command.CommandText = "SignUp";
+                command.CommandText = StoredProcedureNames.SignUp;
                 foreach (KeyValuePair<string, object> parameter in SignUpParameterValues)
                 {
                     command.Parameters.AddWithValue(parameter.Key, parameter.Value);
@@ -759,7 +760,7 @@ namespace Discovery.Server.RemoteService
             using (SqlCommand command = connection.CreateCommand())
             {
                 command.CommandType = CommandType.StoredProcedure;
-                command.CommandText = "GetDiscovererByID";
+                command.CommandText = StoredProcedureNames.GetDiscovererByID;
                 command.Parameters.AddWithValue("discovererID", discovererID);
                 connection.Open();
                 SqlDataReader reader = command.ExecuteReader();
@@ -783,7 +784,7 @@ namespace Discovery.Server.RemoteService
             using (SqlCommand command = connection.CreateCommand())
             {
                 command.CommandType = CommandType.StoredProcedure;
-                command.CommandText = "ThisUsersRelationshipWithAnotherUsersIdols";
+                command.CommandText = StoredProcedureNames.ThisUsersRelationshipWithAnotherUsersIdols;
                 command.Parameters.AddWithValue("@userID", userID);
                 command.Parameters.AddWithValue("@anotherUserID", anotherUserID);
                 connection.Open();

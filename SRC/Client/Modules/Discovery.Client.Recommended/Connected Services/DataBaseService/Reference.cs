@@ -170,6 +170,14 @@ namespace Discovery.Client.Recommended.DataBaseService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataBaseService/GetIdolsCount", ReplyAction="http://tempuri.org/IDataBaseService/GetIdolsCountResponse")]
         System.Threading.Tasks.Task<int> GetIdolsCountAsync(int funsID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataBaseService/ThisUsersRelationshipWithAnotherUsersIdols", ReplyAction="http://tempuri.org/IDataBaseService/ThisUsersRelationshipWithAnotherUsersIdolsRes" +
+            "ponse")]
+        System.Collections.Generic.KeyValuePair<Discovery.Core.Model.Discoverer, bool>[] ThisUsersRelationshipWithAnotherUsersIdols(int userID, int anotherUserID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataBaseService/ThisUsersRelationshipWithAnotherUsersIdols", ReplyAction="http://tempuri.org/IDataBaseService/ThisUsersRelationshipWithAnotherUsersIdolsRes" +
+            "ponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.KeyValuePair<Discovery.Core.Model.Discoverer, bool>[]> ThisUsersRelationshipWithAnotherUsersIdolsAsync(int userID, int anotherUserID);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -405,6 +413,14 @@ namespace Discovery.Client.Recommended.DataBaseService {
         
         public System.Threading.Tasks.Task<int> GetIdolsCountAsync(int funsID) {
             return base.Channel.GetIdolsCountAsync(funsID);
+        }
+        
+        public System.Collections.Generic.KeyValuePair<Discovery.Core.Model.Discoverer, bool>[] ThisUsersRelationshipWithAnotherUsersIdols(int userID, int anotherUserID) {
+            return base.Channel.ThisUsersRelationshipWithAnotherUsersIdols(userID, anotherUserID);
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.KeyValuePair<Discovery.Core.Model.Discoverer, bool>[]> ThisUsersRelationshipWithAnotherUsersIdolsAsync(int userID, int anotherUserID) {
+            return base.Channel.ThisUsersRelationshipWithAnotherUsersIdolsAsync(userID, anotherUserID);
         }
     }
 }

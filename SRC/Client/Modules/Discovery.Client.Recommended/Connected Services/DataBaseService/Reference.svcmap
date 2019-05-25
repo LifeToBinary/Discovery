@@ -26,6 +26,7 @@
     <MetadataFile FileName="DataBaseService.wsdl" MetadataType="Wsdl" ID="7b1c4b0b-d0c3-4086-87fe-3249f475970a" SourceId="1" SourceUrl="http://47.240.12.27:10004/DataBaseService.svc?wsdl" />
     <MetadataFile FileName="DataBaseService1.xsd" MetadataType="Schema" ID="3822db98-12ce-4401-9524-2c4c7a87fbac" SourceId="1" SourceUrl="http://47.240.12.27:10004/DataBaseService.svc?xsd=xsd0" />
     <MetadataFile FileName="DataBaseService2.xsd" MetadataType="Schema" ID="ca355869-5767-4a66-bffb-51ba8720536e" SourceId="1" SourceUrl="http://47.240.12.27:10004/DataBaseService.svc?xsd=xsd1" />
+    <MetadataFile FileName="DataBaseService6.xsd" MetadataType="Schema" ID="6e60755f-5327-4624-8f15-935a0b23538f" SourceId="1" SourceUrl="http://47.240.12.27:10004/DataBaseService.svc?xsd=xsd6" />
     <MetadataFile FileName="DataBaseService3.xsd" MetadataType="Schema" ID="ace27633-7285-45de-b303-d6cc12d2c3e0" SourceId="1" SourceUrl="http://47.240.12.27:10004/DataBaseService.svc?xsd=xsd4" />
     <MetadataFile FileName="DataBaseService4.xsd" MetadataType="Schema" ID="edf9ba8e-f9bc-439e-a518-d11eece63974" SourceId="1" SourceUrl="http://47.240.12.27:10004/DataBaseService.svc?xsd=xsd5" />
     <MetadataFile FileName="DataBaseService5.xsd" MetadataType="Schema" ID="893917ee-4b20-4983-a451-f28c61aea8c2" SourceId="1" SourceUrl="http://47.240.12.27:10004/DataBaseService.svc?xsd=xsd3" />
