@@ -3,7 +3,7 @@ using Discovery.Core.Constants;
 using Discovery.Core.GlobalData;
 using Discovery.Core.Model;
 using Discovery.Core.Models;
-using Discovery.Core.ViewModel;
+using Discovery.Core.RelationalModel;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
@@ -20,7 +20,7 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
     {
         #region 字段
         private readonly IRegionManager _regionManager;
-        private ObservableCollection<Post> _postedPost;
+        private ObservableCollection<PostRelationalModel> _postedPost;
         private ObservableCollection<DiscovererRelationshipModel> _funs;
         private ObservableCollection<Post> _favoritedPost;
         private ObservableCollection<DiscovererRelationshipModel> _idols;
@@ -33,7 +33,7 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
             get => _discoverer;
             set => SetProperty(ref _discoverer, value);
         }
-        public ObservableCollection<Post> PostedPosts
+        public ObservableCollection<PostRelationalModel> PostedPosts
         {
             get => _postedPost;
             set => SetProperty(ref _postedPost, value);
@@ -136,9 +136,16 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
         {
             using (var databaseService = new DataBaseServiceClient())
             {
-                PostedPosts = new ObservableCollection<Post>(
-                                  await databaseService.GetPostsOfTheDiscovererAsync(
-                                      Discoverer.BasicInfo.ID));
+                KeyValuePair<Post, bool>[] thisUsersRelationshipWithAnotherUsersPostedPosts =
+                    await databaseService.ThisUsersRelationshipWithAnotherUsersPostedPostsAsync(
+                        GlobalObjectHolder.CurrentUser.BasicInfo.ID,
+                        Discoverer.BasicInfo.ID);
+
+                PostedPosts = new ObservableCollection<PostRelationalModel>(
+                                  thisUsersRelationshipWithAnotherUsersPostedPosts.Select(
+                                      item => new PostRelationalModel(
+                                                  item.Key,
+                                                  item.Value)));
 
                 KeyValuePair<Discoverer, bool>[] thisUsersRelationshipWithAnotherUsersFuns =
                     await databaseService.ThisUsersRelationshipWithAnotherUsersFunsAsync(

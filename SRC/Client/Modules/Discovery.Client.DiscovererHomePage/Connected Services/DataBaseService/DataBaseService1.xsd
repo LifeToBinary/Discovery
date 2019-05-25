@@ -393,4 +393,19 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="ThisUsersRelationshipWithAnotherUsersPostedPosts">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userID" type="xs:int" />
+        <xs:element minOccurs="0" name="anotherUserID" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ThisUsersRelationshipWithAnotherUsersPostedPostsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/System.Collections.Generic" minOccurs="0" name="ThisUsersRelationshipWithAnotherUsersPostedPostsResult" nillable="true" type="q18:ArrayOfKeyValuePairOfPostbooleanU8_PbWge3" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

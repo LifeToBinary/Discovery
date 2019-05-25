@@ -8,6 +8,7 @@
       <xsd:import schemaLocation="http://47.240.12.27:10004/DataBaseService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Prism.Mvvm" />
       <xsd:import schemaLocation="http://47.240.12.27:10004/DataBaseService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/Discovery.Core.Models" />
       <xsd:import schemaLocation="http://47.240.12.27:10004/DataBaseService.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/Discovery.Core.Enums" />
+      <xsd:import schemaLocation="http://47.240.12.27:10004/DataBaseService.svc?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/System.Collections.Generic" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IDataBaseService_DiscovererIsExists_InputMessage">
@@ -166,6 +167,24 @@
   <wsdl:message name="IDataBaseService_GetIdolsCount_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetIdolsCountResponse" />
   </wsdl:message>
+  <wsdl:message name="IDataBaseService_ThisUsersRelationshipWithAnotherUsersIdols_InputMessage">
+    <wsdl:part name="parameters" element="tns:ThisUsersRelationshipWithAnotherUsersIdols" />
+  </wsdl:message>
+  <wsdl:message name="IDataBaseService_ThisUsersRelationshipWithAnotherUsersIdols_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ThisUsersRelationshipWithAnotherUsersIdolsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDataBaseService_ThisUsersRelationshipWithAnotherUsersFuns_InputMessage">
+    <wsdl:part name="parameters" element="tns:ThisUsersRelationshipWithAnotherUsersFuns" />
+  </wsdl:message>
+  <wsdl:message name="IDataBaseService_ThisUsersRelationshipWithAnotherUsersFuns_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ThisUsersRelationshipWithAnotherUsersFunsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDataBaseService_ThisUsersRelationshipWithAnotherUsersPostedPosts_InputMessage">
+    <wsdl:part name="parameters" element="tns:ThisUsersRelationshipWithAnotherUsersPostedPosts" />
+  </wsdl:message>
+  <wsdl:message name="IDataBaseService_ThisUsersRelationshipWithAnotherUsersPostedPosts_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ThisUsersRelationshipWithAnotherUsersPostedPostsResponse" />
+  </wsdl:message>
   <wsdl:portType name="IDataBaseService">
     <wsdl:operation name="DiscovererIsExists">
       <wsdl:input wsaw:Action="http://tempuri.org/IDataBaseService/DiscovererIsExists" message="tns:IDataBaseService_DiscovererIsExists_InputMessage" />
@@ -270,6 +289,18 @@
     <wsdl:operation name="GetIdolsCount">
       <wsdl:input wsaw:Action="http://tempuri.org/IDataBaseService/GetIdolsCount" message="tns:IDataBaseService_GetIdolsCount_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IDataBaseService/GetIdolsCountResponse" message="tns:IDataBaseService_GetIdolsCount_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ThisUsersRelationshipWithAnotherUsersIdols">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDataBaseService/ThisUsersRelationshipWithAnotherUsersIdols" message="tns:IDataBaseService_ThisUsersRelationshipWithAnotherUsersIdols_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDataBaseService/ThisUsersRelationshipWithAnotherUsersIdolsResponse" message="tns:IDataBaseService_ThisUsersRelationshipWithAnotherUsersIdols_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ThisUsersRelationshipWithAnotherUsersFuns">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDataBaseService/ThisUsersRelationshipWithAnotherUsersFuns" message="tns:IDataBaseService_ThisUsersRelationshipWithAnotherUsersFuns_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDataBaseService/ThisUsersRelationshipWithAnotherUsersFunsResponse" message="tns:IDataBaseService_ThisUsersRelationshipWithAnotherUsersFuns_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ThisUsersRelationshipWithAnotherUsersPostedPosts">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDataBaseService/ThisUsersRelationshipWithAnotherUsersPostedPosts" message="tns:IDataBaseService_ThisUsersRelationshipWithAnotherUsersPostedPosts_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDataBaseService/ThisUsersRelationshipWithAnotherUsersPostedPostsResponse" message="tns:IDataBaseService_ThisUsersRelationshipWithAnotherUsersPostedPosts_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IDataBaseService" type="tns:IDataBaseService">
@@ -501,6 +532,33 @@
     </wsdl:operation>
     <wsdl:operation name="GetIdolsCount">
       <soap:operation soapAction="http://tempuri.org/IDataBaseService/GetIdolsCount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ThisUsersRelationshipWithAnotherUsersIdols">
+      <soap:operation soapAction="http://tempuri.org/IDataBaseService/ThisUsersRelationshipWithAnotherUsersIdols" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ThisUsersRelationshipWithAnotherUsersFuns">
+      <soap:operation soapAction="http://tempuri.org/IDataBaseService/ThisUsersRelationshipWithAnotherUsersFuns" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ThisUsersRelationshipWithAnotherUsersPostedPosts">
+      <soap:operation soapAction="http://tempuri.org/IDataBaseService/ThisUsersRelationshipWithAnotherUsersPostedPosts" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

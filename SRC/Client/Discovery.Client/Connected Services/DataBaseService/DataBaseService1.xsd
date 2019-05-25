@@ -2,6 +2,7 @@
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://47.240.12.27:10004/DataBaseService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Discovery.Core.Model" />
   <xs:import schemaLocation="http://47.240.12.27:10004/DataBaseService.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/Discovery.Core.Enums" />
+  <xs:import schemaLocation="http://47.240.12.27:10004/DataBaseService.svc?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/System.Collections.Generic" />
   <xs:element name="DiscovererIsExists">
     <xs:complexType>
       <xs:sequence>
@@ -359,6 +360,51 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="GetIdolsCountResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ThisUsersRelationshipWithAnotherUsersIdols">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userID" type="xs:int" />
+        <xs:element minOccurs="0" name="anotherUserID" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ThisUsersRelationshipWithAnotherUsersIdolsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/System.Collections.Generic" minOccurs="0" name="ThisUsersRelationshipWithAnotherUsersIdolsResult" nillable="true" type="q16:ArrayOfKeyValuePairOfDiscovererbooleanU8_PbWge3" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ThisUsersRelationshipWithAnotherUsersFuns">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userID" type="xs:int" />
+        <xs:element minOccurs="0" name="anotherUserID" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ThisUsersRelationshipWithAnotherUsersFunsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/System.Collections.Generic" minOccurs="0" name="ThisUsersRelationshipWithAnotherUsersFunsResult" nillable="true" type="q17:ArrayOfKeyValuePairOfDiscovererbooleanU8_PbWge3" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ThisUsersRelationshipWithAnotherUsersPostedPosts">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userID" type="xs:int" />
+        <xs:element minOccurs="0" name="anotherUserID" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ThisUsersRelationshipWithAnotherUsersPostedPostsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/System.Collections.Generic" minOccurs="0" name="ThisUsersRelationshipWithAnotherUsersPostedPostsResult" nillable="true" type="q18:ArrayOfKeyValuePairOfPostbooleanU8_PbWge3" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

@@ -7,6 +7,24 @@
              mc:Ignorable="d"
              d:DesignHeight="450"
              d:DesignWidth="800">
+    <UserControl.Resources>
+        <Style x:Key="ConcernOrCancelConcernButtonStyle"
+               TargetType="{x:Type Button}">
+            <Setter Property="Content"
+                    Value="收藏" />
+            <Setter Property="Background"
+                    Value="Green" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsBeFavorited}"
+                             Value="True">
+                    <Setter Property="Content"
+                            Value="取消收藏" />
+                    <Setter Property="Background"
+                            Value="OrangeRed" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
     <Grid>
         <ListBox ItemsSource="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorLevel=2, AncestorType={x:Type UserControl}}, Path=DataContext.PostedPosts}"
                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
@@ -61,38 +79,44 @@
                                            Text="分类: " />
                                 <TextBlock Grid.Row="0"
                                            Grid.Column="1"
-                                           Text="{Binding ID}" />
+                                           Text="{Binding Post.ID}" />
                                 <TextBlock Grid.Row="1"
                                            Grid.Column="1"
-                                           Text="{Binding Title}" />
+                                           Text="{Binding Post.Title}" />
                                 <TextBlock Grid.Row="2"
                                            Grid.Column="1"
-                                           Text="{Binding IconPath}" />
+                                           Text="{Binding Post.IconPath}" />
                                 <TextBlock Grid.Row="3"
                                            Grid.Column="1"
-                                           Text="{Binding Url}" />
+                                           Text="{Binding Post.Url}" />
                                 <TextBlock Grid.Row="4"
                                            Grid.Column="1"
-                                           Text="{Binding CreationTime}" />
+                                           Text="{Binding Post.CreationTime}" />
                                 <TextBlock Grid.Row="5"
                                            Grid.Column="1"
-                                           Text="{Binding LastEditedTime}" />
+                                           Text="{Binding Post.LastEditedTime}" />
                                 <TextBlock Grid.Row="6"
                                            Grid.Column="1"
-                                           Text="{Binding AuthorID}" />
+                                           Text="{Binding Post.AuthorID}" />
                                 <TextBlock Grid.Row="7"
                                            Grid.Column="1"
                                            TextWrapping="Wrap"
-                                           Text="{Binding Content}" />
+                                           Text="{Binding Post.Content}" />
                                 <TextBlock Grid.Row="8"
                                            Grid.Column="1"
-                                           Text="{Binding PostCategory}" />
+                                           Text="{Binding Post.PostCategory}" />
                             </Grid>
-                            <Button Content="查看"
-                                    HorizontalAlignment="Right"
-                                    VerticalAlignment="Top"
-                                    Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor,  AncestorLevel=2, AncestorType={x:Type UserControl}}, Path=DataContext.ViewPostDetailCommand}"
-                                    CommandParameter="{Binding}" />
+                            <StackPanel HorizontalAlignment="Right"
+                                        VerticalAlignment="Top"
+                                        Margin="10">
+                                <Button Content="查看"
+                                        Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor,  AncestorLevel=2, AncestorType={x:Type UserControl}}, Path=DataContext.ViewPostDetailCommand}"
+                                        CommandParameter="{Binding Post}" />
+                                <Button Margin="10"
+                                        Padding="5"
+                                        Style="{StaticResource ConcernOrCancelConcernButtonStyle}"
+                                        Command="{Binding FavoriteOrCancelFavoriteCommand}"></Button>
+                            </StackPanel>
                         </Grid>
                     </Border>
                 </DataTemplate>

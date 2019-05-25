@@ -170,6 +170,32 @@ namespace Discovery.Client.DataBaseService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataBaseService/GetIdolsCount", ReplyAction="http://tempuri.org/IDataBaseService/GetIdolsCountResponse")]
         System.Threading.Tasks.Task<int> GetIdolsCountAsync(int funsID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataBaseService/ThisUsersRelationshipWithAnotherUsersIdols", ReplyAction="http://tempuri.org/IDataBaseService/ThisUsersRelationshipWithAnotherUsersIdolsRes" +
+            "ponse")]
+        System.Collections.Generic.KeyValuePair<Discovery.Core.Model.Discoverer, bool>[] ThisUsersRelationshipWithAnotherUsersIdols(int userID, int anotherUserID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataBaseService/ThisUsersRelationshipWithAnotherUsersIdols", ReplyAction="http://tempuri.org/IDataBaseService/ThisUsersRelationshipWithAnotherUsersIdolsRes" +
+            "ponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.KeyValuePair<Discovery.Core.Model.Discoverer, bool>[]> ThisUsersRelationshipWithAnotherUsersIdolsAsync(int userID, int anotherUserID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataBaseService/ThisUsersRelationshipWithAnotherUsersFuns", ReplyAction="http://tempuri.org/IDataBaseService/ThisUsersRelationshipWithAnotherUsersFunsResp" +
+            "onse")]
+        System.Collections.Generic.KeyValuePair<Discovery.Core.Model.Discoverer, bool>[] ThisUsersRelationshipWithAnotherUsersFuns(int userID, int anotherUserID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataBaseService/ThisUsersRelationshipWithAnotherUsersFuns", ReplyAction="http://tempuri.org/IDataBaseService/ThisUsersRelationshipWithAnotherUsersFunsResp" +
+            "onse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.KeyValuePair<Discovery.Core.Model.Discoverer, bool>[]> ThisUsersRelationshipWithAnotherUsersFunsAsync(int userID, int anotherUserID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataBaseService/ThisUsersRelationshipWithAnotherUsersPostedPo" +
+            "sts", ReplyAction="http://tempuri.org/IDataBaseService/ThisUsersRelationshipWithAnotherUsersPostedPo" +
+            "stsResponse")]
+        System.Collections.Generic.KeyValuePair<Discovery.Core.Model.Post, bool>[] ThisUsersRelationshipWithAnotherUsersPostedPosts(int userID, int anotherUserID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataBaseService/ThisUsersRelationshipWithAnotherUsersPostedPo" +
+            "sts", ReplyAction="http://tempuri.org/IDataBaseService/ThisUsersRelationshipWithAnotherUsersPostedPo" +
+            "stsResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.KeyValuePair<Discovery.Core.Model.Post, bool>[]> ThisUsersRelationshipWithAnotherUsersPostedPostsAsync(int userID, int anotherUserID);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -405,6 +431,30 @@ namespace Discovery.Client.DataBaseService {
         
         public System.Threading.Tasks.Task<int> GetIdolsCountAsync(int funsID) {
             return base.Channel.GetIdolsCountAsync(funsID);
+        }
+        
+        public System.Collections.Generic.KeyValuePair<Discovery.Core.Model.Discoverer, bool>[] ThisUsersRelationshipWithAnotherUsersIdols(int userID, int anotherUserID) {
+            return base.Channel.ThisUsersRelationshipWithAnotherUsersIdols(userID, anotherUserID);
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.KeyValuePair<Discovery.Core.Model.Discoverer, bool>[]> ThisUsersRelationshipWithAnotherUsersIdolsAsync(int userID, int anotherUserID) {
+            return base.Channel.ThisUsersRelationshipWithAnotherUsersIdolsAsync(userID, anotherUserID);
+        }
+        
+        public System.Collections.Generic.KeyValuePair<Discovery.Core.Model.Discoverer, bool>[] ThisUsersRelationshipWithAnotherUsersFuns(int userID, int anotherUserID) {
+            return base.Channel.ThisUsersRelationshipWithAnotherUsersFuns(userID, anotherUserID);
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.KeyValuePair<Discovery.Core.Model.Discoverer, bool>[]> ThisUsersRelationshipWithAnotherUsersFunsAsync(int userID, int anotherUserID) {
+            return base.Channel.ThisUsersRelationshipWithAnotherUsersFunsAsync(userID, anotherUserID);
+        }
+        
+        public System.Collections.Generic.KeyValuePair<Discovery.Core.Model.Post, bool>[] ThisUsersRelationshipWithAnotherUsersPostedPosts(int userID, int anotherUserID) {
+            return base.Channel.ThisUsersRelationshipWithAnotherUsersPostedPosts(userID, anotherUserID);
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.KeyValuePair<Discovery.Core.Model.Post, bool>[]> ThisUsersRelationshipWithAnotherUsersPostedPostsAsync(int userID, int anotherUserID) {
+            return base.Channel.ThisUsersRelationshipWithAnotherUsersPostedPostsAsync(userID, anotherUserID);
         }
     }
 }
