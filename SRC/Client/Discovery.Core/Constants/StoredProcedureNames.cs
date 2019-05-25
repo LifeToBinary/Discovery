@@ -140,8 +140,13 @@ namespace Discovery.Core.Constants
         public const string GetDiscovererByID = "GetDiscovererByID";
 
         /// <summary>
-        /// 查询一个用户和另一个用户关注的人的关系
+        /// 查询一个用户和另一个用户关注的人的关系列表
         /// </summary>
         public const string ThisUsersRelationshipWithAnotherUsersIdols = "ThisUsersRelationshipWithAnotherUsersIdols";
+
+        /// <summary>
+        /// 查询一个用户和另一个用户的粉丝的关系列表
+        /// </summary>
+        public const string ThisUsersRelationshipWithAnotherUsersFuns = "ThisUsersRelationshipWithAnotherUsersFuns";
     }
 }
