@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="d4819416-60c2-46b8-88d1-a568d55d8574" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://47.240.12.27:10004/DataBaseService.svc?wsdl" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="DataBaseService.xsd" MetadataType="Schema" ID="e70f2aab-fa28-490e-8e94-873b00ee4d4f" SourceId="1" SourceUrl="http://47.240.12.27:10004/DataBaseService.svc?xsd=xsd2" />
+    <MetadataFile FileName="DataBaseService.wsdl" MetadataType="Wsdl" ID="1cbe3ae5-b888-48ee-86de-fd6e82fcd8b9" SourceId="1" SourceUrl="http://47.240.12.27:10004/DataBaseService.svc?wsdl" />
+    <MetadataFile FileName="DataBaseService1.xsd" MetadataType="Schema" ID="520a7017-6067-4c49-9682-de1d59e61078" SourceId="1" SourceUrl="http://47.240.12.27:10004/DataBaseService.svc?xsd=xsd0" />
+    <MetadataFile FileName="DataBaseService2.xsd" MetadataType="Schema" ID="c8cba7a1-5305-4f0a-aad2-14d61c5c68ba" SourceId="1" SourceUrl="http://47.240.12.27:10004/DataBaseService.svc?xsd=xsd1" />
+    <MetadataFile FileName="DataBaseService3.xsd" MetadataType="Schema" ID="6975eaa1-5abe-4ff7-8c6e-9604aaaa05c8" SourceId="1" SourceUrl="http://47.240.12.27:10004/DataBaseService.svc?xsd=xsd6" />
+    <MetadataFile FileName="DataBaseService4.xsd" MetadataType="Schema" ID="dd96d39e-95e8-45fa-a300-6efe89cfd9e8" SourceId="1" SourceUrl="http://47.240.12.27:10004/DataBaseService.svc?xsd=xsd4" />
+    <MetadataFile FileName="DataBaseService5.xsd" MetadataType="Schema" ID="22dce353-ef4f-4d09-9942-e31f7f446f22" SourceId="1" SourceUrl="http://47.240.12.27:10004/DataBaseService.svc?xsd=xsd5" />
+    <MetadataFile FileName="DataBaseService6.xsd" MetadataType="Schema" ID="a8ba47b1-4589-45ab-a738-27cad3ea09d3" SourceId="1" SourceUrl="http://47.240.12.27:10004/DataBaseService.svc?xsd=xsd3" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

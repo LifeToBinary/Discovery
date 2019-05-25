@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{4881949E-10C1-495F-8A02-9AB5D945809E}</ProjectGuid>
+    <ProjectGuid>{179D19C5-0BBA-4C07-9A56-79DBA454F04B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Discovery.Core.ViewModel</RootNamespace>
-    <AssemblyName>Discovery.Core.ViewModel</AssemblyName>
+    <RootNamespace>Discovery.Core.RelationalModel</RootNamespace>
+    <AssemblyName>Discovery.Core.RelationalModel</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -55,12 +55,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Discovery.Core\Discovery.Core.csproj">
-      <Project>{dbfd6e0a-1cbe-4fc7-b87c-bdd11ae41f89}</Project>
-      <Name>Discovery.Core</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="app.config" />
     <None Include="Connected Services\DataBaseService\DataBaseService.wsdl" />
     <None Include="Connected Services\DataBaseService\DataBaseService.xsd">
@@ -87,6 +81,12 @@
     <None Include="packages.config" />
     <None Include="Properties\DataSources\Discovery.Core.Model.Discoverer.datasource" />
     <None Include="Properties\DataSources\Discovery.Core.Model.Post.datasource" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Discovery.Core\Discovery.Core.csproj">
+      <Project>{DBFD6E0A-1CBE-4FC7-B87C-BDD11AE41F89}</Project>
+      <Name>Discovery.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Discovery.Core.ViewModel.DataBaseService {
+namespace Discovery.Core.RelationalModel.DataBaseService {
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -178,15 +178,23 @@ namespace Discovery.Core.ViewModel.DataBaseService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataBaseService/ThisUsersRelationshipWithAnotherUsersIdols", ReplyAction="http://tempuri.org/IDataBaseService/ThisUsersRelationshipWithAnotherUsersIdolsRes" +
             "ponse")]
         System.Threading.Tasks.Task<System.Collections.Generic.KeyValuePair<Discovery.Core.Model.Discoverer, bool>[]> ThisUsersRelationshipWithAnotherUsersIdolsAsync(int userID, int anotherUserID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataBaseService/ThisUsersRelationshipWithAnotherUsersFuns", ReplyAction="http://tempuri.org/IDataBaseService/ThisUsersRelationshipWithAnotherUsersFunsResp" +
+            "onse")]
+        System.Collections.Generic.KeyValuePair<Discovery.Core.Model.Discoverer, bool>[] ThisUsersRelationshipWithAnotherUsersFuns(int userID, int anotherUserID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataBaseService/ThisUsersRelationshipWithAnotherUsersFuns", ReplyAction="http://tempuri.org/IDataBaseService/ThisUsersRelationshipWithAnotherUsersFunsResp" +
+            "onse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.KeyValuePair<Discovery.Core.Model.Discoverer, bool>[]> ThisUsersRelationshipWithAnotherUsersFunsAsync(int userID, int anotherUserID);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IDataBaseServiceChannel : Discovery.Core.ViewModel.DataBaseService.IDataBaseService, System.ServiceModel.IClientChannel {
+    public interface IDataBaseServiceChannel : Discovery.Core.RelationalModel.DataBaseService.IDataBaseService, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class DataBaseServiceClient : System.ServiceModel.ClientBase<Discovery.Core.ViewModel.DataBaseService.IDataBaseService>, Discovery.Core.ViewModel.DataBaseService.IDataBaseService {
+    public partial class DataBaseServiceClient : System.ServiceModel.ClientBase<Discovery.Core.RelationalModel.DataBaseService.IDataBaseService>, Discovery.Core.RelationalModel.DataBaseService.IDataBaseService {
         
         public DataBaseServiceClient() {
         }
@@ -421,6 +429,14 @@ namespace Discovery.Core.ViewModel.DataBaseService {
         
         public System.Threading.Tasks.Task<System.Collections.Generic.KeyValuePair<Discovery.Core.Model.Discoverer, bool>[]> ThisUsersRelationshipWithAnotherUsersIdolsAsync(int userID, int anotherUserID) {
             return base.Channel.ThisUsersRelationshipWithAnotherUsersIdolsAsync(userID, anotherUserID);
+        }
+        
+        public System.Collections.Generic.KeyValuePair<Discovery.Core.Model.Discoverer, bool>[] ThisUsersRelationshipWithAnotherUsersFuns(int userID, int anotherUserID) {
+            return base.Channel.ThisUsersRelationshipWithAnotherUsersFuns(userID, anotherUserID);
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.KeyValuePair<Discovery.Core.Model.Discoverer, bool>[]> ThisUsersRelationshipWithAnotherUsersFunsAsync(int userID, int anotherUserID) {
+            return base.Channel.ThisUsersRelationshipWithAnotherUsersFunsAsync(userID, anotherUserID);
         }
     }
 }

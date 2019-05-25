@@ -192,13 +192,13 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Discovery.Core.RelationalModel\Discovery.Core.RelationalModel.csproj">
+      <Project>{179D19C5-0BBA-4C07-9A56-79DBA454F04B}</Project>
+      <Name>Discovery.Core.RelationalModel</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Discovery.Core.UI\Discovery.Core.UI.csproj">
       <Project>{597de2c5-7801-484a-a9b0-8112da78c076}</Project>
       <Name>Discovery.Core.UI</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Discovery.Core.ViewModel\Discovery.Core.ViewModel.csproj">
-      <Project>{4881949E-10C1-495F-8A02-9AB5D945809E}</Project>
-      <Name>Discovery.Core.ViewModel</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Discovery.Core\Discovery.Core.csproj">
       <Project>{DBFD6E0A-1CBE-4FC7-B87C-BDD11AE41F89}</Project>

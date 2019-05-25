@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // 有关程序集的一般信息由以下
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("Discovery.Core.ViewModel")]
+[assembly: AssemblyTitle("Discovery.Core.RelationalModel")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Discovery.Core.ViewModel")]
+[assembly: AssemblyProduct("Discovery.Core.RelationalModel")]
 [assembly: AssemblyCopyright("Copyright ©  2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // 如果此项目向 COM 公开，则下列 GUID 用于类型库的 ID
-[assembly: Guid("4881949e-10c1-495f-8a02-9ab5d945809e")]
+[assembly: Guid("179d19c5-0bba-4c07-9a56-79dba454f04b")]
 
 // 程序集的版本信息由下列四个值组成: 
 //

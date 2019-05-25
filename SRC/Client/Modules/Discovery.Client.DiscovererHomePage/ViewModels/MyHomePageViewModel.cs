@@ -2,6 +2,7 @@
 using Discovery.Core.Constants;
 using Discovery.Core.GlobalData;
 using Discovery.Core.Model;
+using Discovery.Core.RelationalModel;
 using Prism.Commands;
 using Prism.Ioc;
 using Prism.Modularity;
@@ -38,8 +39,8 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
             get => _myFavorites;
             set => SetProperty(ref _myFavorites, value);
         }
-        private ObservableCollection<Discoverer> _funs;
-        public ObservableCollection<Discoverer> Funs
+        private ObservableCollection<DiscovererRelationshipModel> _funs;
+        public ObservableCollection<DiscovererRelationshipModel> Funs
         {
             get => _funs;
             set => SetProperty(ref _funs, value);
@@ -76,10 +77,15 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
                         await databaseService.GetFavoritePostsAsync(
                             CurrentUser.BasicInfo.ID));
 
-                Funs =
-                    new ObservableCollection<Discoverer>(
-                        await databaseService.GetFunsOfTheIdolAsync(
-                            CurrentUser.BasicInfo.ID));
+                KeyValuePair<Discoverer, bool>[] currentUsersRelationshipWithAnotherUsersFuns =
+                    await databaseService.ThisUsersRelationshipWithAnotherUsersFunsAsync(
+                        CurrentUser.BasicInfo.ID,
+                        CurrentUser.BasicInfo.ID);
+                Funs = new ObservableCollection<DiscovererRelationshipModel>(
+                           currentUsersRelationshipWithAnotherUsersFuns.Select(item => 
+                               new DiscovererRelationshipModel(
+                                   item.Key,
+                                   item.Value)));
             }
         }
 

@@ -378,4 +378,19 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="ThisUsersRelationshipWithAnotherUsersFuns">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userID" type="xs:int" />
+        <xs:element minOccurs="0" name="anotherUserID" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ThisUsersRelationshipWithAnotherUsersFunsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/System.Collections.Generic" minOccurs="0" name="ThisUsersRelationshipWithAnotherUsersFunsResult" nillable="true" type="q17:ArrayOfKeyValuePairOfDiscovererbooleanU8_PbWge3" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

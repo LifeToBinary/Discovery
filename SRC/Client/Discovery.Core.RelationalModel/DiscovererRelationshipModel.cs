@@ -1,6 +1,6 @@
 ﻿using Discovery.Core.GlobalData;
 using Discovery.Core.Model;
-using Discovery.Core.ViewModel.DataBaseService;
+using Discovery.Core.RelationalModel.DataBaseService;
 using Prism.Commands;
 using Prism.Mvvm;
 using System;
@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Discovery.Core.ViewModel
+namespace Discovery.Core.RelationalModel
 {
     public class DiscovererRelationshipModel : BindableBase
     {
