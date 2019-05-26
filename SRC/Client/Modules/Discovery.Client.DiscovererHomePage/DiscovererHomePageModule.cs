@@ -23,6 +23,7 @@ namespace Discovery.Client.DiscovererHomePage
             containerRegistry.RegisterForNavigation<MyFavoritedPosts>();
             containerRegistry.RegisterForNavigation<MyConcern>();
             containerRegistry.RegisterForNavigation<MyFuns>();
+            containerRegistry.RegisterForNavigation<UpdateDiscovererInfo>();
 
             containerRegistry.RegisterForNavigation<OtherUsersHomePage>();
             containerRegistry.RegisterForNavigation<OtherUsersPostedPosts>();

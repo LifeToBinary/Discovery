@@ -28,5 +28,6 @@ namespace Discovery.Core.Constants
         public const string OtherUsersConcern = "OtherUsersConcern";
         public const string OtherUsersFuns = "OtherUsersFuns";
         public const string NewPost = "NewPost";
+        public const string UpdateDiscovererInfo = "UpdateDiscovererInfo";
     }
 }

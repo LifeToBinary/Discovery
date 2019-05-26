@@ -45,64 +45,70 @@
                     <RowDefinition />
                     <RowDefinition />
                     <RowDefinition />
+                    <RowDefinition />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.Row="0"
+                <Button Content="更新资料"
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Margin="10"
+                        Command="{Binding NavigateToUpdateDiscovererInfoCommand}" />
+                <TextBlock Grid.Row="1"
                            Margin="5"
                            Grid.Column="0"
                            Text="性别: " />
-                <TextBlock Grid.Row="0"
+                <TextBlock Grid.Row="1"
                            Margin="5"
                            Grid.Column="1"
                            Text="{Binding Path=CurrentUser.BasicInfo.Sex}" />
-                <TextBlock Grid.Row="1"
+                <TextBlock Grid.Row="2"
                            Grid.Column="0"
                            Margin="5"
                            Text="兴趣: " />
-                <TextBlock Grid.Row="1"
+                <TextBlock Grid.Row="2"
                            Grid.Column="1"
                            Margin="5"
                            Text="{Binding Path=CurrentUser.BasicInfo.AreaOfInterest}" />
-                <TextBlock Grid.Row="2"
+                <TextBlock Grid.Row="3"
                            Grid.Column="0"
                            Margin="5"
                            Text="注册时间: " />
-                <TextBlock Grid.Row="2"
+                <TextBlock Grid.Row="3"
                            Grid.Column="1"
                            Margin="5"
                            Text="{Binding Path=CurrentUser.BasicInfo.SignUpTime}" />
-                <TextBlock Grid.Row="3"
+                <TextBlock Grid.Row="4"
                            Grid.Column="0"
                            Margin="5"
                            Text="邮箱: " />
-                <TextBlock Grid.Row="3"
+                <TextBlock Grid.Row="4"
                            Grid.Column="1"
                            Margin="5"
                            Text="{Binding Path=CurrentUser.ContactInfo.Email}" />
-                <TextBlock Grid.Row="4"
+                <TextBlock Grid.Row="5"
                            Grid.Column="0"
                            Margin="5"
                            Text="QQ: " />
-                <TextBlock Grid.Row="4"
+                <TextBlock Grid.Row="5"
                            Grid.Column="1"
                            Margin="5"
                            Text="{Binding Path=CurrentUser.ContactInfo.QQ}" />
-                <TextBlock Grid.Row="5"
+                <TextBlock Grid.Row="6"
                            Grid.Column="0"
                            Margin="5"
                            Text="WeChat: " />
-                <TextBlock Grid.Row="5"
+                <TextBlock Grid.Row="6"
                            Grid.Column="1"
                            Margin="5"
                            Text="{Binding Path=CurrentUser.ContactInfo.WeChat}" />
-                <TextBlock Grid.Row="6"
+                <TextBlock Grid.Row="7"
                            Grid.Column="0"
                            Margin="5"
                            Text="博客: " />
-                <TextBlock Grid.Row="6"
+                <TextBlock Grid.Row="7"
                            Grid.Column="1"
                            Margin="5"
                            Text="{Binding Path=CurrentUser.ContactInfo.BlogAddress}" />
