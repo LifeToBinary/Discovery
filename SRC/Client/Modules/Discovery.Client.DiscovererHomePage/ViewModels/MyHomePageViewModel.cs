@@ -62,9 +62,10 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
 
         private async void LoadData()
         {
+            KeyValuePair<Discoverer, bool>[] currentUsersRelationshipWithAnotherUsersFuns;
             using (var databaseService = new DataBaseServiceClient())
             {
-                PostsIPost = 
+                PostsIPost =
                     new ObservableCollection<Post>(
                         await databaseService.GetPostsOfTheDiscovererAsync(
                             CurrentUser.BasicInfo.ID));
@@ -78,16 +79,17 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
                         await databaseService.GetFavoritePostsAsync(
                             CurrentUser.BasicInfo.ID));
 
-                KeyValuePair<Discoverer, bool>[] currentUsersRelationshipWithAnotherUsersFuns =
+                currentUsersRelationshipWithAnotherUsersFuns =
                     await databaseService.ThisUsersRelationshipWithAnotherUsersFunsAsync(
                         CurrentUser.BasicInfo.ID,
                         CurrentUser.BasicInfo.ID);
-                Funs = new ObservableCollection<DiscovererRelationshipModel>(
-                           currentUsersRelationshipWithAnotherUsersFuns.Select(item => 
-                               new DiscovererRelationshipModel(
-                                   item.Key,
-                                   item.Value)));
             }
+
+            Funs = new ObservableCollection<DiscovererRelationshipModel>(
+                       currentUsersRelationshipWithAnotherUsersFuns.Select(item =>
+                           new DiscovererRelationshipModel(
+                               item.Key,
+                               item.Value)));
             Funs.ToList().ForEach(user => user.PropertyChanged += MyFunsCollectionChanged);
         }
         private void MyFunsCollectionChanged(object sender, PropertyChangedEventArgs e)
@@ -151,7 +153,7 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
             using (var databaseService = new DataBaseServiceClient())
             {
                 databaseService.CancelFavorite(
-                    CurrentUser.BasicInfo.ID, 
+                    CurrentUser.BasicInfo.ID,
                     post.ID);
             }
             MyFavorites.Remove(post);

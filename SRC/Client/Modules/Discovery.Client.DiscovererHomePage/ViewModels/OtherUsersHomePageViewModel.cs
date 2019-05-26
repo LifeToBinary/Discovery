@@ -48,7 +48,7 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
             get => _favoritedPost;
             set => SetProperty(ref _favoritedPost, value);
         }
-        
+
         public ObservableCollection<DiscovererRelationshipModel> Idols
         {
             get => _idols;
@@ -134,56 +134,61 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
 
         private async void LoadData()
         {
+            KeyValuePair<Post, bool>[] thisUsersRelationshipWithAnotherUsersPostedPosts;
+            KeyValuePair<Discoverer, bool>[] thisUsersRelationshipWithAnotherUsersFuns;
+            KeyValuePair<Post, bool>[] thisUsersRelationshipWithAnotherUsersFavoritedPosts;
+            KeyValuePair<Discoverer, bool>[] thisUsersRelationshipWithAnotherUsersIdols;
+
             using (var databaseService = new DataBaseServiceClient())
             {
-                KeyValuePair<Post, bool>[] thisUsersRelationshipWithAnotherUsersPostedPosts =
+                thisUsersRelationshipWithAnotherUsersPostedPosts =
                     await databaseService.ThisUsersRelationshipWithAnotherUsersPostedPostsAsync(
                         GlobalObjectHolder.CurrentUser.BasicInfo.ID,
                         Discoverer.BasicInfo.ID);
 
-                PostedPosts = new ObservableCollection<PostRelationalModel>(
-                                  thisUsersRelationshipWithAnotherUsersPostedPosts.Select(
-                                      item => new PostRelationalModel(
-                                                  item.Key,
-                                                  item.Value)));
-
-                KeyValuePair<Discoverer, bool>[] thisUsersRelationshipWithAnotherUsersFuns =
+                thisUsersRelationshipWithAnotherUsersFuns =
                     await databaseService.ThisUsersRelationshipWithAnotherUsersFunsAsync(
                         GlobalObjectHolder.CurrentUser.BasicInfo.ID,
                         Discoverer.BasicInfo.ID);
 
-                Funs = new ObservableCollection<DiscovererRelationshipModel>(
-                           thisUsersRelationshipWithAnotherUsersFuns.Select(
-                               item => new DiscovererRelationshipModel(
-                                           item.Key,
-                                           item.Value)));
-
-                KeyValuePair<Post, bool>[] thisUsersRelationshipWithAnotherUsersFavoritedPosts =
+                thisUsersRelationshipWithAnotherUsersFavoritedPosts =
                     await databaseService.ThisUsersRelationshipWithAnotherUsersFavoritedPostsAsync(
                         GlobalObjectHolder.CurrentUser.BasicInfo.ID,
                         Discoverer.BasicInfo.ID);
 
-                FavoritedPosts = new ObservableCollection<PostRelationalModel>(
-                                     thisUsersRelationshipWithAnotherUsersFavoritedPosts.Select(
-                                         item => new PostRelationalModel(
-                                                     item.Key,
-                                                     item.Value)));
-
-                KeyValuePair<Discoverer, bool>[] thisUsersRelationshipWithAnotherUsersIdols =
+                thisUsersRelationshipWithAnotherUsersIdols =
                     await databaseService.ThisUsersRelationshipWithAnotherUsersIdolsAsync(
                         GlobalObjectHolder.CurrentUser.BasicInfo.ID,
                         Discoverer.BasicInfo.ID);
-
-                Idols = new ObservableCollection<DiscovererRelationshipModel>(
-                            thisUsersRelationshipWithAnotherUsersIdols.Select(
-                                item => new DiscovererRelationshipModel(
-                                            item.Key,
-                                            item.Value)));
 
                 IsConcerned = databaseService.IsFuns(
                                   GlobalObjectHolder.CurrentUser.BasicInfo.ID,
                                   Discoverer.BasicInfo.ID);
             }
+
+            PostedPosts = new ObservableCollection<PostRelationalModel>(
+                              thisUsersRelationshipWithAnotherUsersPostedPosts.Select(
+                                  item => new PostRelationalModel(
+                                              item.Key,
+                                              item.Value)));
+
+            Funs = new ObservableCollection<DiscovererRelationshipModel>(
+                       thisUsersRelationshipWithAnotherUsersFuns.Select(
+                           item => new DiscovererRelationshipModel(
+                                       item.Key,
+                                       item.Value)));
+
+            FavoritedPosts = new ObservableCollection<PostRelationalModel>(
+                                 thisUsersRelationshipWithAnotherUsersFavoritedPosts.Select(
+                                     item => new PostRelationalModel(
+                                                 item.Key,
+                                                 item.Value)));
+
+            Idols = new ObservableCollection<DiscovererRelationshipModel>(
+                        thisUsersRelationshipWithAnotherUsersIdols.Select(
+                            item => new DiscovererRelationshipModel(
+                                        item.Key,
+                                        item.Value)));
         }
 
         public void OnNavigatedTo(
