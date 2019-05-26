@@ -1,5 +1,6 @@
 ﻿using Discovery.Core.Models;
 using Prism.Mvvm;
+using System;
 using System.Collections.Generic;
 
 namespace Discovery.Core.Model
@@ -30,7 +31,8 @@ namespace Discovery.Core.Model
         }
 
         public override bool Equals(object obj)
-            => (obj as Discoverer).BasicInfo.ID == BasicInfo.ID;
+            => obj is Discoverer discoverer &&
+               discoverer.BasicInfo.ID == BasicInfo.ID;
 
         public override int GetHashCode()
             => BasicInfo.ID.GetHashCode();
