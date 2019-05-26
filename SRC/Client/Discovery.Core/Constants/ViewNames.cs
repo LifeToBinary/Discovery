@@ -7,6 +7,9 @@ namespace Discovery.Core.Constants
     public class ViewNames
     {
         public const string SignIn = "SignIn";
+        public const string SignUp = "SignUp";
+        public const string SignUpFirstStep = "SignUpFirstStep";
+        public const string SignUpFinallyStep = "SignUpFinallyStep";
         public const string MainMenu = "MainMenu";
         public const string DiscovererHomePage = "MyHomePage";
         public const string Recommended = "Recommended";

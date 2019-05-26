@@ -716,23 +716,19 @@ namespace Discovery.Server.RemoteService
         /// </summary>
         /// <param name="signInName">登录名</param>
         /// <param name="password">密码</param>
-        /// <param name="sex">性别</param>
         /// <param name="areaOfInterest">感兴趣的领域</param>
-        /// <param name="signUpTime">注册时间</param>
         public void SignUp(string signInName,
                            string password,
-                           Sex sex,
-                           Field areaOfInterest,
-                           DateTime signUpTime)
+                           string email,
+                           Field areaOfInterest)
         {
             var SignUpParameterValues
                 = new Dictionary<string, object>
                 {
                     ["@signInName"] = signInName,
                     ["@password"] = password,
-                    ["@sex"] = sex,
-                    ["@areaOfInterest"] = areaOfInterest,
-                    ["@signUpTime"] = signUpTime
+                    ["@email"] = email,
+                    ["@areaOfInterest"] = areaOfInterest
                 };
 
             using (var connection = new SqlConnection(GetDataBaseConnectionString()))

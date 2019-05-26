@@ -27,6 +27,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition />
                 <RowDefinition />
+                <RowDefinition />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
@@ -48,6 +49,14 @@
             <PasswordBox x:Name="passwordBox" Grid.Row="1"
                          Grid.Column="1" 
                          Margin="10"/>
+            <TextBlock Grid.Row="2"
+                       Grid.Column="0"
+                       Grid.ColumnSpan="2"
+                       HorizontalAlignment="Right"
+                       Margin="5"
+                       FontSize="15">
+                <Hyperlink Command="{Binding NavigateToSignUpCommand}">还没有账号? 现在创建一个</Hyperlink>
+            </TextBlock>
         </Grid>
         <Button Grid.Row="2"
                 Content="登录"

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="3b671961-e373-4322-bde8-9753e5c11534" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://47.240.12.27:10004/EmailService.svc?wsdl" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="EmailService.xsd" MetadataType="Schema" ID="961b6d7a-8433-4f36-b44b-cf1d1e2b98ad" SourceId="1" SourceUrl="http://47.240.12.27:10004/EmailService.svc?xsd=xsd1" />
+    <MetadataFile FileName="EmailService1.xsd" MetadataType="Schema" ID="c8cdf8ab-2dbc-4665-ab0a-64bb9a2dabcd" SourceId="1" SourceUrl="http://47.240.12.27:10004/EmailService.svc?xsd=xsd0" />
+    <MetadataFile FileName="EmailService.wsdl" MetadataType="Wsdl" ID="e7a9181a-3ee6-4872-abc1-52bab65aac8b" SourceId="1" SourceUrl="http://47.240.12.27:10004/EmailService.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

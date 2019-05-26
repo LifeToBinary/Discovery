@@ -25,17 +25,22 @@ namespace Discovery.Client.SignIn.ViewModels
             set => SetProperty(ref _signInName, value);
         }
 
-        private Discoverer _currentUser;
         private IRegionManager _regionManager;
-        public DelegateCommand<object> SignInCommand { get; }
 
         public SignInViewModel(IRegionManager regionManager)
         {
             _regionManager = regionManager;
             SignInCommand = new DelegateCommand<object>(SignIn);
+            NavigateToSignUpCommand = new DelegateCommand(NavigateToSignUp);
         }
 
+        public DelegateCommand NavigateToSignUpCommand { get; }
+        private void NavigateToSignUp()
+            => _regionManager.RequestNavigate(
+                RegionNames.MainRegion,
+                ViewNames.SignUp);
 
+        public DelegateCommand<object> SignInCommand { get; }
         private void SignIn(object parameter)
         {
             using (var dataBaseService = new DataBaseServiceClient())
@@ -45,16 +50,18 @@ namespace Discovery.Client.SignIn.ViewModels
                     MessageBox.Show("用户名不存在");
                     return;
                 }
-                _currentUser = dataBaseService.SignIn(_signInName, (parameter as PasswordBox).Password);
-
-                if (_currentUser is null)
+                if (dataBaseService.SignIn(_signInName, (parameter as PasswordBox).Password) is Discoverer discoverer)
                 {
-                    MessageBox.Show("密码不正确");
+                    GlobalObjectHolder.CurrentUser = discoverer;
+                    NavigateToMainMenu();
                     return;
                 }
-                GlobalObjectHolder.CurrentUser = _currentUser;
-                _regionManager.RequestNavigate(RegionNames.MainRegion, ViewNames.MainMenu);
+                MessageBox.Show("密码不正确");
             }
         }
+        private void NavigateToMainMenu()
+            => _regionManager.RequestNavigate(
+                RegionNames.MainRegion,
+                ViewNames.MainMenu);
     }
 }

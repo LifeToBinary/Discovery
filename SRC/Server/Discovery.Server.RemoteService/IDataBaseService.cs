@@ -18,9 +18,8 @@ namespace Discovery.Server.RemoteService
         [OperationContract]
         void SignUp(string signInName,
                     string password,
-                    Sex sex,
-                    Field areaOfInterest,
-                    DateTime signUpTime);
+                    string email,
+                    Field areaOfInterest);
 
         [OperationContract]
         Discoverer GetDiscovererByID(int discovererID);
