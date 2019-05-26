@@ -1,4 +1,5 @@
-﻿using Prism.Ioc;
+﻿using Discovery.Client.PostDetail.Views;
+using Prism.Ioc;
 using Prism.Modularity;
 using System;
 using System.Collections.Generic;
@@ -16,9 +17,10 @@ namespace Discovery.Client.PostDetail
 
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            containerRegistry.RegisterForNavigation<Views.MyPostDetail>();
-            containerRegistry.RegisterForNavigation<Views.OtherUsersPostDetail>();
-            containerRegistry.RegisterForNavigation<Views.NewPost>();
+            containerRegistry.RegisterForNavigation<MyPostDetail>();
+            containerRegistry.RegisterForNavigation<OtherUsersPostDetail>();
+            containerRegistry.RegisterForNavigation<NewPost>();
+            containerRegistry.RegisterForNavigation<UpdatePostInfo>();
         }
     }
 }

@@ -58,6 +58,7 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
             CancelConcernThisUserCommand = new DelegateCommand<Discoverer>(CancelConcern);
             ConcernThisUserCommand = new DelegateCommand<Discoverer>(ConcernThisUser);
             NavigateToUpdateDiscovererInfoCommand = new DelegateCommand(NavigateToUpdateDiscovererInfo);
+            NavigateToUpdatePostInfoCommand = new DelegateCommand<Post>(NavigateToUpdatePostInfo);
             LoadData();
         }
 
@@ -122,7 +123,15 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
                 {
                     { "Post", post }
                 });
-
+        public DelegateCommand<Post> NavigateToUpdatePostInfoCommand { get; }
+        private void NavigateToUpdatePostInfo(Post post)
+            => _regionManager.RequestNavigate(
+                RegionNames.MainMenuContent,
+                ViewNames.UpdatePostInfo,
+                new NavigationParameters
+                {
+                    { "Post", post}
+                });
         public DelegateCommand<Discoverer> ViewThisUsersHomePageCommand { get; }
         private void ViewThisUsersHomePage(Discoverer discoverer)
             => _regionManager.RequestNavigate(

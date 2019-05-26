@@ -95,6 +95,10 @@
                                         Margin="10"
                                         Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorLevel=2, AncestorType={x:Type UserControl}}, Path=DataContext.ViewMyPostDetailCommand}"
                                         CommandParameter="{Binding}" />
+                                <Button Content="编辑"
+                                        Margin="10"
+                                        Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorLevel=2,AncestorType={x:Type UserControl}}, Path=DataContext.NavigateToUpdatePostInfoCommand}" 
+                                        CommandParameter="{Binding}"/>
                                 <Button Content="删除"
                                         Margin="10"
                                         Background="Red"
