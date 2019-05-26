@@ -11,6 +11,7 @@ using Prism.Regions;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -87,8 +88,23 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
                                    item.Key,
                                    item.Value)));
             }
+            Funs.ToList().ForEach(user => user.PropertyChanged += MyFunsCollectionChanged);
         }
-
+        private void MyFunsCollectionChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(DiscovererRelationshipModel.IsBeConcerned) &&
+                sender is DiscovererRelationshipModel discovererRelationshipModel)
+            {
+                if (discovererRelationshipModel.IsBeConcerned)
+                {
+                    Idols.Add(discovererRelationshipModel.Discoverer);
+                }
+                else
+                {
+                    Idols.Remove(discovererRelationshipModel.Discoverer);
+                }
+            }
+        }
         public DelegateCommand<Post> ViewPostDetailCommand { get; }
         private void ViewPostDetail(Post post)
             => _regionManager.RequestNavigate(
