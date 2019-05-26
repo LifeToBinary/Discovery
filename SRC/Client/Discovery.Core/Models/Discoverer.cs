@@ -1,5 +1,6 @@
 ﻿using Discovery.Core.Models;
 using Prism.Mvvm;
+using System.Collections.Generic;
 
 namespace Discovery.Core.Model
 {
@@ -27,5 +28,11 @@ namespace Discovery.Core.Model
             get => _contactInfo;
             set => SetProperty(ref _contactInfo, value);
         }
+
+        public override bool Equals(object obj)
+            => (obj as Discoverer).BasicInfo.ID == BasicInfo.ID;
+
+        public override int GetHashCode()
+            => BasicInfo.ID.GetHashCode();
     }
 }
