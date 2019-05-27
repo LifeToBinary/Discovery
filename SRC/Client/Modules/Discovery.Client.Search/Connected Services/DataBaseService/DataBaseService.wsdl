@@ -1,0 +1,594 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="DataBaseService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://47.240.12.27:10004/DataBaseService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://47.240.12.27:10004/DataBaseService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://47.240.12.27:10004/DataBaseService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Discovery.Core.Model" />
+      <xsd:import schemaLocation="http://47.240.12.27:10004/DataBaseService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Prism.Mvvm" />
+      <xsd:import schemaLocation="http://47.240.12.27:10004/DataBaseService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/Discovery.Core.Models" />
+      <xsd:import schemaLocation="http://47.240.12.27:10004/DataBaseService.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/Discovery.Core.Enums" />
+      <xsd:import schemaLocation="http://47.240.12.27:10004/DataBaseService.svc?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/System.Collections.Generic" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IDataBaseService_DiscovererIsExists_InputMessage">
+    <wsdl:part name="parameters" element="tns:DiscovererIsExists" />
+  </wsdl:message>
+  <wsdl:message name="IDataBaseService_DiscovererIsExists_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DiscovererIsExistsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDataBaseService_SignIn_InputMessage">
+    <wsdl:part name="parameters" element="tns:SignIn" />
+  </wsdl:message>
+  <wsdl:message name="IDataBaseService_SignIn_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SignInResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDataBaseService_SignUp_InputMessage">
+    <wsdl:part name="parameters" element="tns:SignUp" />
+  </wsdl:message>
+  <wsdl:message name="IDataBaseService_SignUp_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SignUpResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDataBaseService_GetDiscovererByID_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDiscovererByID" />
+  </wsdl:message>
+  <wsdl:message name="IDataBaseService_GetDiscovererByID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDiscovererByIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDataBaseService_UpdateDiscovererInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateDiscovererInfo" />
+  </wsdl:message>
+  <wsdl:message name="IDataBaseService_UpdateDiscovererInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateDiscovererInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDataBaseService_UpdatePostInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdatePostInfo" />
+  </wsdl:message>
+  <wsdl:message name="IDataBaseService_UpdatePostInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdatePostInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDataBaseService_GetPostsOfTheDiscoverer_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPostsOfTheDiscoverer" />
+  </wsdl:message>
+  <wsdl:message name="IDataBaseService_GetPostsOfTheDiscoverer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPostsOfTheDiscovererResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDataBaseService_RemoveAPost_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveAPost" />
+  </wsdl:message>
+  <wsdl:message name="IDataBaseService_RemoveAPost_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveAPostResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDataBaseService_AddANewPost_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddANewPost" />
+  </wsdl:message>
+  <wsdl:message name="IDataBaseService_AddANewPost_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddANewPostResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDataBaseService_FindPostsOfTheDiscoverer_InputMessage">
+    <wsdl:part name="parameters" element="tns:FindPostsOfTheDiscoverer" />
+  </wsdl:message>
+  <wsdl:message name="IDataBaseService_FindPostsOfTheDiscoverer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:FindPostsOfTheDiscovererResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDataBaseService_GetFunsOfTheIdol_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetFunsOfTheIdol" />
+  </wsdl:message>
+  <wsdl:message name="IDataBaseService_GetFunsOfTheIdol_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetFunsOfTheIdolResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDataBaseService_GetFavoritePosts_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetFavoritePosts" />
+  </wsdl:message>
+  <wsdl:message name="IDataBaseService_GetFavoritePosts_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetFavoritePostsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDataBaseService_GetRecommendedForTheDiscoverer_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRecommendedForTheDiscoverer" />
+  </wsdl:message>
+  <wsdl:message name="IDataBaseService_GetRecommendedForTheDiscoverer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRecommendedForTheDiscovererResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDataBaseService_FindPostFromAllDiscoverers_InputMessage">
+    <wsdl:part name="parameters" element="tns:FindPostFromAllDiscoverers" />
+  </wsdl:message>
+  <wsdl:message name="IDataBaseService_FindPostFromAllDiscoverers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:FindPostFromAllDiscoverersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDataBaseService_SearchDiscoverers_InputMessage">
+    <wsdl:part name="parameters" element="tns:SearchDiscoverers" />
+  </wsdl:message>
+  <wsdl:message name="IDataBaseService_SearchDiscoverers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SearchDiscoverersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDataBaseService_GetPostsCountOfTheDiscoverer_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPostsCountOfTheDiscoverer" />
+  </wsdl:message>
+  <wsdl:message name="IDataBaseService_GetPostsCountOfTheDiscoverer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPostsCountOfTheDiscovererResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDataBaseService_CancelConcern_InputMessage">
+    <wsdl:part name="parameters" element="tns:CancelConcern" />
+  </wsdl:message>
+  <wsdl:message name="IDataBaseService_CancelConcern_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CancelConcernResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDataBaseService_CancelFavorite_InputMessage">
+    <wsdl:part name="parameters" element="tns:CancelFavorite" />
+  </wsdl:message>
+  <wsdl:message name="IDataBaseService_CancelFavorite_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CancelFavoriteResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDataBaseService_ConcernADiscoverer_InputMessage">
+    <wsdl:part name="parameters" element="tns:ConcernADiscoverer" />
+  </wsdl:message>
+  <wsdl:message name="IDataBaseService_ConcernADiscoverer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConcernADiscovererResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDataBaseService_FavoriteAPost_InputMessage">
+    <wsdl:part name="parameters" element="tns:FavoriteAPost" />
+  </wsdl:message>
+  <wsdl:message name="IDataBaseService_FavoriteAPost_OutputMessage">
+    <wsdl:part name="parameters" element="tns:FavoriteAPostResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDataBaseService_GetFunsCountOfTheIdol_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetFunsCountOfTheIdol" />
+  </wsdl:message>
+  <wsdl:message name="IDataBaseService_GetFunsCountOfTheIdol_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetFunsCountOfTheIdolResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDataBaseService_IsFuns_InputMessage">
+    <wsdl:part name="parameters" element="tns:IsFuns" />
+  </wsdl:message>
+  <wsdl:message name="IDataBaseService_IsFuns_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IsFunsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDataBaseService_IsFavoritedAPost_InputMessage">
+    <wsdl:part name="parameters" element="tns:IsFavoritedAPost" />
+  </wsdl:message>
+  <wsdl:message name="IDataBaseService_IsFavoritedAPost_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IsFavoritedAPostResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDataBaseService_GetFavoritesCountOfThePost_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetFavoritesCountOfThePost" />
+  </wsdl:message>
+  <wsdl:message name="IDataBaseService_GetFavoritesCountOfThePost_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetFavoritesCountOfThePostResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDataBaseService_GetIdols_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetIdols" />
+  </wsdl:message>
+  <wsdl:message name="IDataBaseService_GetIdols_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetIdolsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDataBaseService_GetIdolsCount_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetIdolsCount" />
+  </wsdl:message>
+  <wsdl:message name="IDataBaseService_GetIdolsCount_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetIdolsCountResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDataBaseService_ThisUsersRelationshipWithAnotherUsersIdols_InputMessage">
+    <wsdl:part name="parameters" element="tns:ThisUsersRelationshipWithAnotherUsersIdols" />
+  </wsdl:message>
+  <wsdl:message name="IDataBaseService_ThisUsersRelationshipWithAnotherUsersIdols_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ThisUsersRelationshipWithAnotherUsersIdolsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDataBaseService_ThisUsersRelationshipWithAnotherUsersFuns_InputMessage">
+    <wsdl:part name="parameters" element="tns:ThisUsersRelationshipWithAnotherUsersFuns" />
+  </wsdl:message>
+  <wsdl:message name="IDataBaseService_ThisUsersRelationshipWithAnotherUsersFuns_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ThisUsersRelationshipWithAnotherUsersFunsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDataBaseService_ThisUsersRelationshipWithAnotherUsersPostedPosts_InputMessage">
+    <wsdl:part name="parameters" element="tns:ThisUsersRelationshipWithAnotherUsersPostedPosts" />
+  </wsdl:message>
+  <wsdl:message name="IDataBaseService_ThisUsersRelationshipWithAnotherUsersPostedPosts_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ThisUsersRelationshipWithAnotherUsersPostedPostsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDataBaseService_ThisUsersRelationshipWithAnotherUsersFavoritedPosts_InputMessage">
+    <wsdl:part name="parameters" element="tns:ThisUsersRelationshipWithAnotherUsersFavoritedPosts" />
+  </wsdl:message>
+  <wsdl:message name="IDataBaseService_ThisUsersRelationshipWithAnotherUsersFavoritedPosts_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ThisUsersRelationshipWithAnotherUsersFavoritedPostsResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IDataBaseService">
+    <wsdl:operation name="DiscovererIsExists">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDataBaseService/DiscovererIsExists" message="tns:IDataBaseService_DiscovererIsExists_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDataBaseService/DiscovererIsExistsResponse" message="tns:IDataBaseService_DiscovererIsExists_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SignIn">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDataBaseService/SignIn" message="tns:IDataBaseService_SignIn_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDataBaseService/SignInResponse" message="tns:IDataBaseService_SignIn_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SignUp">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDataBaseService/SignUp" message="tns:IDataBaseService_SignUp_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDataBaseService/SignUpResponse" message="tns:IDataBaseService_SignUp_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDiscovererByID">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDataBaseService/GetDiscovererByID" message="tns:IDataBaseService_GetDiscovererByID_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDataBaseService/GetDiscovererByIDResponse" message="tns:IDataBaseService_GetDiscovererByID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDiscovererInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDataBaseService/UpdateDiscovererInfo" message="tns:IDataBaseService_UpdateDiscovererInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDataBaseService/UpdateDiscovererInfoResponse" message="tns:IDataBaseService_UpdateDiscovererInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePostInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDataBaseService/UpdatePostInfo" message="tns:IDataBaseService_UpdatePostInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDataBaseService/UpdatePostInfoResponse" message="tns:IDataBaseService_UpdatePostInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPostsOfTheDiscoverer">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDataBaseService/GetPostsOfTheDiscoverer" message="tns:IDataBaseService_GetPostsOfTheDiscoverer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDataBaseService/GetPostsOfTheDiscovererResponse" message="tns:IDataBaseService_GetPostsOfTheDiscoverer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveAPost">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDataBaseService/RemoveAPost" message="tns:IDataBaseService_RemoveAPost_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDataBaseService/RemoveAPostResponse" message="tns:IDataBaseService_RemoveAPost_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddANewPost">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDataBaseService/AddANewPost" message="tns:IDataBaseService_AddANewPost_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDataBaseService/AddANewPostResponse" message="tns:IDataBaseService_AddANewPost_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="FindPostsOfTheDiscoverer">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDataBaseService/FindPostsOfTheDiscoverer" message="tns:IDataBaseService_FindPostsOfTheDiscoverer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDataBaseService/FindPostsOfTheDiscovererResponse" message="tns:IDataBaseService_FindPostsOfTheDiscoverer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFunsOfTheIdol">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDataBaseService/GetFunsOfTheIdol" message="tns:IDataBaseService_GetFunsOfTheIdol_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDataBaseService/GetFunsOfTheIdolResponse" message="tns:IDataBaseService_GetFunsOfTheIdol_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFavoritePosts">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDataBaseService/GetFavoritePosts" message="tns:IDataBaseService_GetFavoritePosts_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDataBaseService/GetFavoritePostsResponse" message="tns:IDataBaseService_GetFavoritePosts_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRecommendedForTheDiscoverer">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDataBaseService/GetRecommendedForTheDiscoverer" message="tns:IDataBaseService_GetRecommendedForTheDiscoverer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDataBaseService/GetRecommendedForTheDiscovererResponse" message="tns:IDataBaseService_GetRecommendedForTheDiscoverer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="FindPostFromAllDiscoverers">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDataBaseService/FindPostFromAllDiscoverers" message="tns:IDataBaseService_FindPostFromAllDiscoverers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDataBaseService/FindPostFromAllDiscoverersResponse" message="tns:IDataBaseService_FindPostFromAllDiscoverers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SearchDiscoverers">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDataBaseService/SearchDiscoverers" message="tns:IDataBaseService_SearchDiscoverers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDataBaseService/SearchDiscoverersResponse" message="tns:IDataBaseService_SearchDiscoverers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPostsCountOfTheDiscoverer">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDataBaseService/GetPostsCountOfTheDiscoverer" message="tns:IDataBaseService_GetPostsCountOfTheDiscoverer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDataBaseService/GetPostsCountOfTheDiscovererResponse" message="tns:IDataBaseService_GetPostsCountOfTheDiscoverer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CancelConcern">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDataBaseService/CancelConcern" message="tns:IDataBaseService_CancelConcern_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDataBaseService/CancelConcernResponse" message="tns:IDataBaseService_CancelConcern_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CancelFavorite">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDataBaseService/CancelFavorite" message="tns:IDataBaseService_CancelFavorite_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDataBaseService/CancelFavoriteResponse" message="tns:IDataBaseService_CancelFavorite_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ConcernADiscoverer">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDataBaseService/ConcernADiscoverer" message="tns:IDataBaseService_ConcernADiscoverer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDataBaseService/ConcernADiscovererResponse" message="tns:IDataBaseService_ConcernADiscoverer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="FavoriteAPost">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDataBaseService/FavoriteAPost" message="tns:IDataBaseService_FavoriteAPost_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDataBaseService/FavoriteAPostResponse" message="tns:IDataBaseService_FavoriteAPost_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFunsCountOfTheIdol">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDataBaseService/GetFunsCountOfTheIdol" message="tns:IDataBaseService_GetFunsCountOfTheIdol_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDataBaseService/GetFunsCountOfTheIdolResponse" message="tns:IDataBaseService_GetFunsCountOfTheIdol_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="IsFuns">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDataBaseService/IsFuns" message="tns:IDataBaseService_IsFuns_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDataBaseService/IsFunsResponse" message="tns:IDataBaseService_IsFuns_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="IsFavoritedAPost">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDataBaseService/IsFavoritedAPost" message="tns:IDataBaseService_IsFavoritedAPost_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDataBaseService/IsFavoritedAPostResponse" message="tns:IDataBaseService_IsFavoritedAPost_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFavoritesCountOfThePost">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDataBaseService/GetFavoritesCountOfThePost" message="tns:IDataBaseService_GetFavoritesCountOfThePost_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDataBaseService/GetFavoritesCountOfThePostResponse" message="tns:IDataBaseService_GetFavoritesCountOfThePost_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetIdols">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDataBaseService/GetIdols" message="tns:IDataBaseService_GetIdols_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDataBaseService/GetIdolsResponse" message="tns:IDataBaseService_GetIdols_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetIdolsCount">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDataBaseService/GetIdolsCount" message="tns:IDataBaseService_GetIdolsCount_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDataBaseService/GetIdolsCountResponse" message="tns:IDataBaseService_GetIdolsCount_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ThisUsersRelationshipWithAnotherUsersIdols">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDataBaseService/ThisUsersRelationshipWithAnotherUsersIdols" message="tns:IDataBaseService_ThisUsersRelationshipWithAnotherUsersIdols_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDataBaseService/ThisUsersRelationshipWithAnotherUsersIdolsResponse" message="tns:IDataBaseService_ThisUsersRelationshipWithAnotherUsersIdols_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ThisUsersRelationshipWithAnotherUsersFuns">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDataBaseService/ThisUsersRelationshipWithAnotherUsersFuns" message="tns:IDataBaseService_ThisUsersRelationshipWithAnotherUsersFuns_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDataBaseService/ThisUsersRelationshipWithAnotherUsersFunsResponse" message="tns:IDataBaseService_ThisUsersRelationshipWithAnotherUsersFuns_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ThisUsersRelationshipWithAnotherUsersPostedPosts">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDataBaseService/ThisUsersRelationshipWithAnotherUsersPostedPosts" message="tns:IDataBaseService_ThisUsersRelationshipWithAnotherUsersPostedPosts_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDataBaseService/ThisUsersRelationshipWithAnotherUsersPostedPostsResponse" message="tns:IDataBaseService_ThisUsersRelationshipWithAnotherUsersPostedPosts_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ThisUsersRelationshipWithAnotherUsersFavoritedPosts">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDataBaseService/ThisUsersRelationshipWithAnotherUsersFavoritedPosts" message="tns:IDataBaseService_ThisUsersRelationshipWithAnotherUsersFavoritedPosts_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDataBaseService/ThisUsersRelationshipWithAnotherUsersFavoritedPostsResponse" message="tns:IDataBaseService_ThisUsersRelationshipWithAnotherUsersFavoritedPosts_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IDataBaseService" type="tns:IDataBaseService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="DiscovererIsExists">
+      <soap:operation soapAction="http://tempuri.org/IDataBaseService/DiscovererIsExists" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SignIn">
+      <soap:operation soapAction="http://tempuri.org/IDataBaseService/SignIn" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SignUp">
+      <soap:operation soapAction="http://tempuri.org/IDataBaseService/SignUp" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDiscovererByID">
+      <soap:operation soapAction="http://tempuri.org/IDataBaseService/GetDiscovererByID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDiscovererInfo">
+      <soap:operation soapAction="http://tempuri.org/IDataBaseService/UpdateDiscovererInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePostInfo">
+      <soap:operation soapAction="http://tempuri.org/IDataBaseService/UpdatePostInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPostsOfTheDiscoverer">
+      <soap:operation soapAction="http://tempuri.org/IDataBaseService/GetPostsOfTheDiscoverer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveAPost">
+      <soap:operation soapAction="http://tempuri.org/IDataBaseService/RemoveAPost" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddANewPost">
+      <soap:operation soapAction="http://tempuri.org/IDataBaseService/AddANewPost" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindPostsOfTheDiscoverer">
+      <soap:operation soapAction="http://tempuri.org/IDataBaseService/FindPostsOfTheDiscoverer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFunsOfTheIdol">
+      <soap:operation soapAction="http://tempuri.org/IDataBaseService/GetFunsOfTheIdol" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFavoritePosts">
+      <soap:operation soapAction="http://tempuri.org/IDataBaseService/GetFavoritePosts" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRecommendedForTheDiscoverer">
+      <soap:operation soapAction="http://tempuri.org/IDataBaseService/GetRecommendedForTheDiscoverer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindPostFromAllDiscoverers">
+      <soap:operation soapAction="http://tempuri.org/IDataBaseService/FindPostFromAllDiscoverers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchDiscoverers">
+      <soap:operation soapAction="http://tempuri.org/IDataBaseService/SearchDiscoverers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPostsCountOfTheDiscoverer">
+      <soap:operation soapAction="http://tempuri.org/IDataBaseService/GetPostsCountOfTheDiscoverer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelConcern">
+      <soap:operation soapAction="http://tempuri.org/IDataBaseService/CancelConcern" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelFavorite">
+      <soap:operation soapAction="http://tempuri.org/IDataBaseService/CancelFavorite" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConcernADiscoverer">
+      <soap:operation soapAction="http://tempuri.org/IDataBaseService/ConcernADiscoverer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FavoriteAPost">
+      <soap:operation soapAction="http://tempuri.org/IDataBaseService/FavoriteAPost" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFunsCountOfTheIdol">
+      <soap:operation soapAction="http://tempuri.org/IDataBaseService/GetFunsCountOfTheIdol" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsFuns">
+      <soap:operation soapAction="http://tempuri.org/IDataBaseService/IsFuns" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsFavoritedAPost">
+      <soap:operation soapAction="http://tempuri.org/IDataBaseService/IsFavoritedAPost" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFavoritesCountOfThePost">
+      <soap:operation soapAction="http://tempuri.org/IDataBaseService/GetFavoritesCountOfThePost" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetIdols">
+      <soap:operation soapAction="http://tempuri.org/IDataBaseService/GetIdols" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetIdolsCount">
+      <soap:operation soapAction="http://tempuri.org/IDataBaseService/GetIdolsCount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ThisUsersRelationshipWithAnotherUsersIdols">
+      <soap:operation soapAction="http://tempuri.org/IDataBaseService/ThisUsersRelationshipWithAnotherUsersIdols" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ThisUsersRelationshipWithAnotherUsersFuns">
+      <soap:operation soapAction="http://tempuri.org/IDataBaseService/ThisUsersRelationshipWithAnotherUsersFuns" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ThisUsersRelationshipWithAnotherUsersPostedPosts">
+      <soap:operation soapAction="http://tempuri.org/IDataBaseService/ThisUsersRelationshipWithAnotherUsersPostedPosts" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ThisUsersRelationshipWithAnotherUsersFavoritedPosts">
+      <soap:operation soapAction="http://tempuri.org/IDataBaseService/ThisUsersRelationshipWithAnotherUsersFavoritedPosts" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="DataBaseService">
+    <wsdl:port name="BasicHttpBinding_IDataBaseService" binding="tns:BasicHttpBinding_IDataBaseService">
+      <soap:address location="http://47.240.12.27:10004/DataBaseService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

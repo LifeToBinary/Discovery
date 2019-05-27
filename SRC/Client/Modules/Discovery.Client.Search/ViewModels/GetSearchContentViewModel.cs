@@ -1,4 +1,7 @@
-﻿using Discovery.Core.Enums;
+﻿using Discovery.Client.Search.DataBaseService;
+using Discovery.Core.Constants;
+using Discovery.Core.Enums;
+using Discovery.Core.Model;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
@@ -34,8 +37,38 @@ namespace Discovery.Client.Search.ViewModels
         public DelegateCommand SearchCommand { get; }
         private void Search()
         {
-
+            using (var databaseService = new DataBaseServiceClient())
+            {
+                if (SearchType == SearchType.SearchUser)
+                {
+                    NavigateToSearchedDiscoverersResult(
+                        databaseService.SearchDiscoverers(
+                            SearchContent));
+                }
+                else
+                {
+                    NavigateToSearchedPostsResult(
+                        databaseService.FindPostFromAllDiscoverers(
+                            SearchContent));
+                }
+            }
         }
+        private void NavigateToSearchedDiscoverersResult(IEnumerable<Discoverer> searchedDiscoverers)
+            => _regionManager.RequestNavigate(
+                RegionNames.MainMenuContent,
+                ViewNames.SearchedDiscoverersResult,
+                new NavigationParameters
+                {
+                    { "Discoverers", searchedDiscoverers} 
+                });
 
+        private void NavigateToSearchedPostsResult(IEnumerable<Post> searchedPostsResult)
+            => _regionManager.RequestNavigate(
+                RegionNames.MainMenuContent,
+                ViewNames.SearchedPostsResult,
+                new NavigationParameters
+                {
+                    { "Posts", searchedPostsResult} 
+                });
     }
 }
