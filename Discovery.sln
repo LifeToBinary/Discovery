@@ -51,6 +51,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Discovery.Client.PostDetail
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Discovery.Core.RelationalModel", "SRC\Client\Discovery.Core.RelationalModel\Discovery.Core.RelationalModel.csproj", "{179D19C5-0BBA-4C07-9A56-79DBA454F04B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Discovery.Client.Search", "SRC\Client\Modules\Discovery.Client.Search\Discovery.Client.Search.csproj", "{67C02946-B635-4C38-AF1C-319699160ADB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -121,6 +123,10 @@ Global
 		{179D19C5-0BBA-4C07-9A56-79DBA454F04B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{179D19C5-0BBA-4C07-9A56-79DBA454F04B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{179D19C5-0BBA-4C07-9A56-79DBA454F04B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67C02946-B635-4C38-AF1C-319699160ADB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67C02946-B635-4C38-AF1C-319699160ADB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67C02946-B635-4C38-AF1C-319699160ADB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67C02946-B635-4C38-AF1C-319699160ADB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -147,6 +153,7 @@ Global
 		{90E8A61B-915B-4894-A89B-65DF3087CD22} = {1E824CF4-B937-4C0D-B823-A1EAA05B8007}
 		{713999D4-5232-4A76-A1C4-916A5B1E0AAE} = {7ACDBD46-5E5F-48D4-9DDE-A07DB9CE178A}
 		{179D19C5-0BBA-4C07-9A56-79DBA454F04B} = {DDCAF0CA-24B5-4F2D-852B-1BEA79B39438}
+		{67C02946-B635-4C38-AF1C-319699160ADB} = {7ACDBD46-5E5F-48D4-9DDE-A07DB9CE178A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FC5D8408-B1C7-4D5A-A61D-2D0829D02BA4}
