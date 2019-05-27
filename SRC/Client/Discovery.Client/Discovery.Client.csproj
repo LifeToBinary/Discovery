@@ -201,6 +201,10 @@
       <Project>{A74E1265-5FD4-4FF7-BCEB-A4F2EFE32BF7}</Project>
       <Name>Discovery.Client.Recommended</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Modules\Discovery.Client.Search\Discovery.Client.Search.csproj">
+      <Project>{67c02946-b635-4c38-af1c-319699160adb}</Project>
+      <Name>Discovery.Client.Search</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Modules\Discovery.Client.SignIn\Discovery.Client.SignIn.csproj">
       <Project>{1484968b-bb5f-4e32-b8f7-3305c920735f}</Project>
       <Name>Discovery.Client.SignIn</Name>

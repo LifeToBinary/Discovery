@@ -8,6 +8,7 @@ namespace Discovery.Core.Constants
     {
         public const string SignIn = "SignIn";
         public const string SignUp = "SignUp";
+        public const string GetSearchContent = "GetSearchContent";
         public const string SignUpFirstStep = "SignUpFirstStep";
         public const string SignUpFinallyStep = "SignUpFinallyStep";
         public const string MainMenu = "MainMenu";

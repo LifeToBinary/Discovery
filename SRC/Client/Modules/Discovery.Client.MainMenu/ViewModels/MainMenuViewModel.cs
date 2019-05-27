@@ -26,6 +26,7 @@ namespace Discovery.Client.MainMenu.ViewModels
                 new DelegateCommand<string>(NavigationViewToMainRegion);
             AddNewPostCommand = new DelegateCommand(AddNewPost);
         }
+
         public DelegateCommand AddNewPostCommand { get; }
         private void AddNewPost()
             => _regionManager.RequestNavigate(RegionNames.MainMenuContent, ViewNames.NewPost);

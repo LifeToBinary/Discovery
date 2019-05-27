@@ -23,18 +23,14 @@
         </Grid.RowDefinitions>
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
                 <ColumnDefinition />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <Rectangle Grid.Column="0"
-                       Width="70"
-                       Fill="Gray" />
-            <Grid Grid.Column="1"
-                  HorizontalAlignment="Center"
-                  Width="400"
+            <Grid Grid.Column="0"
+                  HorizontalAlignment="Left"
                   TextBlock.FontSize="20">
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
                     <ColumnDefinition />
                     <ColumnDefinition />
                     <ColumnDefinition />
@@ -49,18 +45,21 @@
                         BorderThickness="0" />
                 <Button Grid.Column="1"
                         Content="设置"
+                        Width="100"
                         Command="{Binding NavigationToMainMenuContentRegionCommand}"
                         CommandParameter="{x:Static constants:ViewNames.Option}"
                         Background="Transparent"
                         BorderThickness="0" />
                 <Button Grid.Column="2"
                         Content="反馈"
+                        Width="100"
                         Command="{Binding NavigationToMainMenuContentRegionCommand}"
                         CommandParameter="{x:Static constants:ViewNames.Feedback}"
                         Background="Transparent"
                         BorderThickness="0" />
                 <Button Grid.Column="3"
                         Content="关于"
+                        Width="100"
                         Command="{Binding NavigationToMainMenuContentRegionCommand}"
                         CommandParameter="{x:Static constants:ViewNames.About}"
                         Background="Transparent"
@@ -68,8 +67,18 @@
                 <Button Grid.Column="4"
                         Content="+"
                         FontSize="50"
+                        Width="100"
+                        BorderThickness="0"
                         Background="Transparent"
                         Command="{Binding AddNewPostCommand}" />
+                <Button Grid.Column="5"
+                        Content="搜索"
+                        FontSize="20"
+                        Width="100"
+                        BorderThickness="0"
+                        Background="Transparent"
+                        Command="{Binding NavigationToMainMenuContentRegionCommand}" 
+                        CommandParameter="{x:Static core:ViewNames.GetSearchContent}"/>
                 <Popup PopupAnimation="Slide"
                        Width="200"
                        HorizontalOffset="-118"

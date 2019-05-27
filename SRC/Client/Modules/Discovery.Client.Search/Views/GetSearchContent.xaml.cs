@@ -17,7 +17,7 @@ namespace Discovery.Client.Search.Views
     /// <summary>
     /// GetSearchContent.xaml 的交互逻辑
     /// </summary>
-    public partial class GetSearchContent : Window
+    public partial class GetSearchContent : UserControl
     {
         public GetSearchContent()
         {

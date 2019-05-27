@@ -5,6 +5,7 @@ using Discovery.Client.MainMenu;
 using Discovery.Client.Option;
 using Discovery.Client.PostDetail;
 using Discovery.Client.Recommended;
+using Discovery.Client.Search;
 using Discovery.Client.SignIn;
 using Discovery.Client.Views;
 using Prism.Ioc;
@@ -34,6 +35,7 @@ namespace Discovery.Client
                             .AddModule<OptionModule>()
                             .AddModule<FeedbackModule>()
                             .AddModule<AboutModule>()
-                            .AddModule<PostDetailModule>();
+                            .AddModule<PostDetailModule>()
+                            .AddModule<SearchModule>();
     }
 }
