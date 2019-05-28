@@ -53,12 +53,11 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
             ViewPostDetailCommand = new DelegateCommand<Post>(ViewPostDetail);
             ViewMyPostDetailCommand = new DelegateCommand<Post>(ViewMyPostDetail);
             ViewThisUsersHomePageCommand = new DelegateCommand<Discoverer>(ViewThisUsersHomePage);
-            DeleteThisPostCommand = new DelegateCommand<Post>(DeleteThisPost);
             CancelFavoriteCommand = new DelegateCommand<Post>(CancelFavorite);
             CancelConcernThisUserCommand = new DelegateCommand<Discoverer>(CancelConcern);
             ConcernThisUserCommand = new DelegateCommand<Discoverer>(ConcernThisUser);
             NavigateToUpdateDiscovererInfoCommand = new DelegateCommand(NavigateToUpdateDiscovererInfo);
-            NavigateToUpdatePostInfoCommand = new DelegateCommand<Post>(NavigateToUpdatePostInfo);
+            
             LoadData();
         }
 
@@ -123,15 +122,6 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
                 {
                     { "Post", post }
                 });
-        public DelegateCommand<Post> NavigateToUpdatePostInfoCommand { get; }
-        private void NavigateToUpdatePostInfo(Post post)
-            => _regionManager.RequestNavigate(
-                RegionNames.MainMenuContent,
-                ViewNames.UpdatePostInfo,
-                new NavigationParameters
-                {
-                    { "Post", post}
-                });
         public DelegateCommand<Discoverer> ViewThisUsersHomePageCommand { get; }
         private void ViewThisUsersHomePage(Discoverer discoverer)
             => _regionManager.RequestNavigate(
@@ -151,16 +141,6 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
                 {
                     { "Post", post }
                 });
-
-        public DelegateCommand<Post> DeleteThisPostCommand { get; }
-        private void DeleteThisPost(Post post)
-        {
-            using (var databaseService = new DataBaseServiceClient())
-            {
-                databaseService.RemoveAPost(post.ID);
-            }
-            PostsIPost.Remove(post);
-        }
 
         public DelegateCommand<Post> CancelFavoriteCommand { get; }
         private void CancelFavorite(Post post)

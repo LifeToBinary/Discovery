@@ -38,9 +38,17 @@
                        Margin="5" />
             <TextBox  Grid.Row="0"
                       Grid.Column="1"
+                      InputMethod.IsInputMethodEnabled="False"
                       Text="{Binding SignInName}"
+                      ContextMenu="{x:Null}"
                       Width="200"
-                      Margin="5" />
+                      Margin="5">
+                <TextBox.InputBindings>
+                    <KeyBinding Command="{x:Static ApplicationCommands.NotACommand}"
+                                Key="V"
+                                Modifiers="Ctrl" />
+                </TextBox.InputBindings>
+            </TextBox>
             <TextBlock Grid.Row="1"
                        Grid.Column="0"
                        Text="密码: "

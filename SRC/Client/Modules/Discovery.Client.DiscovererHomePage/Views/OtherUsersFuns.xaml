@@ -31,8 +31,11 @@
                  HorizontalContentAlignment="Stretch">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Border BorderBrush="Black"
-                            BorderThickness="2">
+                    <Button BorderBrush="Black"
+                            BorderThickness="2"
+                            HorizontalContentAlignment="Stretch"
+                            Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorLevel=2, AncestorType={x:Type UserControl}}, Path=DataContext.ViewThisUsersHomePageCommand}"
+                            CommandParameter="{Binding Discoverer}">
                         <Grid>
                             <Grid>
                                 <Grid.RowDefinitions>
@@ -114,19 +117,14 @@
                                            Grid.Column="1"
                                            Text="{Binding Discoverer.ContactInfo.BlogAddress}" />
                             </Grid>
-                            <StackPanel HorizontalAlignment="Right"
-                                        VerticalAlignment="Top"
-                                        Margin="10">
-                                <Button Content="查看"
-                                        Margin="10"
-                                        Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorLevel=2, AncestorType={x:Type UserControl}}, Path=DataContext.ViewThisUsersHomePageCommand}"
-                                        CommandParameter="{Binding Discoverer}" />
-                                <Button Margin="10"
-                                        Style="{StaticResource ConcernOrCancelConcernButtonStyle}"
-                                        Command="{Binding ConcernOrCancelConcernCommand}" />
-                            </StackPanel>
+
+                            <Button Margin="10"
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Top"
+                                    Style="{StaticResource ConcernOrCancelConcernButtonStyle}"
+                                    Command="{Binding ConcernOrCancelConcernCommand}" />
                         </Grid>
-                    </Border>
+                    </Button>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>

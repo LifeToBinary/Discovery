@@ -5,19 +5,16 @@ using Discovery.Core.Model;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
 namespace Discovery.Client.SignIn.ViewModels
 {
-    public class SignInViewModel : BindableBase
+    public class SignInViewModel : BindableBase, IRegionMemberLifetime
     {
+        private IRegionManager _regionManager;
+        public bool KeepAlive => false;
+
         private string _signInName;
         public string SignInName
         {
@@ -25,7 +22,6 @@ namespace Discovery.Client.SignIn.ViewModels
             set => SetProperty(ref _signInName, value);
         }
 
-        private IRegionManager _regionManager;
 
         public SignInViewModel(IRegionManager regionManager)
         {
@@ -41,6 +37,7 @@ namespace Discovery.Client.SignIn.ViewModels
                 ViewNames.SignUp);
 
         public DelegateCommand<object> SignInCommand { get; }
+
         private void SignIn(object parameter)
         {
             using (var dataBaseService = new DataBaseServiceClient())
@@ -53,15 +50,13 @@ namespace Discovery.Client.SignIn.ViewModels
                 if (dataBaseService.SignIn(_signInName, (parameter as PasswordBox).Password) is Discoverer discoverer)
                 {
                     GlobalObjectHolder.CurrentUser = discoverer;
-                    NavigateToMainMenu();
+                    _regionManager.RequestNavigate(
+                        RegionNames.MainRegion,
+                        ViewNames.MainMenu);
                     return;
                 }
                 MessageBox.Show("密码不正确");
             }
         }
-        private void NavigateToMainMenu()
-            => _regionManager.RequestNavigate(
-                RegionNames.MainRegion,
-                ViewNames.MainMenu);
     }
 }

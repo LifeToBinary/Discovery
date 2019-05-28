@@ -77,8 +77,8 @@
                         Width="100"
                         BorderThickness="0"
                         Background="Transparent"
-                        Command="{Binding NavigationToMainMenuContentRegionCommand}" 
-                        CommandParameter="{x:Static core:ViewNames.GetSearchContent}"/>
+                        Command="{Binding NavigationToMainMenuContentRegionCommand}"
+                        CommandParameter="{x:Static core:ViewNames.GetSearchContent}" />
                 <Popup PopupAnimation="Slide"
                        Width="200"
                        HorizontalOffset="-118"

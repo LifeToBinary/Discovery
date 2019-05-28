@@ -1,4 +1,8 @@
-﻿using Discovery.Core.Model;
+﻿using Discovery.Client.PostDetail.DataBaseService;
+using Discovery.Core.Constants;
+using Discovery.Core.GlobalData;
+using Discovery.Core.Model;
+using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
 using System;
@@ -18,9 +22,35 @@ namespace Discovery.Client.PostDetail.ViewModels
             set => SetProperty(ref _currentPost, value);
         }
 
-        public MyPostDetailViewModel()
+        private readonly IRegionManager _regionManager;
+        public MyPostDetailViewModel(IRegionManager regionManager)
         {
+            _regionManager = regionManager;
+            UpdatePostCommand = new DelegateCommand(UpdatePost);
+            RemoveThisPostCommand = new DelegateCommand(RemoveThisPost);
         }
+
+        public DelegateCommand RemoveThisPostCommand { get; }
+        private void RemoveThisPost()
+        {
+            using (var databaseService = new DataBaseServiceClient())
+            {
+                databaseService.RemoveAPost(_currentPost.ID);
+            }
+            _regionManager.RequestNavigate(
+                RegionNames.MainMenuContent,
+                ViewNames.Recommended);
+        }
+        
+        public DelegateCommand UpdatePostCommand { get; }
+        private void UpdatePost()
+            => _regionManager.RequestNavigate(
+                RegionNames.MainMenuContent,
+                ViewNames.UpdatePostInfo,
+                new NavigationParameters
+                {
+                    { "Post", _currentPost}
+                });
 
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
