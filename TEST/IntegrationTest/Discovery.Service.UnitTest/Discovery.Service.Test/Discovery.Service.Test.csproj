@@ -67,12 +67,6 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\..\SRC\Client\Discovery.Service\Discovery.Service\Discovery.Service.csproj">
-      <Project>{7a8f89c2-4b4a-4072-b4a7-7b6b50f8250d}</Project>
-      <Name>Discovery.Service</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

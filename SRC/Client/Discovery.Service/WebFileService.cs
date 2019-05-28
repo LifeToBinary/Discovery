@@ -32,7 +32,7 @@ namespace Discovery.Service
             string ftpServiceAddress,
             string userName = "",
             string password = "")
-            : this(new Uri(CorrectionFtpServiceAddress(ftpServiceAddress)), 
+            : this(new Uri(CorrectionFtpServiceAddress(ftpServiceAddress)),
                    new NetworkCredential(userName, password))
         {
         }
@@ -332,13 +332,74 @@ namespace Discovery.Service
             }
             FtpWebRequest MakeNewFtpWebRequest()
             {
-                var newFtpWebRequest = 
+                var newFtpWebRequest =
                     WebRequest.Create(
                         new Uri(_ftpServiceAddress, originDirectoryPath)) as FtpWebRequest;
                 newFtpWebRequest.Credentials = _credentials;
                 newFtpWebRequest.Method = WebRequestMethods.Ftp.MakeDirectory;
                 newFtpWebRequest.UseBinary = true;
                 newFtpWebRequest.UsePassive = false;
+                return newFtpWebRequest;
+            }
+        }
+
+        public void CreateDirectoryIfNotExistWithRecurtion(string directoryPath)
+        {
+            if (!directoryPath.Contains("/"))
+            {
+                CreateDirectoryIfNotExist(directoryPath);
+                return;
+            }
+
+            CreateDirectoryIfNotExistWithRecurtion(directoryPath.Substring(0, directoryPath.LastIndexOf('/')));
+            CreateDirectoryIfNotExist(directoryPath);
+        }
+
+        private void CreateDirectoryIfNotExist(string directoryPath)
+        {
+            if (CheckDirectoryIsExists(directoryPath))
+            {
+                return;
+            }
+            MakeDirectory(directoryPath);
+        }
+
+        private bool CheckDirectoryIsExists(string directoryPath)
+        {
+            try
+            {
+                CheckDirectoryIsExistsCore(directoryPath);
+                return true;
+            }
+            catch (WebException ex)
+            {
+                var response = ex.Response as FtpWebResponse;
+                if (response.StatusCode == FtpStatusCode.ActionNotTakenFileUnavailable)
+                {
+                    response.Close();
+                    return true;
+                }
+                return false;
+            }
+        }
+        private void CheckDirectoryIsExistsCore(string directoryPath)
+        {
+            FtpWebRequest ftpWebRequest = MakeNewFtpWebRequest();
+            var response = ftpWebRequest.GetResponse() as FtpWebResponse;
+            Stream stream = response.GetResponseStream();
+            response.Close();
+            stream.Close();
+
+            FtpWebRequest MakeNewFtpWebRequest()
+            {
+                var newFtpWebRequest =
+                    WebRequest.Create(
+                        new Uri(_ftpServiceAddress, directoryPath)) as FtpWebRequest;
+                newFtpWebRequest.Credentials = _credentials;
+                newFtpWebRequest.Method = WebRequestMethods.Ftp.MakeDirectory;
+                newFtpWebRequest.UseBinary = true;
+                newFtpWebRequest.UsePassive = false;
+                newFtpWebRequest.KeepAlive = false;
                 return newFtpWebRequest;
             }
         }

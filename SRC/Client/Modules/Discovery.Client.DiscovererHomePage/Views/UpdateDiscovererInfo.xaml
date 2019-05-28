@@ -34,8 +34,8 @@
                    Margin="0, 20" />
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
                 <RowDefinition />
                 <RowDefinition />
                 <RowDefinition />
@@ -44,34 +44,43 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <Image Grid.Row="0"
-                   Grid.Column="0"
-                   Grid.ColumnSpan="2"
-                   HorizontalAlignment="Center"
-                   Width="80"
-                   Height="80"
-                   Margin="10"
-                   Source="{Binding CurrentUser.BasicInfo.AvatarPath}"/>
+            <Border Grid.Row="0"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Width="80"
+                    Height="80"
+                    Margin="10">
+                <Grid>
+                    <Image Grid.Row="0"
+                           Grid.Column="0"
+                           Grid.ColumnSpan="2"
+                           HorizontalAlignment="Center"
+                           Source="{Binding CurrentUser.BasicInfo.AvatarPath}" />
+                    <Button Content="修改头像"
+                            Command="{Binding UpdateAvatarCommand}"
+                            VerticalAlignment="Bottom" />
+                </Grid>
+            </Border>
             <TextBox Grid.Row="1"
                      Grid.Column="0"
                      Grid.ColumnSpan="2"
                      HorizontalAlignment="Center"
                      FontSize="30"
                      Padding="5"
-                     Text="{Binding CurrentUser.BasicInfo.SignInName}"/>
+                     Text="{Binding CurrentUser.BasicInfo.SignInName}" />
             <TextBlock Grid.Row="2"
                        Grid.Column="0"
-                       Text="性别: "/>
+                       Text="性别: " />
             <StackPanel Grid.Row="2"
                         Grid.Column="1"
                         Orientation="Horizontal">
-                <RadioButton Content="男" 
+                <RadioButton Content="男"
                              IsChecked="{Binding Path=CurrentUser.BasicInfo.Sex, 
                                                  Converter={StaticResource EnumToBoolean},
-                                                 ConverterParameter={x:Static core:Sex.Male}}"/>
+                                                 ConverterParameter={x:Static core:Sex.Male}}" />
                 <RadioButton Content="女"
                              IsChecked="{Binding Path=CurrentUser.BasicInfo.Sex, 
                                                  Converter={StaticResource EnumToBoolean},
@@ -87,38 +96,38 @@
             <ComboBox Grid.Row="3"
                       Grid.Column="1"
                       ItemsSource="{Binding Source={StaticResource fieldValues}}"
-                      SelectedItem="{Binding CurrentUser.BasicInfo.AreaOfInterest}"/>
+                      SelectedItem="{Binding CurrentUser.BasicInfo.AreaOfInterest}" />
             <TextBlock Grid.Row="4"
                        Grid.Column="0"
                        Text="邮箱: " />
             <TextBox Grid.Row="4"
                      Grid.Column="1"
-                     Text="{Binding CurrentUser.ContactInfo.Email}"/>
+                     Text="{Binding CurrentUser.ContactInfo.Email}" />
             <TextBlock Grid.Row="5"
-                       Grid.Column="0" 
-                       Text="QQ: "/>
+                       Grid.Column="0"
+                       Text="QQ: " />
             <TextBox Grid.Row="5"
                      Grid.Column="1"
-                     Text="{Binding CurrentUser.ContactInfo.QQ}"/>
+                     Text="{Binding CurrentUser.ContactInfo.QQ}" />
             <TextBlock Grid.Row="6"
                        Grid.Column="0"
                        Text="WeChat: " />
             <TextBox Grid.Row="6"
                      Grid.Column="1"
-                     Text="{Binding CurrentUser.ContactInfo.WeChat}"/>
+                     Text="{Binding CurrentUser.ContactInfo.WeChat}" />
             <TextBlock Grid.Row="7"
                        Grid.Column="0"
                        Text="博客: " />
             <TextBox Grid.Row="7"
                      Grid.Column="1"
-                     Text="{Binding CurrentUser.ContactInfo.BlogAddress}"/>
+                     Text="{Binding CurrentUser.ContactInfo.BlogAddress}" />
 
         </Grid>
         <Button Grid.Row="2"
                 Content="保存更改"
-                FontSize="20" 
+                FontSize="20"
                 Padding="0,10"
                 Margin="30"
-                Command="{Binding SaveUpdateCommand}"/>
+                Command="{Binding SaveUpdateCommand}" />
     </Grid>
 </UserControl>
