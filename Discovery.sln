@@ -53,6 +53,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Discovery.Client.Search", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Discovery.Service", "SRC\Client\Discovery.Service\Discovery.Service.csproj", "{3779029E-52F0-4587-AD22-EC329DF45076}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Discovery.Client.Resource", "SRC\Client\Discovery.Client.Resource\Discovery.Client.Resource.csproj", "{20C56C15-3408-4563-A02B-B8F746BA0F9D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -127,6 +129,10 @@ Global
 		{3779029E-52F0-4587-AD22-EC329DF45076}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3779029E-52F0-4587-AD22-EC329DF45076}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3779029E-52F0-4587-AD22-EC329DF45076}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20C56C15-3408-4563-A02B-B8F746BA0F9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20C56C15-3408-4563-A02B-B8F746BA0F9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20C56C15-3408-4563-A02B-B8F746BA0F9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20C56C15-3408-4563-A02B-B8F746BA0F9D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -154,6 +160,7 @@ Global
 		{179D19C5-0BBA-4C07-9A56-79DBA454F04B} = {DDCAF0CA-24B5-4F2D-852B-1BEA79B39438}
 		{67C02946-B635-4C38-AF1C-319699160ADB} = {7ACDBD46-5E5F-48D4-9DDE-A07DB9CE178A}
 		{3779029E-52F0-4587-AD22-EC329DF45076} = {DDCAF0CA-24B5-4F2D-852B-1BEA79B39438}
+		{20C56C15-3408-4563-A02B-B8F746BA0F9D} = {DDCAF0CA-24B5-4F2D-852B-1BEA79B39438}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FC5D8408-B1C7-4D5A-A61D-2D0829D02BA4}
