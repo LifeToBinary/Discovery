@@ -170,6 +170,10 @@
       <Project>{DBFD6E0A-1CBE-4FC7-B87C-BDD11AE41F89}</Project>
       <Name>Discovery.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Discovery.Service\Discovery.Service.csproj">
+      <Project>{3779029E-52F0-4587-AD22-EC329DF45076}</Project>
+      <Name>Discovery.Service</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />

@@ -13,7 +13,7 @@ namespace Discovery.Core.Model
         /// <summary>
         /// QQ 号
         /// </summary>
-        private string _qq;
+        private string _qq = String.Empty;
         public string QQ
         {
             get => _qq;
@@ -23,7 +23,7 @@ namespace Discovery.Core.Model
         /// <summary>
         /// 微信号
         /// </summary>
-        private string _weChat;
+        private string _weChat = String.Empty;
         public string WeChat
         {
             get => _weChat;
@@ -33,7 +33,7 @@ namespace Discovery.Core.Model
         /// <summary>
         /// 邮箱
         /// </summary>
-        private string _email;
+        private string _email = String.Empty;
         public string Email
         {
             get => _email;
@@ -43,7 +43,7 @@ namespace Discovery.Core.Model
         /// <summary>
         /// 博客地址
         /// </summary>
-        public string _blogAddress;
+        public string _blogAddress = String.Empty;
         public string BlogAddress
         {
             get => _blogAddress;

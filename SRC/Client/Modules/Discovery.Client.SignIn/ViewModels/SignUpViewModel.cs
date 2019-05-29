@@ -3,6 +3,7 @@ using Discovery.Client.SignIn.EmailService;
 using Discovery.Core.Constants;
 using Discovery.Core.Enums;
 using Discovery.Core.Tools;
+using Discovery.Service;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
@@ -104,9 +105,16 @@ namespace Discovery.Client.SignIn.ViewModels
             {
                 databaseService.SignUp(SignInName, _password, Email, AreaOfInterest);
             }
+            CreateDirectoryForThisUser();
             _regionManager.RequestNavigate(
                 RegionNames.MainRegion,
                 ViewNames.SignIn);
+        }
+        private void CreateDirectoryForThisUser()
+        {
+            string ftpImageFileBasePath = @"ftp://47.240.12.27/Discovery/DiscoveryWebFiles/Discoverer/Images/";
+            var webFileService = new WebFileService(ftpImageFileBasePath);
+            webFileService.CreateDirectoryIfNotExistWithRecurtion($"{SignInName}/Post");
         }
         public DelegateCommand BackToSignInCommand { get; }
         private void BackToSignIn()

@@ -16,7 +16,8 @@
                     <Button BorderBrush="Black"
                             BorderThickness="2"
                             HorizontalContentAlignment="Stretch"
-                            Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorLevel=2, AncestorType={x:Type UserControl}}, Path=DataContext.ViewMyPostDetailCommand}">
+                            Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorLevel=2, AncestorType={x:Type UserControl}}, Path=DataContext.ViewMyPostDetailCommand}"
+                            CommandParameter="{Binding}">
                         <Grid>
                             <Grid>
                                 <Grid.RowDefinitions>

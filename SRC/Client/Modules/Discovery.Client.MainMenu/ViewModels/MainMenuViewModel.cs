@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Discovery.Client.MainMenu.ViewModels
 {
-    public class MainMenuViewModel : BindableBase
+    public class MainMenuViewModel : BindableBase, IRegionMemberLifetime
     {
         public Discoverer CurrentUser { get; }
         private readonly IRegionManager _regionManager;
@@ -35,6 +35,8 @@ namespace Discovery.Client.MainMenu.ViewModels
             => _regionManager.RequestNavigate(RegionNames.MainMenuContent, viewName);
 
         public DelegateCommand<string> NavigationViewToMainRegionCommand { get; }
+        public bool KeepAlive => false;
+
         private void NavigationViewToMainRegion(string viewName)
             => _regionManager.RequestNavigate(RegionNames.MainRegion, viewName);
     }

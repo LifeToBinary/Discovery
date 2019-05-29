@@ -579,10 +579,10 @@ namespace Discovery.Server.RemoteService
                     },
                     ContactInfo = new ContactInfo
                     {
-                        Email = reader.IsDBNull(8) ? null : reader.GetString(8),
-                        QQ = reader.IsDBNull(9) ? null : reader.GetString(9),
-                        WeChat = reader.IsDBNull(10) ? null : reader.GetString(10),
-                        BlogAddress = reader.IsDBNull(11) ? null : reader.GetString(11)
+                        Email = reader.IsDBNull(8) ? String.Empty : reader.GetString(8),
+                        QQ = reader.IsDBNull(9) ? String.Empty : reader.GetString(9),
+                        WeChat = reader.IsDBNull(10) ? String.Empty : reader.GetString(10),
+                        BlogAddress = reader.IsDBNull(11) ? String.Empty : reader.GetString(11)
                     }
                 };
             }

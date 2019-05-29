@@ -28,10 +28,10 @@ namespace Discovery.Client.DataBaseService {
         System.Threading.Tasks.Task<Discovery.Core.Model.Discoverer> SignInAsync(string signInName, string password);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataBaseService/SignUp", ReplyAction="http://tempuri.org/IDataBaseService/SignUpResponse")]
-        void SignUp(string signInName, string password, Discovery.Core.Enums.Sex sex, Discovery.Core.Enums.Field areaOfInterest, System.DateTime signUpTime);
+        void SignUp(string signInName, string password, string email, Discovery.Core.Enums.Field areaOfInterest);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataBaseService/SignUp", ReplyAction="http://tempuri.org/IDataBaseService/SignUpResponse")]
-        System.Threading.Tasks.Task SignUpAsync(string signInName, string password, Discovery.Core.Enums.Sex sex, Discovery.Core.Enums.Field areaOfInterest, System.DateTime signUpTime);
+        System.Threading.Tasks.Task SignUpAsync(string signInName, string password, string email, Discovery.Core.Enums.Field areaOfInterest);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataBaseService/GetDiscovererByID", ReplyAction="http://tempuri.org/IDataBaseService/GetDiscovererByIDResponse")]
         Discovery.Core.Model.Discoverer GetDiscovererByID(int discovererID);
@@ -251,12 +251,12 @@ namespace Discovery.Client.DataBaseService {
             return base.Channel.SignInAsync(signInName, password);
         }
         
-        public void SignUp(string signInName, string password, Discovery.Core.Enums.Sex sex, Discovery.Core.Enums.Field areaOfInterest, System.DateTime signUpTime) {
-            base.Channel.SignUp(signInName, password, sex, areaOfInterest, signUpTime);
+        public void SignUp(string signInName, string password, string email, Discovery.Core.Enums.Field areaOfInterest) {
+            base.Channel.SignUp(signInName, password, email, areaOfInterest);
         }
         
-        public System.Threading.Tasks.Task SignUpAsync(string signInName, string password, Discovery.Core.Enums.Sex sex, Discovery.Core.Enums.Field areaOfInterest, System.DateTime signUpTime) {
-            return base.Channel.SignUpAsync(signInName, password, sex, areaOfInterest, signUpTime);
+        public System.Threading.Tasks.Task SignUpAsync(string signInName, string password, string email, Discovery.Core.Enums.Field areaOfInterest) {
+            return base.Channel.SignUpAsync(signInName, password, email, areaOfInterest);
         }
         
         public Discovery.Core.Model.Discoverer GetDiscovererByID(int discovererID) {

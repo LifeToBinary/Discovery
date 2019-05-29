@@ -57,6 +57,7 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
             string userBasePath = $"{ftpImageFileBasePath}{CurrentUser.BasicInfo.SignInName}";
             string userAvatarPath = $"{userBasePath}/Avatar.jpg";
             var webFileService = new WebFileService(ftpImageFileBasePath);
+            webFileService.CreateDirectoryIfNotExistWithRecurtion($"{CurrentUser.BasicInfo.SignInName}/Post");
             webFileService.Upload(
                 _localAvatarPathWillToUpload,
                 userAvatarPath);
