@@ -169,6 +169,10 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Discovery.Client.Resource\Discovery.Client.Resource.csproj">
+      <Project>{20c56c15-3408-4563-a02b-b8f746ba0f9d}</Project>
+      <Name>Discovery.Client.Resource</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Discovery.Core.UI\Discovery.Core.UI.csproj">
       <Project>{597de2c5-7801-484a-a9b0-8112da78c076}</Project>
       <Name>Discovery.Core.UI</Name>

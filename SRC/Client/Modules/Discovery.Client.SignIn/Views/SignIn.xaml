@@ -62,6 +62,13 @@
                 Content="登录"
                 FontSize="30"
                 Margin="30"
+                BorderBrush="#B23D3939"
+                Foreground="White"
+                Padding="50, 5"
+                HorizontalAlignment="Right"
+                BorderThickness="3"
+                Background="#FF2465F7"
+                Style="{DynamicResource SignInButtonStyle}"
                 Command="{Binding SignInCommand}"
                 CommandParameter="{Binding ElementName=passwordBox}"/>
     </Grid>
