@@ -33,7 +33,7 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
         public DelegateCommand SaveUpdateCommand { get; }
         private void SaveUpdate()
         {
-            CurrentUser.BasicInfo.AvatarPath = UploadAvatar();
+            CurrentUser.BasicInfo.AvatarPath = $"{UploadAvatar()}?{Guid.NewGuid()}";
             using (var databaseService = new DataBaseServiceClient())
             {
                 databaseService.UpdateDiscovererInfo(CurrentUser);
