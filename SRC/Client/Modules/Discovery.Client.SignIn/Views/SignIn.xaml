@@ -43,7 +43,11 @@
                        HorizontalAlignment="Right"
                        Margin="5"
                        FontSize="15">
-                <Hyperlink Command="{Binding NavigateToSignUpCommand}">还没有账号? 现在创建一个</Hyperlink>
+                没有账户?
+                <Hyperlink Command="{Binding NavigateToSignUpCommand}"
+                           Style="{DynamicResource HyperlinkStyle}">
+                    创建一个!
+                </Hyperlink>
             </TextBlock>
         </Grid>
         <Button Grid.Row="2"
