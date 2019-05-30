@@ -29,28 +29,16 @@
                 <RowDefinition />
                 <RowDefinition />
             </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-            <TextBlock Grid.Row="0"
-                       Grid.Column="0"
-                       Text="用户名" 
-                       Margin="10"/>
             <TextBox Grid.Row="0"
-                     Grid.Column="1" 
+                     Grid.Column="1"
                      Width="200"
                      Margin="10"
-                     Text="{Binding SignInName}"/>
-            <TextBlock Grid.Row="1"
-                       Grid.Column="0"
-                       Text="密码"
-                       Margin="10"/>
+                     Tag="用户名"
+                     Padding="5"
+                     Style="{DynamicResource TextBoxStyle}" />
             <PasswordBox x:Name="passwordBox" Grid.Row="1"
-                         Grid.Column="1" 
                          Margin="10"/>
             <TextBlock Grid.Row="2"
-                       Grid.Column="0"
                        Grid.ColumnSpan="2"
                        HorizontalAlignment="Right"
                        Margin="5"
@@ -60,7 +48,7 @@
         </Grid>
         <Button Grid.Row="2"
                 Content="登录"
-                FontSize="30"
+                FontSize="25"
                 Margin="30"
                 BorderBrush="#B23D3939"
                 Foreground="White"
