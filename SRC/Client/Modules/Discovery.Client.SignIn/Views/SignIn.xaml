@@ -5,8 +5,10 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:Discovery.Client.SignIn.Views"
              xmlns:prism="http://prismlibrary.com/"
+             xmlns:coreui="clr-namespace:Discovery.Core.UI.AttachedProperties;assembly=Discovery.Core.UI"
              prism:ViewModelLocator.AutoWireViewModel="True"
              mc:Ignorable="d"
+             Background="#FFEDF1F7"
              d:DesignHeight="450"
              d:DesignWidth="800">
     <UserControl.Resources>
@@ -61,11 +63,11 @@
                     FontSize="25"
                     Margin="10, 20"
                     Padding="5"
-                    BorderBrush="#B23D3939"
+                    BorderBrush="#FF163D94"
                     Foreground="White"
                     BorderThickness="3"
-                    Background="#FF2465F7"
-                    Style="{DynamicResource SignInButtonStyle}"
+                    Style="{DynamicResource DefaultButtonStyle}"
+                    coreui:ButtonBrush.ButtonPressBackground="#FF163D94"
                     Command="{Binding SignInCommand}"
                     CommandParameter="{Binding ElementName=passwordBox}" />
         </StackPanel>

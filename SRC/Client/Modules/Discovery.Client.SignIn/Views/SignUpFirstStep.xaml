@@ -4,95 +4,106 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:Discovery.Client.SignIn.Views"
+             xmlns:coreui="clr-namespace:Discovery.Core.UI.AttachedProperties;assembly=Discovery.Core.UI"
              mc:Ignorable="d"
+             Background="#FFEDF1F7"
              DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext}"
              d:DesignHeight="450"
              d:DesignWidth="800">
+    <UserControl.Resources>
+        <BitmapImage x:Key="SignUpBackground"
+                     UriSource="pack://application:,,,/Discovery.Client.Resource;component/Images/SignUpBackground.jpg" />
+    </UserControl.Resources>
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-        <TextBlock Text="新用户注册"
-                   FontSize="50"
-                   HorizontalAlignment="Center"
-                   Margin="0, 20" />
-        <Grid Grid.Row="1"
-              TextBlock.FontSize="20"
-              HorizontalAlignment="Center"
-              VerticalAlignment="Center">
-            <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-            <TextBlock Grid.Row="0"
-                       Grid.Column="0"
-                       Text="用户名: "
-                       Margin="5" />
-            <TextBox  Grid.Row="0"
-                      Grid.Column="1"
-                      InputMethod.IsInputMethodEnabled="False"
-                      Text="{Binding SignInName}"
-                      ContextMenu="{x:Null}"
-                      Width="200"
-                      Margin="5">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="4*" />
+            <ColumnDefinition Width="3*" />
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0"
+                    Margin="20"
+                    VerticalAlignment="Center">
+            <TextBlock FontSize="30"
+                       Text="注册账户"
+                       Margin="10, 20, 0, 0"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left" />
+            <TextBlock FontSize="15"
+                       Margin="10, 5, 0, 10">
+                已经有了一个账户?
+                <Hyperlink Style="{DynamicResource HyperlinkStyle}" 
+                           Command="{Binding BackToSignInCommand}">
+                    现在去登录
+                </Hyperlink>
+            </TextBlock>
+            <TextBox InputMethod.IsInputMethodEnabled="False"
+                     Text="{Binding SignInName}"
+                     Style="{DynamicResource TextBoxStyle}"
+                     Tag=" 用户名"
+                     Padding="5"
+                     FontSize="20"
+                     ContextMenu="{x:Null}"
+                     Margin="10">
                 <TextBox.InputBindings>
                     <KeyBinding Command="{x:Static ApplicationCommands.NotACommand}"
                                 Key="V"
                                 Modifiers="Ctrl" />
                 </TextBox.InputBindings>
             </TextBox>
-            <TextBlock Grid.Row="1"
-                       Grid.Column="0"
-                       Text="密码: "
-                       Margin="5" />
             <PasswordBox x:Name="passwordBox"
-                         Grid.Row="1"
-                         Grid.Column="1"
-                         Margin="5" />
-            <TextBlock Grid.Row="2"
-                       Grid.Column="0"
-                       Text="邮箱: "
-                       Margin="5"/>
-            <TextBox Grid.Row="2"
-                     Grid.Column="1"
-                     Text="{Binding Email}"
-                     Margin="5" />
-            
+                         Margin="10"
+                         Tag=" 密码"
+                         Padding="5"
+                         FontSize="20"
+                         Style="{DynamicResource PasswordBoxStyle}" />
+            <TextBox Text="{Binding Email}"
+                     Tag=" 邮箱地址"
+                     Padding="5"
+                     FontSize="20"
+                     Margin="10" 
+                     Style="{DynamicResource TextBoxStyle}"/>
             <DockPanel Grid.Row="3"
                        Grid.Column="0"
                        Grid.ColumnSpan="2"
                        LastChildFill="True">
                 <Button Content="获取验证码"
-                        Margin="5"
                         DockPanel.Dock="Right"
-                        Command="{Binding SendAuthenticationCodeCommand}"/>
-                <TextBox DockPanel.Dock="Left" 
-                         Margin="5"
+                        Style="{DynamicResource SecondaryButtonStyle}"
+                        Padding="20, 5"
+                        Margin="10"
+                        FontSize="14"
+                        BorderBrush="Gray"
+                        BorderThickness="3"
+                        coreui:ButtonBrush.ButtonPressBackground="Gray"
+                        Command="{Binding SendAuthenticationCodeCommand}" />
+                <TextBox DockPanel.Dock="Left"
+                         Margin="10"
+                         FontSize="20"
+                         Padding="5"
+                         Tag=" 邮箱验证码"
+                         Style="{DynamicResource TextBoxStyle}"
                          Text="{Binding InputedCode}" />
             </DockPanel>
-        </Grid>
-        <StackPanel Grid.Row="2"
-                    Margin="10"
-                    TextBlock.FontSize="25"
-                    HorizontalAlignment="Right"
-                    Orientation="Horizontal">
-            <Button Content="回到登录界面"
-                    Margin="10"
-                    Padding="30, 5"
-                    Command="{Binding BackToSignInCommand}"/>
+
             <Button Content="下一步"
-                Padding="30,5"
-                Margin="10"
-                Command="{Binding NaviagateToSignUpFinallyStepCommand}"
-                CommandParameter="{Binding ElementName=passwordBox}" />
+                    Padding="30,5"
+                    Margin="10, 20"
+                    FontSize="25"
+                    BorderBrush="#FF163D94"
+                    Foreground="White"
+                    BorderThickness="3"
+                    coreui:ButtonBrush.ButtonPressBackground="#FF163D94"
+                    Style="{DynamicResource DefaultButtonStyle}"
+                    Command="{Binding NaviagateToSignUpFinallyStepCommand}"
+                    CommandParameter="{Binding ElementName=passwordBox}" />
         </StackPanel>
+        <Grid Grid.Column="1">
+            <Image Source="{StaticResource SignUpBackground}"
+                   Stretch="UniformToFill"/>
+            <TextBlock Text="你好, 我的朋友！"
+                       FontSize="40"
+                       HorizontalAlignment="Center"
+                       Margin="0,100,0,0"
+                       Foreground="White" />
+        </Grid>
     </Grid>
 </UserControl>
