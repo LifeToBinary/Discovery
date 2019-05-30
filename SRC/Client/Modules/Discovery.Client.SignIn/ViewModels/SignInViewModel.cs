@@ -5,6 +5,7 @@ using Discovery.Core.Model;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -15,7 +16,7 @@ namespace Discovery.Client.SignIn.ViewModels
         private IRegionManager _regionManager;
         public bool KeepAlive => false;
 
-        private string _signInName;
+        private string _signInName = String.Empty;
         public string SignInName
         {
             get => _signInName;

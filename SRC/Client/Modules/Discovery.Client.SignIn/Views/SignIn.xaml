@@ -9,62 +9,65 @@
              mc:Ignorable="d"
              d:DesignHeight="450"
              d:DesignWidth="800">
+    <UserControl.Resources>
+        <BitmapImage x:Key="SignInBackground"
+                     UriSource="pack://application:,,,/Discovery.Client.Resource;component/Images/SignInBackground.jpg" />
+    </UserControl.Resources>
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0"
-                   FontSize="50"
-                   Text="登录"
-                   HorizontalAlignment="Center"
-                   Margin="0,20,0,0" />
-        <Grid Grid.Row="1"
-              HorizontalAlignment="Center"
-              VerticalAlignment="Center"
-              TextBlock.FontSize="20">
-            <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-            </Grid.RowDefinitions>
-            <TextBox Grid.Row="0"
-                     Grid.Column="1"
-                     Width="200"
-                     Margin="10"
-                     Tag="用户名"
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="4*" />
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+            <Image Grid.Column="0"
+                   Stretch="UniformToFill"
+                   Source="{StaticResource SignInBackground}" />
+                <TextBlock Text="欢迎回来！"
+                           FontSize="40"
+                           HorizontalAlignment="Center"
+                           Margin="0,100,0,0"
+                           Foreground="White"/>
+        </Grid>
+        <StackPanel Grid.Column="1"
+                    VerticalAlignment="Center"
+                    Margin="20">
+            <TextBlock FontSize="30"
+                       Text="请先登录"
+                       Margin="10, 20"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left" />
+            <TextBox Margin="10"
+                     Tag=" 用户名"
                      Padding="5"
+                     FontSize="20"
+                     Text="{Binding SignInName}"
                      Style="{DynamicResource TextBoxStyle}" />
             <PasswordBox x:Name="passwordBox"
-                         Grid.Row="1"
-                         Margin="10" 
-                         Tag="密码"
-                         Style="{DynamicResource PasswordBoxStyle}"/>
-            <TextBlock Grid.Row="2"
-                       Grid.ColumnSpan="2"
-                       HorizontalAlignment="Right"
-                       Margin="5"
+                         Margin="10"
+                         Tag=" 密码"
+                         Padding="5"
+                         FontSize="20"
+                         Style="{DynamicResource PasswordBoxStyle}" />
+            <TextBlock HorizontalAlignment="Right"
+                       Margin="0,0,10,10"
                        FontSize="15">
-                没有账户?
-                <Hyperlink Command="{Binding NavigateToSignUpCommand}"
-                           Style="{DynamicResource HyperlinkStyle}">
-                    创建一个!
-                </Hyperlink>
+                    没有账户?
+                    <Hyperlink Command="{Binding NavigateToSignUpCommand}"
+                               Style="{DynamicResource HyperlinkStyle}">
+                        创建一个!
+                    </Hyperlink>
             </TextBlock>
-        </Grid>
-        <Button Grid.Row="2"
-                Content="登录"
-                FontSize="25"
-                Margin="30"
-                BorderBrush="#B23D3939"
-                Foreground="White"
-                Padding="50, 5"
-                HorizontalAlignment="Right"
-                BorderThickness="3"
-                Background="#FF2465F7"
-                Style="{DynamicResource SignInButtonStyle}"
-                Command="{Binding SignInCommand}"
-                CommandParameter="{Binding ElementName=passwordBox}" />
+            <Button Content="登录"
+                    FontSize="25"
+                    Margin="10, 20"
+                    Padding="5"
+                    BorderBrush="#B23D3939"
+                    Foreground="White"
+                    BorderThickness="3"
+                    Background="#FF2465F7"
+                    Style="{DynamicResource SignInButtonStyle}"
+                    Command="{Binding SignInCommand}"
+                    CommandParameter="{Binding ElementName=passwordBox}" />
+        </StackPanel>
     </Grid>
 </UserControl>
