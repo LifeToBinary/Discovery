@@ -11,9 +11,9 @@
              d:DesignWidth="800">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0"
                    FontSize="50"
@@ -36,8 +36,11 @@
                      Tag="用户名"
                      Padding="5"
                      Style="{DynamicResource TextBoxStyle}" />
-            <PasswordBox x:Name="passwordBox" Grid.Row="1"
-                         Margin="10"/>
+            <PasswordBox x:Name="passwordBox"
+                         Grid.Row="1"
+                         Margin="10" 
+                         Tag="密码"
+                         Style="{DynamicResource PasswordBoxStyle}"/>
             <TextBlock Grid.Row="2"
                        Grid.ColumnSpan="2"
                        HorizontalAlignment="Right"
@@ -62,6 +65,6 @@
                 Background="#FF2465F7"
                 Style="{DynamicResource SignInButtonStyle}"
                 Command="{Binding SignInCommand}"
-                CommandParameter="{Binding ElementName=passwordBox}"/>
+                CommandParameter="{Binding ElementName=passwordBox}" />
     </Grid>
 </UserControl>
