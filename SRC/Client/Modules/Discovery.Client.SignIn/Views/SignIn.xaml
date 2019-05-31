@@ -17,22 +17,22 @@
     </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="3*" />
-            <ColumnDefinition Width="4*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="0">
             <Image Grid.Column="0"
                    Stretch="UniformToFill"
                    Source="{StaticResource SignInBackground}" />
-                <TextBlock Text="欢迎回来！"
-                           FontSize="40"
+                <TextBlock Text="欢迎回来 ;)"
+                           FontSize="50"
                            HorizontalAlignment="Center"
                            Margin="0,100,0,0"
                            Foreground="White"/>
         </Grid>
         <StackPanel Grid.Column="1"
                     VerticalAlignment="Center"
-                    Margin="20">
+                    Margin="70">
             <TextBlock FontSize="30"
                        Text="请先登录"
                        Margin="10, 20"

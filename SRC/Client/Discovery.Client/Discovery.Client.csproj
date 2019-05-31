@@ -177,6 +177,10 @@
       <Project>{597de2c5-7801-484a-a9b0-8112da78c076}</Project>
       <Name>Discovery.Core.UI</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Discovery.Element\Discovery.Element.csproj">
+      <Project>{20fdf40f-b7e7-4bfc-a2fd-136634285b08}</Project>
+      <Name>Discovery.Element</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Modules\Discovery.Client.About\Discovery.Client.About.csproj">
       <Project>{76182046-0ADA-4496-85EB-BC6F8C8E6AFF}</Project>
       <Name>Discovery.Client.About</Name>

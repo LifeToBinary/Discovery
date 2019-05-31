@@ -20,7 +20,7 @@
             <ColumnDefinition Width="3*" />
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Column="0"
-                    Margin="20"
+                    Margin="70"
                     VerticalAlignment="Center">
             <TextBlock FontSize="30"
                        Text="注册账户"
@@ -99,7 +99,7 @@
         <Grid Grid.Column="1">
             <Image Source="{StaticResource SignUpBackground}"
                    Stretch="UniformToFill"/>
-            <TextBlock Text="你好, 我的朋友！"
+            <TextBlock Text="你好, 新朋友 ;)"
                        FontSize="40"
                        HorizontalAlignment="Center"
                        Margin="0,100,0,0"

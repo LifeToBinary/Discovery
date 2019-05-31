@@ -8,8 +8,9 @@
         xmlns:core="clr-namespace:Discovery.Core.Constants;assembly=Discovery.Core"
         mc:Ignorable="d"
         prism:ViewModelLocator.AutoWireViewModel="True"
-        Title="MainWindow"
-        Height="450"
-        Width="800">
+        Title="Discovery"
+        Height="700"
+        Width="1000"
+        WindowStartupLocation="CenterScreen">
     <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.MainRegion}" />
 </Window>

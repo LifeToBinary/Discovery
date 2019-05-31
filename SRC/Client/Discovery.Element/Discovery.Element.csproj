@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{20C56C15-3408-4563-A02B-B8F746BA0F9D}</ProjectGuid>
+    <ProjectGuid>{20FDF40F-B7E7-4BFC-A2FD-136634285B08}</ProjectGuid>
     <OutputType>library</OutputType>
-    <RootNamespace>Discovery.Client.Resource</RootNamespace>
-    <AssemblyName>Discovery.Client.Resource</AssemblyName>
+    <RootNamespace>Discovery.Element</RootNamespace>
+    <AssemblyName>Discovery.Element</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -48,6 +48,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Decorators\IlluminationDecorator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -69,51 +70,6 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Page Include="Themes\DefaultTheme.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Themes\Default\Button.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Themes\Default\Hyperlink.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Themes\Default\PasswordBox.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Themes\Default\RadioButton.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Themes\Default\TextBox.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Discovery.Core.UI\Discovery.Core.UI.csproj">
-      <Project>{597de2c5-7801-484a-a9b0-8112da78c076}</Project>
-      <Name>Discovery.Core.UI</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Discovery.Element\Discovery.Element.csproj">
-      <Project>{20fdf40f-b7e7-4bfc-a2fd-136634285b08}</Project>
-      <Name>Discovery.Element</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\SignInBackground.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\SignUpBackground.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\UserDefaultAvatar.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

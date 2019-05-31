@@ -2,22 +2,22 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:coreui="clr-namespace:Discovery.Core.UI.AttachedProperties;assembly=Discovery.Core.UI"
                     xmlns:local="clr-namespace:Discovery.Client.Resource.Themes.Default">
-    <ControlTemplate x:Key="NormalButtonTemplate" 
+    <ControlTemplate x:Key="NormalButtonTemplate"
                      TargetType="{x:Type Button}">
         <Grid x:Name="grid"
               RenderTransformOrigin="0.5, 0.5"
               Background="{TemplateBinding Background}"
               SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
-            <Border x:Name="border"
-                    Visibility="Hidden"
-                    BorderBrush="{TemplateBinding BorderBrush}"
-                    BorderThickness="{TemplateBinding BorderThickness}" />
             <ContentPresenter Focusable="False"
                               HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                               Margin="{TemplateBinding Padding}"
                               RecognizesAccessKey="True"
                               SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
                               VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+            <Border x:Name="border"
+                    Visibility="Hidden"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}" />
         </Grid>
         <ControlTemplate.Triggers>
             <Trigger Property="IsMouseOver"
@@ -40,6 +40,38 @@
             </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
+    <ControlTemplate x:Key="RoundButtonTemplate"
+                     TargetType="{x:Type Button}">
+        <Border x:Name="border"
+                RenderTransformOrigin="0.5, 0.5"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}"
+                CornerRadius="100">
+            <ContentPresenter Focusable="False"
+                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                              Margin="{TemplateBinding Padding}"
+                              RecognizesAccessKey="True"
+                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+        </Border>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver"
+                     Value="False">
+                <Setter Property="BorderBrush"
+                        Value="Transparent" />
+            </Trigger>
+            <Trigger Property="IsPressed"
+                     Value="True">
+                <Setter TargetName="border"
+                        Property="RenderTransform">
+                    <Setter.Value>
+                        <ScaleTransform ScaleX="0.985"
+                                        ScaleY="0.985"/>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
     <Style x:Key="DefaultButtonStyle"
            TargetType="{x:Type Button}">
         <Setter Property="Background"
@@ -53,5 +85,22 @@
                 Value="White" />
         <Setter Property="Template"
                 Value="{StaticResource NormalButtonTemplate}" />
+    </Style>
+    <Style x:Key="RoundButtonStyle"
+           TargetType="{x:Type Button}">
+        <Setter Property="Template"
+                Value="{StaticResource RoundButtonTemplate}" />
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver"
+                     Value="True">
+                <Setter Property="Effect">
+                    <Setter.Value>
+                        <DropShadowEffect BlurRadius="10"
+                                          Color="Gray"
+                                          ShadowDepth="0"/>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
     </Style>
 </ResourceDictionary>
