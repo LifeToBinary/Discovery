@@ -6,6 +6,7 @@ using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
 using System;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -15,14 +16,24 @@ namespace Discovery.Client.SignIn.ViewModels
     {
         private IRegionManager _regionManager;
         public bool KeepAlive => false;
-
+        private bool _isSigningIn = false;
+        public bool IsSigningIn
+        {
+            get => _isSigningIn;
+            set => SetProperty(ref _isSigningIn, value);
+        }
         private string _signInName = String.Empty;
         public string SignInName
         {
             get => _signInName;
             set => SetProperty(ref _signInName, value);
         }
-
+        private bool _signFailed;
+        public bool SignFailed
+        {
+            get => _signFailed;
+            set => SetProperty(ref _signFailed, value);
+        }
 
         public SignInViewModel(IRegionManager regionManager)
         {
@@ -39,16 +50,23 @@ namespace Discovery.Client.SignIn.ViewModels
 
         public DelegateCommand<object> SignInCommand { get; }
 
-        private void SignIn(object parameter)
+        private async void SignIn(object parameter)
         {
+            if (_isSigningIn)
+            {
+                return;
+            }
+            IsSigningIn = true;
             using (var dataBaseService = new DataBaseServiceClient())
             {
-                if (!dataBaseService.DiscovererIsExists(_signInName))
+                if (!await dataBaseService.DiscovererIsExistsAsync(_signInName))
                 {
-                    MessageBox.Show("用户名不存在");
+                    TemporarilyChangeSignFailedPropertyValue();
+                    IsSigningIn = false;
                     return;
                 }
-                if (dataBaseService.SignIn(_signInName, (parameter as PasswordBox).Password) is Discoverer discoverer)
+                if (await dataBaseService.SignInAsync(_signInName, (parameter as PasswordBox).Password) 
+                                          is Discoverer discoverer)
                 {
                     GlobalObjectHolder.CurrentUser = discoverer;
                     _regionManager.RequestNavigate(
@@ -56,8 +74,15 @@ namespace Discovery.Client.SignIn.ViewModels
                         ViewNames.MainMenu);
                     return;
                 }
-                MessageBox.Show("密码不正确");
+                TemporarilyChangeSignFailedPropertyValue();
+                IsSigningIn = false;
             }
+        }
+        private async void TemporarilyChangeSignFailedPropertyValue()
+        {
+            SignFailed = true;
+            await Task.Delay(TimeSpan.FromSeconds(1));
+            SignFailed = false;
         }
     }
 }

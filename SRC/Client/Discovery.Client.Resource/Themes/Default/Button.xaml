@@ -129,4 +129,17 @@
             </Trigger>
         </Style.Triggers>
     </Style>
+    <Style x:Key="SignInButtonStyle"
+           TargetType="{x:Type Button}"
+           BasedOn="{StaticResource DefaultButtonStyle}">
+        <Setter Property="Content"
+                Value="登录" />
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding IsSigningIn}"
+                         Value="True">
+                <Setter Property="Content"
+                        Value="正在登录..." />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
 </ResourceDictionary>

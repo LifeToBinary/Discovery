@@ -14,6 +14,42 @@
     <UserControl.Resources>
         <BitmapImage x:Key="SignInBackground"
                      UriSource="pack://application:,,,/Discovery.Client.Resource;component/Images/SignInBackground.jpg" />
+        <Style x:Key="borderStyle"
+               TargetType="{x:Type Border}">
+            <Setter Property="Opacity"
+                    Value="0" />
+            <Setter Property="Margin"
+                    Value="0, 20, 0, 0" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding SignFailed}"
+                             Value="True">
+                    <DataTrigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                                 Duration="0:0:.5"
+                                                 To="1" />
+                                <ThicknessAnimation Storyboard.TargetProperty="Margin"
+                                                    Duration="0:0:.5"
+                                                    To="0" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </DataTrigger.EnterActions>
+                    <DataTrigger.ExitActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                                 Duration="0:0:.5"
+                                                 To="0" />
+                                <ThicknessAnimation Storyboard.TargetProperty="Margin"
+                                                    Duration="0:0:.5"
+                                                    To="0, 20, 0, 0" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </DataTrigger.ExitActions>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
     </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -24,53 +60,62 @@
             <Image Grid.Column="0"
                    Stretch="UniformToFill"
                    Source="{StaticResource SignInBackground}" />
-                <TextBlock Text="欢迎回来 ;)"
-                           FontSize="50"
-                           HorizontalAlignment="Center"
-                           Margin="0,100,0,0"
-                           Foreground="White"/>
+            <TextBlock Text="欢迎回来 ;)"
+                       FontSize="50"
+                       HorizontalAlignment="Center"
+                       Margin="0,100,0,0"
+                       Foreground="White" />
         </Grid>
-        <StackPanel Grid.Column="1"
-                    VerticalAlignment="Center"
-                    Margin="70">
-            <TextBlock FontSize="40"
-                       Text="请先登录"
-                       Margin="10, 30"
-                       VerticalAlignment="Center"
-                       HorizontalAlignment="Left" />
-            <TextBox Margin="10"
-                     Tag=" 用户名"
-                     Padding="5"
-                     FontSize="25"
-                     BorderThickness="0, 0, 0, 1"
-                     Text="{Binding SignInName}"
-                     Style="{DynamicResource TextBoxStyle}" />
-            <PasswordBox x:Name="passwordBox"
-                         Margin="10"
-                         Tag=" 密码"
+        <Grid Grid.Column="1">
+            <StackPanel VerticalAlignment="Center"
+                        Margin="70">
+                <TextBlock FontSize="40"
+                           Text="请先登录"
+                           Margin="10, 30"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Left" />
+                <TextBox Margin="10"
+                         Tag=" 用户名"
                          Padding="5"
                          FontSize="25"
-                         Style="{DynamicResource PasswordBoxStyle}" />
-            <TextBlock HorizontalAlignment="Right"
-                       Margin="0,0,10,10"
-                       FontSize="15">
+                         BorderThickness="0, 0, 0, 1"
+                         Text="{Binding SignInName}"
+                         Style="{DynamicResource TextBoxStyle}" />
+                <PasswordBox x:Name="passwordBox"
+                             Margin="10"
+                             Tag=" 密码"
+                             Padding="5"
+                             FontSize="25"
+                             Style="{DynamicResource PasswordBoxStyle}" />
+                <TextBlock HorizontalAlignment="Right"
+                           Margin="0,0,10,10"
+                           FontSize="15">
                     没有账户?
                     <Hyperlink Command="{Binding NavigateToSignUpCommand}"
                                Style="{DynamicResource HyperlinkStyle}">
                         创建一个!
                     </Hyperlink>
-            </TextBlock>
-            <Button Content="登录"
-                    FontSize="25"
-                    Margin="10, 20"
-                    Padding="5"
-                    BorderBrush="#FF163D94"
-                    Foreground="White"
-                    BorderThickness="3"
-                    Style="{DynamicResource DefaultButtonStyle}"
-                    coreui:ButtonBrush.ButtonPressBackground="#FF163D94"
-                    Command="{Binding SignInCommand}"
-                    CommandParameter="{Binding ElementName=passwordBox}" />
-        </StackPanel>
+                </TextBlock>
+                <Button FontSize="25"
+                        Margin="10, 20"
+                        Padding="5"
+                        BorderBrush="#FF163D94"
+                        Foreground="White"
+                        BorderThickness="3"
+                        Style="{DynamicResource SignInButtonStyle}"
+                        coreui:ButtonBrush.ButtonPressBackground="#FF163D94"
+                        Command="{Binding SignInCommand}"
+                        CommandParameter="{Binding ElementName=passwordBox}" />
+            </StackPanel>
+            <Border Padding="10"
+                    Background="#B2000000"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Style="{StaticResource borderStyle}">
+            <TextBlock Text="用户名或密码不正确"
+                       FontSize="20"
+                       Foreground="White"/>
+            </Border>
+        </Grid>
     </Grid>
 </UserControl>
