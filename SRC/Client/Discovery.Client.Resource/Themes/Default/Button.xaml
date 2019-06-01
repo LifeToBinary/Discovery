@@ -79,6 +79,32 @@
         <Setter Property="Template"
                 Value="{StaticResource NormalButtonTemplate}" />
     </Style>
+    <Style x:Key="ConcernOrCancelConcernButtonStyle"
+           TargetType="{x:Type Button}"
+           BasedOn="{StaticResource DefaultButtonStyle}">
+        <Setter Property="Content"
+                Value="关注" />
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding CurrentUserIsAFunOfTheAuthor}"
+                         Value="True">
+                <Setter Property="Content"
+                        Value="取消关注" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="FavoriteOrCancelFavoriteButtonStyle"
+           TargetType="{x:Type Button}"
+           BasedOn="{StaticResource DefaultButtonStyle}">
+        <Setter Property="Content"
+                Value="收藏" />
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding CurrentUserIsFavoritedThisPost}"
+                         Value="True">
+                <Setter Property="Content"
+                        Value="取消收藏" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
     <Style x:Key="SecondaryButtonStyle"
            TargetType="{x:Type Button}">
         <Setter Property="Background"

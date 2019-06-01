@@ -4,83 +4,123 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:Discovery.Client.PostDetail.Views"
+             xmlns:constants="clr-namespace:Discovery.Core.Constants;assembly=Discovery.Core"
              xmlns:prism="http://prismlibrary.com/"
              prism:ViewModelLocator.AutoWireViewModel="True"
+             xmlns:coreui="clr-namespace:Discovery.Core.UI.AttachedProperties;assembly=Discovery.Core.UI"
              mc:Ignorable="d"
              d:DesignHeight="450"
              d:DesignWidth="800">
-    <Grid TextBlock.FontSize="20"
-          HorizontalAlignment="Center"
-          VerticalAlignment="Center">
+    <UserControl.Resources>
+        <BitmapImage x:Key="UserDefaultAvatar"
+                     UriSource="pack://application:,,,/Discovery.Client.Resource;component/Images/UserDefaultAvatar.png" />
+
+    </UserControl.Resources>
+    <Grid TextBlock.FontSize="20">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
+            <RowDefinition />
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
+
         <TextBlock Grid.Row="0"
-                   Grid.Column="0"
-                   Text="ID: " />
-        <TextBlock Grid.Row="1"
-                   Grid.Column="0"
-                   Text="标题: " />
-        <TextBlock Grid.Row="2"
-                   Grid.Column="0"
-                   Text="图像路径: " />
-        <TextBlock Grid.Row="3"
-                   Grid.Column="0"
-                   Text="链接: " />
-        <TextBlock Grid.Row="4"
-                   Grid.Column="0"
-                   Text="创建时间: " />
-        <TextBlock Grid.Row="5"
-                   Grid.Column="0"
-                   Text="最后编辑时间: " />
-        <TextBlock Grid.Row="6"
-                   Grid.Column="0"
-                   Text="作者ID: " />
-        <TextBlock Grid.Row="7"
-                   Grid.Column="0"
-                   Text="内容: " />
-        <TextBlock Grid.Row="8"
-                   Grid.Column="0"
-                   Text="分类: " />
-        <TextBlock Grid.Row="0"
-                   Grid.Column="1"
-                   Text="{Binding CurrentPost.ID}" />
-        <TextBlock Grid.Row="1"
-                   Grid.Column="1"
-                   Text="{Binding CurrentPost.Title}" />
-        <TextBlock Grid.Row="2"
-                   Grid.Column="1"
-                   Text="{Binding CurrentPost.IconPath}" />
-        <TextBlock Grid.Row="3"
-                   Grid.Column="1"
-                   Text="{Binding CurrentPost.Url}" />
-        <TextBlock Grid.Row="4"
-                   Grid.Column="1"
-                   Text="{Binding CurrentPost.CreationTime}" />
-        <TextBlock Grid.Row="5"
-                   Grid.Column="1"
-                   Text="{Binding CurrentPost.LastEditedTime}" />
-        <TextBlock Grid.Row="6"
-                   Grid.Column="1"
-                   Text="{Binding CurrentPost.AuthorID}" />
-        <TextBlock Grid.Row="7"
-                   Grid.Column="1"
-                   TextWrapping="Wrap"
-                   Text="{Binding CurrentPost.Content}" />
-        <TextBlock Grid.Row="8"
-                   Grid.Column="1"
-                   Text="{Binding CurrentPost.PostCategory}" />
+                   FontSize="35"
+                   Margin="15"
+                   Text="{Binding CurrentPost.Title}"
+                   HorizontalAlignment="Center" />
+
+        <Border Grid.Row="1"
+                Background="White"
+                Margin="15, 0, 15, 5"
+                CornerRadius="3">
+            <Border.Effect>
+                <DropShadowEffect ShadowDepth="0"
+                                  Color="Gray" />
+            </Border.Effect>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Button x:Name="AvatarButton"
+                        Padding="0"
+                        Margin="10"
+                        BorderBrush="White"
+                        BorderThickness="1"
+                        Width="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ActualHeight}"
+                        HorizontalContentAlignment="Stretch"
+                        VerticalContentAlignment="Stretch"
+                        Style="{DynamicResource RoundButtonStyle}"
+                        Command="{Binding ViewAuthorsHomePageCommand}">
+                    <Grid>
+                        <Ellipse>
+                            <Ellipse.Fill>
+                                <ImageBrush ImageSource="{StaticResource UserDefaultAvatar}" />
+                            </Ellipse.Fill>
+                        </Ellipse>
+                        <Ellipse>
+                            <Ellipse.Fill>
+                                <ImageBrush ImageSource="{Binding AuthorOfThePost.BasicInfo.AvatarPath}"
+                                            Stretch="UniformToFill" />
+                            </Ellipse.Fill>
+                        </Ellipse>
+                    </Grid>
+                </Button>
+                <StackPanel Grid.Column="1"
+                            Margin="10">
+                    <TextBlock Text="{Binding AuthorOfThePost.BasicInfo.SignInName}"
+                               FontSize="25" />
+                    <TextBlock Text="{Binding CurrentPost.CreationTime, StringFormat=创建于 {0:yyyy-MM-dd}}"
+                               FontSize="15" />
+                </StackPanel>
+                <Button Grid.Column="2"
+                        Margin="10, 10, 20, 10"
+                        VerticalAlignment="Center"
+                        Foreground="White"
+                        Style="{DynamicResource ConcernOrCancelConcernButtonStyle}"
+                        Padding="30, 10"
+                        FontSize="14"
+                        BorderThickness="3"
+                        BorderBrush="#FF163D94"
+                        Command="{Binding ConcernOrCancelConcernAuthorCommand}"
+                        coreui:ButtonBrush.ButtonPressBackground="#FF163D94" />
+            </Grid>
+        </Border>
+        <ScrollViewer Grid.Row="2"
+                      VerticalScrollBarVisibility="Hidden"
+                      HorizontalScrollBarVisibility="Disabled">
+
+            <Border Padding="50"
+                    Background="#FFEDF1F7">
+
+                <StackPanel>
+                    <TextBox Text="{Binding CurrentPost.Content}"
+                             TextWrapping="Wrap"
+                             IsReadOnly="True"
+                             Background="Transparent"
+                             BorderThickness="0"
+                             MinHeight="300" />
+                    <Button FontSize="20"
+                            Grid.Column="2"
+                            Padding="50, 10"
+                            Foreground="White"
+                            BorderThickness="3"
+                            BorderBrush="#FF163D94"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                            Style="{DynamicResource FavoriteOrCancelFavoriteButtonStyle}"
+                            coreui:ButtonBrush.ButtonPressBackground="#FF163D94" />
+                    <Rectangle Height="1"
+                               Fill="Black"
+                               Margin="0,20" />
+                    <TextBox Style="{DynamicResource TextBoxStyle}"
+                             Tag=" 写下你的评论"
+                             MinHeight="100"
+                             Padding="5" />
+                    <ListBox Margin="0, 20" />
+                </StackPanel>
+            </Border>
+        </ScrollViewer>
     </Grid>
 </UserControl>

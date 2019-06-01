@@ -108,11 +108,13 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
                 }
             }
         }
+
         public DelegateCommand NavigateToUpdateDiscovererInfoCommand { get; }
         private void NavigateToUpdateDiscovererInfo()
             => _regionManager.RequestNavigate(
                 RegionNames.MainMenuContent,
                 ViewNames.UpdateDiscovererInfo);
+
         public DelegateCommand<Post> ViewPostDetailCommand { get; }
         private void ViewPostDetail(Post post)
             => _regionManager.RequestNavigate(
@@ -122,6 +124,7 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
                 {
                     { "Post", post }
                 });
+
         public DelegateCommand<Discoverer> ViewThisUsersHomePageCommand { get; }
         private void ViewThisUsersHomePage(Discoverer discoverer)
             => _regionManager.RequestNavigate(
@@ -177,6 +180,7 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
             }
             Idols.Add(discoverer);
         }
+
         public bool KeepAlive => false;
     }
 }

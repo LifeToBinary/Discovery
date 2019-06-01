@@ -8,8 +8,8 @@
              mc:Ignorable="d"
              Background="#FFEDF1F7"
              DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext}"
-             d:DesignHeight="450"
-             d:DesignWidth="800">
+             d:DesignHeight="700"
+             d:DesignWidth="1000">
     <UserControl.Resources>
         <BitmapImage x:Key="SignUpBackground"
                      UriSource="pack://application:,,,/Discovery.Client.Resource;component/Images/SignUpBackground.jpg" />
@@ -40,6 +40,7 @@
                      Style="{DynamicResource TextBoxStyle}"
                      Tag=" 用户名"
                      Padding="5"
+                     BorderThickness="0, 0, 0, 1"
                      FontSize="20"
                      ContextMenu="{x:Null}"
                      Margin="10">
@@ -59,6 +60,7 @@
                      Tag=" 邮箱地址"
                      Padding="5"
                      FontSize="20"
+                     BorderThickness="0, 0, 0, 1"
                      Margin="10" 
                      Style="{DynamicResource TextBoxStyle}"/>
             <DockPanel Grid.Row="3"
@@ -79,6 +81,7 @@
                          Margin="10"
                          FontSize="20"
                          Padding="5"
+                         BorderThickness="0, 0, 0, 1"
                          Tag=" 邮箱验证码"
                          Style="{DynamicResource TextBoxStyle}"
                          Text="{Binding InputedCode}" />
