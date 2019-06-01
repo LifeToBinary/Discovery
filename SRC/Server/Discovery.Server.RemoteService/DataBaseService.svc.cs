@@ -757,7 +757,7 @@ namespace Discovery.Server.RemoteService
             {
                 command.CommandType = CommandType.StoredProcedure;
                 command.CommandText = StoredProcedureNames.GetDiscovererByID;
-                command.Parameters.AddWithValue("discovererID", discovererID);
+                command.Parameters.AddWithValue("@id", discovererID);
                 connection.Open();
                 SqlDataReader reader = command.ExecuteReader();
                 return reader.Read()
