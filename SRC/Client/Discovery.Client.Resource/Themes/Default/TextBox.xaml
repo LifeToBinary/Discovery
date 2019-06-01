@@ -10,7 +10,7 @@
                 <ControlTemplate TargetType="{x:Type TextBox}">
                     <Border x:Name="border"
                             BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="0, 0, 0, 1"
+                            BorderThickness="{TemplateBinding BorderThickness}"
                             Background="{TemplateBinding Background}"
                             SnapsToDevicePixels="True">
                         <Grid>

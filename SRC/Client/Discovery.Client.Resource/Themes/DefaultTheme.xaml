@@ -6,5 +6,6 @@
         <ResourceDictionary Source="Default/Hyperlink.xaml" />
         <ResourceDictionary Source="Default/PasswordBox.xaml" />
         <ResourceDictionary Source="Default/RadioButton.xaml" />
+        <ResourceDictionary Source="Default/ListBox.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>
