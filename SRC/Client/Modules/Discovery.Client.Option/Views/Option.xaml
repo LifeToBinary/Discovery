@@ -4,15 +4,82 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:Discovery.Client.Option.Views"
+             xmlns:constants="clr-namespace:Discovery.Core.Constants;assembly=Discovery.Core"
+             xmlns:coreui="clr-namespace:Discovery.Core.UI.AttachedProperties;assembly=Discovery.Core.UI"
              xmlns:prism="http://prismlibrary.com/"
              prism:ViewModelLocator.AutoWireViewModel="True"
              mc:Ignorable="d"
+             Background="#FFEDF1F7"
              d:DesignHeight="450"
              d:DesignWidth="800">
+    <UserControl.Resources>
+        <BitmapImage x:Key="UserDefaultAvatar"
+                     UriSource="pack://application:,,,/Discovery.Client.Resource;component/Images/UserDefaultAvatar.png" />
+    </UserControl.Resources>
     <Grid>
-        <TextBlock Text="Option"
-                   FontSize="50"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center" />
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="1"
+                    Margin="0, 30">
+            <Border Height="120"
+                    Padding="10"
+                    CornerRadius="5">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Button Padding="0"
+                            Grid.Column="0"
+                            BorderThickness="1"
+                            BorderBrush="White"
+                            x:Name="AvatarButton"
+                            VerticalContentAlignment="Stretch"
+                            HorizontalContentAlignment="Stretch"
+                            Style="{DynamicResource RoundButtonStyle}"
+                            Command="{Binding NavigationSignInViewToMainMenuContentRegionCommand}"
+                            Width="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ActualHeight}">
+                        <Grid>
+                            <Ellipse>
+                                <Ellipse.Fill>
+                                    <ImageBrush ImageSource="{StaticResource UserDefaultAvatar}" />
+                                </Ellipse.Fill>
+                            </Ellipse>
+                            <Ellipse>
+                                <Ellipse.Fill>
+                                    <ImageBrush ImageSource="{Binding CurrentUser.BasicInfo.AvatarPath}"
+                                                Stretch="UniformToFill" />
+                                </Ellipse.Fill>
+                            </Ellipse>
+                        </Grid>
+                    </Button>
+                    <StackPanel Grid.Column="1"
+                                Margin="10">
+                        <TextBlock Text="{Binding CurrentUser.BasicInfo.SignInName}"
+                                   FontSize="35" />
+                        <TextBlock Text="{Binding CurrentUser.ContactInfo.Email}"
+                                   FontSize="17" />
+                    </StackPanel>
+                    <Button Grid.Column="2"
+                            Content="注销"
+                            VerticalAlignment="Center"
+                            Foreground="White"
+                            FontSize="18"
+                            BorderThickness="3"
+                            BorderBrush="#FFA92517"
+                            Style="{DynamicResource SignOutButtonStyle}"
+                            Command="{Binding SignOutCommand}"
+                            coreui:ButtonBrush.ButtonPressBackground="#FFA92517"
+                            Padding="30, 5" />
+                </Grid>
+            </Border>
+            <Rectangle Height="1"
+                       Margin="0, 5"
+                       Fill="Gray" />
+        </StackPanel>
     </Grid>
 </UserControl>

@@ -142,4 +142,11 @@
             </DataTrigger>
         </Style.Triggers>
     </Style>
+    <Style x:Key="SignOutButtonStyle"
+           TargetType="{x:Type Button}">
+        <Setter Property="Background"
+                Value="#FFDB3A29" />
+        <Setter Property="Template"
+                Value="{StaticResource NormalButtonTemplate}" />
+    </Style>
 </ResourceDictionary>

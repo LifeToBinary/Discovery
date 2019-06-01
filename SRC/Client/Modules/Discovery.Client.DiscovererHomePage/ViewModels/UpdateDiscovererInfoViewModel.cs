@@ -1,19 +1,13 @@
-﻿using Discovery.Client.DiscovererHomePage.DataBaseService;
-using Discovery.Core.Constants;
-using Discovery.Core.Enums;
-using Discovery.Core.GlobalData;
-using Discovery.Core.Model;
-using Discovery.Service;
-using Microsoft.Win32;
-using Prism.Commands;
+﻿using System;
 using Prism.Mvvm;
 using Prism.Regions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+using Prism.Commands;
+using Microsoft.Win32;
+using Discovery.Service;
+using Discovery.Core.Model;
+using Discovery.Core.Constants;
+using Discovery.Core.GlobalData;
+using Discovery.Client.DiscovererHomePage.DataBaseService;
 
 namespace Discovery.Client.DiscovererHomePage.ViewModels
 {
