@@ -58,7 +58,8 @@
                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                  HorizontalContentAlignment="Stretch"
                  Background="#FFEDF1F7"
-                 BorderThickness="0">
+                 BorderThickness="0"
+                 Margin="-45,10,45,-10">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Button Background="White"

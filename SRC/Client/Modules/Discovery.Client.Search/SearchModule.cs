@@ -17,10 +17,6 @@ namespace Discovery.Client.Search
         }
 
         public void RegisterTypes(IContainerRegistry containerRegistry)
-        {
-            containerRegistry.RegisterForNavigation<GetSearchContent>();
-            containerRegistry.RegisterForNavigation<SearchedDiscoverersResult>();
-            containerRegistry.RegisterForNavigation<SearchedPostsResult>();
-        }
+            => containerRegistry.RegisterForNavigation<GetSearchContent>();
     }
 }
