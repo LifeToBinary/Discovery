@@ -41,6 +41,9 @@ namespace Discovery.Client.PostDetail.ViewModels
             _newPostForAdd.CreationTime = DateTime.Now;
             _newPostForAdd.LastEditedTime = DateTime.Now;
             _newPostForAdd.AuthorID = GlobalObjectHolder.CurrentUser.BasicInfo.ID;
+            _newPostForAdd.Url = String.Empty;
+            _newPostForAdd.IconPath = String.Empty;
+            _newPostForAdd.LastEditedTime = _newPostForAdd.CreationTime;
         }
 
         private IRegionManager _regionManager;

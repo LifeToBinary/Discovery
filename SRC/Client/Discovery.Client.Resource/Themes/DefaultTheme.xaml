@@ -7,5 +7,6 @@
         <ResourceDictionary Source="Default/PasswordBox.xaml" />
         <ResourceDictionary Source="Default/RadioButton.xaml" />
         <ResourceDictionary Source="Default/ListBox.xaml" />
+        <ResourceDictionary Source="Default/ComboBox.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

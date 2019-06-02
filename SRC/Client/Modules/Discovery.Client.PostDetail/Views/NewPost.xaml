@@ -9,6 +9,7 @@
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              prism:ViewModelLocator.AutoWireViewModel="True"
              mc:Ignorable="d"
+             Background="#FFEDF1F7"
              d:DesignHeight="450"
              d:DesignWidth="800">
     <UserControl.Resources>
@@ -20,7 +21,7 @@
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
     </UserControl.Resources>
-    <Grid>
+    <!--<Grid>
         <Grid.RowDefinitions>
             <RowDefinition />
             <RowDefinition Height="Auto" />
@@ -92,5 +93,55 @@
                 Content="发布"
                 FontSize="40"
                 Command="{Binding AddNewPostCommand}"/>
+    </Grid>-->
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0"
+              Background="#FF2465F7">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="发布帖子"
+                       Foreground="White"
+                       FontSize="18"
+                       VerticalAlignment="Center"
+                       Margin="10" />
+            <Button Grid.Column="1"
+                    Content="&#xE73E;"
+                    Background="Transparent"
+                    BorderThickness="0"
+                    Foreground="White"
+                    FontSize="30"
+                    Margin="10, 0"
+                    Padding="5"
+                    VerticalAlignment="Center"
+                    Style="{DynamicResource DefaultButtonStyle}"
+                    Command="{Binding AddNewPostCommand}"
+                    FontFamily="Segoe MDL2 Assets" />
+        </Grid>
+        <TextBox Grid.Row="1" 
+                 Tag="标题"
+                 TextWrapping="Wrap"
+                 Padding="10"
+                 FontSize="20"
+                 BorderThickness="0, 0, 0, 1"
+                 Text="{Binding NewPostForAdd.Title}"
+                 Style="{DynamicResource TextBoxStyle}" />
+        <TextBox Grid.Row="2"
+                 AcceptsReturn="True"
+                 AcceptsTab="True"
+                 Background="Transparent"
+                 BorderThickness="0"
+                 FontSize="20"
+                 Padding="10"
+                 Tag="内容"
+                 TextWrapping="Wrap"
+                 Style="{DynamicResource TextBoxStyle}"
+                 Text="{Binding NewPostForAdd.Content}" />
     </Grid>
 </UserControl>
