@@ -128,5 +128,11 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Discovery.Core.UI\Discovery.Core.UI.csproj">
+      <Project>{597de2c5-7801-484a-a9b0-8112da78c076}</Project>
+      <Name>Discovery.Core.UI</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

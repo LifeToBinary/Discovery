@@ -2,7 +2,6 @@
 using Prism.Commands;
 using Prism.Mvvm;
 using System;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace Discovery.Client.Feedback.ViewModels

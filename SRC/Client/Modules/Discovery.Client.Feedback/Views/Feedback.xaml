@@ -5,11 +5,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:Discovery.Client.Feedback.Views"
              xmlns:prism="http://prismlibrary.com/"
+             xmlns:coreui="clr-namespace:Discovery.Core.UI.AttachedProperties;assembly=Discovery.Core.UI"
              prism:ViewModelLocator.AutoWireViewModel="True"
              mc:Ignorable="d"
-             d:DesignHeight="450"
-             d:DesignWidth="800">
-    <Border Background="#FFEDF1F7">
+             d:DesignHeight="700"
+             d:DesignWidth="1000">
+    <Border Background="#FFEDF1F7"
+            Margin="150, 80">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
@@ -22,62 +24,56 @@
             <TextBlock Grid.Row="0"
                        FontSize="30"
                        Margin="20,30,20,0"
-                       Text="Send me some feedback!"
+                       Text="向开发者发送反馈！"
                        FontWeight="Bold" />
             <TextBlock Grid.Row="1"
                        Margin="20,10,20,20"
                        FontSize="19"
                        Foreground="#FF525252"
                        TextWrapping="Wrap"
-                       Text="Do you have a suggestion or found some bug? Let me know in the field bellow." />
+                       Text="如果你有好的意见或建议, 或者发现了程序的问题, 可以在下方填写相关信息, 然后点击发送按钮向开发者发送反馈~" />
 
             <TextBox Grid.Row="2"
                      BorderBrush="Transparent"
                      TextWrapping="Wrap"
                      FontSize="20"
-                     Tag="Describe your issue or idea"
+                     Tag="写下你的意见或建议"
+                     Margin="10"
+                     Style="{DynamicResource TextBoxStyle}"
                      Text="{Binding EMailContent}"
                      AcceptsReturn="True"
                      AcceptsTab="True"
-                     Padding="10"/>
+                     Padding="10" />
 
-            <!--以下两个DockPanel面板可改为Grid 2x2面板-->
-            <DockPanel Grid.Row="3"
-                       Margin="20,10,20,10">
-                <TextBlock Text="Your name :"
-                           FontSize="20"
-                           Padding="5"
-                           Foreground="#FF525252" />
-                <TextBox Margin="10,0,0,0"
-                         Text="{Binding NameOfCustomer}"
-                         BorderBrush="Transparent"
-                         Tag="anyone"
-                         VerticalContentAlignment="Center"
-                         FontSize="20"
-                         Padding="5" />
-            </DockPanel>
-            <DockPanel Grid.Row="4"
-                       Margin="20,0,20,0">
-                <TextBlock Text="Your Email :"
-                           FontSize="20"
-                           Padding="5"
-                           Foreground="#FF525252" />
-                <TextBox Margin="10,0,0,0"
-                         Padding="5"
-                         BorderBrush="Transparent"
-                         Tag="example@simple.com"
-                         Text="{Binding EmailOfCustomer}"
-                         FontSize="20" />
-            </DockPanel>
+            <TextBox Grid.Row="3"
+                     Margin="10, 5"
+                     Text="{Binding NameOfCustomer}"
+                     BorderBrush="Transparent"
+                     Tag=" 你的名字"
+                     Style="{DynamicResource TextBoxStyle}"
+                     VerticalContentAlignment="Center"
+                     FontSize="20"
+                     Padding="5" />
+
+            <TextBox Margin="10, 5"
+                     Padding="5"
+                     Grid.Row="4"
+                     BorderBrush="Transparent"
+                     Tag=" 输入你的邮箱, 方便开发者与你联系"
+                     Style="{DynamicResource TextBoxStyle}"
+                     Text="{Binding EmailOfCustomer}"
+                     FontSize="20" />
             <Button  Grid.Row="5"
                      ToolTip="给开发者发邮件"
                      Content="发送"
-                     FontSize="20"
-                     Margin="20,20,20,30"
-                     Padding="10,12"
-                     BorderThickness="0"
+                     FontSize="25"
+                     Margin="10"
+                     Padding="5"
+                     BorderThickness="3"
+                     BorderBrush="#FF163D94"
+                     coreui:ButtonBrush.ButtonPressBackground="#FF163D94"
+                     Style="{DynamicResource DefaultButtonStyle}"
                      Command="{Binding SendEmailCommand}"
-                     Background="#FF125C89"
                      Foreground="White" />
         </Grid>
     </Border>

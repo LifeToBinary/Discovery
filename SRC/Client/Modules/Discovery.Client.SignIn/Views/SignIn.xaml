@@ -112,9 +112,9 @@
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
                     Style="{StaticResource borderStyle}">
-            <TextBlock Text="用户名或密码不正确"
-                       FontSize="20"
-                       Foreground="White"/>
+                <TextBlock Text="用户名或密码不正确"
+                           FontSize="20"
+                           Foreground="White" />
             </Border>
         </Grid>
     </Grid>
