@@ -19,130 +19,7 @@
         <BitmapImage x:Key="UserDefaultAvatar"
                      UriSource="pack://application:,,,/Discovery.Client.Resource;component/Images/UserDefaultAvatar.png" />
     </UserControl.Resources>
-    
-    <!--#region 旧界面 XAML-->
-    <!--<Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="80" />
-            <RowDefinition />
-        </Grid.RowDefinitions>
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
-            <Grid Grid.Column="0"
-                  HorizontalAlignment="Left"
-                  TextBlock.FontSize="20">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-                <Button Grid.Column="0"
-                        Content="推荐"
-                        Command="{Binding NavigationToMainMenuContentRegionCommand}"
-                        CommandParameter="{x:Static constants:ViewNames.Recommended}"
-                        Background="Transparent"
-                        BorderThickness="0" />
-                <Button Grid.Column="1"
-                        Content="设置"
-                        Width="100"
-                        Command="{Binding NavigationToMainMenuContentRegionCommand}"
-                        CommandParameter="{x:Static constants:ViewNames.Option}"
-                        Background="Transparent"
-                        BorderThickness="0" />
-                <Button Grid.Column="2"
-                        Content="反馈"
-                        Width="100"
-                        Command="{Binding NavigationToMainMenuContentRegionCommand}"
-                        CommandParameter="{x:Static constants:ViewNames.Feedback}"
-                        Background="Transparent"
-                        BorderThickness="0" />
-                <Button Grid.Column="3"
-                        Content="关于"
-                        Width="100"
-                        Command="{Binding NavigationToMainMenuContentRegionCommand}"
-                        CommandParameter="{x:Static constants:ViewNames.About}"
-                        Background="Transparent"
-                        BorderThickness="0" />
-                <Button Grid.Column="4"
-                        Content="+"
-                        FontSize="50"
-                        Width="100"
-                        BorderThickness="0"
-                        Background="Transparent"
-                        Command="{Binding AddNewPostCommand}" />
-                <Button Grid.Column="5"
-                        Content="搜索"
-                        FontSize="20"
-                        Width="100"
-                        BorderThickness="0"
-                        Background="Transparent"
-                        Command="{Binding NavigationToMainMenuContentRegionCommand}"
-                        CommandParameter="{x:Static core:ViewNames.GetSearchContent}" />
-                <Popup PopupAnimation="Slide"
-                       Width="200"
-                       HorizontalOffset="-118"
-                       Placement="Bottom"
-                       AllowsTransparency="True"
-                       PlacementTarget="{Binding ElementName=MoreButton}"
-                       StaysOpen="False"
-                       x:Name="pop">
-                    <StackPanel>
-                        <Button Content="登出"
-                                Command="{Binding NavigationViewToMainRegionCommand}"
-                                CommandParameter="{x:Static constants:ViewNames.SignIn}" />
-                        <Button Content="退出">
-                            <i:Interaction.Triggers>
-                                <i:EventTrigger EventName="Click">
-                                    <i:CallMethodAction TargetObject="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
-                                                        MethodName="Close" />
-                                </i:EventTrigger>
-                            </i:Interaction.Triggers>
-                        </Button>
-                    </StackPanel>
-                </Popup>
-            </Grid>
-            <StackPanel Grid.Column="2"
-                        HorizontalAlignment="Right"
-                        Orientation="Horizontal">
-                <Button Width="80"
-                        Command="{Binding NavigationToMainMenuContentRegionCommand}"
-                        CommandParameter="{x:Static constants:ViewNames.DiscovererHomePage}">
-                    <Image Source="{Binding CurrentUser.BasicInfo.AvatarPath, Converter={StaticResource stringToBitmapImage}}" />
-                </Button>
 
-                <Button Content="三"
-                        x:Name="MoreButton"
-                        Width="80"
-                        FontSize="20"
-                        Background="Transparent"
-                        BorderThickness="0">
-                    <Button.Triggers>
-                        <EventTrigger RoutedEvent="Button.Click">
-                            <BeginStoryboard>
-                                <Storyboard>
-                                    <BooleanAnimationUsingKeyFrames Storyboard.TargetName="pop"
-                                                                    Storyboard.TargetProperty="IsOpen">
-                                        <DiscreteBooleanKeyFrame KeyTime="0:0:0"
-                                                                 Value="True" />
-                                    </BooleanAnimationUsingKeyFrames>
-                                </Storyboard>
-                            </BeginStoryboard>
-                        </EventTrigger>
-                    </Button.Triggers>
-                </Button>
-            </StackPanel>
-        </Grid>
-        <ContentControl Grid.Row="1"
-                        prism:RegionManager.RegionName="{x:Static core:RegionNames.MainMenuContent}" />
-    </Grid>-->
-    <!--#endregion-->
-    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
@@ -199,11 +76,6 @@
                              Padding="20, 15, 15, 15"
                              Command="{Binding NavigationToMainMenuContentRegionCommand}"
                              CommandParameter="{x:Static constants:ViewNames.Recommended}"
-                             Style="{DynamicResource NavigationRadioButton}" />
-                <RadioButton Content="搜索"
-                             Padding="20, 15, 15, 15"
-                             Command="{Binding NavigationToMainMenuContentRegionCommand}"
-                             CommandParameter="{x:Static core:ViewNames.GetSearchContent}"
                              Style="{DynamicResource NavigationRadioButton}" />
                 <RadioButton Content="设置"
                              Padding="20, 15, 15, 15"

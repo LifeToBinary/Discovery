@@ -5,12 +5,8 @@ using Discovery.Core.Model;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Discovery.Client.Recommended.ViewModels
 {
@@ -26,11 +22,19 @@ namespace Discovery.Client.Recommended.ViewModels
         }
         public RecommendedViewModel(IRegionManager regionManager)
         {
-            _recommendedPosts = new ObservableCollection<Post>(LoadData());
+            _recommendedPosts = new ObservableCollection<Post>();
+            LoadData();
             _regionManager = regionManager;
             ViewPostDetailCommand = new DelegateCommand<Post>(ViewPostDetail);
+            NavigateToSearchViewCommand = new DelegateCommand(NavigateToSearchView);
+            ReloadDataCommand = new DelegateCommand(LoadData);
         }
 
+        public DelegateCommand NavigateToSearchViewCommand { get; }
+        private void NavigateToSearchView()
+            => _regionManager.RequestNavigate(
+                RegionNames.MainMenuContent,
+                ViewNames.GetSearchContent);
         private void ViewPostDetail(Post post)
             => _regionManager.RequestNavigate(
                                   RegionNames.MainMenuContent,
@@ -39,13 +43,21 @@ namespace Discovery.Client.Recommended.ViewModels
                                   {
                                       { "Post", post }
                                   });
-
-        private Post[] LoadData()
+        public DelegateCommand ReloadDataCommand { get; }
+        private async void LoadData()
         {
-            int currentUserID = GlobalObjectHolder.CurrentUser.BasicInfo.ID;
+            if (_recommendedPosts.Any())
+            {
+                _recommendedPosts.Clear();
+            }
+
             using (var databaseService = new DataBaseServiceClient())
             {
-                return databaseService.GetRecommendedForTheDiscoverer(currentUserID);
+                foreach (Post post in await databaseService.GetRecommendedForTheDiscovererAsync(
+                                                GlobalObjectHolder.CurrentUser.BasicInfo.ID))
+                {
+                    _recommendedPosts.Add(post);
+                }
             }
         }
     }
