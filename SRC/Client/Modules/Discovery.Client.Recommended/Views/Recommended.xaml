@@ -58,8 +58,7 @@
                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                  HorizontalContentAlignment="Stretch"
                  Background="#FFEDF1F7"
-                 BorderThickness="0"
-                 Margin="-45,10,45,-10">
+                 BorderThickness="0">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Button Background="White"
@@ -103,16 +102,14 @@
             </ListBox.ItemTemplate>
         </ListBox>
         <Button Grid.Row="1"
-                Content="&#xE710;"
                 Padding="20"
                 FontSize="30"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Bottom"
-                Margin="30"
+                Margin="50"
                 FontWeight="Bold"
                 Background="Orange"
                 Foreground="White"
-                FontFamily="Segoe MDL2 Assets"
                 Width="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ActualHeight}"
                 Style="{DynamicResource RoundButtonStyle}"
                 Command="{Binding AddNewPostCommand}">
@@ -121,6 +118,9 @@
                                   ShadowDepth="0"
                                   BlurRadius="10"/>
             </Button.Effect>
+            <Button.Content>
+                <Image Height="30" Source="pack://application:,,,/Discovery.Client.Resource;component/Images/AddNewPostIcon.png" />
+            </Button.Content>
         </Button>
     </Grid>
 </UserControl>
