@@ -52,6 +52,7 @@
     <Compile Include="AttachedProperties\PasswordBoxMonitor.cs" />
     <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
     <Compile Include="Converters\EnumToBooleanConverter.cs" />
+    <Compile Include="Converters\GenderToIconConverter.cs" />
     <Compile Include="Converters\StringToBitmapImageConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -74,6 +75,12 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Discovery.Core\Discovery.Core.csproj">
+      <Project>{dbfd6e0a-1cbe-4fc7-b87c-bdd11ae41f89}</Project>
+      <Name>Discovery.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:Discovery.Client.Search.Views"
              xmlns:prism="http://prismlibrary.com/"
              xmlns:coreui="clr-namespace:Discovery.Core.UI.AttachedProperties;assembly=Discovery.Core.UI"
+             xmlns:converters="clr-namespace:Discovery.Core.UI.Converters;assembly=Discovery.Core.UI"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:coreenum="clr-namespace:Discovery.Core.Enums;assembly=Discovery.Core"
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
@@ -23,6 +24,7 @@
         </ObjectDataProvider>
         <BitmapImage x:Key="UserDefaultAvatar"
                      UriSource="pack://application:,,,/Discovery.Client.Resource;component/Images/UserDefaultAvatar.png" />
+        <converters:GenderToIconConverter x:Key="GenderToIcon" />
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -186,14 +188,24 @@
                                         </Ellipse>
                                         <Ellipse>
                                             <Ellipse.Fill>
-                                                <ImageBrush x:Name="DiscovererAvatar" 
+                                                <ImageBrush x:Name="DiscovererAvatar"
                                                             ImageSource="{Binding BasicInfo.AvatarPath}"
                                                             Stretch="UniformToFill" />
                                             </Ellipse.Fill>
                                         </Ellipse>
                                     </Grid>
                                 </Button>
-                                <TextBlock Grid.Column="1" 
+                                <Ellipse Grid.Column="0"
+                                         Width="22"
+                                         Height="22"
+                                         Margin="10"
+                                         HorizontalAlignment="Right"
+                                         VerticalAlignment="Bottom">
+                                    <Ellipse.Fill>
+                                        <ImageBrush ImageSource="{Binding BasicInfo.Sex, Converter={StaticResource GenderToIcon}}" />
+                                    </Ellipse.Fill>
+                                </Ellipse>
+                                <TextBlock Grid.Column="1"
                                            VerticalAlignment="Center"
                                            FontSize="20"
                                            Text="{Binding BasicInfo.SignInName}" />
