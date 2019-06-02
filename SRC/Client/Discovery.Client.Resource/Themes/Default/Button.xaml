@@ -89,7 +89,7 @@
             <DataTrigger Binding="{Binding CurrentUserIsAFunOfTheAuthor}"
                          Value="True">
                 <Setter Property="Content"
-                        Value="取消关注" />
+                        Value="已关注" />
             </DataTrigger>
         </Style.Triggers>
     </Style>
@@ -102,7 +102,7 @@
             <DataTrigger Binding="{Binding CurrentUserIsFavoritedThisPost}"
                          Value="True">
                 <Setter Property="Content"
-                        Value="取消收藏" />
+                        Value="已收藏" />
             </DataTrigger>
         </Style.Triggers>
     </Style>
