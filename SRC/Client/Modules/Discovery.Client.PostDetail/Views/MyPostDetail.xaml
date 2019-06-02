@@ -5,11 +5,17 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:Discovery.Client.PostDetail.Views"
              xmlns:prism="http://prismlibrary.com/"
+             xmlns:coreui="clr-namespace:Discovery.Core.UI.AttachedProperties;assembly=Discovery.Core.UI"
              prism:ViewModelLocator.AutoWireViewModel="True"
              mc:Ignorable="d"
              d:DesignHeight="450"
              d:DesignWidth="800">
-    <Grid>
+    <UserControl.Resources>
+        <BitmapImage x:Key="UserDefaultAvatar"
+                     UriSource="pack://application:,,,/Discovery.Client.Resource;component/Images/UserDefaultAvatar.png" />
+
+    </UserControl.Resources>
+    <!--<Grid>
         <Grid.RowDefinitions>
             <RowDefinition />
             <RowDefinition Height="Auto" />
@@ -102,5 +108,110 @@
                     Margin="5"
                     Command="{Binding RemoveThisPostCommand}"></Button>
         </StackPanel>
+    </Grid>-->
+    <Grid TextBlock.FontSize="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0"
+                   FontSize="35"
+                   Margin="15"
+                   Text="{Binding CurrentPost.Title}"
+                   HorizontalAlignment="Center" />
+
+        <Border Grid.Row="1"
+                Background="White"
+                Margin="15, 0, 15, 5"
+                CornerRadius="3">
+            <Border.Effect>
+                <DropShadowEffect ShadowDepth="0"
+                                  Color="Gray" />
+            </Border.Effect>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Button x:Name="AvatarButton"
+                        Padding="0"
+                        Margin="10"
+                        BorderBrush="White"
+                        BorderThickness="1"
+                        Width="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ActualHeight}"
+                        HorizontalContentAlignment="Stretch"
+                        VerticalContentAlignment="Stretch"
+                        Style="{DynamicResource RoundButtonStyle}"
+                        Command="{Binding NavigateMyHomePageViewToMainMenuRegionCommand}">
+                    <Grid>
+                        <Ellipse>
+                            <Ellipse.Fill>
+                                <ImageBrush ImageSource="{StaticResource UserDefaultAvatar}" />
+                            </Ellipse.Fill>
+                        </Ellipse>
+                        <Ellipse>
+                            <Ellipse.Fill>
+                                <ImageBrush ImageSource="{Binding CurrentUser.BasicInfo.AvatarPath}"
+                                            Stretch="UniformToFill" />
+                            </Ellipse.Fill>
+                        </Ellipse>
+                    </Grid>
+                </Button>
+                <StackPanel Grid.Column="1"
+                            Margin="10">
+                    <TextBlock Text="{Binding CurrentUser.BasicInfo.SignInName}"
+                               FontSize="25" />
+                    <TextBlock Text="{Binding CurrentPost.CreationTime, StringFormat=创建于 {0:yyyy-MM-dd}}"
+                               FontSize="15" />
+                </StackPanel>
+                <StackPanel Grid.Column="2"
+                            Orientation="Horizontal">
+                    <Button Margin="0, 10, 5, 5"
+                            VerticalAlignment="Center"
+                            Foreground="White"
+                            Content="编辑"
+                            Style="{DynamicResource DefaultButtonStyle}"
+                            Padding="30, 5"
+                            FontSize="18"
+                            BorderThickness="3"
+                            BorderBrush="#FF163D94"
+                            Command="{Binding UpdatePostCommand}"
+                            coreui:ButtonBrush.ButtonPressBackground="#FF163D94" />
+                    <Button Grid.Column="2"
+                            Content="删除"
+                            VerticalAlignment="Center"
+                            Foreground="White"
+                            FontSize="18"
+                            Margin="5, 10, 20, 5"
+                            BorderThickness="3"
+                            BorderBrush="#FFA92517"
+                            Style="{DynamicResource SignOutButtonStyle}"
+                            Command="{Binding RemoveThisPostCommand}"
+                            coreui:ButtonBrush.ButtonPressBackground="#FFA92517"
+                            Padding="30, 5" />
+                </StackPanel>
+            </Grid>
+        </Border>
+        <ScrollViewer Grid.Row="2"
+                      VerticalScrollBarVisibility="Hidden"
+                      HorizontalScrollBarVisibility="Disabled">
+
+            <Border Padding="50"
+                    Background="#FFEDF1F7">
+
+                <StackPanel>
+                    <TextBox Text="{Binding CurrentPost.Content}"
+                             TextWrapping="Wrap"
+                             IsReadOnly="True"
+                             Background="Transparent"
+                             BorderThickness="0"
+                             MinHeight="300" />
+                    <ListBox Margin="0, 20" />
+                </StackPanel>
+            </Border>
+        </ScrollViewer>
     </Grid>
 </UserControl>

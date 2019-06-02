@@ -16,13 +16,26 @@ namespace Discovery.Client.PostDetail.ViewModels
             get => _currentPost;
             set => SetProperty(ref _currentPost, value);
         }
-
+        private Discoverer _currentUser;
+        public Discoverer CurrentUser
+        {
+            get => _currentUser;
+            set => SetProperty(ref _currentUser, value);
+        }
+        public DelegateCommand NavigateMyHomePageViewToMainMenuRegionCommand { get; }
+        private void NavigateMyHomePageViewToMainMenuRegion()
+            => _regionManager.RequestNavigate(
+                RegionNames.MainMenuContent,
+                ViewNames.DiscovererHomePage);
         private readonly IRegionManager _regionManager;
         public MyPostDetailViewModel(IRegionManager regionManager)
         {
             _regionManager = regionManager;
+            CurrentUser = GlobalObjectHolder.CurrentUser;
             UpdatePostCommand = new DelegateCommand(UpdatePost);
             RemoveThisPostCommand = new DelegateCommand(RemoveThisPost);
+            NavigateMyHomePageViewToMainMenuRegionCommand =
+                new DelegateCommand(NavigateMyHomePageViewToMainMenuRegion);
         }
 
         public DelegateCommand RemoveThisPostCommand { get; }
