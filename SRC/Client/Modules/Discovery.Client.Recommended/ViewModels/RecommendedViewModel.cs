@@ -28,8 +28,13 @@ namespace Discovery.Client.Recommended.ViewModels
             ViewPostDetailCommand = new DelegateCommand<Post>(ViewPostDetail);
             NavigateToSearchViewCommand = new DelegateCommand(NavigateToSearchView);
             ReloadDataCommand = new DelegateCommand(LoadData);
+            AddNewPostCommand = new DelegateCommand(AddNewPost);
         }
-
+        public DelegateCommand AddNewPostCommand { get; }
+        private void AddNewPost()
+            => _regionManager.RequestNavigate(
+                RegionNames.MainMenuContent, 
+                ViewNames.NewPost);
         public DelegateCommand NavigateToSearchViewCommand { get; }
         private void NavigateToSearchView()
             => _regionManager.RequestNavigate(
@@ -37,12 +42,12 @@ namespace Discovery.Client.Recommended.ViewModels
                 ViewNames.GetSearchContent);
         private void ViewPostDetail(Post post)
             => _regionManager.RequestNavigate(
-                                  RegionNames.MainMenuContent,
-                                  ViewNames.OtherUsersPostDetail,
-                                  new NavigationParameters
-                                  {
-                                      { "Post", post }
-                                  });
+                RegionNames.MainMenuContent,
+                ViewNames.OtherUsersPostDetail,
+                new NavigationParameters
+                {
+                    { "Post", post }
+                });
         public DelegateCommand ReloadDataCommand { get; }
         private async void LoadData()
         {
