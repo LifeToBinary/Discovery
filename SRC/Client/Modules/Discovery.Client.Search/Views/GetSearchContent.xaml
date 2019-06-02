@@ -109,7 +109,7 @@
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Button Background="White"
-                            Margin="0,5"
+                            Margin="5"
                             Padding="15"
                             BorderThickness="0"
                             Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.ViewPostDetailCommand}"
@@ -130,7 +130,11 @@
                                 <TextBlock Grid.Row="1"
                                            Text="{Binding Content}"
                                            FontSize="15"
-                                           Margin="0, 5" />
+                                           Height="80"
+                                           TextWrapping="Wrap"
+                                           Padding="5"
+                                           TextTrimming="WordEllipsis"
+                                           Margin="0, 10" />
                                 <StackPanel Grid.Row="2"
                                             Orientation="Horizontal"
                                             TextBlock.FontSize="15">
