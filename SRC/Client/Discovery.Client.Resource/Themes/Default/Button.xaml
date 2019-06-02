@@ -43,6 +43,7 @@
     <ControlTemplate x:Key="RoundButtonTemplate"
                      TargetType="{x:Type Button}">
         <Border x:Name="border"
+                Background="{TemplateBinding Background}"
                 RenderTransformOrigin="0.5, 0.5"
                 BorderBrush="{TemplateBinding BorderBrush}"
                 BorderThickness="{TemplateBinding BorderThickness}"

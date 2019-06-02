@@ -109,7 +109,9 @@
                             BorderBrush="#FF163D94"
                             VerticalAlignment="Center"
                             HorizontalAlignment="Center"
+                            Margin="0, 40, 0, 0"
                             Style="{DynamicResource FavoriteOrCancelFavoriteButtonStyle}"
+                            Command="{Binding FavoriteOrCancelFavoriteThePostCommand}"
                             coreui:ButtonBrush.ButtonPressBackground="#FF163D94" />
                     <Rectangle Height="1"
                                Fill="Black"

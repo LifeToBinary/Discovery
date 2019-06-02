@@ -12,8 +12,7 @@ namespace Discovery.Client.Recommended.ViewModels
 {
     public class RecommendedViewModel : BindableBase
     {
-        private IRegionManager _regionManager;
-        public DelegateCommand<Post> ViewPostDetailCommand { get; }
+        private readonly IRegionManager _regionManager;
         private ObservableCollection<Post> _recommendedPosts;
         public ObservableCollection<Post> RecommendedPosts
         {
@@ -40,6 +39,7 @@ namespace Discovery.Client.Recommended.ViewModels
             => _regionManager.RequestNavigate(
                 RegionNames.MainMenuContent,
                 ViewNames.GetSearchContent);
+        public DelegateCommand<Post> ViewPostDetailCommand { get; }
         private void ViewPostDetail(Post post)
             => _regionManager.RequestNavigate(
                 RegionNames.MainMenuContent,

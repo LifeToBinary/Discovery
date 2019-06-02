@@ -18,34 +18,39 @@
         </Grid.RowDefinitions>
         <Grid Grid.Row="0"
               Height="60"
-              Background="CadetBlue">
+              Background="#FF2465F7">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <Grid Grid.Column="0"
-                  Background="#AAFFFFFF"
-                  Margin="10"
-                  Cursor="IBeam">
-                <i:Interaction.Triggers>
-                    <i:EventTrigger EventName="MouseLeftButtonDown">
-                        <i:InvokeCommandAction Command="{Binding NavigateToSearchViewCommand}"/>
-                    </i:EventTrigger>
-                </i:Interaction.Triggers>
-                <TextBlock Text="搜索帖子或人"
-                           Foreground="Gray"
-                           FontSize="20"
-                           Margin="10, 0"
-                           VerticalAlignment="Center" />
-            </Grid>
+
+            <TextBlock Text=" 搜索帖子或人"
+                       Foreground="Gray"
+                       FontSize="20"
+                       Grid.Column="0"
+                       Margin="10"
+                       Background="White"
+                       Padding="5"
+                       Cursor="IBeam"
+                       VerticalAlignment="Center">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseLeftButtonDown">
+                            <i:InvokeCommandAction Command="{Binding NavigateToSearchViewCommand}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </TextBlock>
             <Button Grid.Column="1"
-                    Content="刷新"
+                    Content="&#xE72C;"
                     Background="Transparent"
+                    BorderThickness="0"
                     Foreground="White"
-                    FontSize="15"
-                    Padding="20, 5"
-                    Margin="10" 
-                    Command="{Binding ReloadDataCommand}"/>
+                    FontSize="20"
+                    Padding="10"
+                    Margin="5" 
+                    VerticalAlignment="Center"
+                    Style="{DynamicResource DefaultButtonStyle}"
+                    Command="{Binding ReloadDataCommand}"
+                    FontFamily="Segoe MDL2 Assets" />
         </Grid>
         <ListBox Grid.Row="1"
                  ItemsSource="{Binding RecommendedPosts}"
@@ -78,7 +83,10 @@
                                 <TextBlock Grid.Row="1"
                                            Text="{Binding Content}"
                                            FontSize="15"
-                                           Margin="0, 5" />
+                                           Height="80"
+                                           TextWrapping="Wrap"
+                                           TextTrimming="WordEllipsis"
+                                           Margin="0, 10" />
                                 <StackPanel Grid.Row="2"
                                             Orientation="Horizontal"
                                             TextBlock.FontSize="15">
@@ -94,11 +102,24 @@
             </ListBox.ItemTemplate>
         </ListBox>
         <Button Grid.Row="1"
-                Content="+"
-                FontSize="40"
+                Content="&#xE710;"
+                Padding="20"
+                FontSize="30"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Bottom"
                 Margin="30"
-                Command="{Binding AddNewPostCommand}" />
+                FontWeight="Bold"
+                Background="Orange"
+                Foreground="White"
+                FontFamily="Segoe MDL2 Assets"
+                Width="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ActualHeight}"
+                Style="{DynamicResource RoundButtonStyle}"
+                Command="{Binding AddNewPostCommand}">
+            <Button.Effect>
+                <DropShadowEffect Color="Gray"
+                                  ShadowDepth="0"
+                                  BlurRadius="10"/>
+            </Button.Effect>
+        </Button>
     </Grid>
 </UserControl>

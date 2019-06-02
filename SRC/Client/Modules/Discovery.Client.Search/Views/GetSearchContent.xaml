@@ -5,9 +5,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:Discovery.Client.Search.Views"
              xmlns:prism="http://prismlibrary.com/"
+             xmlns:coreui="clr-namespace:Discovery.Core.UI.AttachedProperties;assembly=Discovery.Core.UI"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
-             xmlns:coreui="clr-namespace:Discovery.Core.UI.Converters;assembly=Discovery.Core.UI"
              xmlns:coreenum="clr-namespace:Discovery.Core.Enums;assembly=Discovery.Core"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              prism:ViewModelLocator.AutoWireViewModel="True"
              mc:Ignorable="d"
              d:DesignWidth="800"
@@ -20,26 +21,187 @@
                 <x:Type TypeName="coreenum:SearchType" />
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
+        <BitmapImage x:Key="UserDefaultAvatar"
+                     UriSource="pack://application:,,,/Discovery.Client.Resource;component/Images/UserDefaultAvatar.png" />
     </UserControl.Resources>
-    <Grid VerticalAlignment="Center"
-          Margin="50, 0"
-          TextBlock.FontSize="30">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="Auto" />
-        </Grid.ColumnDefinitions>
-        <TextBox Grid.Column="0"
-                 Text="{Binding SearchContent}" />
-        <ComboBox Grid.Column="1"
-                  Width="150"
-                  VerticalContentAlignment="Center"
-                  FontSize="20"
-                  ItemsSource="{Binding Source={StaticResource SearchTypeValues}}"
-                  SelectedItem="{Binding SearchType}" />
-        <Button Grid.Column="2"
-                Content="搜索"
-                Padding="30, 5"
-                Command="{Binding SearchCommand}" />
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0"
+              Height="60"
+              Background="#FF2465F7">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <TextBox Grid.Column="0"
+                     Margin="10"
+                     FontSize="20"
+                     Tag=" 搜索帖子或人"
+                     VerticalAlignment="Center"
+                     BorderThickness="0"
+                     Foreground="Black"
+                     Text="{Binding SearchContent}"
+                     Style="{DynamicResource TextBoxStyle}"
+                     Padding="5" />
+            <Button Grid.Column="1"
+                    FontSize="20"
+                    Margin="5, 5, 0, 5"
+                    Padding="20, 5"
+                    BorderBrush="#FF163D94"
+                    Foreground="White"
+                    BorderThickness="3"
+                    Content="搜帖子"
+                    Style="{DynamicResource DefaultButtonStyle}"
+                    coreui:ButtonBrush.ButtonPressBackground="#FF163D94"
+                    Command="{Binding SearchCommand}"
+                    CommandParameter="{x:Static coreenum:SearchType.SearchPost}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <i:ChangePropertyAction TargetName="SearchedDiscoverersList"
+                                                PropertyName="Visibility"
+                                                Value="Hidden" />
+                        <i:ChangePropertyAction TargetName="SearchedPostsList"
+                                                PropertyName="Visibility"
+                                                Value="Visible" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Button>
+            <Button Grid.Column="2"
+                    FontSize="20"
+                    Margin="0, 5, 5, 5"
+                    Padding="20, 5"
+                    Content="搜用户"
+                    BorderBrush="#FF163D94"
+                    Foreground="White"
+                    BorderThickness="3"
+                    Style="{DynamicResource DefaultButtonStyle}"
+                    coreui:ButtonBrush.ButtonPressBackground="#FF163D94"
+                    Command="{Binding SearchCommand}"
+                    CommandParameter="{x:Static coreenum:SearchType.SearchUser}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <i:ChangePropertyAction TargetName="SearchedDiscoverersList"
+                                                PropertyName="Visibility"
+                                                Value="Visible" />
+                        <i:ChangePropertyAction TargetName="SearchedPostsList"
+                                                PropertyName="Visibility"
+                                                Value="Hidden" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Button>
+        </Grid>
+
+        <ListBox x:Name="SearchedPostsList"
+                 Grid.Row="1"
+                 ItemsSource="{Binding SearchedPosts}"
+                 Style="{DynamicResource ListBoxStyle}"
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                 HorizontalContentAlignment="Stretch"
+                 Background="#FFEDF1F7"
+                 BorderThickness="0">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Button Background="White"
+                            Margin="0,5"
+                            Padding="15"
+                            BorderThickness="0"
+                            Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.ViewPostDetailCommand}"
+                            CommandParameter="{Binding}"
+                            Style="{DynamicResource SecondaryButtonStyle}"
+                            HorizontalContentAlignment="Stretch">
+                        <Grid>
+                            <Grid Background="White">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <TextBlock Grid.Row="0"
+                                           Text="{Binding Title}"
+                                           FontSize="20"
+                                           FontWeight="Bold" />
+                                <TextBlock Grid.Row="1"
+                                           Text="{Binding Content}"
+                                           FontSize="15"
+                                           Margin="0, 5" />
+                                <StackPanel Grid.Row="2"
+                                            Orientation="Horizontal"
+                                            TextBlock.FontSize="15">
+                                    <TextBlock Text="{Binding AuthorID}"
+                                               Margin="5" />
+                                    <TextBlock Text="{Binding CreationTime, StringFormat={}{0:M月d日}}"
+                                               Margin="5" />
+                                </StackPanel>
+                            </Grid>
+                        </Grid>
+                    </Button>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <ListBox x:Name="SearchedDiscoverersList"
+                 Grid.Row="1"
+                 ItemsSource="{Binding SearchedDiscoverers}"
+                 Style="{DynamicResource ListBoxStyle}"
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                 HorizontalContentAlignment="Stretch"
+                 Background="#FFEDF1F7"
+                 BorderThickness="0">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Button Background="White"
+                            Margin="0,5"
+                            Padding="15"
+                            BorderThickness="0"
+                            Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.ViewDiscovererHomePageCommand}"
+                            CommandParameter="{Binding}"
+                            Style="{DynamicResource SecondaryButtonStyle}"
+                            HorizontalContentAlignment="Stretch">
+                        <Grid Height="80">
+                            <Grid Background="White">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <Button Grid.Column="0"
+                                        Padding="0"
+                                        Margin="10"
+                                        BorderBrush="White"
+                                        BorderThickness="1"
+                                        Width="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ActualHeight}"
+                                        HorizontalContentAlignment="Stretch"
+                                        VerticalContentAlignment="Stretch"
+                                        Style="{DynamicResource RoundButtonStyle}"
+                                        Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.ViewDiscovererHomePageCommand}"
+                                        CommandParameter="{Binding}">
+                                    <Grid>
+                                        <Ellipse>
+                                            <Ellipse.Fill>
+                                                <ImageBrush ImageSource="{StaticResource UserDefaultAvatar}" />
+                                            </Ellipse.Fill>
+                                        </Ellipse>
+                                        <Ellipse>
+                                            <Ellipse.Fill>
+                                                <ImageBrush x:Name="DiscovererAvatar" 
+                                                            ImageSource="{Binding BasicInfo.AvatarPath}"
+                                                            Stretch="UniformToFill" />
+                                            </Ellipse.Fill>
+                                        </Ellipse>
+                                    </Grid>
+                                </Button>
+                                <TextBlock Grid.Column="1" 
+                                           VerticalAlignment="Center"
+                                           FontSize="20"
+                                           Text="{Binding BasicInfo.SignInName}" />
+                            </Grid>
+                        </Grid>
+                    </Button>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 </UserControl>
