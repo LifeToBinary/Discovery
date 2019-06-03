@@ -123,5 +123,11 @@
   <ItemGroup>
     <Resource Include="Images\AddNewPostIcon.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\DefaultProfileBackground.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\SignUpBackground.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

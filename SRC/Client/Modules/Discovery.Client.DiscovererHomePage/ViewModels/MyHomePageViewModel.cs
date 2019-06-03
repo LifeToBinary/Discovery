@@ -56,8 +56,7 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
             CancelFavoriteCommand = new DelegateCommand<Post>(CancelFavorite);
             CancelConcernThisUserCommand = new DelegateCommand<Discoverer>(CancelConcern);
             ConcernThisUserCommand = new DelegateCommand<Discoverer>(ConcernThisUser);
-            NavigateToUpdateDiscovererInfoCommand = new DelegateCommand(NavigateToUpdateDiscovererInfo);
-            
+            NavigateViewToMainMenuRegionCommand = new DelegateCommand<string>(NavigateViewToMainMenuRegion);
             LoadData();
         }
 
@@ -109,12 +108,11 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
             }
         }
 
-        public DelegateCommand NavigateToUpdateDiscovererInfoCommand { get; }
-        private void NavigateToUpdateDiscovererInfo()
+        public DelegateCommand<string> NavigateViewToMainMenuRegionCommand { get; }
+        private void NavigateViewToMainMenuRegion(string viewName)
             => _regionManager.RequestNavigate(
                 RegionNames.MainMenuContent,
-                ViewNames.UpdateDiscovererInfo);
-
+                viewName);
         public DelegateCommand<Post> ViewPostDetailCommand { get; }
         private void ViewPostDetail(Post post)
             => _regionManager.RequestNavigate(

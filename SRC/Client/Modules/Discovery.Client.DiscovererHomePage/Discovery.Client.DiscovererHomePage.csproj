@@ -200,6 +200,10 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Discovery.Client.Resource\Discovery.Client.Resource.csproj">
+      <Project>{20c56c15-3408-4563-a02b-b8f746ba0f9d}</Project>
+      <Name>Discovery.Client.Resource</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Discovery.Core.RelationalModel\Discovery.Core.RelationalModel.csproj">
       <Project>{179D19C5-0BBA-4C07-9A56-79DBA454F04B}</Project>
       <Name>Discovery.Core.RelationalModel</Name>
