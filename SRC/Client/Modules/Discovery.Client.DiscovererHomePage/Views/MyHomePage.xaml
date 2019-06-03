@@ -126,7 +126,7 @@
                     coreui:ButtonBrush.ButtonPressBackground="White"
                     Style="{DynamicResource SecondaryButtonStyle}"
                     Command="{Binding NavigateViewToMainMenuRegionCommand}"
-                    CommandParameter="{x:Static constants:ViewNames.MyFuns}"
+                    CommandParameter="{x:Static constants:ViewNames.MyConcern}"
                     HorizontalContentAlignment="Left"/>
             <Button Content="关注我的人"
                     Padding="20, 10"
@@ -137,7 +137,7 @@
                     coreui:ButtonBrush.ButtonPressBackground="White"
                     Style="{DynamicResource SecondaryButtonStyle}"
                     Command="{Binding NavigateViewToMainMenuRegionCommand}"
-                    CommandParameter="{x:Static constants:ViewNames.MyConcern}"
+                    CommandParameter="{x:Static constants:ViewNames.MyFuns}"
                     HorizontalContentAlignment="Left"/>
         </StackPanel>
     </Grid>

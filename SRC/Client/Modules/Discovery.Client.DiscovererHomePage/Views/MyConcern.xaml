@@ -4,110 +4,107 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:Discovery.Client.DiscovererHomePage.Views"
+             xmlns:converters="clr-namespace:Discovery.Core.UI.Converters;assembly=Discovery.Core.UI"
+             xmlns:coreui="clr-namespace:Discovery.Core.UI.AttachedProperties;assembly=Discovery.Core.UI"
+             xmlns:prism="http://prismlibrary.com/"
+             prism:ViewModelLocator.AutoWireViewModel="True"
              mc:Ignorable="d"
              d:DesignHeight="450"
              d:DesignWidth="800">
+    <UserControl.Resources>
+        <BitmapImage x:Key="UserDefaultAvatar"
+                     UriSource="pack://application:,,,/Discovery.Client.Resource;component/Images/UserDefaultAvatar.png" />
+        <converters:GenderToIconConverter x:Key="GenderToIcon" />
+    </UserControl.Resources>
     <Grid>
-        <ListBox ItemsSource="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorLevel=2,AncestorType={x:Type UserControl}}, Path=DataContext.Idols}"
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <TextBlock Background="#FF2465F7"
+                   FontSize="20"
+                   Text="我关注的人"
+                   Foreground="White"
+                   Padding="10" />
+        <ListBox x:Name="SearchedDiscoverersList"
+                 Grid.Row="1"
+                 ItemsSource="{Binding MyConcerns}"
+                 Style="{DynamicResource ListBoxStyle}"
                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                 HorizontalContentAlignment="Stretch">
+                 HorizontalContentAlignment="Stretch"
+                 Background="#FFEDF1F7"
+                 BorderThickness="0">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Button BorderBrush="Black"
-                            BorderThickness="2"
-                            HorizontalContentAlignment="Stretch"
-                            Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorLevel=2, AncestorType={x:Type UserControl}}, Path=DataContext.ViewThisUsersHomePageCommand}"
-                            CommandParameter="{Binding}">
-                        <Grid>
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition />
-                                    <RowDefinition />
-                                    <RowDefinition />
-                                    <RowDefinition />
-                                    <RowDefinition />
-                                    <RowDefinition />
-                                    <RowDefinition />
-                                    <RowDefinition />
-                                    <RowDefinition />
-                                    <RowDefinition />
-                                </Grid.RowDefinitions>
+                    <Button Background="White"
+                            Margin="0,5"
+                            Padding="15"
+                            BorderThickness="0"
+                            Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.ViewThisUsersHomePageCommand}"
+                            CommandParameter="{Binding}"
+                            Style="{DynamicResource SecondaryButtonStyle}"
+                            HorizontalContentAlignment="Stretch">
+                        <Grid Height="80">
+                            <Grid Background="White">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition />
                                 </Grid.ColumnDefinitions>
-
-                                <TextBlock Grid.Row="0"
-                                           Grid.Column="0"
-                                           Text="用户名: " />
-                                <TextBlock Grid.Row="1"
-                                           Grid.Column="0"
-                                           Text="性别: " />
-                                <TextBlock Grid.Row="2"
-                                           Grid.Column="0"
-                                           Text="注册时间: " />
-                                <TextBlock Grid.Row="3"
-                                           Grid.Column="0"
-                                           Text="头像图片路径: " />
-                                <TextBlock Grid.Row="4"
-                                           Grid.Column="0"
-                                           Text="主页背景图片的路径: " />
-                                <TextBlock Grid.Row="5"
-                                           Grid.Column="0"
-                                           Text="感兴趣的领域" />
-                                <TextBlock Grid.Row="6"
-                                           Grid.Column="0"
-                                           Text="QQ: " />
-                                <TextBlock Grid.Row="7"
-                                           Grid.Column="0"
-                                           Text="微信: " />
-                                <TextBlock Grid.Row="8"
-                                           Grid.Column="0"
-                                           Text="邮箱: " />
-                                <TextBlock Grid.Row="9"
-                                           Grid.Column="0"
-                                           Text="博客地址: " />
-                                <TextBlock Grid.Row="0"
-                                           Grid.Column="1"
+                                <Button Grid.Column="0"
+                                        Padding="0"
+                                        Margin="10"
+                                        BorderBrush="White"
+                                        BorderThickness="1"
+                                        Width="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ActualHeight}"
+                                        HorizontalContentAlignment="Stretch"
+                                        VerticalContentAlignment="Stretch"
+                                        Style="{DynamicResource RoundButtonStyle}"
+                                        Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.ViewThisUsersHomePageCommand}"
+                                        CommandParameter="{Binding}">
+                                    <Grid>
+                                        <Ellipse>
+                                            <Ellipse.Fill>
+                                                <ImageBrush ImageSource="{StaticResource UserDefaultAvatar}" />
+                                            </Ellipse.Fill>
+                                        </Ellipse>
+                                        <Ellipse>
+                                            <Ellipse.Fill>
+                                                <ImageBrush x:Name="DiscovererAvatar"
+                                                            ImageSource="{Binding BasicInfo.AvatarPath}"
+                                                            Stretch="UniformToFill" />
+                                            </Ellipse.Fill>
+                                        </Ellipse>
+                                    </Grid>
+                                </Button>
+                                <Ellipse Grid.Column="0"
+                                         Width="22"
+                                         Height="22"
+                                         Margin="10"
+                                         HorizontalAlignment="Right"
+                                         VerticalAlignment="Bottom">
+                                    <Ellipse.Fill>
+                                        <ImageBrush ImageSource="{Binding BasicInfo.Sex, Converter={StaticResource GenderToIcon}}" />
+                                    </Ellipse.Fill>
+                                </Ellipse>
+                                <TextBlock Grid.Column="1"
+                                           VerticalAlignment="Center"
+                                           FontSize="20"
                                            Text="{Binding BasicInfo.SignInName}" />
-                                <TextBlock Grid.Row="1"
-                                           Grid.Column="1"
-                                           Text="{Binding BasicInfo.Sex}" />
-                                <TextBlock Grid.Row="2"
-                                           Grid.Column="1"
-                                           Text="{Binding BasicInfo.SignUpTime}" />
-                                <TextBlock Grid.Row="3"
-                                           Grid.Column="1"
-                                           Text="{Binding BasicInfo.AvatarPath}" />
-                                <TextBlock Grid.Row="4"
-                                           Grid.Column="1"
-                                           Text="{Binding BasicInfo.ProfileBackgroundImagePath}" />
-                                <TextBlock Grid.Row="5"
-                                           Grid.Column="1"
-                                           Text="{Binding BasicInfo.AreaOfInterest}" />
-                                <TextBlock Grid.Row="6"
-                                           Grid.Column="1"
-                                           Text="{Binding ContactInfo.QQ}" />
-                                <TextBlock Grid.Row="7"
-                                           Grid.Column="1"
-                                           TextWrapping="Wrap"
-                                           Text="{Binding ContactInfo.WeChat}" />
-                                <TextBlock Grid.Row="8"
-                                           Grid.Column="1"
-                                           Text="{Binding ContactInfo.Email}" />
-                                <TextBlock Grid.Row="9"
-                                           Grid.Column="1"
-                                           Text="{Binding ContactInfo.BlogAddress}" />
+                                <Button Grid.Column="1"
+                                        Content="取消关注"
+                                        HorizontalAlignment="Right"
+                                        VerticalAlignment="Center"
+                                        Foreground="White"
+                                        FontSize="15"
+                                        Margin="40, 0"
+                                        BorderThickness="3"
+                                        BorderBrush="#FFA92517"
+                                        Style="{DynamicResource SignOutButtonStyle}"
+                                        Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.CancelConcernCommand}"
+                                        CommandParameter="{Binding}"
+                                        coreui:ButtonBrush.ButtonPressBackground="#FFA92517"
+                                        Padding="20, 8" />
                             </Grid>
-
-                            <Button Content="取消关注"
-                                    Margin="10"
-                                    Background="Red"
-                                    Foreground="White"
-                                    HorizontalAlignment="Right"
-                                    VerticalAlignment="Top"
-                                    Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorLevel=2, AncestorType={x:Type UserControl}}, Path=DataContext.CancelConcernThisUserCommand}"
-                                    CommandParameter="{Binding}" />
                         </Grid>
                     </Button>
                 </DataTemplate>

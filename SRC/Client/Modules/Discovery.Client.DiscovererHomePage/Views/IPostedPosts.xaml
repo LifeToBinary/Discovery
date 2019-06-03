@@ -10,6 +10,15 @@
              d:DesignHeight="450"
              d:DesignWidth="800">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <TextBlock Background="#FF2465F7"
+                   FontSize="20"
+                   Text="我的帖子"
+                   Foreground="White"
+                   Padding="10" />
         <ListBox Grid.Row="1"
                  ItemsSource="{Binding PostedIPost}"
                  Style="{DynamicResource ListBoxStyle}"
