@@ -32,13 +32,15 @@ namespace Discovery.Client.Recommended.ViewModels
         public DelegateCommand AddNewPostCommand { get; }
         private void AddNewPost()
             => _regionManager.RequestNavigate(
-                RegionNames.MainMenuContent, 
+                RegionNames.MainMenuContent,
                 ViewNames.NewPost);
+
         public DelegateCommand NavigateToSearchViewCommand { get; }
         private void NavigateToSearchView()
             => _regionManager.RequestNavigate(
                 RegionNames.MainMenuContent,
                 ViewNames.GetSearchContent);
+
         public DelegateCommand<Post> ViewPostDetailCommand { get; }
         private void ViewPostDetail(Post post)
             => _regionManager.RequestNavigate(
@@ -48,13 +50,11 @@ namespace Discovery.Client.Recommended.ViewModels
                 {
                     { "Post", post }
                 });
+
         public DelegateCommand ReloadDataCommand { get; }
         private async void LoadData()
         {
-            if (_recommendedPosts.Any())
-            {
-                _recommendedPosts.Clear();
-            }
+            _recommendedPosts.Clear();
 
             using (var databaseService = new DataBaseServiceClient())
             {
