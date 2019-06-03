@@ -40,6 +40,44 @@
             </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
+    <ControlTemplate x:Key="AppTitleButtonTemplate"
+                     TargetType="{x:Type Button}">
+        <Grid x:Name="grid"
+              RenderTransformOrigin="0.5, 0.5"
+              Background="{TemplateBinding Background}"
+              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+            <ContentPresenter Focusable="False"
+                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                              Margin="{TemplateBinding Padding}"
+                              RecognizesAccessKey="True"
+                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+            <Border x:Name="border"
+                    Visibility="Hidden"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}" />
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver"
+                     Value="True">
+                <Setter TargetName="border"
+                        Property="Visibility"
+                        Value="Visible" />
+                <Setter Property="Background"
+                        Value="{Binding RelativeSource={RelativeSource Mode=Self}, Path=(coreui:ButtonBrush.ButtonPressBackground)}" />
+            </Trigger>
+            <Trigger Property="IsPressed"
+                     Value="True">
+                <Setter TargetName="grid"
+                        Property="RenderTransform">
+                    <Setter.Value>
+                        <ScaleTransform ScaleX="0.98"
+                                        ScaleY="0.98" />
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
     <ControlTemplate x:Key="RoundButtonTemplate"
                      TargetType="{x:Type Button}">
         <Border x:Name="border"
@@ -79,6 +117,13 @@
                 Value="#FF2465F7" />
         <Setter Property="Template"
                 Value="{StaticResource NormalButtonTemplate}" />
+    </Style>
+    <Style x:Key="AppTitleButtonStyle"
+           TargetType="{x:Type Button}">
+        <Setter Property="Background"
+                Value="Transparent" />
+        <Setter Property="Template"
+                Value="{StaticResource AppTitleButtonTemplate}" />
     </Style>
     <Style x:Key="ConcernOrCancelConcernButtonStyle"
            TargetType="{x:Type Button}"

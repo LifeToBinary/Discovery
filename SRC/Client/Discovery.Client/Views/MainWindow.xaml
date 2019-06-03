@@ -4,7 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Discovery.Client.Views"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:prism="http://prismlibrary.com/"
+        xmlns:coreui="clr-namespace:Discovery.Core.UI.AttachedProperties;assembly=Discovery.Core.UI"
         xmlns:core="clr-namespace:Discovery.Core.Constants;assembly=Discovery.Core"
         mc:Ignorable="d"
         prism:ViewModelLocator.AutoWireViewModel="True"
@@ -12,5 +14,127 @@
         Height="700"
         Width="1000"
         WindowStartupLocation="CenterScreen">
-    <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.MainRegion}" />
+    <WindowChrome.WindowChrome>
+        <WindowChrome UseAeroCaptionButtons="False"
+                      CaptionHeight="0"
+                      GlassFrameThickness="1" />
+    </WindowChrome.WindowChrome>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid x:Name="AppGrid" Grid.Row="0"
+              Background="#FF2465F7"
+              Height="35"
+              UseLayoutRounding="True">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseLeftButtonDown">
+                    <i:CallMethodAction TargetObject="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                        MethodName="DragMove" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+            <Button Grid.Column="0"
+                    Foreground="White"
+                    FontSize="15"
+                    BorderThickness="0"
+                    Padding="20, 5"
+                    coreui:ButtonBrush.ButtonPressBackground="#FF163D94"
+                    Style="{DynamicResource AppTitleButtonStyle}"
+                    FontFamily="Segoe MDL2 Assets"
+                    Content="&#xE72B;" />
+            <StackPanel Grid.Column="2"
+                        Orientation="Horizontal">
+                <Button Content="&#xE738;"
+                        Padding="15, 5"
+                        BorderThickness="0"
+                        Foreground="White"
+                        FontFamily="Segoe MDL2 Assets"
+                        coreui:ButtonBrush.ButtonPressBackground="#FF163D94"
+                        Style="{DynamicResource AppTitleButtonStyle}"
+                        FontSize="15">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <i:ChangePropertyAction TargetObject="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                                    PropertyName="WindowState"
+                                                    Value="Minimized" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Button>
+                <Grid>
+                    
+                <Button x:Name="WindowMaxButton"
+                        Content="&#xE740;"
+                        Style="{DynamicResource AppTitleButtonStyle}"
+                        FontSize="15"
+                        Padding="15, 5"
+                        BorderThickness="0"
+                        Foreground="White"
+                        coreui:ButtonBrush.ButtonPressBackground="#FF163D94"
+                        FontFamily="Segoe MDL2 Assets">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <i:ChangePropertyAction TargetObject="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                                    PropertyName="WindowState"
+                                                    Value="Maximized" />
+                            <i:ChangePropertyAction TargetName="WindowMaxButton"
+                                                    PropertyName="Visibility"
+                                                    Value="Hidden" />
+                            <i:ChangePropertyAction TargetName="WindowMinButton"
+                                                    PropertyName="Visibility"
+                                                    Value="Visible" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Button>
+
+                <Button x:Name="WindowMinButton" 
+                        Content="&#xE73F;"
+                        Visibility="Hidden"
+                        Style="{DynamicResource AppTitleButtonStyle}"
+                        FontSize="15"
+                        Padding="15, 5"
+                        BorderThickness="0"
+                        Foreground="White"
+                        coreui:ButtonBrush.ButtonPressBackground="#FF163D94"
+                        FontFamily="Segoe MDL2 Assets">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <i:ChangePropertyAction TargetObject="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                                    PropertyName="WindowState"
+                                                    Value="Normal"/>
+                            <i:ChangePropertyAction TargetName="WindowMaxButton"
+                                                    PropertyName="Visibility"
+                                                    Value="Visible" />
+                            <i:ChangePropertyAction TargetName="WindowMinButton"
+                                                    PropertyName="Visibility"
+                                                    Value="Hidden" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Button>
+                </Grid>
+                    <Button Content="&#xE711;"
+                            Padding="15, 5"
+                            BorderThickness="0"
+                            Foreground="White"
+                            FontFamily="Segoe MDL2 Assets"
+                            Style="{DynamicResource AppTitleButtonStyle}"
+                            coreui:ButtonBrush.ButtonPressBackground="#FFA92517"
+                            FontSize="15">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Click">
+                                <i:CallMethodAction TargetObject="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                                    MethodName="Close" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </Button>
+            </StackPanel>
+        </Grid>
+        <ContentControl Grid.Row="1"
+                        prism:RegionManager.RegionName="{x:Static core:RegionNames.MainRegion}" />
+    </Grid>
 </Window>

@@ -118,9 +118,6 @@
     <Resource Include="Images\SignInBackground.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\SignUpBackground.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\UserDefaultAvatar.png" />
   </ItemGroup>
   <ItemGroup>
