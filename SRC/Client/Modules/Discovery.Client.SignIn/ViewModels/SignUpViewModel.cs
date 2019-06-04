@@ -25,11 +25,6 @@ namespace Discovery.Client.SignIn.ViewModels
         }
 
         /// <summary>
-        /// 密码
-        /// </summary>
-        private string _password;
-
-        /// <summary>
         /// 注册验证码
         /// </summary>
         private string _authenticationCode;
