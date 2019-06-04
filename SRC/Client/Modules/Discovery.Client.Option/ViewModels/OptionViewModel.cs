@@ -14,8 +14,20 @@ namespace Discovery.Client.Option.ViewModels
 {
     public class OptionViewModel : BindableBase
     {
+        /// <summary>
+        /// 当前用户
+        /// </summary>
         public Discoverer CurrentUser { get; }
+
+        /// <summary>
+        /// Regin 导航对象
+        /// </summary>
         private readonly IRegionManager _regionManager;
+
+        /// <summary>
+        /// 构造函数
+        /// </summary>
+        /// <param name="regionManager"></param>
         public OptionViewModel(IRegionManager regionManager)
         {
             CurrentUser = GlobalObjectHolder.CurrentUser;
@@ -24,11 +36,19 @@ namespace Discovery.Client.Option.ViewModels
             NavigationSignInViewToMainMenuContentRegionCommand =
                 new DelegateCommand(NavigationSignInViewToMainMenuContentRegion);
         }
+
+        /// <summary>
+        /// 导航到 我的主页
+        /// </summary>
         public DelegateCommand NavigationSignInViewToMainMenuContentRegionCommand {get;}
         private void NavigationSignInViewToMainMenuContentRegion()
             => _regionManager.RequestNavigate(
                 RegionNames.MainMenuContent,
                 ViewNames.DiscovererHomePage);
+
+        /// <summary>
+        /// 注销登录
+        /// </summary>
         public DelegateCommand SignOutCommand { get; }
         public void SignOut()
             => _regionManager.RequestNavigate(
