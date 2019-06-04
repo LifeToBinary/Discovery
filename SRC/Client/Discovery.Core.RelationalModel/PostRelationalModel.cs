@@ -13,6 +13,9 @@ namespace Discovery.Core.RelationalModel
 {
     public class PostRelationalModel : BindableBase 
     {
+        /// <summary>
+        /// 帖子
+        /// </summary>
         private Post _post;
         public Post Post
         {
@@ -20,6 +23,9 @@ namespace Discovery.Core.RelationalModel
             set => SetProperty(ref _post, value);
         }
 
+        /// <summary>
+        /// 是否已经被当前用户收藏
+        /// </summary>
         private bool _isBeFavorited;
         public bool IsBeFavorited
         {
@@ -27,6 +33,9 @@ namespace Discovery.Core.RelationalModel
             set => SetProperty(ref _isBeFavorited, value);
         }
 
+        /// <summary>
+        /// 当前用户收藏/取消收藏此帖子
+        /// </summary>
         public DelegateCommand FavoriteOrCancelFavoriteCommand { get; }
         private void FavoriteOrCancelFavorite()
         {
