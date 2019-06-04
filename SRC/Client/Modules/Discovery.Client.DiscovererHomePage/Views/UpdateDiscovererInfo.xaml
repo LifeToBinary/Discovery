@@ -11,7 +11,7 @@
              prism:ViewModelLocator.AutoWireViewModel="True"
              mc:Ignorable="d"
              Background="#FFEDF1F7"
-             d:DesignHeight="450"
+             d:DesignHeight="765"
              d:DesignWidth="800">
     <UserControl.Resources>
         <coreui:EnumToBooleanConverter x:Key="EnumToBoolean" />
@@ -35,117 +35,9 @@
             </Style.Triggers>
         </Style>
     </UserControl.Resources>
-    <!--<Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-        <TextBlock HorizontalAlignment="Center"
-                   FontSize="50"
-                   Text="更新我的资料"
-                   Margin="0, 20" />
-        <Grid Grid.Row="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-            <Border Grid.Row="0"
-                    Grid.Column="0"
-                    Grid.ColumnSpan="2"
-                    Width="80"
-                    Height="80"
-                    Margin="10">
-                <Grid>
-                    <Image Grid.Row="0"
-                           Grid.Column="0"
-                           Grid.ColumnSpan="2"
-                           HorizontalAlignment="Center"
-                           Source="{Binding CurrentUser.BasicInfo.AvatarPath}" />
-                    <Button Content="修改头像"
-                            Command="{Binding UpdateAvatarCommand}"
-                            VerticalAlignment="Bottom" />
-                </Grid>
-            </Border>
-            <TextBox Grid.Row="1"
-                     Grid.Column="0"
-                     Grid.ColumnSpan="2"
-                     HorizontalAlignment="Center"
-                     FontSize="30"
-                     Padding="5"
-                     Text="{Binding CurrentUser.BasicInfo.SignInName}" />
-            <TextBlock Grid.Row="2"
-                       Grid.Column="0"
-                       Text="性别: " />
-            <StackPanel Grid.Row="2"
-                        Grid.Column="1"
-                        Orientation="Horizontal">
-                <RadioButton Content="男"
-                             IsChecked="{Binding Path=CurrentUser.BasicInfo.Sex, 
-                                                 Converter={StaticResource EnumToBoolean},
-                                                 ConverterParameter={x:Static core:Sex.Male}}" />
-                <RadioButton Content="女"
-                             IsChecked="{Binding Path=CurrentUser.BasicInfo.Sex, 
-                                                 Converter={StaticResource EnumToBoolean},
-                                                 ConverterParameter={x:Static core:Sex.Female}}" />
-                <RadioButton Content="保密"
-                             IsChecked="{Binding Path=CurrentUser.BasicInfo.Sex, 
-                                                 Converter={StaticResource EnumToBoolean},
-                                                 ConverterParameter={x:Static core:Sex.Secret}}" />
-            </StackPanel>
-            <TextBlock Grid.Row="3"
-                       Grid.Column="0"
-                       Text="兴趣: " />
-            <ComboBox Grid.Row="3"
-                      Grid.Column="1"
-                      ItemsSource="{Binding Source={StaticResource fieldValues}}"
-                      SelectedItem="{Binding CurrentUser.BasicInfo.AreaOfInterest}" />
-            <TextBlock Grid.Row="4"
-                       Grid.Column="0"
-                       Text="邮箱: " />
-            <TextBox Grid.Row="4"
-                     Grid.Column="1"
-                     Text="{Binding CurrentUser.ContactInfo.Email}" />
-            <TextBlock Grid.Row="5"
-                       Grid.Column="0"
-                       Text="QQ: " />
-            <TextBox Grid.Row="5"
-                     Grid.Column="1"
-                     Text="{Binding CurrentUser.ContactInfo.QQ}" />
-            <TextBlock Grid.Row="6"
-                       Grid.Column="0"
-                       Text="WeChat: " />
-            <TextBox Grid.Row="6"
-                     Grid.Column="1"
-                     Text="{Binding CurrentUser.ContactInfo.WeChat}" />
-            <TextBlock Grid.Row="7"
-                       Grid.Column="0"
-                       Text="博客: " />
-            <TextBox Grid.Row="7"
-                     Grid.Column="1"
-                     Text="{Binding CurrentUser.ContactInfo.BlogAddress}" />
 
-        </Grid>
-        <Button Grid.Row="2"
-                Content="保存更改"
-                FontSize="20"
-                Padding="0,10"
-                Margin="30"
-                Command="{Binding SaveUpdateCommand}" />
-    </Grid>-->
-    <Grid ShowGridLines="True">
+    <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition />
@@ -191,52 +83,52 @@
                 </TextBlock>
             </Button.Content>
         </Button>
-        <Grid Grid.Row="2"
-              ShowGridLines="True">
+        <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <Border Grid.Column="0"
-                    Width="150"
-                    Height="150"
-                    BorderBrush="White"
-                    BorderThickness="3"
-                    CornerRadius="100"
-                    Margin="20, -50, 20, 50">
-                <Border.Background>
-                    <ImageBrush ImageSource="{Binding CurrentUser.BasicInfo.AvatarPath}"
-                                Stretch="UniformToFill" />
-                </Border.Background>
-                <Button BorderThickness="0"
-                        FontSize="10"
-                        Style="{DynamicResource RoundButtonStyle}"
-                        Command="{Binding UpdateAvatarCommand}"
-                        Foreground="White"
-                        Background="#90000000">
-                    <Button.Content>
-                        <StackPanel>
-                            <TextBlock FontFamily="Segoe MDL2 Assets"
-                                       Text="&#xE7C5;"
-                                       FontSize="30"
-                                       Margin="5"
-                                       HorizontalAlignment="Center" />
-                            <TextBlock Text="修改我的头像"
-                                       FontSize="18" />
-                        </StackPanel>
-                    </Button.Content>
-                </Button>
-            </Border>
+        <Border Grid.Column="0"
+                Width="150"
+                Height="150"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                BorderBrush="White"
+                BorderThickness="3"
+                CornerRadius="100"
+                Margin="20, -50, 20, 50">
+            <Border.Background>
+                <ImageBrush ImageSource="{Binding CurrentUser.BasicInfo.AvatarPath}"
+                            Stretch="UniformToFill" />
+            </Border.Background>
+            <Button BorderThickness="0"
+                    FontSize="10"
+                    Style="{DynamicResource RoundButtonStyle}"
+                    Command="{Binding UpdateAvatarCommand}"
+                    Foreground="White"
+                    Background="#90000000">
+                <Button.Content>
+                    <StackPanel>
+                        <TextBlock FontFamily="Segoe MDL2 Assets"
+                                   Text="&#xE7C5;"
+                                   FontSize="30"
+                                   Margin="5"
+                                   HorizontalAlignment="Center" />
+                        <TextBlock Text="修改我的头像"
+                                   FontSize="18" />
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+        </Border>
+        <StackPanel Grid.Column="1"
+                    TextBlock.FontSize="20">
             <TextBlock Grid.Column="1"
                        Text="{Binding CurrentUser.BasicInfo.SignInName}"
                        FontSize="30"
                        Margin="10" />
-        </Grid>
-        <StackPanel Margin="200, 0, 0, 0"
-                    Grid.Row="3"
-                    TextBlock.FontSize="20">
-            <StackPanel Orientation="Horizontal">
+            <StackPanel >
                 <TextBlock Text="性别: "
+                           Margin="5"
                            VerticalAlignment="Center" />
                 <StackPanel Orientation="Horizontal">
                     <RadioButton Content="男"
@@ -265,31 +157,30 @@
                                                  ConverterParameter={x:Static core:Sex.Secret}}" />
                 </StackPanel>
             </StackPanel>
-            <StackPanel Orientation="Horizontal">
+            <StackPanel >
                 <TextBlock Text="邮箱:"
                            Margin="5"
                            VerticalAlignment="Center" />
                 <TextBox Style="{DynamicResource TextBoxStyle}"
                          Padding="5"
                          Margin="5"
-                         Width="300"
                          Background="Transparent"
                          BorderThickness="0, 0, 0, 1"
                          Text="{Binding CurrentUser.ContactInfo.Email}" />
             </StackPanel>
-            <StackPanel Orientation="Horizontal">
+            <StackPanel>
                 <TextBlock Text="主页:"
                            Margin="5"
                            VerticalAlignment="Center" />
                 <TextBox Style="{DynamicResource TextBoxStyle}"
                          Padding="5"
                          Margin="5"
-                         Width="300"
                          Background="Transparent"
                          BorderThickness="0, 0, 0, 1"
                          Text="{Binding CurrentUser.ContactInfo.BlogAddress}" />
             </StackPanel>
         </StackPanel>
+        </Grid>
         <Label Grid.Row="0"
                Grid.RowSpan="4"
                FontSize="30"
