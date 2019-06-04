@@ -78,8 +78,7 @@
             Margin="20, 10"
                    Foreground="White"
                    FontSize="20"/>
-            <Button Content="编辑个人资料"
-                    Background="Transparent"
+            <Button Background="Transparent"
                     BorderThickness="0"
                     Foreground="White"
                     FontSize="20"
@@ -89,7 +88,17 @@
                     HorizontalAlignment="Right"
                     Style="{DynamicResource DefaultButtonStyle}"
                     Command="{Binding NavigateViewToMainMenuRegionCommand}"
-                    CommandParameter="{x:Static constants:ViewNames.UpdateDiscovererInfo}"/>
+                    CommandParameter="{x:Static constants:ViewNames.UpdateDiscovererInfo}">
+                <Button.Content>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="&#xE70F;"
+                                   Margin="5, 0"
+                                   VerticalAlignment="Center"
+                                   FontFamily="Segoe MDL2 Assets" />
+                        <TextBlock Text="编辑个人资料"/>
+                    </StackPanel>
+                </Button.Content>
+            </Button>
         </Grid>
         <Button Grid.Row="0"
                 HorizontalAlignment="Right"
@@ -108,7 +117,13 @@
                     HorizontalContentAlignment="Stretch">
                 <Button.Content>
                     <Grid>
-                        <TextBlock Text="我的帖子" />
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock FontFamily="Segoe MDL2 Assets"
+                                       Text="&#xE724;"
+                                       Margin="10, 0" 
+                                       VerticalAlignment="Center"/>
+                            <TextBlock Text="我的帖子" />
+                        </StackPanel>
                         <TextBlock FontFamily="Segoe MDL2 Assets"
                                    Text="&#xE76C;"
                                    VerticalAlignment="Center"
@@ -129,7 +144,13 @@
                     HorizontalContentAlignment="Stretch">
                 <Button.Content>
                     <Grid>
-                        <TextBlock Text="我的收藏" />
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock FontFamily="Segoe MDL2 Assets"
+                                       Text="&#xE734;"
+                                       Margin="10, 0" 
+                                       VerticalAlignment="Center"/>
+                            <TextBlock Text="我的收藏" />
+                        </StackPanel>
                         <TextBlock FontFamily="Segoe MDL2 Assets"
                                    Text="&#xE76C;"
                                    VerticalAlignment="Center"
@@ -149,7 +170,13 @@
                     HorizontalContentAlignment="Stretch">
                 <Button.Content>
                     <Grid>
-                        <TextBlock Text="我关注的人" />
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock FontFamily="Segoe MDL2 Assets"
+                                       Text="&#xEB51;"
+                                       Margin="10, 0" 
+                                       VerticalAlignment="Center"/>
+                            <TextBlock Text="我关注的人" />
+                        </StackPanel>
                         <TextBlock FontFamily="Segoe MDL2 Assets"
                                    Text="&#xE76C;"
                                    VerticalAlignment="Center"
@@ -169,7 +196,13 @@
                     HorizontalContentAlignment="Stretch">
                 <Button.Content>
                     <Grid>
-                        <TextBlock Text="关注我的人" />
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock FontFamily="Segoe MDL2 Assets"
+                                       Text="&#xE899;" 
+                                       Margin="10, 0"
+                                       VerticalAlignment="Center"/>
+                            <TextBlock Text="关注我的人" />
+                        </StackPanel>
                         <TextBlock FontFamily="Segoe MDL2 Assets"
                                    Text="&#xE76C;"
                                    VerticalAlignment="Center"
