@@ -13,24 +13,39 @@ namespace Discovery.Client.Search.ViewModels
 {
     public class GetSearchContentViewModel : BindableBase, IRegionMemberLifetime
     {
+        /// <summary>
+        /// 搜索内容
+        /// </summary>
         private string _searchContent;
         public string SearchContent
         {
             get => _searchContent;
             set => SetProperty(ref _searchContent, value);
         }
+
+        /// <summary>
+        /// 搜索到的帖子
+        /// </summary>
         private ObservableCollection<Post> _searchedPosts;
         public ObservableCollection<Post> SearchedPosts
         {
             get => _searchedPosts;
             set => SetProperty(ref _searchedPosts, value);
         }
+
+        /// <summary>
+        /// 搜索到的用户
+        /// </summary>
         private ObservableCollection<Discoverer> _searchedDiscoverers;
         public ObservableCollection<Discoverer> SearchedDiscoverers
         {
             get => _searchedDiscoverers;
             set => SetProperty(ref _searchedDiscoverers, value);
         }
+
+        /// <summary>
+        /// Region 导航对象
+        /// </summary>
         private readonly IRegionManager _regionManager;
         public GetSearchContentViewModel(IRegionManager regionManager)
         {
@@ -41,9 +56,15 @@ namespace Discovery.Client.Search.ViewModels
             ViewPostDetailCommand = new DelegateCommand<Post>(ViewPostDetail);
             ViewDiscovererHomePageCommand = new DelegateCommand<Discoverer>(ViewDiscovererHomePage);
         }
+
+        /// <summary>
+        /// 从 Region 离开时, 不保留此视图
+        /// </summary>
         public bool KeepAlive => false;
 
-
+        /// <summary>
+        /// 查看帖子
+        /// </summary>
         public DelegateCommand<Post> ViewPostDetailCommand { get; }
         private void ViewPostDetail(Post post)
             => _regionManager.RequestNavigate(
@@ -55,6 +76,10 @@ namespace Discovery.Client.Search.ViewModels
                 {
                     { "Post", post }
                 });
+
+        /// <summary>
+        /// 查看一个用户的主页
+        /// </summary>
         public DelegateCommand<Discoverer> ViewDiscovererHomePageCommand { get; }
         private void ViewDiscovererHomePage(Discoverer discoverer)
         {
@@ -73,6 +98,10 @@ namespace Discovery.Client.Search.ViewModels
                     { "Discoverer", discoverer }
                 });
         }
+
+        /// <summary>
+        /// 搜索
+        /// </summary>
         public DelegateCommand<SearchType?> SearchCommand { get; }
         private async void Search(SearchType? searchType)
         {
@@ -93,6 +122,10 @@ namespace Discovery.Client.Search.ViewModels
                 }
             }
         }
+
+        /// <summary>
+        /// 清空现有搜索结果
+        /// </summary>
         private void ClearData()
         {
             if (_searchedPosts.Any())
