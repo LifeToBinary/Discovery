@@ -4,10 +4,14 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:Discovery.Client.DiscovererHomePage.Views"
+             xmlns:converters="clr-namespace:Discovery.Core.UI.Converters;assembly=Discovery.Core.UI"
+             xmlns:coreui="clr-namespace:Discovery.Core.UI.AttachedProperties;assembly=Discovery.Core.UI"
+             xmlns:prism="http://prismlibrary.com/"
+             prism:ViewModelLocator.AutoWireViewModel="True"
              mc:Ignorable="d"
              d:DesignHeight="450"
              d:DesignWidth="800">
-    <UserControl.Resources>
+    <!--<UserControl.Resources>
         <Style x:Key="ConcernOrCancelConcernButtonStyle"
                TargetType="{x:Type Button}">
             <Setter Property="Content"
@@ -123,6 +127,105 @@
                                     VerticalAlignment="Top"
                                     Style="{StaticResource ConcernOrCancelConcernButtonStyle}"
                                     Command="{Binding ConcernOrCancelConcernCommand}" />
+                        </Grid>
+                    </Button>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </Grid>-->
+    <UserControl.Resources>
+        <BitmapImage x:Key="UserDefaultAvatar"
+                     UriSource="pack://application:,,,/Discovery.Client.Resource;component/Images/UserDefaultAvatar.png" />
+        <converters:GenderToIconConverter x:Key="GenderToIcon" />
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <TextBlock Background="#FF2465F7"
+                   FontSize="20"
+                   Text="{Binding Discoverer.BasicInfo.SignInName, StringFormat={}{0} 关注的人}"
+                   Foreground="White"
+                   Padding="10" />
+        <ListBox x:Name="SearchedDiscoverersList"
+                 Grid.Row="1"
+                 ItemsSource="{Binding Idols}"
+                 Style="{DynamicResource ListBoxStyle}"
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                 HorizontalContentAlignment="Stretch"
+                 Background="#FFEDF1F7"
+                 BorderThickness="0">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Button Background="White"
+                            Margin="0,5"
+                            Padding="15"
+                            BorderThickness="0"
+                            Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.ViewThisUsersHomePageCommand}"
+                            CommandParameter="{Binding Discoverer}"
+                            Style="{DynamicResource SecondaryButtonStyle}"
+                            HorizontalContentAlignment="Stretch">
+                        <Grid Height="80">
+                            <Grid Background="White">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <Button Grid.Column="0"
+                                        Padding="0"
+                                        Margin="10"
+                                        BorderBrush="White"
+                                        BorderThickness="1"
+                                        Width="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ActualHeight}"
+                                        HorizontalContentAlignment="Stretch"
+                                        VerticalContentAlignment="Stretch"
+                                        Style="{DynamicResource RoundButtonStyle}"
+                                        Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.ViewThisUsersHomePageCommand}"
+                                        CommandParameter="{Binding Discoverer}">
+                                    <Grid>
+                                        <Ellipse>
+                                            <Ellipse.Fill>
+                                                <ImageBrush ImageSource="{StaticResource UserDefaultAvatar}" />
+                                            </Ellipse.Fill>
+                                        </Ellipse>
+                                        <Ellipse>
+                                            <Ellipse.Fill>
+                                                <ImageBrush x:Name="DiscovererAvatar"
+                                                            ImageSource="{Binding Discoverer.BasicInfo.AvatarPath}"
+                                                            Stretch="UniformToFill" />
+                                            </Ellipse.Fill>
+                                        </Ellipse>
+                                    </Grid>
+                                </Button>
+                                <Ellipse Grid.Column="0"
+                                         Width="22"
+                                         Height="22"
+                                         Margin="10"
+                                         HorizontalAlignment="Right"
+                                         VerticalAlignment="Bottom">
+                                    <Ellipse.Fill>
+                                        <ImageBrush ImageSource="{Binding Discoverer.BasicInfo.Sex, Converter={StaticResource GenderToIcon}}" />
+                                    </Ellipse.Fill>
+                                </Ellipse>
+                                <TextBlock Grid.Column="1"
+                                           VerticalAlignment="Center"
+                                           FontSize="20"
+                                           Text="{Binding Discoverer.BasicInfo.SignInName}" />
+                                <Button Grid.Column="1"
+                                        HorizontalAlignment="Right"
+                                        VerticalAlignment="Center"
+                                        Foreground="White"
+                                        FontSize="15"
+                                        Margin="40, 0"
+                                        BorderThickness="3"
+                                        BorderBrush="#FF163D94"
+                                        Style="{DynamicResource ConcernOrCancelConcernListItemButtonStyle}"
+                                        Command="{Binding ConcernOrCancelConcernCommand}"
+                                        CommandParameter="{Binding}"
+                                        coreui:ButtonBrush.ButtonPressBackground="#FF163D94"
+                                        Padding="20, 8" />
+                            </Grid>
                         </Grid>
                     </Button>
                 </DataTemplate>
