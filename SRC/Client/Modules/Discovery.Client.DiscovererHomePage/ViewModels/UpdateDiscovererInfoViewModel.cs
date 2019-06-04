@@ -9,6 +9,7 @@ using Discovery.Core.Constants;
 using Discovery.Core.GlobalData;
 using Discovery.Client.DiscovererHomePage.DataBaseService;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace Discovery.Client.DiscovererHomePage.ViewModels
 {
@@ -42,17 +43,7 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
         }
 
         public DelegateCommand SaveUpdateCommand { get; }
-        private async void SaveUpdate()
-        {
-            IsUpdating = true;
-            UploadAvatarAndProfileBackgroundImage();
-            using (var databaseService = new DataBaseServiceClient())
-            {
-                await databaseService.UpdateDiscovererInfoAsync(CurrentUser);
-            }
-            IsUpdating = false;
-            NavigateToMyHomePage();
-        }
+
         public DelegateCommand UpdateAvatarCommand { get; }
         private void UpdateAvatar()
         {
@@ -64,8 +55,6 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
             }
         }
         public DelegateCommand UpdateProfileBackgroundImageCommand { get; }
-        public bool KeepAlive => false;
-
         private void UpdateProfileBackground()
         {
             var profileBackgroundImageSelector = new OpenFileDialog();
@@ -75,33 +64,32 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
                 CurrentUser.BasicInfo.ProfileBackgroundImagePath = profileBackgroundImageSelector.FileName;
             }
         }
-        private void UploadAvatarAndProfileBackgroundImage()
+
+        public bool KeepAlive => false;
+        private async void SaveUpdate()
         {
-            if (_localAvatarPathWillToUpload is null &&
-                _localProfileBackgroundWillToUpload is null)
+            IsUpdating = true;
+            string userAvatarPath = $"{CurrentUser.BasicInfo.SignInName}/Avatar.jpg";
+            string userProfileBackgroundImagePath = $"{CurrentUser.BasicInfo.SignInName}/ProfileBackground.jpg";
+
+            using (var databaseService = new DataBaseServiceClient())
             {
-                return;
+                if (_localAvatarPathWillToUpload != null)
+                {
+                    byte[] avatarData = File.ReadAllBytes(_localAvatarPathWillToUpload);
+                    await databaseService.UploadFileAsync(avatarData, userAvatarPath);
+                    CurrentUser.BasicInfo.AvatarPath = $"http://47.240.12.27:10003/Discovery/DiscoveryWebFiles/Discoverer/Images/{userAvatarPath}?{Guid.NewGuid()}";
+                }
+                if (_localProfileBackgroundWillToUpload != null)
+                {
+                    byte[] profileBackgroundData = File.ReadAllBytes(_localProfileBackgroundWillToUpload);
+                    await databaseService.UploadFileAsync(profileBackgroundData, userProfileBackgroundImagePath);
+                    CurrentUser.BasicInfo.ProfileBackgroundImagePath = $"http://47.240.12.27:10003/Discovery/DiscoveryWebFiles/Discoverer/Images/{userProfileBackgroundImagePath}?{Guid.NewGuid()}";
+                }
+                await databaseService.UpdateDiscovererInfoAsync(CurrentUser);
             }
-            string ftpImageFileBasePath = @"ftp://47.240.12.27/Discovery/DiscoveryWebFiles/Discoverer/Images/";
-            string userBasePath = $"{ftpImageFileBasePath}{CurrentUser.BasicInfo.SignInName}";
-            string userAvatarPath = $"{userBasePath}/Avatar.jpg";
-            string userProfileBackgroundImagePath = $"{userBasePath}/ProfileBackground.jpg";
-            var webFileService = new WebFileService(ftpImageFileBasePath);
-            //webFileService.CreateDirectoryIfNotExistWithRecurtion($"{CurrentUser.BasicInfo.SignInName}/Post");
-            if (_localAvatarPathWillToUpload != null)
-            {
-                webFileService.Upload(
-                    _localAvatarPathWillToUpload,
-                    userAvatarPath);
-            }
-            if (_localProfileBackgroundWillToUpload != null)
-            {
-                webFileService.Upload(
-                    _localProfileBackgroundWillToUpload,
-                    userProfileBackgroundImagePath);
-            }
-            CurrentUser.BasicInfo.AvatarPath = $"{userAvatarPath.Replace("ftp://47.240.12.27", "http://47.240.12.27:10003")}?{Guid.NewGuid()}";
-            CurrentUser.BasicInfo.ProfileBackgroundImagePath = $"{userProfileBackgroundImagePath.Replace("ftp://47.240.12.27", "http://47.240.12.27:10003")}?{Guid.NewGuid()}";
+            IsUpdating = false;
+            NavigateToMyHomePage();
         }
         private void NavigateToMyHomePage()
             => _regionManager.RequestNavigate(

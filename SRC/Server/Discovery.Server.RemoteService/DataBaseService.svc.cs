@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using Discovery.Core.Constants;
 using Discovery.Core.Enums;
 using Discovery.Core.Model;
@@ -63,7 +64,8 @@ namespace Discovery.Server.RemoteService
         private string GetDataBaseConnectionString()
             => ConfigurationManager.ConnectionStrings["DiscoveryDataBase"]
                                    .ConnectionString;
-
+        public void UploadFile(byte[] data, string path)
+            => File.WriteAllBytes(@"C:\ToBinary\WebFiles\Discovery\DiscoveryWebFiles\Discoverer\Images/" + path, data);
         /// <summary>
         /// 取消关注一个用户
         /// </summary>

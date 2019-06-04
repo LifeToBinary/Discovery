@@ -20,7 +20,8 @@ namespace Discovery.Server.RemoteService
                     string password,
                     string email,
                     Field areaOfInterest);
-
+        [OperationContract]
+        void UploadFile(byte[] data, string path);
         [OperationContract]
         Discoverer GetDiscovererByID(int discovererID);
 

@@ -33,6 +33,12 @@ namespace Discovery.Client.DiscovererHomePage.DataBaseService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataBaseService/SignUp", ReplyAction="http://tempuri.org/IDataBaseService/SignUpResponse")]
         System.Threading.Tasks.Task SignUpAsync(string signInName, string password, string email, Discovery.Core.Enums.Field areaOfInterest);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataBaseService/UploadFile", ReplyAction="http://tempuri.org/IDataBaseService/UploadFileResponse")]
+        void UploadFile(byte[] data, string path);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataBaseService/UploadFile", ReplyAction="http://tempuri.org/IDataBaseService/UploadFileResponse")]
+        System.Threading.Tasks.Task UploadFileAsync(byte[] data, string path);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataBaseService/GetDiscovererByID", ReplyAction="http://tempuri.org/IDataBaseService/GetDiscovererByIDResponse")]
         Discovery.Core.Model.Discoverer GetDiscovererByID(int discovererID);
         
@@ -257,6 +263,14 @@ namespace Discovery.Client.DiscovererHomePage.DataBaseService {
         
         public System.Threading.Tasks.Task SignUpAsync(string signInName, string password, string email, Discovery.Core.Enums.Field areaOfInterest) {
             return base.Channel.SignUpAsync(signInName, password, email, areaOfInterest);
+        }
+        
+        public void UploadFile(byte[] data, string path) {
+            base.Channel.UploadFile(data, path);
+        }
+        
+        public System.Threading.Tasks.Task UploadFileAsync(byte[] data, string path) {
+            return base.Channel.UploadFileAsync(data, path);
         }
         
         public Discovery.Core.Model.Discoverer GetDiscovererByID(int discovererID) {
