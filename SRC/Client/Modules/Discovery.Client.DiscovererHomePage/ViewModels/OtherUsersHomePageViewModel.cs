@@ -52,7 +52,7 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
         {
             using (var databaseService = new DataBaseServiceClient())
             {
-                if (_isConcerned)
+                if (IsConcernedThisUser)
                 {
                     databaseService.CancelConcern(
                         GlobalObjectHolder.CurrentUser.BasicInfo.ID,
