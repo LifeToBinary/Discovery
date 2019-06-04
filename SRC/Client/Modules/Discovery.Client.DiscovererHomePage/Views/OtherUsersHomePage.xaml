@@ -67,7 +67,7 @@
                      Margin="60, 70, 0, 0">
                 <Ellipse.Fill>
                     <ImageBrush x:Name="GenderImage"
-                                ImageSource="{Binding CurrentUser.BasicInfo.Sex, Converter={StaticResource GenderToIcon}}" />
+                                ImageSource="{Binding Discoverer.BasicInfo.Sex, Converter={StaticResource GenderToIcon}}" />
                 </Ellipse.Fill>
             </Ellipse>
             <Button Grid.Column="2"
@@ -78,7 +78,7 @@
                     FontSize="14"
                     BorderThickness="3"
                     BorderBrush="#FF163D94"
-                    Command="{Binding ConcernOrCancelConcernAuthorCommand}"
+                    Command="{Binding ConcernOrCancelConcernCommand}"
                     coreui:ButtonBrush.ButtonPressBackground="#FF163D94" />
         </Grid>
         <Grid Grid.Row="0"
