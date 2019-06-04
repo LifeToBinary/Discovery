@@ -3,35 +3,22 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:Discovery.Client.DiscovererHomePage.Views"
-             xmlns:coreui="clr-namespace:Discovery.Core.UI.Converters;assembly=Discovery.Core.UI"
+             xmlns:coreui="clr-namespace:Discovery.Core.UI.AttachedProperties;assembly=Discovery.Core.UI"
              xmlns:constants="clr-namespace:Discovery.Core.Constants;assembly=Discovery.Core"
+             xmlns:converters="clr-namespace:Discovery.Core.UI.Converters;assembly=Discovery.Core.UI"
              xmlns:prism="http://prismlibrary.com/"
              prism:ViewModelLocator.AutoWireViewModel="True"
              mc:Ignorable="d"
-             d:DesignHeight="450"
+             d:DesignHeight="596"
              d:DesignWidth="800">
     <UserControl.Resources>
-        <coreui:StringToBitmapImageConverter x:Key="stringToBitmapImage" />
-        <coreui:BooleanToVisibilityConverter x:Key="booleanToVisibility" />
-        <Style x:Key="ConcernOrCancelConcernButtonStyle"
-               TargetType="{x:Type Button}">
-            <Setter Property="Content"
-                    Value="关注" />
-            <Setter Property="Background"
-                    Value="Green" />
-            <Style.Triggers>
-                <DataTrigger Binding="{Binding IsConcerned}"
-                             Value="True">
-                    <Setter Property="Content"
-                            Value="取消关注" />
-                    <Setter Property="Background"
-                            Value="OrangeRed" />
-                </DataTrigger>
-            </Style.Triggers>
-        </Style>
+        <converters:GenderToIconConverter x:Key="GenderToIcon" />
+        <BitmapImage x:Key="UserDefaultAvatar"
+                     UriSource="pack://application:,,,/Discovery.Client.Resource;component/Images/UserDefaultAvatar.png" />
+        <BitmapImage x:Key="DefaultProfileBackground"
+                     UriSource="pack://application:,,,/Discovery.Client.Resource;component/Images/DefaultProfileBackground.jpg" />
     </UserControl.Resources>
-    <Grid>
+    <!--<Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="150" />
             <RowDefinition />
@@ -50,7 +37,7 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition />
-            </Grid.ColumnDefinitions> 
+            </Grid.ColumnDefinitions>
             <Grid Grid.Column="0"
                   VerticalAlignment="Top"
                   Margin="20, 80, 20, 0">
@@ -68,7 +55,7 @@
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
-                
+
                 <Button Grid.Row="0"
                         Style="{StaticResource ConcernOrCancelConcernButtonStyle}"
                         Command="{Binding ConcernOrCancelConcernCommand}" />
@@ -161,5 +148,188 @@
                                   ShadowDepth="0" />
             </Ellipse.Effect>
         </Ellipse>
+    </Grid>-->
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Image Grid.Row="1"
+               Height="250"
+               Source="{StaticResource DefaultProfileBackground}"
+               Stretch="UniformToFill"></Image>
+        <Image Grid.Row="1"
+               Height="250"
+               Source="{Binding Discoverer.BasicInfo.ProfileBackgroundImagePath}"
+               Stretch="UniformToFill" />
+        <Grid Grid.Row="1"
+              HorizontalAlignment="Center"
+              VerticalAlignment="Center"
+              Height="185">
+            <Border Grid.Row="1"
+                    Width="100"
+                    Height="100"
+                    BorderThickness="2.4"
+                    BorderBrush="White"
+                    CornerRadius="100"
+                    SnapsToDevicePixels="True">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="10"
+                                      ShadowDepth="0" />
+                </Border.Effect>
+                <Grid>
+                    <Ellipse>
+                        <Ellipse.Fill>
+                            <ImageBrush ImageSource="{StaticResource UserDefaultAvatar}" />
+                        </Ellipse.Fill>
+                    </Ellipse>
+                    <Ellipse>
+                        <Ellipse.Fill>
+                            <ImageBrush ImageSource="{Binding Discoverer.BasicInfo.AvatarPath}"
+                                        Stretch="UniformToFill" />
+                        </Ellipse.Fill>
+                    </Ellipse>
+                </Grid>
+            </Border>
+            <Ellipse Grid.Row="1"
+                     Width="30"
+                     Height="30"
+                     Margin="60, 70, 0, 0">
+                <Ellipse.Fill>
+                    <ImageBrush x:Name="GenderImage"
+                                ImageSource="{Binding CurrentUser.BasicInfo.Sex, Converter={StaticResource GenderToIcon}}" />
+                </Ellipse.Fill>
+            </Ellipse>
+            <Button Grid.Column="2"
+                    VerticalAlignment="Bottom"
+                    Foreground="White"
+                    Style="{DynamicResource ConcernOrCancelConcernAUserButtonStyle}"
+                    Padding="30, 8"
+                    FontSize="14"
+                    BorderThickness="3"
+                    BorderBrush="#FF163D94"
+                    Command="{Binding ConcernOrCancelConcernAuthorCommand}"
+                    coreui:ButtonBrush.ButtonPressBackground="#FF163D94" />
+        </Grid>
+        <Grid Grid.Row="0"
+              Background="#FF2465F7">
+
+            <TextBlock Text="{Binding Discoverer.BasicInfo.SignInName, StringFormat={}{0} 的主页}"
+                       Margin="20, 10"
+                       Foreground="White"
+                       FontSize="20" />
+        </Grid>
+        <Button Grid.Row="0"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top" />
+        <StackPanel Grid.Row="2"
+                    TextBlock.FontSize="30">
+            <Button Margin="0, 5"
+                    Padding="20, 10"
+                    FontSize="20"
+                    BorderBrush="Gray"
+                    BorderThickness="0"
+                    coreui:ButtonBrush.ButtonPressBackground="White"
+                    Style="{DynamicResource SecondaryButtonStyle}"
+                    Command="{Binding NavigateViewToMainMenuContentRegionCommand}"
+                    CommandParameter="{x:Static constants:ViewNames.OtherUsersPostedPosts}"
+                    HorizontalContentAlignment="Stretch">
+                <Button.Content>
+                    <Grid>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock FontFamily="Segoe MDL2 Assets"
+                                       Text="&#xE724;"
+                                       Margin="10, 0"
+                                       VerticalAlignment="Center" />
+                            <TextBlock Text="他的帖子" />
+                        </StackPanel>
+                        <TextBlock FontFamily="Segoe MDL2 Assets"
+                                   Text="&#xE76C;"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Right" />
+                    </Grid>
+                </Button.Content>
+            </Button>
+
+            <Button Margin="0, 5"
+                    Padding="20, 10"
+                    FontSize="20"
+                    BorderBrush="Gray"
+                    BorderThickness="0"
+                    coreui:ButtonBrush.ButtonPressBackground="White"
+                    Style="{DynamicResource SecondaryButtonStyle}"
+                    Command="{Binding NavigateViewToMainMenuContentRegionCommand}"
+                    CommandParameter="{x:Static constants:ViewNames.OtherUsersFavoritedPosts}"
+                    HorizontalContentAlignment="Stretch">
+                <Button.Content>
+                    <Grid>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock FontFamily="Segoe MDL2 Assets"
+                                       Text="&#xE734;"
+                                       Margin="10, 0"
+                                       VerticalAlignment="Center" />
+                            <TextBlock Text="他的收藏" />
+                        </StackPanel>
+                        <TextBlock FontFamily="Segoe MDL2 Assets"
+                                   Text="&#xE76C;"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Right" />
+                    </Grid>
+                </Button.Content>
+            </Button>
+            <Button Padding="20, 10"
+                    FontSize="20"
+                    BorderBrush="Gray"
+                    Margin="0, 5"
+                    BorderThickness="0"
+                    coreui:ButtonBrush.ButtonPressBackground="White"
+                    Style="{DynamicResource SecondaryButtonStyle}"
+                    Command="{Binding NavigateViewToMainMenuContentRegionCommand}"
+                    CommandParameter="{x:Static constants:ViewNames.OtherUsersConcern}"
+                    HorizontalContentAlignment="Stretch">
+                <Button.Content>
+                    <Grid>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock FontFamily="Segoe MDL2 Assets"
+                                       Text="&#xEB51;"
+                                       Margin="10, 0"
+                                       VerticalAlignment="Center" />
+                            <TextBlock Text="他关注的人" />
+                        </StackPanel>
+                        <TextBlock FontFamily="Segoe MDL2 Assets"
+                                   Text="&#xE76C;"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Right" />
+                    </Grid>
+                </Button.Content>
+            </Button>
+            <Button Padding="20, 10"
+                    FontSize="20"
+                    Margin="0, 5"
+                    BorderBrush="Gray"
+                    BorderThickness="0"
+                    coreui:ButtonBrush.ButtonPressBackground="White"
+                    Style="{DynamicResource SecondaryButtonStyle}"
+                    Command="{Binding NavigateViewToMainMenuRegionCommand}"
+                    CommandParameter="{x:Static constants:ViewNames.OtherUsersFuns}"
+                    HorizontalContentAlignment="Stretch">
+                <Button.Content>
+                    <Grid>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock FontFamily="Segoe MDL2 Assets"
+                                       Text="&#xE899;"
+                                       Margin="10, 0"
+                                       VerticalAlignment="Center" />
+                            <TextBlock Text="关注他的人" />
+                        </StackPanel>
+                        <TextBlock FontFamily="Segoe MDL2 Assets"
+                                   Text="&#xE76C;"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Right" />
+                    </Grid>
+                </Button.Content>
+            </Button>
+        </StackPanel>
     </Grid>
 </UserControl>

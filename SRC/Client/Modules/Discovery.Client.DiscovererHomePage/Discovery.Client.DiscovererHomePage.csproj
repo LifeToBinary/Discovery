@@ -88,6 +88,7 @@
     <Compile Include="ViewModels\MyFunsViewModel.cs" />
     <Compile Include="ViewModels\MyHomePageViewModel.cs" />
     <Compile Include="ViewModels\OtherUsersHomePageViewModel.cs" />
+    <Compile Include="ViewModels\OtherUsersPostedPostsViewModel.cs" />
     <Compile Include="ViewModels\UpdateDiscovererInfoViewModel.cs" />
     <Compile Include="Views\MyHomePage.xaml.cs">
       <DependentUpon>MyHomePage.xaml</DependentUpon>

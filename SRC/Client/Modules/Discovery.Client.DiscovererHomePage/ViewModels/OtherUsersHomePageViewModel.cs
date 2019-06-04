@@ -33,6 +33,15 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
             get => _discoverer;
             set => SetProperty(ref _discoverer, value);
         }
+        public DelegateCommand<string> NavigateViewToMainMenuContentRegionCommand { get; }
+        private void NavigateViewToMainMenuContentRegion(string viewName)
+            => _regionManager.RequestNavigate(
+                RegionNames.MainMenuContent,
+                viewName,
+                new NavigationParameters
+                {
+                    { "Discoverer", Discoverer }
+                });
         public ObservableCollection<PostRelationalModel> PostedPosts
         {
             get => _postedPost;
@@ -54,11 +63,17 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
             get => _idols;
             set => SetProperty(ref _idols, value);
         }
-
+        private bool _isConcernedThisUser;
+        public bool IsConcernedThisUser
+        {
+            get => _isConcernedThisUser;
+            set => SetProperty(ref _isConcernedThisUser, value);
+        }
         public OtherUsersHomePageViewModel(IRegionManager regionManager)
         {
             _regionManager = regionManager;
-
+            NavigateViewToMainMenuContentRegionCommand =
+                new DelegateCommand<string>(NavigateViewToMainMenuContentRegion);
             ViewThisUsersHomePageCommand =
                 new DelegateCommand<Discoverer>(
                     ViewThisUsersHomePage);
@@ -72,12 +87,6 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
             ConcernOrCancelConcernCommand = new DelegateCommand(ConcernOrCancelConcern);
         }
 
-        public bool IsConcerned
-        {
-            get => _isConcerned;
-            set => SetProperty(ref _isConcerned, value);
-        }
-
         public DelegateCommand ConcernOrCancelConcernCommand { get; }
         private void ConcernOrCancelConcern()
         {
@@ -88,14 +97,14 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
                     databaseService.CancelConcern(
                         GlobalObjectHolder.CurrentUser.BasicInfo.ID,
                         Discoverer.BasicInfo.ID);
-                    IsConcerned = false;
+                    IsConcernedThisUser = false;
                 }
                 else
                 {
                     databaseService.ConcernADiscoverer(
                         GlobalObjectHolder.CurrentUser.BasicInfo.ID,
                         Discoverer.BasicInfo.ID);
-                    IsConcerned = true;
+                    IsConcernedThisUser = true;
                 }
             }
         }
@@ -161,9 +170,9 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
                         GlobalObjectHolder.CurrentUser.BasicInfo.ID,
                         Discoverer.BasicInfo.ID);
 
-                IsConcerned = databaseService.IsFuns(
-                                  GlobalObjectHolder.CurrentUser.BasicInfo.ID,
-                                  Discoverer.BasicInfo.ID);
+                IsConcernedThisUser = databaseService.IsFuns(
+                                          GlobalObjectHolder.CurrentUser.BasicInfo.ID,
+                                          Discoverer.BasicInfo.ID);
             }
 
             PostedPosts = new ObservableCollection<PostRelationalModel>(

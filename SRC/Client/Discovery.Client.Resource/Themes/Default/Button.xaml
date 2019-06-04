@@ -138,6 +138,19 @@
             </DataTrigger>
         </Style.Triggers>
     </Style>
+    <Style x:Key="ConcernOrCancelConcernAUserButtonStyle"
+           TargetType="{x:Type Button}"
+           BasedOn="{StaticResource DefaultButtonStyle}">
+        <Setter Property="Content"
+                Value="关注" />
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding IsConcernedThisUser}"
+                         Value="True">
+                <Setter Property="Content"
+                        Value="已关注" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
     <Style x:Key="ConcernOrCancelConcernListItemButtonStyle"
            TargetType="{x:Type Button}"
            BasedOn="{StaticResource DefaultButtonStyle}">
@@ -151,6 +164,7 @@
             </DataTrigger>
         </Style.Triggers>
     </Style>
+
     <Style x:Key="FavoriteOrCancelFavoriteButtonStyle"
            TargetType="{x:Type Button}"
            BasedOn="{StaticResource DefaultButtonStyle}">
