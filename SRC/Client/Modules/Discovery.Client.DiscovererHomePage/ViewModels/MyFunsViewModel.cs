@@ -6,25 +6,38 @@ using Discovery.Core.RelationalModel;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Discovery.Client.DiscovererHomePage.ViewModels
 {
     public class MyFunsViewModel : BindableBase, IRegionMemberLifetime
     {
+        /// <summary>
+        /// 当前用户
+        /// </summary>
         public Discoverer CurrentUser { get; }
+
+        /// <summary>
+        /// Region 导航对象
+        /// </summary>
         private readonly IRegionManager _regionManager;
+
+        /// <summary>
+        /// 关注他(当前用户)的用户
+        /// </summary>
         private ObservableCollection<DiscovererRelationshipModel> _funs;
         public ObservableCollection<DiscovererRelationshipModel> Funs
         {
             get => _funs;
             set => SetProperty(ref _funs, value);
         }
+
+        /// <summary>
+        /// 构造函数
+        /// </summary>
+        /// <param name="regionManager"></param>
         public MyFunsViewModel(IRegionManager regionManager)
         {
             CurrentUser = GlobalObjectHolder.CurrentUser;
@@ -33,9 +46,11 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
             _regionManager = regionManager;
             LoadData();
         }
-        public DelegateCommand<Discoverer> ViewThisUsersHomePageCommand { get; }
-        public bool KeepAlive => false;
 
+        /// <summary>
+        /// 查看一个用户的主页
+        /// </summary>
+        public DelegateCommand<Discoverer> ViewThisUsersHomePageCommand { get; }
         private void ViewThisUsersHomePage(Discoverer discoverer)
             => _regionManager.RequestNavigate(
                 RegionNames.MainMenuContent,
@@ -44,6 +59,10 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
                 {
                     { "Discoverer" , discoverer }
                 });
+
+        /// <summary>
+        /// 查询关注他(当前用户)的人
+        /// </summary>
         private async void LoadData()
         {
             KeyValuePair<Discoverer, bool>[] currentUsersRelationshipWithAnotherUsersFuns;
@@ -60,5 +79,10 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
                                item.Key,
                                item.Value)));
         }
+
+        /// <summary>
+        /// 从Region离开时, 不保留此视图
+        /// </summary>
+        public bool KeepAlive => false;
     }
 }

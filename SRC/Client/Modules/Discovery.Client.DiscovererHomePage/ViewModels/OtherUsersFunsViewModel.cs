@@ -6,31 +6,44 @@ using Discovery.Core.RelationalModel;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Discovery.Client.DiscovererHomePage.ViewModels
 {
-    class OtherUsersFunsViewModel
+    public class OtherUsersFunsViewModel
         : BindableBase, INavigationAware, IRegionMemberLifetime
     {
+        /// <summary>
+        /// 用户
+        /// </summary>
         private Discoverer _discoverer;
         public Discoverer Discoverer
         {
             get => _discoverer;
             set => SetProperty(ref _discoverer, value);
         }
+
+        /// <summary>
+        /// 关注此用户的人
+        /// </summary>
         private ObservableCollection<DiscovererRelationshipModel> _funs;
         public ObservableCollection<DiscovererRelationshipModel> Funs
         {
             get => _funs;
             set => SetProperty(ref _funs, value);
         }
+
+        /// <summary>
+        /// Region 导航对象
+        /// </summary>
         private readonly IRegionManager _regionManager;
+
+        /// <summary>
+        /// 构造函数
+        /// </summary>
+        /// <param name="regionManager"></param>
         public OtherUsersFunsViewModel(IRegionManager regionManager)
         {
             _regionManager = regionManager;
@@ -38,6 +51,10 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
             ViewThisUsersHomePageCommand = 
                 new DelegateCommand<Discoverer>(ViewThisUsersHomePage);
         }
+
+        /// <summary>
+        /// 查看一个用户的主页
+        /// </summary>
         public DelegateCommand<Discoverer> ViewThisUsersHomePageCommand { get; }
         private void ViewThisUsersHomePage(Discoverer discoverer)
         {
@@ -57,6 +74,10 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
                 });
         }
 
+        /// <summary>
+        /// 导航到此视图时
+        /// </summary>
+        /// <param name="navigationContext"></param>
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
             if (navigationContext.Parameters["Discoverer"] is Discoverer discoverer)
@@ -65,6 +86,10 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
                 LoadData();
             }
         }
+
+        /// <summary>
+        /// 查询关注此用户的人
+        /// </summary>
         private async void LoadData()
         {
             KeyValuePair<Discoverer, bool>[] thisUsersRelationshipWithAnotherUsersFuns;
@@ -81,11 +106,26 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
                                        item.Key,
                                        item.Value)));
         }
+
+        /// <summary>
+        /// 是否可以导航到此视图
+        /// </summary>
+        /// <param name="navigationContext"></param>
+        /// <returns></returns>
         public bool IsNavigationTarget(NavigationContext navigationContext)
             => true;
+
+        /// <summary>
+        /// 导航离开时
+        /// </summary>
+        /// <param name="navigationContext"></param>
         public void OnNavigatedFrom(NavigationContext navigationContext)
         {
         }
+
+        /// <summary>
+        /// 从 Region 离开时, 不保留此视图
+        /// </summary>
         public bool KeepAlive => false;
     }
 }

@@ -5,24 +5,31 @@ using Discovery.Core.Model;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Discovery.Client.DiscovererHomePage.ViewModels
 {
     public class MyConcernViewModel : BindableBase, IRegionMemberLifetime
     {
+        /// <summary>
+        /// Region 导航对象
+        /// </summary>
         private readonly IRegionManager _regionManager;
+
+        /// <summary>
+        /// 当前用户关注的人
+        /// </summary>
         private ObservableCollection<Discoverer> _myConcerns;
         public ObservableCollection<Discoverer> MyConcerns
         {
             get => _myConcerns;
             set => SetProperty(ref _myConcerns, value);
         }
+
+        /// <summary>
+        /// 构造函数
+        /// </summary>
+        /// <param name="regionManager"></param>
         public MyConcernViewModel(IRegionManager regionManager)
         {
             MyConcerns = new ObservableCollection<Discoverer>();
@@ -32,6 +39,10 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
             CancelConcernCommand = new DelegateCommand<Discoverer>(CancelConcern);
             LoadData();
         }
+
+        /// <summary>
+        /// 查询当前用户关注的人
+        /// </summary>
         private async void LoadData()
         {
             using (var databaseService = new DataBaseServiceClient())
@@ -43,6 +54,10 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
                 };
             }
         }
+
+        /// <summary>
+        /// 当前用户取消关注一个用户
+        /// </summary>
         public DelegateCommand<Discoverer> CancelConcernCommand { get; }
         private void CancelConcern(Discoverer discoverer)
         {
@@ -54,9 +69,11 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
             }
             MyConcerns.Remove(discoverer);
         }
-        public DelegateCommand<Discoverer> ViewThisUsersHomePageCommand { get; }
-        public bool KeepAlive => false;
 
+        /// <summary>
+        /// 查看一个用户的主页
+        /// </summary>
+        public DelegateCommand<Discoverer> ViewThisUsersHomePageCommand { get; }
         private void ViewThisUsersHomePage(Discoverer discoverer)
             => _regionManager.RequestNavigate(
                 RegionNames.MainMenuContent,
@@ -65,5 +82,10 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
                 {
                     { "Discoverer", discoverer}
                 });
+
+        /// <summary>
+        /// 从Region离开时, 不保留此视图
+        /// </summary>
+        public bool KeepAlive => false;
     }
 }
