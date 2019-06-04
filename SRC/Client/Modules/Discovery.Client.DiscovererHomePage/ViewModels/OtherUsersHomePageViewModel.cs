@@ -18,16 +18,8 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
 {
     public class OtherUsersHomePageViewModel : BindableBase, INavigationAware, IRegionMemberLifetime
     {
-        #region 字段
         private readonly IRegionManager _regionManager;
-        private ObservableCollection<PostRelationalModel> _postedPost;
-        private ObservableCollection<DiscovererRelationshipModel> _funs;
-        private ObservableCollection<PostRelationalModel> _favoritedPost;
-        private ObservableCollection<DiscovererRelationshipModel> _idols;
         private Discoverer _discoverer;
-        private bool _isConcerned;
-        #endregion
-
         public Discoverer Discoverer
         {
             get => _discoverer;
@@ -42,27 +34,6 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
                 {
                     { "Discoverer", Discoverer }
                 });
-        public ObservableCollection<PostRelationalModel> PostedPosts
-        {
-            get => _postedPost;
-            set => SetProperty(ref _postedPost, value);
-        }
-        public ObservableCollection<DiscovererRelationshipModel> Funs
-        {
-            get => _funs;
-            set => SetProperty(ref _funs, value);
-        }
-        public ObservableCollection<PostRelationalModel> FavoritedPosts
-        {
-            get => _favoritedPost;
-            set => SetProperty(ref _favoritedPost, value);
-        }
-
-        public ObservableCollection<DiscovererRelationshipModel> Idols
-        {
-            get => _idols;
-            set => SetProperty(ref _idols, value);
-        }
         private bool _isConcernedThisUser;
         public bool IsConcernedThisUser
         {
@@ -74,19 +45,8 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
             _regionManager = regionManager;
             NavigateViewToMainMenuContentRegionCommand =
                 new DelegateCommand<string>(NavigateViewToMainMenuContentRegion);
-            ViewThisUsersHomePageCommand =
-                new DelegateCommand<Discoverer>(
-                    ViewThisUsersHomePage);
-
-            ViewPostDetailCommand =
-                new DelegateCommand<Post>(ViewPostDetail);
-
-            NavigationToProfileContentRegionCommand =
-                new DelegateCommand<string>(
-                    NavigationToProfileContentRegion);
             ConcernOrCancelConcernCommand = new DelegateCommand(ConcernOrCancelConcern);
         }
-
         public DelegateCommand ConcernOrCancelConcernCommand { get; }
         private void ConcernOrCancelConcern()
         {
@@ -108,98 +68,6 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
                 }
             }
         }
-
-        public DelegateCommand<string> NavigationToProfileContentRegionCommand { get; }
-        private void NavigationToProfileContentRegion(string viewName)
-            => _regionManager.RequestNavigate(
-                RegionNames.OtherUsersProfileContent,
-                viewName,
-                new NavigationParameters
-                {
-                    { "Discoverer", Discoverer }
-                });
-
-        public DelegateCommand<Discoverer> ViewThisUsersHomePageCommand { get; }
-        private void ViewThisUsersHomePage(Discoverer discoverer)
-            => _regionManager.RequestNavigate(
-                RegionNames.MainMenuContent,
-                discoverer.BasicInfo.ID == GlobalObjectHolder.CurrentUser.BasicInfo.ID
-                    ? ViewNames.DiscovererHomePage
-                    : ViewNames.OtherUsersHomePage,
-                new NavigationParameters
-                {
-                    { "Discoverer", discoverer }
-                });
-
-        public DelegateCommand<Post> ViewPostDetailCommand { get; }
-        private void ViewPostDetail(Post post)
-            => _regionManager.RequestNavigate(
-                RegionNames.MainMenuContent,
-                ViewNames.OtherUsersPostDetail,
-                new NavigationParameters
-                {
-                    { "Post", post }
-                });
-
-        private async void LoadData()
-        {
-            KeyValuePair<Post, bool>[] thisUsersRelationshipWithAnotherUsersPostedPosts;
-            KeyValuePair<Discoverer, bool>[] thisUsersRelationshipWithAnotherUsersFuns;
-            KeyValuePair<Post, bool>[] thisUsersRelationshipWithAnotherUsersFavoritedPosts;
-            KeyValuePair<Discoverer, bool>[] thisUsersRelationshipWithAnotherUsersIdols;
-
-            using (var databaseService = new DataBaseServiceClient())
-            {
-                thisUsersRelationshipWithAnotherUsersPostedPosts =
-                    await databaseService.ThisUsersRelationshipWithAnotherUsersPostedPostsAsync(
-                        GlobalObjectHolder.CurrentUser.BasicInfo.ID,
-                        Discoverer.BasicInfo.ID);
-
-                thisUsersRelationshipWithAnotherUsersFuns =
-                    await databaseService.ThisUsersRelationshipWithAnotherUsersFunsAsync(
-                        GlobalObjectHolder.CurrentUser.BasicInfo.ID,
-                        Discoverer.BasicInfo.ID);
-
-                thisUsersRelationshipWithAnotherUsersFavoritedPosts =
-                    await databaseService.ThisUsersRelationshipWithAnotherUsersFavoritedPostsAsync(
-                        GlobalObjectHolder.CurrentUser.BasicInfo.ID,
-                        Discoverer.BasicInfo.ID);
-
-                thisUsersRelationshipWithAnotherUsersIdols =
-                    await databaseService.ThisUsersRelationshipWithAnotherUsersIdolsAsync(
-                        GlobalObjectHolder.CurrentUser.BasicInfo.ID,
-                        Discoverer.BasicInfo.ID);
-
-                IsConcernedThisUser = databaseService.IsFuns(
-                                          GlobalObjectHolder.CurrentUser.BasicInfo.ID,
-                                          Discoverer.BasicInfo.ID);
-            }
-
-            PostedPosts = new ObservableCollection<PostRelationalModel>(
-                              thisUsersRelationshipWithAnotherUsersPostedPosts.Select(
-                                  item => new PostRelationalModel(
-                                              item.Key,
-                                              item.Value)));
-
-            Funs = new ObservableCollection<DiscovererRelationshipModel>(
-                       thisUsersRelationshipWithAnotherUsersFuns.Select(
-                           item => new DiscovererRelationshipModel(
-                                       item.Key,
-                                       item.Value)));
-
-            FavoritedPosts = new ObservableCollection<PostRelationalModel>(
-                                 thisUsersRelationshipWithAnotherUsersFavoritedPosts.Select(
-                                     item => new PostRelationalModel(
-                                                 item.Key,
-                                                 item.Value)));
-
-            Idols = new ObservableCollection<DiscovererRelationshipModel>(
-                        thisUsersRelationshipWithAnotherUsersIdols.Select(
-                            item => new DiscovererRelationshipModel(
-                                        item.Key,
-                                        item.Value)));
-        }
-
         public void OnNavigatedTo(
             NavigationContext navigationContext)
         {
@@ -210,16 +78,23 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
                 LoadData();
             }
         }
-
+        private async void LoadData()
+        {
+            using (var databaseService = new DataBaseServiceClient())
+            {
+                IsConcernedThisUser = 
+                    await databaseService.IsFunsAsync(
+                        GlobalObjectHolder.CurrentUser.BasicInfo.ID,
+                        Discoverer.BasicInfo.ID);
+            }
+        }
         public bool IsNavigationTarget(
             NavigationContext _)
             => true;
-
         public void OnNavigatedFrom(
             NavigationContext _)
         {
         }
-
         public bool KeepAlive => false;
     }
 }

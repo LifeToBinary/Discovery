@@ -44,7 +44,6 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
             }
         }
         public bool KeepAlive => false;
-
         public DelegateCommand<Post> ViewMyPostDetailCommand { get; }
         private void ViewMyPostDetail(Post post)
             => _regionManager.RequestNavigate(
