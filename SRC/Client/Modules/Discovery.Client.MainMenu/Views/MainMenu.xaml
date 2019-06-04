@@ -102,20 +102,6 @@
                 </RadioButton>
                 <RadioButton Padding="20, 15, 15, 15"
                              Command="{Binding NavigationToMainMenuContentRegionCommand}"
-                             CommandParameter="{x:Static constants:ViewNames.About}"
-                             Style="{DynamicResource NavigationRadioButton}">
-                    <RadioButton.Content>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock FontFamily="Segoe MDL2 Assets"
-                                       Text="&#xE946;"
-                                       Margin="10, 0"
-                                       VerticalAlignment="Center" />
-                            <TextBlock Text="关于" />
-                        </StackPanel>
-                    </RadioButton.Content>
-                </RadioButton>
-                <RadioButton Padding="20, 15, 15, 15"
-                             Command="{Binding NavigationToMainMenuContentRegionCommand}"
                              CommandParameter="{x:Static constants:ViewNames.Feedback}"
                              Style="{DynamicResource NavigationRadioButton}">
                     <RadioButton.Content>
@@ -125,6 +111,20 @@
                                        Margin="10, 0"
                                        VerticalAlignment="Center" />
                             <TextBlock Text="反馈" />
+                        </StackPanel>
+                    </RadioButton.Content>
+                </RadioButton>
+                <RadioButton Padding="20, 15, 15, 15"
+                             Command="{Binding NavigationToMainMenuContentRegionCommand}"
+                             CommandParameter="{x:Static constants:ViewNames.About}"
+                             Style="{DynamicResource NavigationRadioButton}">
+                    <RadioButton.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock FontFamily="Segoe MDL2 Assets"
+                                       Text="&#xE946;"
+                                       Margin="10, 0"
+                                       VerticalAlignment="Center" />
+                            <TextBlock Text="关于" />
                         </StackPanel>
                     </RadioButton.Content>
                 </RadioButton>
