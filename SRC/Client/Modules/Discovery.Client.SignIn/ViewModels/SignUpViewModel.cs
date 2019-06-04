@@ -68,15 +68,15 @@ namespace Discovery.Client.SignIn.ViewModels
         public SignUpViewModel(IRegionManager regionManager)
         {
             _regionManager = regionManager;
-            NaviagateToSignUpFinallyStepCommand = new DelegateCommand<object>(NavigateToSignUpFinallyStep);
-            BackToSignUpFirstStepCommand = new DelegateCommand(BackToSignUpFirstStep);
-            SignUpAndNavigateToSignInCommand = new DelegateCommand(SignUpAndNavigateToSignIn);
+            SignUpAndNavigateToSignInCommand = new DelegateCommand<object>(SignUpAndNavigateToSignIn);
             SendAuthenticationCodeCommand = new DelegateCommand(SendAuthenticationCode);
             BackToSignInCommand = new DelegateCommand(BackToSignIn);
         }
 
-        public DelegateCommand<object> NaviagateToSignUpFinallyStepCommand { get; set; }
-        private void NavigateToSignUpFinallyStep(object parameter)
+        private bool CheckAuthenticationCode()
+            => _authenticationCode == _inputedCode;
+        public DelegateCommand<object> SignUpAndNavigateToSignInCommand { get; }
+        private void SignUpAndNavigateToSignIn(object parameter)
         {
             if (!CheckAuthenticationCode())
             {
@@ -91,19 +91,9 @@ namespace Discovery.Client.SignIn.ViewModels
                     return;
                 }
             }
-            _password = (parameter as PasswordBox).Password;
-            _regionManager.RequestNavigate(
-                RegionNames.SignUpRegion,
-                ViewNames.SignUpFinallyStep);
-        }
-        private bool CheckAuthenticationCode()
-            => _authenticationCode == _inputedCode;
-        public DelegateCommand SignUpAndNavigateToSignInCommand { get; }
-        private void SignUpAndNavigateToSignIn()
-        {
             using (var databaseService = new DataBaseServiceClient())
             {
-                databaseService.SignUp(SignInName, _password, Email, AreaOfInterest);
+                databaseService.SignUp(SignInName, (parameter as PasswordBox).Password, Email, AreaOfInterest);
             }
             CreateDirectoryForThisUser();
             _regionManager.RequestNavigate(
@@ -121,11 +111,7 @@ namespace Discovery.Client.SignIn.ViewModels
             => _regionManager.RequestNavigate(
                 RegionNames.MainRegion,
                 ViewNames.SignIn);
-        public DelegateCommand BackToSignUpFirstStepCommand { get; }
-        private void BackToSignUpFirstStep()
-            => _regionManager.RequestNavigate(
-                RegionNames.SignUpRegion,
-                ViewNames.SignUpFirstStep);
+
         public DelegateCommand SendAuthenticationCodeCommand { get; }
         private void SendAuthenticationCode()
         {

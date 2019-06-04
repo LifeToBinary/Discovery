@@ -95,12 +95,6 @@
     <Compile Include="Views\SignUp.xaml.cs">
       <DependentUpon>SignUp.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\SignUpFinallyStep.xaml.cs">
-      <DependentUpon>SignUpFinallyStep.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\SignUpFirstStep.xaml.cs">
-      <DependentUpon>SignUpFirstStep.xaml</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -149,14 +143,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\SignUp.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\SignUpFinallyStep.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\SignUpFirstStep.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
