@@ -1,22 +1,19 @@
 ﻿using Discovery.Client.PostDetail.DataBaseService;
 using Discovery.Core.Constants;
-using Discovery.Core.Enums;
 using Discovery.Core.GlobalData;
 using Discovery.Core.Model;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 
 namespace Discovery.Client.PostDetail.ViewModels
 {
     public class NewPostViewModel : BindableBase, IRegionMemberLifetime
     {
+        /// <summary>
+        /// 新帖子
+        /// </summary>
         private Post _newPostForAdd = new Post();
         public Post NewPostForAdd
         {
@@ -24,9 +21,25 @@ namespace Discovery.Client.PostDetail.ViewModels
             set => SetProperty(ref _newPostForAdd, value);
         }
 
-        public DelegateCommand AddNewPostCommand { get; }
-        public bool KeepAlive => false;
+        /// <summary>
+        /// Region 导航对象
+        /// </summary>
+        private readonly IRegionManager _regionManager;
 
+        /// <summary>
+        /// 构造函数
+        /// </summary>
+        /// <param name="regionManager"></param>
+        public NewPostViewModel(IRegionManager regionManager)
+        {
+            AddNewPostCommand = new DelegateCommand(AddNewPost);
+            _regionManager = regionManager;
+        }
+
+        /// <summary>
+        /// 发布新帖子
+        /// </summary>
+        public DelegateCommand AddNewPostCommand { get; }
         private void AddNewPost()
         {
             InitNewPost();
@@ -36,6 +49,10 @@ namespace Discovery.Client.PostDetail.ViewModels
             }
             _regionManager.RequestNavigate(RegionNames.MainMenuContent, ViewNames.DiscovererHomePage);
         }
+
+        /// <summary>
+        /// 初始化帖子的部分信息
+        /// </summary>
         private void InitNewPost()
         {
             _newPostForAdd.CreationTime = DateTime.Now;
@@ -46,11 +63,10 @@ namespace Discovery.Client.PostDetail.ViewModels
             _newPostForAdd.LastEditedTime = _newPostForAdd.CreationTime;
         }
 
-        private IRegionManager _regionManager;
-        public NewPostViewModel(IRegionManager regionManager)
-        {
-            AddNewPostCommand = new DelegateCommand(AddNewPost);
-            _regionManager = regionManager;
-        }
+        /// <summary>
+        /// 从 Region 离开时, 不保留此视图
+        /// </summary>
+        public bool KeepAlive => false;
+
     }
 }
