@@ -1,21 +1,21 @@
 ﻿using Discovery.Client.DiscovererHomePage.DataBaseService;
 using Discovery.Core.Constants;
+using Discovery.Core.GlobalData;
 using Discovery.Core.Model;
+using Discovery.Core.RelationalModel;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
 using System;
-using Discovery.Core.RelationalModel;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Discovery.Core.GlobalData;
 
 namespace Discovery.Client.DiscovererHomePage.ViewModels
 {
-    class OtherUsersConcernViewModel
+    class OtherUsersFunsViewModel
         : BindableBase, INavigationAware, IRegionMemberLifetime
     {
         private Discoverer _discoverer;
@@ -24,17 +24,17 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
             get => _discoverer;
             set => SetProperty(ref _discoverer, value);
         }
-        private ObservableCollection<DiscovererRelationshipModel> _idols;
-        public ObservableCollection<DiscovererRelationshipModel> Idols
+        private ObservableCollection<DiscovererRelationshipModel> _funs;
+        public ObservableCollection<DiscovererRelationshipModel> Funs
         {
-            get => _idols;
-            set => SetProperty(ref _idols, value);
+            get => _funs;
+            set => SetProperty(ref _funs, value);
         }
         private readonly IRegionManager _regionManager;
-        public OtherUsersConcernViewModel(IRegionManager regionManager)
+        public OtherUsersFunsViewModel(IRegionManager regionManager)
         {
-            Idols = new ObservableCollection<DiscovererRelationshipModel>();
             _regionManager = regionManager;
+            Funs = new ObservableCollection<DiscovererRelationshipModel>();
             ViewThisUsersHomePageCommand = 
                 new DelegateCommand<Discoverer>(ViewThisUsersHomePage);
         }
@@ -67,26 +67,25 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
         }
         private async void LoadData()
         {
-            KeyValuePair<Discoverer, bool>[] thisUsersRelationshipWithAnotherUsersIdols;
+            KeyValuePair<Discoverer, bool>[] thisUsersRelationshipWithAnotherUsersFuns;
             using (var databaseService = new DataBaseServiceClient())
             {
-                thisUsersRelationshipWithAnotherUsersIdols =
-                    await databaseService.ThisUsersRelationshipWithAnotherUsersIdolsAsync(
+                thisUsersRelationshipWithAnotherUsersFuns =
+                    await databaseService.ThisUsersRelationshipWithAnotherUsersFunsAsync(
                         GlobalObjectHolder.CurrentUser.BasicInfo.ID,
                         Discoverer.BasicInfo.ID);
             }
-            Idols = new ObservableCollection<DiscovererRelationshipModel>(
-                        thisUsersRelationshipWithAnotherUsersIdols.Select(
-                            item => new DiscovererRelationshipModel(
-                                        item.Key,
-                                        item.Value)));
+            Funs = new ObservableCollection<DiscovererRelationshipModel>(
+                       thisUsersRelationshipWithAnotherUsersFuns.Select(
+                           item => new DiscovererRelationshipModel(
+                                       item.Key,
+                                       item.Value)));
         }
         public bool IsNavigationTarget(NavigationContext navigationContext)
             => true;
         public void OnNavigatedFrom(NavigationContext navigationContext)
         {
         }
-
         public bool KeepAlive => false;
     }
 }

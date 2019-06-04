@@ -311,7 +311,7 @@
                     BorderThickness="0"
                     coreui:ButtonBrush.ButtonPressBackground="White"
                     Style="{DynamicResource SecondaryButtonStyle}"
-                    Command="{Binding NavigateViewToMainMenuRegionCommand}"
+                    Command="{Binding NavigateViewToMainMenuContentRegionCommand}"
                     CommandParameter="{x:Static constants:ViewNames.OtherUsersFuns}"
                     HorizontalContentAlignment="Stretch">
                 <Button.Content>

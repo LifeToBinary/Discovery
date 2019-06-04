@@ -89,6 +89,7 @@
     <Compile Include="ViewModels\MyHomePageViewModel.cs" />
     <Compile Include="ViewModels\OtherUsersConcernViewModel.cs" />
     <Compile Include="ViewModels\OtherUsersFavoritedPostsViewModel.cs" />
+    <Compile Include="ViewModels\OtherUsersFunsViewModel.cs" />
     <Compile Include="ViewModels\OtherUsersHomePageViewModel.cs" />
     <Compile Include="ViewModels\OtherUsersPostedPostsViewModel.cs" />
     <Compile Include="ViewModels\UpdateDiscovererInfoViewModel.cs" />
