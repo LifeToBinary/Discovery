@@ -215,6 +215,32 @@
             </DataTrigger>
         </Style.Triggers>
     </Style>
+    <Style x:Key="SignUpButtonStyle"
+           TargetType="{x:Type Button}"
+           BasedOn="{StaticResource DefaultButtonStyle}">
+        <Setter Property="Content"
+                Value="注册" />
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding IsSigningIn}"
+                         Value="True">
+                <Setter Property="Content"
+                        Value="正在注册..." />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="SendAuthenticationCodeButtonStyle"
+           TargetType="{x:Type Button}"
+           BasedOn="{StaticResource SecondaryButtonStyle}">
+        <Setter Property="Content"
+                Value="获取验证码" />
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding IsSending}"
+                         Value="True">
+                <Setter Property="Content"
+                        Value="发送中..." />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
     <Style x:Key="SignOutButtonStyle"
            TargetType="{x:Type Button}">
         <Setter Property="Background"

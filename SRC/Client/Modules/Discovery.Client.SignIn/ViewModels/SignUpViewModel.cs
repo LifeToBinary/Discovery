@@ -70,12 +70,20 @@ namespace Discovery.Client.SignIn.ViewModels
 
         private bool CheckAuthenticationCode()
             => _authenticationCode == _inputedCode;
+        private bool _isSigningUp;
+        public bool IsSigningUp
+        {
+            get => _isSigningUp;
+            set => SetProperty(ref _isSigningUp, value);
+        }
         public DelegateCommand<object> SignUpAndNavigateToSignInCommand { get; }
         private void SignUpAndNavigateToSignIn(object parameter)
         {
+            IsSigningUp = true;
             if (!CheckAuthenticationCode())
             {
                 MessageBox.Show("验证码错误!");
+                IsSigningUp = false;
                 return;
             }
             using (var databaseService = new DataBaseServiceClient())
@@ -83,17 +91,15 @@ namespace Discovery.Client.SignIn.ViewModels
                 if (databaseService.DiscovererIsExists(SignInName))
                 {
                     MessageBox.Show("用户名已存在!");
+                    IsSigningUp = false;
                     return;
                 }
-            }
-            using (var databaseService = new DataBaseServiceClient())
-            {
                 databaseService.SignUp(SignInName, (parameter as PasswordBox).Password, Email, AreaOfInterest);
+                CreateDirectoryForThisUser();
+                _regionManager.RequestNavigate(
+                    RegionNames.MainRegion,
+                    ViewNames.SignIn);
             }
-            CreateDirectoryForThisUser();
-            _regionManager.RequestNavigate(
-                RegionNames.MainRegion,
-                ViewNames.SignIn);
         }
         private void CreateDirectoryForThisUser()
         {
@@ -106,19 +112,26 @@ namespace Discovery.Client.SignIn.ViewModels
             => _regionManager.RequestNavigate(
                 RegionNames.MainRegion,
                 ViewNames.SignIn);
-
-        public DelegateCommand SendAuthenticationCodeCommand { get; }
-        private void SendAuthenticationCode()
+        private bool _isSending;
+        public bool IsSending
         {
+            get => _isSending;
+            set => SetProperty(ref _isSending, value);
+        }
+        public DelegateCommand SendAuthenticationCodeCommand { get; }
+        private async void SendAuthenticationCode()
+        {
+            IsSending = true;
             GetAuthenticationCode();
             using (var emailService = new EmailServiceClient())
             {
-                emailService.SendEmail(Email, "注册验证码", _authenticationCode);
+                await emailService.SendEmailAsync(Email, "注册验证码", _authenticationCode);
             }
+            IsSending = false;
             MessageBox.Show("验证码发送成功, 请注意查收~");
         }
         private void GetAuthenticationCode()
-            => _authenticationCode = 
+            => _authenticationCode =
                    new AuthenticationCodeBuilder
                    {
                        CharsSource = "QWERTYUIOPASDFGHJKLZXCVBNM1234567890",

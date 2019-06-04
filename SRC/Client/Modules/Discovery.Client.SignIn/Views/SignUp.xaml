@@ -70,9 +70,8 @@
                        Grid.Column="0"
                        Grid.ColumnSpan="2"
                        LastChildFill="True">
-                <Button Content="获取验证码"
-                        DockPanel.Dock="Right"
-                        Style="{DynamicResource SecondaryButtonStyle}"
+                <Button DockPanel.Dock="Right"
+                        Style="{DynamicResource SendAuthenticationCodeButtonStyle}"
                         Padding="20, 5"
                         Margin="10"
                         FontSize="14"
@@ -90,15 +89,14 @@
                          Text="{Binding InputedCode}" />
             </DockPanel>
 
-            <Button Content="注册"
-                    Padding="30,5"
+            <Button Padding="30,5"
                     Margin="10, 20"
                     FontSize="25"
                     BorderBrush="#FF163D94"
                     Foreground="White"
                     BorderThickness="3"
                     coreui:ButtonBrush.ButtonPressBackground="#FF163D94"
-                    Style="{DynamicResource DefaultButtonStyle}"
+                    Style="{DynamicResource SignUpButtonStyle}"
                     Command="{Binding SignUpAndNavigateToSignInCommand}"
                     CommandParameter="{Binding ElementName=passwordBox}" />
         </StackPanel>
