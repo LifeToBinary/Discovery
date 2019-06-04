@@ -4,116 +4,62 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:Discovery.Client.DiscovererHomePage.Views"
+             xmlns:prism="http://prismlibrary.com/"
+             prism:ViewModelLocator.AutoWireViewModel="True"
              mc:Ignorable="d"
              d:DesignHeight="450"
              d:DesignWidth="800">
-    <UserControl.Resources>
-        <Style x:Key="ConcernOrCancelConcernButtonStyle"
-               TargetType="{x:Type Button}">
-            <Setter Property="Content"
-                    Value="收藏" />
-            <Setter Property="Background"
-                    Value="Green" />
-            <Style.Triggers>
-                <DataTrigger Binding="{Binding IsBeFavorited}"
-                             Value="True">
-                    <Setter Property="Content"
-                            Value="取消收藏" />
-                    <Setter Property="Background"
-                            Value="OrangeRed" />
-                </DataTrigger>
-            </Style.Triggers>
-        </Style>
-    </UserControl.Resources>
     <Grid>
-        <ListBox ItemsSource="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorLevel=2,AncestorType={x:Type UserControl}}, Path=DataContext.FavoritedPosts}"
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <TextBlock Background="#FF2465F7"
+                   FontSize="20"
+                   Text="{Binding Discoverer.BasicInfo.SignInName, StringFormat={}{0} 的收藏}"
+                   Foreground="White"
+                   Padding="10" />
+        <ListBox Grid.Row="1"
+                 ItemsSource="{Binding FavoritedPosts}"
+                 Style="{DynamicResource ListBoxStyle}"
                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                 HorizontalContentAlignment="Stretch">
+                 HorizontalContentAlignment="Stretch"
+                 Background="#FFEDF1F7"
+                 BorderThickness="0">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Button BorderBrush="Black"
-                            BorderThickness="2"
-                            HorizontalContentAlignment="Stretch"
-                            Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorLevel=2, AncestorType={x:Type UserControl}}, Path=DataContext.ViewPostDetailCommand}"
-                            CommandParameter="{Binding Post}">
+                    <Button Background="White"
+                            Margin="0,5"
+                            Padding="15"
+                            BorderThickness="0"
+                            Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.ViewThisPostDetailCommand}"
+                            CommandParameter="{Binding}"
+                            Style="{DynamicResource SecondaryButtonStyle}"
+                            HorizontalContentAlignment="Stretch">
                         <Grid>
-                            <Grid>
+                            <Grid Background="White">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="*" />
+                                    <RowDefinition />
                                     <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition />
-                                </Grid.ColumnDefinitions>
                                 <TextBlock Grid.Row="0"
-                                           Grid.Column="0"
-                                           Text="ID: " />
+                                           Text="{Binding Title}"
+                                           FontSize="20"
+                                           FontWeight="Bold" />
                                 <TextBlock Grid.Row="1"
-                                           Grid.Column="0"
-                                           Text="标题: " />
-                                <TextBlock Grid.Row="2"
-                                           Grid.Column="0"
-                                           Text="图像路径: " />
-                                <TextBlock Grid.Row="3"
-                                           Grid.Column="0"
-                                           Text="链接: " />
-                                <TextBlock Grid.Row="4"
-                                           Grid.Column="0"
-                                           Text="创建时间: " />
-                                <TextBlock Grid.Row="5"
-                                           Grid.Column="0"
-                                           Text="最后编辑时间: " />
-                                <TextBlock Grid.Row="6"
-                                           Grid.Column="0"
-                                           Text="作者ID: " />
-                                <TextBlock Grid.Row="7"
-                                           Grid.Column="0"
-                                           Text="内容: " />
-                                <TextBlock Grid.Row="8"
-                                           Grid.Column="0"
-                                           Text="分类: " />
-                                <TextBlock Grid.Row="0"
-                                           Grid.Column="1"
-                                           Text="{Binding Post.ID}" />
-                                <TextBlock Grid.Row="1"
-                                           Grid.Column="1"
-                                           Text="{Binding Post.Title}" />
-                                <TextBlock Grid.Row="2"
-                                           Grid.Column="1"
-                                           Text="{Binding Post.IconPath}" />
-                                <TextBlock Grid.Row="3"
-                                           Grid.Column="1"
-                                           Text="{Binding Post.Url}" />
-                                <TextBlock Grid.Row="4"
-                                           Grid.Column="1"
-                                           Text="{Binding Post.CreationTime}" />
-                                <TextBlock Grid.Row="5"
-                                           Grid.Column="1"
-                                           Text="{Binding Post.LastEditedTime}" />
-                                <TextBlock Grid.Row="6"
-                                           Grid.Column="1"
-                                           Text="{Binding Post.AuthorID}" />
-                                <TextBlock Grid.Row="7"
-                                           Grid.Column="1"
+                                           Text="{Binding Content}"
+                                           FontSize="15"
+                                           Height="80"
+                                           Padding="5"
                                            TextWrapping="Wrap"
-                                           Text="{Binding Post.Content}" />
-                                <TextBlock Grid.Row="8"
-                                           Grid.Column="1"
-                                           Text="{Binding Post.PostCategory}" />
+                                           TextTrimming="WordEllipsis"
+                                           Margin="0, 10" />
+                                <TextBlock Grid.Row="2"
+                                           Text="{Binding CreationTime, StringFormat={}{0:M月d日}}"
+                                           FontSize="15"
+                                           Margin="5" />
                             </Grid>
-                            <Button Margin="10"
-                                    HorizontalAlignment="Right"
-                                    VerticalAlignment="Center"
-                                    Style="{StaticResource ConcernOrCancelConcernButtonStyle}"
-                                    Command="{Binding FavoriteOrCancelFavoriteCommand}" />
                         </Grid>
                     </Button>
                 </DataTemplate>
