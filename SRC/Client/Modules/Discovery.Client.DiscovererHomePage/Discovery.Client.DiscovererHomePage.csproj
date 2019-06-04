@@ -85,6 +85,7 @@
     <Compile Include="ViewModels\IPostedPostsViewModel.cs" />
     <Compile Include="ViewModels\MyConcernViewModel.cs" />
     <Compile Include="ViewModels\MyFavoritedPostsViewModel.cs" />
+    <Compile Include="ViewModels\MyFunsViewModel.cs" />
     <Compile Include="ViewModels\MyHomePageViewModel.cs" />
     <Compile Include="ViewModels\OtherUsersHomePageViewModel.cs" />
     <Compile Include="ViewModels\UpdateDiscovererInfoViewModel.cs" />
