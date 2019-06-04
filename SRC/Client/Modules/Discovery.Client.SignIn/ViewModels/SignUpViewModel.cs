@@ -59,7 +59,15 @@ namespace Discovery.Client.SignIn.ViewModels
             set => SetProperty(ref _areaOfInterest, value);
         }
 
+        /// <summary>
+        /// Region 导航对象
+        /// </summary>
         private readonly IRegionManager _regionManager;
+
+        /// <summary>
+        /// 构造函数
+        /// </summary>
+        /// <param name="regionManager"></param>
         public SignUpViewModel(IRegionManager regionManager)
         {
             _regionManager = regionManager;
@@ -68,14 +76,26 @@ namespace Discovery.Client.SignIn.ViewModels
             BackToSignInCommand = new DelegateCommand(BackToSignIn);
         }
 
+        /// <summary>
+        /// 检查用户输入的验证码是否正确
+        /// </summary>
+        /// <returns></returns>
         private bool CheckAuthenticationCode()
             => _authenticationCode == _inputedCode;
+
+        /// <summary>
+        /// 注册中
+        /// </summary>
         private bool _isSigningUp;
         public bool IsSigningUp
         {
             get => _isSigningUp;
             set => SetProperty(ref _isSigningUp, value);
         }
+
+        /// <summary>
+        /// 注册
+        /// </summary>
         public DelegateCommand<object> SignUpAndNavigateToSignInCommand { get; }
         private void SignUpAndNavigateToSignIn(object parameter)
         {
@@ -101,23 +121,39 @@ namespace Discovery.Client.SignIn.ViewModels
                     ViewNames.SignIn);
             }
         }
+
+        /// <summary>
+        /// 在服务器上创建文件夹以保存此用户的一些数据
+        /// </summary>
         private void CreateDirectoryForThisUser()
         {
             string ftpImageFileBasePath = @"ftp://47.240.12.27/Discovery/DiscoveryWebFiles/Discoverer/Images/";
             var webFileService = new WebFileService(ftpImageFileBasePath);
             webFileService.CreateDirectoryIfNotExistWithRecurtion($"{SignInName}/Post");
         }
+
+        /// <summary>
+        /// 导航到登录界面
+        /// </summary>
         public DelegateCommand BackToSignInCommand { get; }
         private void BackToSignIn()
             => _regionManager.RequestNavigate(
                 RegionNames.MainRegion,
                 ViewNames.SignIn);
+
+        /// <summary>
+        /// 登录中
+        /// </summary>
         private bool _isSending;
         public bool IsSending
         {
             get => _isSending;
             set => SetProperty(ref _isSending, value);
         }
+
+        /// <summary>
+        /// 发送验证码
+        /// </summary>
         public DelegateCommand SendAuthenticationCodeCommand { get; }
         private async void SendAuthenticationCode()
         {
@@ -130,6 +166,10 @@ namespace Discovery.Client.SignIn.ViewModels
             IsSending = false;
             MessageBox.Show("验证码发送成功, 请注意查收~");
         }
+
+        /// <summary>
+        /// 生成6位随机验证码
+        /// </summary>
         private void GetAuthenticationCode()
             => _authenticationCode =
                    new AuthenticationCodeBuilder
@@ -137,6 +177,10 @@ namespace Discovery.Client.SignIn.ViewModels
                        CharsSource = "QWERTYUIOPASDFGHJKLZXCVBNM1234567890",
                        CodeLength = 6
                    }.Build();
+
+        /// <summary>
+        /// 导航离开时, 不保留此视图
+        /// </summary>
         public bool KeepAlive => false;
     }
 }

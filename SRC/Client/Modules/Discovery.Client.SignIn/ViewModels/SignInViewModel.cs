@@ -14,20 +14,39 @@ namespace Discovery.Client.SignIn.ViewModels
 {
     public class SignInViewModel : BindableBase, IRegionMemberLifetime
     {
+        /// <summary>
+        /// Region 导航对象
+        /// </summary>
         private IRegionManager _regionManager;
+
+        /// <summary>
+        /// 导航离开时, 不保留此视图
+        /// </summary>
         public bool KeepAlive => false;
+        
+        /// <summary>
+        /// 正在登录
+        /// </summary>
         private bool _isSigningIn = false;
         public bool IsSigningIn
         {
             get => _isSigningIn;
             set => SetProperty(ref _isSigningIn, value);
         }
+
+        /// <summary>
+        /// 用户名
+        /// </summary>
         private string _signInName = String.Empty;
         public string SignInName
         {
             get => _signInName;
             set => SetProperty(ref _signInName, value);
         }
+
+        /// <summary>
+        /// 登录是否失败
+        /// </summary>
         private bool _signFailed;
         public bool SignFailed
         {
@@ -35,6 +54,10 @@ namespace Discovery.Client.SignIn.ViewModels
             set => SetProperty(ref _signFailed, value);
         }
 
+        /// <summary>
+        /// 构造函数
+        /// </summary>
+        /// <param name="regionManager"></param>
         public SignInViewModel(IRegionManager regionManager)
         {
             _regionManager = regionManager;
@@ -42,14 +65,19 @@ namespace Discovery.Client.SignIn.ViewModels
             NavigateToSignUpCommand = new DelegateCommand(NavigateToSignUp);
         }
 
+        /// <summary>
+        /// 导航到注册界面
+        /// </summary>
         public DelegateCommand NavigateToSignUpCommand { get; }
         private void NavigateToSignUp()
             => _regionManager.RequestNavigate(
                 RegionNames.MainRegion,
                 ViewNames.SignUp);
 
+        /// <summary>
+        /// 登录
+        /// </summary>
         public DelegateCommand<object> SignInCommand { get; }
-
         private async void SignIn(object parameter)
         {
             if (_isSigningIn)
@@ -78,6 +106,7 @@ namespace Discovery.Client.SignIn.ViewModels
                 IsSigningIn = false;
             }
         }
+
         private async void TemporarilyChangeSignFailedPropertyValue()
         {
             SignFailed = true;
