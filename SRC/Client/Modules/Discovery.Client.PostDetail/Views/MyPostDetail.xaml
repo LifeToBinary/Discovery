@@ -10,105 +10,29 @@
              mc:Ignorable="d"
              d:DesignHeight="450"
              d:DesignWidth="800">
+    <UserControl.RenderTransform>
+        <TranslateTransform Y="50" />
+    </UserControl.RenderTransform>
+    <UserControl.Triggers>
+        <EventTrigger RoutedEvent="Loaded">
+            <BeginStoryboard>
+                <Storyboard>
+                    <DoubleAnimation Storyboard.TargetProperty="(UserControl.RenderTransform).(TranslateTransform.Y)"
+                                     To="0"
+                                     Duration="0:0:.3">
+                        <DoubleAnimation.EasingFunction>
+                            <QuarticEase EasingMode="EaseOut" />
+                        </DoubleAnimation.EasingFunction>
+                    </DoubleAnimation>
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </UserControl.Triggers>
     <UserControl.Resources>
         <BitmapImage x:Key="UserDefaultAvatar"
                      UriSource="pack://application:,,,/Discovery.Client.Resource;component/Images/UserDefaultAvatar.png" />
 
     </UserControl.Resources>
-    <!--<Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-        <Grid Grid.Row="0"
-              TextBlock.FontSize="20"
-              HorizontalAlignment="Center"
-              VerticalAlignment="Center">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-            <TextBlock Grid.Row="0"
-                       Grid.Column="0"
-                       Text="ID: " />
-            <TextBlock Grid.Row="1"
-                       Grid.Column="0"
-                       Text="标题: " />
-            <TextBlock Grid.Row="2"
-                       Grid.Column="0"
-                       Text="图像路径: " />
-            <TextBlock Grid.Row="3"
-                       Grid.Column="0"
-                       Text="链接: " />
-            <TextBlock Grid.Row="4"
-                       Grid.Column="0"
-                       Text="创建时间: " />
-            <TextBlock Grid.Row="5"
-                       Grid.Column="0"
-                       Text="最后编辑时间: " />
-            <TextBlock Grid.Row="6"
-                       Grid.Column="0"
-                       Text="作者ID: " />
-            <TextBlock Grid.Row="7"
-                       Grid.Column="0"
-                       Text="内容: " />
-            <TextBlock Grid.Row="8"
-                       Grid.Column="0"
-                       Text="分类: " />
-            <TextBlock Grid.Row="0"
-                       Grid.Column="1"
-                       Text="{Binding CurrentPost.ID}" />
-            <TextBlock Grid.Row="1"
-                       Grid.Column="1"
-                       Text="{Binding CurrentPost.Title}" />
-            <TextBlock Grid.Row="2"
-                       Grid.Column="1"
-                       Text="{Binding CurrentPost.IconPath}" />
-            <TextBlock Grid.Row="3"
-                       Grid.Column="1"
-                       Text="{Binding CurrentPost.Url}" />
-            <TextBlock Grid.Row="4"
-                       Grid.Column="1"
-                       Text="{Binding CurrentPost.CreationTime}" />
-            <TextBlock Grid.Row="5"
-                       Grid.Column="1"
-                       Text="{Binding CurrentPost.LastEditedTime}" />
-            <TextBlock Grid.Row="6"
-                       Grid.Column="1"
-                       Text="{Binding CurrentPost.AuthorID}" />
-            <TextBlock Grid.Row="7"
-                       Grid.Column="1"
-                       TextWrapping="Wrap"
-                       Text="{Binding CurrentPost.Content}" />
-            <TextBlock Grid.Row="8"
-                       Grid.Column="1"
-                       Text="{Binding CurrentPost.PostCategory}" />
-        </Grid>
-        <StackPanel Grid.Row="1"
-                    HorizontalAlignment="Center"
-                    Orientation="Horizontal"
-                    Margin="10">
-            <Button Content="编辑"
-                    Padding="30, 5"
-                    Margin="5"
-                    Command="{Binding UpdatePostCommand}" />
-            <Button Content="删除"
-                    Padding="30, 5"
-                    Margin="5"
-                    Command="{Binding RemoveThisPostCommand}"></Button>
-        </StackPanel>
-    </Grid>-->
     <Grid TextBlock.FontSize="20">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />

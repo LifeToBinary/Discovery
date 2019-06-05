@@ -8,7 +8,7 @@ using Prism.Regions;
 
 namespace Discovery.Client.PostDetail.ViewModels
 {
-    public class MyPostDetailViewModel : BindableBase, INavigationAware
+    public class MyPostDetailViewModel : BindableBase, INavigationAware, IRegionMemberLifetime
     {
         /// <summary>
         /// 帖子
@@ -78,6 +78,12 @@ namespace Discovery.Client.PostDetail.ViewModels
         /// 编辑此帖子
         /// </summary>
         public DelegateCommand UpdatePostCommand { get; }
+
+        /// <summary>
+        /// 导航离开时, 不保留此视图
+        /// </summary>
+        public bool KeepAlive => false;
+
         private void UpdatePost()
             => _regionManager.RequestNavigate(
                 RegionNames.MainMenuContent,

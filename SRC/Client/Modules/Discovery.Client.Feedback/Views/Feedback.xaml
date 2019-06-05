@@ -10,6 +10,24 @@
              mc:Ignorable="d"
              d:DesignHeight="700"
              d:DesignWidth="1000">
+    <UserControl.RenderTransform>
+        <TranslateTransform Y="50" />
+    </UserControl.RenderTransform>
+    <UserControl.Triggers>
+        <EventTrigger RoutedEvent="Loaded">
+            <BeginStoryboard>
+                <Storyboard>
+                    <DoubleAnimation Storyboard.TargetProperty="(UserControl.RenderTransform).(TranslateTransform.Y)"
+                                     To="0"
+                                     Duration="0:0:.3">
+                        <DoubleAnimation.EasingFunction>
+                            <QuarticEase EasingMode="EaseOut" />
+                        </DoubleAnimation.EasingFunction>
+                    </DoubleAnimation>
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </UserControl.Triggers>
     <Border Background="#FFEDF1F7"
             Margin="150, 80">
         <Grid>

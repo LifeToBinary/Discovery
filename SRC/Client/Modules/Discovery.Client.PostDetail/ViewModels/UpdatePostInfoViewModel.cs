@@ -8,7 +8,7 @@ using System;
 
 namespace Discovery.Client.PostDetail.ViewModels
 {
-    public class UpdatePostInfoViewModel : BindableBase, INavigationAware
+    public class UpdatePostInfoViewModel : BindableBase, INavigationAware, IRegionMemberLifetime
     {
         /// <summary>
         /// 帖子
@@ -34,6 +34,11 @@ namespace Discovery.Client.PostDetail.ViewModels
             _regionManager = regionManager;
             SaveUpdateCommand = new DelegateCommand(SaveUpdate);
         }
+
+        /// <summary>
+        /// 导航离开时, 不保留视图
+        /// </summary>
+        public bool KeepAlive => false;
 
         /// <summary>
         /// 更新帖子

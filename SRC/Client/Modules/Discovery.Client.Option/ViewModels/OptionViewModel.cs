@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Discovery.Client.Option.ViewModels
 {
-    public class OptionViewModel : BindableBase
+    public class OptionViewModel : BindableBase, IRegionMemberLifetime
     {
         /// <summary>
         /// 当前用户
@@ -45,6 +45,11 @@ namespace Discovery.Client.Option.ViewModels
             => _regionManager.RequestNavigate(
                 RegionNames.MainMenuContent,
                 ViewNames.DiscovererHomePage);
+
+        /// <summary>
+        /// 导航离开时, 不保留此视图
+        /// </summary>
+        public bool KeepAlive => false;
 
         /// <summary>
         /// 注销登录

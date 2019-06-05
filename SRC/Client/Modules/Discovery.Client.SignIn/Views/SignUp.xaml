@@ -13,6 +13,24 @@
              Background="#FFEDF1F7"
              d:DesignHeight="576.699"
              d:DesignWidth="800">
+    <UserControl.RenderTransform>
+        <TranslateTransform Y="50" />
+    </UserControl.RenderTransform>
+    <UserControl.Triggers>
+        <EventTrigger RoutedEvent="Loaded">
+            <BeginStoryboard>
+                <Storyboard>
+                    <DoubleAnimation Storyboard.TargetProperty="(UserControl.RenderTransform).(TranslateTransform.Y)"
+                                     To="0"
+                                     Duration="0:0:.3">
+                        <DoubleAnimation.EasingFunction>
+                            <QuarticEase EasingMode="EaseOut" />
+                        </DoubleAnimation.EasingFunction>
+                    </DoubleAnimation>
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </UserControl.Triggers>
     <UserControl.Resources>
         <BitmapImage x:Key="SignUpBackground"
                      UriSource="pack://application:,,,/Discovery.Client.Resource;component/Images/SignUpBackground.jpg" />

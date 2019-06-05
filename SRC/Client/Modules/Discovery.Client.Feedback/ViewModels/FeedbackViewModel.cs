@@ -1,12 +1,13 @@
 ﻿using Discovery.Client.Feedback.EmailService;
 using Prism.Commands;
 using Prism.Mvvm;
+using Prism.Regions;
 using System;
 using System.Windows;
 
 namespace Discovery.Client.Feedback.ViewModels
 {
-    public class FeedbackViewModel : BindableBase
+    public class FeedbackViewModel : BindableBase, IRegionMemberLifetime
     {
         public FeedbackViewModel()
             => SendEmailCommand = new DelegateCommand(SendEmail);
@@ -45,6 +46,11 @@ namespace Discovery.Client.Feedback.ViewModels
         /// 发送反馈命令
         /// </summary>
         public DelegateCommand SendEmailCommand { get; }
+
+        /// <summary>
+        /// 导航离开时, 不保留此视图
+        /// </summary>
+        public bool KeepAlive => false;
 
         /// <summary>
         /// 发送反馈

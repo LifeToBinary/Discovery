@@ -10,7 +10,7 @@ using System.Linq;
 
 namespace Discovery.Client.Recommended.ViewModels
 {
-    public class RecommendedViewModel : BindableBase
+    public class RecommendedViewModel : BindableBase, IRegionMemberLifetime
     {
         /// <summary>
         /// Region 导航对象
@@ -77,6 +77,8 @@ namespace Discovery.Client.Recommended.ViewModels
         /// 刷新推荐内容
         /// </summary>
         public DelegateCommand ReloadDataCommand { get; }
+        public bool KeepAlive => false;
+
         private async void LoadData()
         {
             _recommendedPosts.Clear();
