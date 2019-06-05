@@ -11,14 +11,12 @@
              Background="#FFEDF1F7"
              d:DesignHeight="700"
              d:DesignWidth="1000">
-    <UserControl.RenderTransform>
-        <TranslateTransform Y="50" />
-    </UserControl.RenderTransform>
     <UserControl.Triggers>
         <EventTrigger RoutedEvent="Loaded">
             <BeginStoryboard>
                 <Storyboard>
-                    <DoubleAnimation Storyboard.TargetProperty="(UserControl.RenderTransform).(TranslateTransform.Y)"
+                    <DoubleAnimation Storyboard.TargetName="SignInStackPanel" 
+                                     Storyboard.TargetProperty="(StackPanel.RenderTransform).(TranslateTransform.X)"
                                      To="0"
                                      Duration="0:0:.3">
                         <DoubleAnimation.EasingFunction>
@@ -85,8 +83,11 @@
                        Foreground="White" />
         </Grid>
         <Grid Grid.Column="1">
-            <StackPanel VerticalAlignment="Center"
+            <StackPanel x:Name="SignInStackPanel" VerticalAlignment="Center"
                         Margin="70">
+                <StackPanel.RenderTransform>
+                    <TranslateTransform X="-100" />
+                </StackPanel.RenderTransform>
                 <TextBlock FontSize="40"
                            Text="请先登录"
                            Margin="10, 30"

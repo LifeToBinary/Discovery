@@ -221,7 +221,7 @@
         <Setter Property="Content"
                 Value="注册" />
         <Style.Triggers>
-            <DataTrigger Binding="{Binding IsSigningIn}"
+            <DataTrigger Binding="{Binding IsSigningUp}"
                          Value="True">
                 <Setter Property="Content"
                         Value="正在注册..." />

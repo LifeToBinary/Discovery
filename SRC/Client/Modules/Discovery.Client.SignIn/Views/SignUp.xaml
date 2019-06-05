@@ -13,14 +13,12 @@
              Background="#FFEDF1F7"
              d:DesignHeight="576.699"
              d:DesignWidth="800">
-    <UserControl.RenderTransform>
-        <TranslateTransform Y="50" />
-    </UserControl.RenderTransform>
     <UserControl.Triggers>
         <EventTrigger RoutedEvent="Loaded">
             <BeginStoryboard>
                 <Storyboard>
-                    <DoubleAnimation Storyboard.TargetProperty="(UserControl.RenderTransform).(TranslateTransform.Y)"
+                    <DoubleAnimation Storyboard.TargetName="SignUpStackPanel"
+                                     Storyboard.TargetProperty="(StackPanel.RenderTransform).(TranslateTransform.X)"
                                      To="0"
                                      Duration="0:0:.3">
                         <DoubleAnimation.EasingFunction>
@@ -40,9 +38,13 @@
             <ColumnDefinition Width="4*" />
             <ColumnDefinition Width="3*" />
         </Grid.ColumnDefinitions>
-        <StackPanel Grid.Column="0"
+        <StackPanel x:Name="SignUpStackPanel" 
+                    Grid.Column="0"
                     Margin="70"
                     VerticalAlignment="Center">
+            <StackPanel.RenderTransform>
+                <TranslateTransform X="100" />
+            </StackPanel.RenderTransform>
             <TextBlock FontSize="30"
                        Text="注册账户"
                        Margin="10, 20, 0, 0"
