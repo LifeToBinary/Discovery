@@ -2,7 +2,6 @@
 <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Discovery.Core.Model" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Discovery.Core.Model" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://47.240.12.27:10004/DataBaseService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/Discovery.Core.Models" />
   <xs:import schemaLocation="http://47.240.12.27:10004/DataBaseService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Prism.Mvvm" />
-  <xs:import schemaLocation="http://47.240.12.27:10004/DataBaseService.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/Discovery.Core.Enums" />
   <xs:complexType name="Discoverer">
     <xs:complexContent mixed="false">
       <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/Prism.Mvvm" base="q1:BindableBase">
@@ -20,8 +19,6 @@
         <xs:sequence>
           <xs:element minOccurs="0" name="BlogAddress" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
-          <xs:element minOccurs="0" name="QQ" nillable="true" type="xs:string" />
-          <xs:element minOccurs="0" name="WeChat" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="_blogAddress" nillable="true" type="xs:string" />
         </xs:sequence>
       </xs:extension>
@@ -36,11 +33,7 @@
           <xs:element minOccurs="0" name="Content" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="CreationTime" type="xs:dateTime" />
           <xs:element minOccurs="0" name="ID" type="xs:int" />
-          <xs:element minOccurs="0" name="IconPath" nillable="true" type="xs:string" />
-          <xs:element minOccurs="0" name="LastEditedTime" type="xs:dateTime" />
-          <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Discovery.Core.Enums" minOccurs="0" name="PostCategory" type="q5:Field" />
           <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
-          <xs:element minOccurs="0" name="Url" nillable="true" type="xs:string" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>

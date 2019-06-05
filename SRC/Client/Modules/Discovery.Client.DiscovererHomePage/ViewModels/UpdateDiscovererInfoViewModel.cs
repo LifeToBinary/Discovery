@@ -45,7 +45,6 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
             UpdateAvatarCommand = new DelegateCommand(UpdateAvatar);
             UpdateProfileBackgroundImageCommand =
                 new DelegateCommand(UpdateProfileBackground);
-            InitCurrentUser();
         }
 
         /// <summary>
@@ -56,16 +55,6 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
         {
             get => _isUpdating;
             set => SetProperty(ref _isUpdating, value);
-        }
-
-        /// <summary>
-        /// 对当前用户 null 属性值的处理
-        /// </summary>
-        private void InitCurrentUser()
-        {
-            CurrentUser.ContactInfo.BlogAddress = CurrentUser.ContactInfo.BlogAddress ?? String.Empty;
-            CurrentUser.ContactInfo.QQ = CurrentUser.ContactInfo.QQ ?? String.Empty;
-            CurrentUser.ContactInfo.WeChat = CurrentUser.ContactInfo.WeChat ?? String.Empty;
         }
 
         /// <summary>
@@ -120,7 +109,7 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
                     await databaseService.UploadFileAsync(avatarData, userAvatarPath);
                     CurrentUser.BasicInfo.AvatarPath = $"http://47.240.12.27:10003/Discovery/DiscoveryWebFiles/Discoverer/Images/{userAvatarPath}?{Guid.NewGuid()}";
                 }
-                /// 如果选择了新背景(封面)图片文件, 则上传此文件
+                // 如果选择了新背景(封面)图片文件, 则上传此文件
                 if (_localProfileBackgroundWillToUpload != null)
                 {
                     byte[] profileBackgroundData = File.ReadAllBytes(_localProfileBackgroundWillToUpload);

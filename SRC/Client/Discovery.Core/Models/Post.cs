@@ -30,26 +30,6 @@ namespace Discovery.Core.Model
         }
 
         /// <summary>
-        /// 帖子图标路径
-        /// </summary>
-        private string _iconPath;
-        public string IconPath
-        {
-            get => _iconPath;
-            set => SetProperty(ref _iconPath, value);
-        }
-        
-        /// <summary>
-        /// 链接
-        /// </summary>
-        private string _url;
-        public string Url
-        {
-            get => _url;
-            set => SetProperty(ref _url, value);
-        }
-
-        /// <summary>
         /// 创建时间
         /// </summary>
         private DateTime _creationTime;
@@ -59,17 +39,6 @@ namespace Discovery.Core.Model
             set => SetProperty(ref _creationTime, value);
         }
 
-        /// <summary>
-        /// 最后编辑时间
-        /// </summary>
-        private DateTime _lastEditedTime;
-        public DateTime LastEditedTime
-        {
-            get => _lastEditedTime;
-            set => SetProperty(ref _lastEditedTime, value);
-        }
-
-        // TODO: change to DiscovererName? 
         /// <summary>
         /// 作者ID
         /// </summary>
@@ -88,16 +57,6 @@ namespace Discovery.Core.Model
         {
             get => _content;
             set => SetProperty(ref _content, value);
-        }
-
-        /// <summary>
-        /// 所属标签分类
-        /// </summary>
-        private Field _postCategory;
-        public Field PostCategory
-        {
-            get => _postCategory;
-            set => SetProperty(ref _postCategory, value);
         }
     }
 }

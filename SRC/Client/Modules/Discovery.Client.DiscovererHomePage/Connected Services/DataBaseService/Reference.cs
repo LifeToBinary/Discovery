@@ -28,10 +28,10 @@ namespace Discovery.Client.DiscovererHomePage.DataBaseService {
         System.Threading.Tasks.Task<Discovery.Core.Model.Discoverer> SignInAsync(string signInName, string password);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataBaseService/SignUp", ReplyAction="http://tempuri.org/IDataBaseService/SignUpResponse")]
-        void SignUp(string signInName, string password, string email, Discovery.Core.Enums.Field areaOfInterest);
+        void SignUp(string signInName, string password, string email);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataBaseService/SignUp", ReplyAction="http://tempuri.org/IDataBaseService/SignUpResponse")]
-        System.Threading.Tasks.Task SignUpAsync(string signInName, string password, string email, Discovery.Core.Enums.Field areaOfInterest);
+        System.Threading.Tasks.Task SignUpAsync(string signInName, string password, string email);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataBaseService/UploadFile", ReplyAction="http://tempuri.org/IDataBaseService/UploadFileResponse")]
         void UploadFile(byte[] data, string path);
@@ -257,12 +257,12 @@ namespace Discovery.Client.DiscovererHomePage.DataBaseService {
             return base.Channel.SignInAsync(signInName, password);
         }
         
-        public void SignUp(string signInName, string password, string email, Discovery.Core.Enums.Field areaOfInterest) {
-            base.Channel.SignUp(signInName, password, email, areaOfInterest);
+        public void SignUp(string signInName, string password, string email) {
+            base.Channel.SignUp(signInName, password, email);
         }
         
-        public System.Threading.Tasks.Task SignUpAsync(string signInName, string password, string email, Discovery.Core.Enums.Field areaOfInterest) {
-            return base.Channel.SignUpAsync(signInName, password, email, areaOfInterest);
+        public System.Threading.Tasks.Task SignUpAsync(string signInName, string password, string email) {
+            return base.Channel.SignUpAsync(signInName, password, email);
         }
         
         public void UploadFile(byte[] data, string path) {

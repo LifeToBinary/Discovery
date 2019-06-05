@@ -50,16 +50,6 @@ namespace Discovery.Client.SignIn.ViewModels
         }
 
         /// <summary>
-        /// 感兴趣的领域
-        /// </summary>
-        private Field _areaOfInterest;
-        public Field AreaOfInterest
-        {
-            get => _areaOfInterest;
-            set => SetProperty(ref _areaOfInterest, value);
-        }
-
-        /// <summary>
         /// Region 导航对象
         /// </summary>
         private readonly IRegionManager _regionManager;
@@ -114,7 +104,7 @@ namespace Discovery.Client.SignIn.ViewModels
                     IsSigningUp = false;
                     return;
                 }
-                databaseService.SignUp(SignInName, (parameter as PasswordBox).Password, Email, AreaOfInterest);
+                databaseService.SignUp(SignInName, (parameter as PasswordBox).Password, Email);
                 CreateDirectoryForThisUser();
                 _regionManager.RequestNavigate(
                     RegionNames.MainRegion,

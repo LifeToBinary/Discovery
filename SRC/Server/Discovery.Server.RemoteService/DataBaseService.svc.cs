@@ -28,13 +28,8 @@ namespace Discovery.Server.RemoteService
                 new Dictionary<string, object>
                 {
                     ["@title"] = post.Title,
-                    ["@iconPath"] = post.IconPath,
-                    ["@url"] = post.Url,
-                    ["@creationTime"] = post.CreationTime,
-                    ["@lastEditedTime"] = post.LastEditedTime,
                     ["@authorID"] = post.AuthorID,
                     ["@content"] = post.Content,
-                    ["@postCategory"] = post.PostCategory
                 };
             using (var connection = new SqlConnection(GetDataBaseConnectionString()))
             using (SqlCommand command = connection.CreateCommand())
@@ -53,7 +48,7 @@ namespace Discovery.Server.RemoteService
                 });
                 connection.Open();
                 command.ExecuteNonQuery();
-                return Convert.ToInt32(command.Parameters[8].Value);
+                return Convert.ToInt32(command.Parameters[3].Value);
             }
         }
 
@@ -211,13 +206,9 @@ namespace Discovery.Server.RemoteService
             {
                 ID = reader.GetInt32(0),
                 Title = reader.GetString(1),
-                Url = reader.GetString(2),
-                CreationTime = reader.GetDateTime(3),
-                AuthorID = reader.GetInt32(4),
-                Content = reader.GetString(5),
-                PostCategory = (Field)reader.GetInt32(6),
-                LastEditedTime = reader.GetDateTime(7),
-                IconPath = reader.GetString(8)
+                CreationTime = reader.GetDateTime(2),
+                AuthorID = reader.GetInt32(3),
+                Content = reader.GetString(4)
             };
         /// <summary>
         /// 搜索一个用户的帖子
@@ -351,17 +342,13 @@ namespace Discovery.Server.RemoteService
                     SignInName = reader.GetString(1),
                     Password = reader.GetString(2),
                     Sex = (Sex)reader.GetInt32(3),
-                    AreaOfInterest = (Field)reader.GetInt32(4),
-                    SignUpTime = reader.GetDateTime(5),
-                    AvatarPath = reader.GetString(6),
-                    ProfileBackgroundImagePath = reader.GetString(7)
+                    AvatarPath = reader.IsDBNull(4) ? null : reader.GetString(4),
+                    ProfileBackgroundImagePath = reader.IsDBNull(5) ? null : reader.GetString(5)
                 },
                 ContactInfo = new ContactInfo
                 {
-                    Email = reader.IsDBNull(8) ? null : reader.GetString(8),
-                    QQ = reader.IsDBNull(9) ? null : reader.GetString(9),
-                    WeChat = reader.IsDBNull(10) ? null : reader.GetString(10),
-                    BlogAddress = reader.IsDBNull(11) ? null : reader.GetString(11)
+                    Email = reader.IsDBNull(6) ? null : reader.GetString(6),
+                    BlogAddress = reader.IsDBNull(7) ? null : reader.GetString(7)
                 }
             };
 
@@ -566,27 +553,7 @@ namespace Discovery.Server.RemoteService
                     return null;
                 }
 
-                return new Discoverer
-                {
-                    BasicInfo = new BasicInfo
-                    {
-                        ID = reader.GetInt32(0),
-                        SignInName = reader.GetString(1),
-                        Password = reader.GetString(2),
-                        Sex = (Sex)reader.GetInt32(3),
-                        AreaOfInterest = (Field)reader.GetInt32(4),
-                        SignUpTime = reader.GetDateTime(5),
-                        AvatarPath = reader.GetString(6),
-                        ProfileBackgroundImagePath = reader.GetString(7)
-                    },
-                    ContactInfo = new ContactInfo
-                    {
-                        Email = reader.IsDBNull(8) ? String.Empty : reader.GetString(8),
-                        QQ = reader.IsDBNull(9) ? String.Empty : reader.GetString(9),
-                        WeChat = reader.IsDBNull(10) ? String.Empty : reader.GetString(10),
-                        BlogAddress = reader.IsDBNull(11) ? String.Empty : reader.GetString(11)
-                    }
-                };
+                return CreateDiscovererFromSqlDataReader(reader);
             }
         }
 
@@ -604,13 +571,9 @@ namespace Discovery.Server.RemoteService
                     ["@signInName"] = discoverer.BasicInfo.SignInName,
                     ["@password"] = discoverer.BasicInfo.Password,
                     ["@sex"] = discoverer.BasicInfo.Sex,
-                    ["@areaOfInterest"] = discoverer.BasicInfo.AreaOfInterest,
-                    ["@signUpTime"] = discoverer.BasicInfo.SignUpTime,
                     ["@avatarPath"] = discoverer.BasicInfo.AvatarPath,
                     ["@profileBackgroundImagePath"] = discoverer.BasicInfo.ProfileBackgroundImagePath,
                     ["@email"] = discoverer.ContactInfo.Email,
-                    ["@qq"] = discoverer.ContactInfo.QQ,
-                    ["@weChat"] = discoverer.ContactInfo.WeChat,
                     ["@blogAddress"] = discoverer.ContactInfo.BlogAddress
                 };
             using (var connection = new SqlConnection(GetDataBaseConnectionString()))
@@ -622,8 +585,8 @@ namespace Discovery.Server.RemoteService
                 foreach (KeyValuePair<string, object> parameter in
                          updateDiscovererProfileParameterValues)
                 {
-                    command.Parameters
-                           .AddWithValue(parameter.Key, parameter.Value);
+                        command.Parameters
+                               .AddWithValue(parameter.Key, parameter.Value ?? DBNull.Value);
                 }
                 connection.Open();
                 command.ExecuteNonQuery();
@@ -642,13 +605,9 @@ namespace Discovery.Server.RemoteService
                 {
                     ["@id"] = post.ID,
                     ["@title"] = post.Title,
-                    ["@url"] = post.Url,
                     ["@creationTime"] = post.CreationTime,
                     ["@authorID"] = post.AuthorID,
-                    ["@content"] = post.Content,
-                    ["@postCategory"] = post.PostCategory,
-                    ["@lastEditedTime"] = post.LastEditedTime,
-                    ["@iconPath"] = post.IconPath
+                    ["@content"] = post.Content
                 };
 
             using (var connection = new SqlConnection(GetDataBaseConnectionString()))
@@ -721,27 +680,16 @@ namespace Discovery.Server.RemoteService
         /// <param name="areaOfInterest">感兴趣的领域</param>
         public void SignUp(string signInName,
                            string password,
-                           string email,
-                           Field areaOfInterest)
+                           string email)
         {
-            var SignUpParameterValues
-                = new Dictionary<string, object>
-                {
-                    ["@signInName"] = signInName,
-                    ["@password"] = password,
-                    ["@email"] = email,
-                    ["@areaOfInterest"] = areaOfInterest
-                };
-
             using (var connection = new SqlConnection(GetDataBaseConnectionString()))
             using (SqlCommand command = connection.CreateCommand())
             {
                 command.CommandType = CommandType.StoredProcedure;
                 command.CommandText = StoredProcedureNames.SignUp;
-                foreach (KeyValuePair<string, object> parameter in SignUpParameterValues)
-                {
-                    command.Parameters.AddWithValue(parameter.Key, parameter.Value);
-                }
+                command.Parameters.AddWithValue("@signInName", signInName);
+                command.Parameters.AddWithValue("@password", password);
+                command.Parameters.AddWithValue("@email", email);
                 connection.Open();
                 command.ExecuteNonQuery();
             }
@@ -775,7 +723,7 @@ namespace Discovery.Server.RemoteService
         /// <param name="anotherUserID">另一个用户的ID</param>
         /// <returns>关系键值对列表</returns>
         public IEnumerable<KeyValuePair<Discoverer, bool>> ThisUsersRelationshipWithAnotherUsersIdols(
-            int userID, 
+            int userID,
             int anotherUserID)
         {
             using (var connection = new SqlConnection(GetDataBaseConnectionString()))
@@ -791,7 +739,7 @@ namespace Discovery.Server.RemoteService
                 {
                     yield return new KeyValuePair<Discoverer, bool>(
                         CreateDiscovererFromSqlDataReader(reader),
-                        reader.IsDBNull(12) ? false : true);
+                        reader.IsDBNull(8) ? false : true);
                 }
             }
         }
@@ -817,7 +765,7 @@ namespace Discovery.Server.RemoteService
                 {
                     yield return new KeyValuePair<Discoverer, bool>(
                         CreateDiscovererFromSqlDataReader(reader),
-                        reader.IsDBNull(12) ? false : true);
+                        reader.IsDBNull(8) ? false : true);
                 }
             }
         }
@@ -843,7 +791,7 @@ namespace Discovery.Server.RemoteService
                 {
                     yield return new KeyValuePair<Post, bool>(
                         CreatePostFromSqlDataReader(reader),
-                        reader.IsDBNull(9) ? false : true);
+                        reader.IsDBNull(5) ? false : true);
                 }
             }
         }
@@ -869,7 +817,7 @@ namespace Discovery.Server.RemoteService
                 {
                     yield return new KeyValuePair<Post, bool>(
                         CreatePostFromSqlDataReader(reader),
-                        reader.IsDBNull(9) ? false : true);
+                        reader.IsDBNull(5) ? false : true);
                 }
             }
         }

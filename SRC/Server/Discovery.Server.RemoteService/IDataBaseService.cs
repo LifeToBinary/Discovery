@@ -18,8 +18,7 @@ namespace Discovery.Server.RemoteService
         [OperationContract]
         void SignUp(string signInName,
                     string password,
-                    string email,
-                    Field areaOfInterest);
+                    string email);
         [OperationContract]
         void UploadFile(byte[] data, string path);
         [OperationContract]

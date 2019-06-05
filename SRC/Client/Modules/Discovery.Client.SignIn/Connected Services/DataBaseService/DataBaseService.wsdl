@@ -29,6 +29,12 @@
   <wsdl:message name="IDataBaseService_SignUp_OutputMessage">
     <wsdl:part name="parameters" element="tns:SignUpResponse" />
   </wsdl:message>
+  <wsdl:message name="IDataBaseService_UploadFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:UploadFile" />
+  </wsdl:message>
+  <wsdl:message name="IDataBaseService_UploadFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UploadFileResponse" />
+  </wsdl:message>
   <wsdl:message name="IDataBaseService_GetDiscovererByID_InputMessage">
     <wsdl:part name="parameters" element="tns:GetDiscovererByID" />
   </wsdl:message>
@@ -204,6 +210,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IDataBaseService/SignUp" message="tns:IDataBaseService_SignUp_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IDataBaseService/SignUpResponse" message="tns:IDataBaseService_SignUp_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="UploadFile">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDataBaseService/UploadFile" message="tns:IDataBaseService_UploadFile_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDataBaseService/UploadFileResponse" message="tns:IDataBaseService_UploadFile_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetDiscovererByID">
       <wsdl:input wsaw:Action="http://tempuri.org/IDataBaseService/GetDiscovererByID" message="tns:IDataBaseService_GetDiscovererByID_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IDataBaseService/GetDiscovererByIDResponse" message="tns:IDataBaseService_GetDiscovererByID_OutputMessage" />
@@ -335,6 +345,15 @@
     </wsdl:operation>
     <wsdl:operation name="SignUp">
       <soap:operation soapAction="http://tempuri.org/IDataBaseService/SignUp" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadFile">
+      <soap:operation soapAction="http://tempuri.org/IDataBaseService/UploadFile" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

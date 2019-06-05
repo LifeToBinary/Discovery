@@ -11,26 +11,6 @@ namespace Discovery.Core.Model
     public class ContactInfo : BindableBase
     {
         /// <summary>
-        /// QQ 号
-        /// </summary>
-        private string _qq = String.Empty;
-        public string QQ
-        {
-            get => _qq;
-            set => SetProperty(ref _qq, value);
-        }
-
-        /// <summary>
-        /// 微信号
-        /// </summary>
-        private string _weChat = String.Empty;
-        public string WeChat
-        {
-            get => _weChat;
-            set => SetProperty(ref _weChat, value);
-        }
-
-        /// <summary>
         /// 邮箱
         /// </summary>
         private string _email = String.Empty;

@@ -24,4 +24,26 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="KeyValuePairOfDiscovererbooleanU8_PbWge3" nillable="true" type="tns:KeyValuePairOfDiscovererbooleanU8_PbWge3" />
+  <xs:complexType name="ArrayOfKeyValuePairOfPostbooleanU8_PbWge3">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="KeyValuePairOfPostbooleanU8_PbWge3" type="tns:KeyValuePairOfPostbooleanU8_PbWge3" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfKeyValuePairOfPostbooleanU8_PbWge3" nillable="true" type="tns:ArrayOfKeyValuePairOfPostbooleanU8_PbWge3" />
+  <xs:complexType name="KeyValuePairOfPostbooleanU8_PbWge3">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="KeyValuePairOf{0}{1}{#}" Namespace="http://schemas.datacontract.org/2004/07/System.Collections.Generic" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="Post" Namespace="http://schemas.datacontract.org/2004/07/Discovery.Core.Model" />
+          <GenericParameter Name="boolean" Namespace="http://www.w3.org/2001/XMLSchema" />
+        </GenericType>
+        <IsValueType xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsValueType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Discovery.Core.Model" name="key" nillable="true" type="q2:Post" />
+      <xs:element name="value" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="KeyValuePairOfPostbooleanU8_PbWge3" nillable="true" type="tns:KeyValuePairOfPostbooleanU8_PbWge3" />
 </xs:schema>

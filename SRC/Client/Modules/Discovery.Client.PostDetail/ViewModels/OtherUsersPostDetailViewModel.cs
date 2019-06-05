@@ -64,7 +64,7 @@ namespace Discovery.Client.PostDetail.ViewModels
         /// <summary>
         /// Region 导航对象
         /// </summary>
-        private IRegionManager _regionManager;
+        private readonly IRegionManager _regionManager;
 
         /// <summary>
         /// 构造函数

@@ -17,7 +17,7 @@ namespace Discovery.Client.SignIn.ViewModels
         /// <summary>
         /// Region 导航对象
         /// </summary>
-        private IRegionManager _regionManager;
+        private readonly IRegionManager _regionManager;
 
         /// <summary>
         /// 导航离开时, 不保留此视图

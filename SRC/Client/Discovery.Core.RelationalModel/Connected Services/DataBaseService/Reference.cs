@@ -28,10 +28,16 @@ namespace Discovery.Core.RelationalModel.DataBaseService {
         System.Threading.Tasks.Task<Discovery.Core.Model.Discoverer> SignInAsync(string signInName, string password);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataBaseService/SignUp", ReplyAction="http://tempuri.org/IDataBaseService/SignUpResponse")]
-        void SignUp(string signInName, string password, Discovery.Core.Enums.Sex sex, Discovery.Core.Enums.Field areaOfInterest, System.DateTime signUpTime);
+        void SignUp(string signInName, string password, string email);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataBaseService/SignUp", ReplyAction="http://tempuri.org/IDataBaseService/SignUpResponse")]
-        System.Threading.Tasks.Task SignUpAsync(string signInName, string password, Discovery.Core.Enums.Sex sex, Discovery.Core.Enums.Field areaOfInterest, System.DateTime signUpTime);
+        System.Threading.Tasks.Task SignUpAsync(string signInName, string password, string email);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataBaseService/UploadFile", ReplyAction="http://tempuri.org/IDataBaseService/UploadFileResponse")]
+        void UploadFile(byte[] data, string path);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataBaseService/UploadFile", ReplyAction="http://tempuri.org/IDataBaseService/UploadFileResponse")]
+        System.Threading.Tasks.Task UploadFileAsync(byte[] data, string path);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataBaseService/GetDiscovererByID", ReplyAction="http://tempuri.org/IDataBaseService/GetDiscovererByIDResponse")]
         Discovery.Core.Model.Discoverer GetDiscovererByID(int discovererID);
@@ -186,6 +192,26 @@ namespace Discovery.Core.RelationalModel.DataBaseService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataBaseService/ThisUsersRelationshipWithAnotherUsersFuns", ReplyAction="http://tempuri.org/IDataBaseService/ThisUsersRelationshipWithAnotherUsersFunsResp" +
             "onse")]
         System.Threading.Tasks.Task<System.Collections.Generic.KeyValuePair<Discovery.Core.Model.Discoverer, bool>[]> ThisUsersRelationshipWithAnotherUsersFunsAsync(int userID, int anotherUserID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataBaseService/ThisUsersRelationshipWithAnotherUsersPostedPo" +
+            "sts", ReplyAction="http://tempuri.org/IDataBaseService/ThisUsersRelationshipWithAnotherUsersPostedPo" +
+            "stsResponse")]
+        System.Collections.Generic.KeyValuePair<Discovery.Core.Model.Post, bool>[] ThisUsersRelationshipWithAnotherUsersPostedPosts(int userID, int anotherUserID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataBaseService/ThisUsersRelationshipWithAnotherUsersPostedPo" +
+            "sts", ReplyAction="http://tempuri.org/IDataBaseService/ThisUsersRelationshipWithAnotherUsersPostedPo" +
+            "stsResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.KeyValuePair<Discovery.Core.Model.Post, bool>[]> ThisUsersRelationshipWithAnotherUsersPostedPostsAsync(int userID, int anotherUserID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataBaseService/ThisUsersRelationshipWithAnotherUsersFavorite" +
+            "dPosts", ReplyAction="http://tempuri.org/IDataBaseService/ThisUsersRelationshipWithAnotherUsersFavorite" +
+            "dPostsResponse")]
+        System.Collections.Generic.KeyValuePair<Discovery.Core.Model.Post, bool>[] ThisUsersRelationshipWithAnotherUsersFavoritedPosts(int userID, int anotherUserID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataBaseService/ThisUsersRelationshipWithAnotherUsersFavorite" +
+            "dPosts", ReplyAction="http://tempuri.org/IDataBaseService/ThisUsersRelationshipWithAnotherUsersFavorite" +
+            "dPostsResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.KeyValuePair<Discovery.Core.Model.Post, bool>[]> ThisUsersRelationshipWithAnotherUsersFavoritedPostsAsync(int userID, int anotherUserID);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -231,12 +257,20 @@ namespace Discovery.Core.RelationalModel.DataBaseService {
             return base.Channel.SignInAsync(signInName, password);
         }
         
-        public void SignUp(string signInName, string password, Discovery.Core.Enums.Sex sex, Discovery.Core.Enums.Field areaOfInterest, System.DateTime signUpTime) {
-            base.Channel.SignUp(signInName, password, sex, areaOfInterest, signUpTime);
+        public void SignUp(string signInName, string password, string email) {
+            base.Channel.SignUp(signInName, password, email);
         }
         
-        public System.Threading.Tasks.Task SignUpAsync(string signInName, string password, Discovery.Core.Enums.Sex sex, Discovery.Core.Enums.Field areaOfInterest, System.DateTime signUpTime) {
-            return base.Channel.SignUpAsync(signInName, password, sex, areaOfInterest, signUpTime);
+        public System.Threading.Tasks.Task SignUpAsync(string signInName, string password, string email) {
+            return base.Channel.SignUpAsync(signInName, password, email);
+        }
+        
+        public void UploadFile(byte[] data, string path) {
+            base.Channel.UploadFile(data, path);
+        }
+        
+        public System.Threading.Tasks.Task UploadFileAsync(byte[] data, string path) {
+            return base.Channel.UploadFileAsync(data, path);
         }
         
         public Discovery.Core.Model.Discoverer GetDiscovererByID(int discovererID) {
@@ -437,6 +471,22 @@ namespace Discovery.Core.RelationalModel.DataBaseService {
         
         public System.Threading.Tasks.Task<System.Collections.Generic.KeyValuePair<Discovery.Core.Model.Discoverer, bool>[]> ThisUsersRelationshipWithAnotherUsersFunsAsync(int userID, int anotherUserID) {
             return base.Channel.ThisUsersRelationshipWithAnotherUsersFunsAsync(userID, anotherUserID);
+        }
+        
+        public System.Collections.Generic.KeyValuePair<Discovery.Core.Model.Post, bool>[] ThisUsersRelationshipWithAnotherUsersPostedPosts(int userID, int anotherUserID) {
+            return base.Channel.ThisUsersRelationshipWithAnotherUsersPostedPosts(userID, anotherUserID);
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.KeyValuePair<Discovery.Core.Model.Post, bool>[]> ThisUsersRelationshipWithAnotherUsersPostedPostsAsync(int userID, int anotherUserID) {
+            return base.Channel.ThisUsersRelationshipWithAnotherUsersPostedPostsAsync(userID, anotherUserID);
+        }
+        
+        public System.Collections.Generic.KeyValuePair<Discovery.Core.Model.Post, bool>[] ThisUsersRelationshipWithAnotherUsersFavoritedPosts(int userID, int anotherUserID) {
+            return base.Channel.ThisUsersRelationshipWithAnotherUsersFavoritedPosts(userID, anotherUserID);
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.KeyValuePair<Discovery.Core.Model.Post, bool>[]> ThisUsersRelationshipWithAnotherUsersFavoritedPostsAsync(int userID, int anotherUserID) {
+            return base.Channel.ThisUsersRelationshipWithAnotherUsersFavoritedPostsAsync(userID, anotherUserID);
         }
     }
 }

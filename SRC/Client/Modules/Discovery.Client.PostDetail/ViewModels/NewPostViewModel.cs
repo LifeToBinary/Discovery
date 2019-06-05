@@ -32,6 +32,7 @@ namespace Discovery.Client.PostDetail.ViewModels
         /// <param name="regionManager"></param>
         public NewPostViewModel(IRegionManager regionManager)
         {
+            NewPostForAdd = new Post { AuthorID = GlobalObjectHolder.CurrentUser.BasicInfo.ID };
             AddNewPostCommand = new DelegateCommand(AddNewPost);
             _regionManager = regionManager;
         }
@@ -42,25 +43,11 @@ namespace Discovery.Client.PostDetail.ViewModels
         public DelegateCommand AddNewPostCommand { get; }
         private void AddNewPost()
         {
-            InitNewPost();
             using (var databaseService = new DataBaseServiceClient())
             {
                 databaseService.AddANewPost(_newPostForAdd);
             }
             _regionManager.RequestNavigate(RegionNames.MainMenuContent, ViewNames.DiscovererHomePage);
-        }
-
-        /// <summary>
-        /// 初始化帖子的部分信息
-        /// </summary>
-        private void InitNewPost()
-        {
-            _newPostForAdd.CreationTime = DateTime.Now;
-            _newPostForAdd.LastEditedTime = DateTime.Now;
-            _newPostForAdd.AuthorID = GlobalObjectHolder.CurrentUser.BasicInfo.ID;
-            _newPostForAdd.Url = String.Empty;
-            _newPostForAdd.IconPath = String.Empty;
-            _newPostForAdd.LastEditedTime = _newPostForAdd.CreationTime;
         }
 
         /// <summary>

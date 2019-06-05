@@ -6,14 +6,12 @@
     <xs:complexContent mixed="false">
       <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/Prism.Mvvm" base="q1:BindableBase">
         <xs:sequence>
-          <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Discovery.Core.Enums" minOccurs="0" name="AreaOfInterest" type="q2:Field" />
           <xs:element minOccurs="0" name="AvatarPath" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="ID" type="xs:int" />
           <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="ProfileBackgroundImagePath" nillable="true" type="xs:string" />
-          <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Discovery.Core.Enums" minOccurs="0" name="Sex" type="q3:Sex" />
+          <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Discovery.Core.Enums" minOccurs="0" name="Sex" type="q2:Sex" />
           <xs:element minOccurs="0" name="SignInName" nillable="true" type="xs:string" />
-          <xs:element minOccurs="0" name="SignUpTime" type="xs:dateTime" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>

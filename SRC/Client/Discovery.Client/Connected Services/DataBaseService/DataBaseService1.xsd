@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://47.240.12.27:10004/DataBaseService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Discovery.Core.Model" />
-  <xs:import schemaLocation="http://47.240.12.27:10004/DataBaseService.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/Discovery.Core.Enums" />
   <xs:import schemaLocation="http://47.240.12.27:10004/DataBaseService.svc?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/System.Collections.Generic" />
   <xs:element name="DiscovererIsExists">
     <xs:complexType>
@@ -38,11 +37,23 @@
         <xs:element minOccurs="0" name="signInName" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="email" nillable="true" type="xs:string" />
-        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Discovery.Core.Enums" minOccurs="0" name="areaOfInterest" type="q2:Field" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="SignUpResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UploadFile">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="data" nillable="true" type="xs:base64Binary" />
+        <xs:element minOccurs="0" name="path" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UploadFileResponse">
     <xs:complexType>
       <xs:sequence />
     </xs:complexType>
@@ -57,14 +68,14 @@
   <xs:element name="GetDiscovererByIDResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Discovery.Core.Model" minOccurs="0" name="GetDiscovererByIDResult" nillable="true" type="q3:Discoverer" />
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Discovery.Core.Model" minOccurs="0" name="GetDiscovererByIDResult" nillable="true" type="q2:Discoverer" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="UpdateDiscovererInfo">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Discovery.Core.Model" minOccurs="0" name="discoverer" nillable="true" type="q4:Discoverer" />
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Discovery.Core.Model" minOccurs="0" name="discoverer" nillable="true" type="q3:Discoverer" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -76,7 +87,7 @@
   <xs:element name="UpdatePostInfo">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Discovery.Core.Model" minOccurs="0" name="post" nillable="true" type="q5:Post" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Discovery.Core.Model" minOccurs="0" name="post" nillable="true" type="q4:Post" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -95,7 +106,7 @@
   <xs:element name="GetPostsOfTheDiscovererResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Discovery.Core.Model" minOccurs="0" name="GetPostsOfTheDiscovererResult" nillable="true" type="q6:ArrayOfPost" />
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Discovery.Core.Model" minOccurs="0" name="GetPostsOfTheDiscovererResult" nillable="true" type="q5:ArrayOfPost" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -114,7 +125,7 @@
   <xs:element name="AddANewPost">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Discovery.Core.Model" minOccurs="0" name="post" nillable="true" type="q7:Post" />
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Discovery.Core.Model" minOccurs="0" name="post" nillable="true" type="q6:Post" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -136,7 +147,7 @@
   <xs:element name="FindPostsOfTheDiscovererResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Discovery.Core.Model" minOccurs="0" name="FindPostsOfTheDiscovererResult" nillable="true" type="q8:ArrayOfPost" />
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Discovery.Core.Model" minOccurs="0" name="FindPostsOfTheDiscovererResult" nillable="true" type="q7:ArrayOfPost" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -150,7 +161,7 @@
   <xs:element name="GetFunsOfTheIdolResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Discovery.Core.Model" minOccurs="0" name="GetFunsOfTheIdolResult" nillable="true" type="q9:ArrayOfDiscoverer" />
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Discovery.Core.Model" minOccurs="0" name="GetFunsOfTheIdolResult" nillable="true" type="q8:ArrayOfDiscoverer" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -164,7 +175,7 @@
   <xs:element name="GetFavoritePostsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/Discovery.Core.Model" minOccurs="0" name="GetFavoritePostsResult" nillable="true" type="q10:ArrayOfPost" />
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Discovery.Core.Model" minOccurs="0" name="GetFavoritePostsResult" nillable="true" type="q9:ArrayOfPost" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -178,7 +189,7 @@
   <xs:element name="GetRecommendedForTheDiscovererResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/Discovery.Core.Model" minOccurs="0" name="GetRecommendedForTheDiscovererResult" nillable="true" type="q11:ArrayOfPost" />
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/Discovery.Core.Model" minOccurs="0" name="GetRecommendedForTheDiscovererResult" nillable="true" type="q10:ArrayOfPost" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -192,7 +203,7 @@
   <xs:element name="FindPostFromAllDiscoverersResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/Discovery.Core.Model" minOccurs="0" name="FindPostFromAllDiscoverersResult" nillable="true" type="q12:ArrayOfPost" />
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/Discovery.Core.Model" minOccurs="0" name="FindPostFromAllDiscoverersResult" nillable="true" type="q11:ArrayOfPost" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -206,7 +217,7 @@
   <xs:element name="SearchDiscoverersResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/Discovery.Core.Model" minOccurs="0" name="SearchDiscoverersResult" nillable="true" type="q13:ArrayOfDiscoverer" />
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/Discovery.Core.Model" minOccurs="0" name="SearchDiscoverersResult" nillable="true" type="q12:ArrayOfDiscoverer" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -344,7 +355,7 @@
   <xs:element name="GetIdolsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/Discovery.Core.Model" minOccurs="0" name="GetIdolsResult" nillable="true" type="q14:ArrayOfDiscoverer" />
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/Discovery.Core.Model" minOccurs="0" name="GetIdolsResult" nillable="true" type="q13:ArrayOfDiscoverer" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -373,7 +384,7 @@
   <xs:element name="ThisUsersRelationshipWithAnotherUsersIdolsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/System.Collections.Generic" minOccurs="0" name="ThisUsersRelationshipWithAnotherUsersIdolsResult" nillable="true" type="q15:ArrayOfKeyValuePairOfDiscovererbooleanU8_PbWge3" />
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/System.Collections.Generic" minOccurs="0" name="ThisUsersRelationshipWithAnotherUsersIdolsResult" nillable="true" type="q14:ArrayOfKeyValuePairOfDiscovererbooleanU8_PbWge3" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -388,7 +399,7 @@
   <xs:element name="ThisUsersRelationshipWithAnotherUsersFunsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/System.Collections.Generic" minOccurs="0" name="ThisUsersRelationshipWithAnotherUsersFunsResult" nillable="true" type="q16:ArrayOfKeyValuePairOfDiscovererbooleanU8_PbWge3" />
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/System.Collections.Generic" minOccurs="0" name="ThisUsersRelationshipWithAnotherUsersFunsResult" nillable="true" type="q15:ArrayOfKeyValuePairOfDiscovererbooleanU8_PbWge3" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -403,7 +414,7 @@
   <xs:element name="ThisUsersRelationshipWithAnotherUsersPostedPostsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/System.Collections.Generic" minOccurs="0" name="ThisUsersRelationshipWithAnotherUsersPostedPostsResult" nillable="true" type="q17:ArrayOfKeyValuePairOfPostbooleanU8_PbWge3" />
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/System.Collections.Generic" minOccurs="0" name="ThisUsersRelationshipWithAnotherUsersPostedPostsResult" nillable="true" type="q16:ArrayOfKeyValuePairOfPostbooleanU8_PbWge3" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -418,7 +429,7 @@
   <xs:element name="ThisUsersRelationshipWithAnotherUsersFavoritedPostsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/System.Collections.Generic" minOccurs="0" name="ThisUsersRelationshipWithAnotherUsersFavoritedPostsResult" nillable="true" type="q18:ArrayOfKeyValuePairOfPostbooleanU8_PbWge3" />
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/System.Collections.Generic" minOccurs="0" name="ThisUsersRelationshipWithAnotherUsersFavoritedPostsResult" nillable="true" type="q17:ArrayOfKeyValuePairOfPostbooleanU8_PbWge3" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

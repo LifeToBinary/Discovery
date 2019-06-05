@@ -46,7 +46,6 @@ namespace Discovery.Client.PostDetail.ViewModels
         public DelegateCommand SaveUpdateCommand { get; }
         private void SaveUpdate()
         {
-            Post.LastEditedTime = DateTime.Now;
             using (var databaseService = new DataBaseServiceClient())
             {
                 databaseService.UpdatePostInfo(Post);

@@ -50,16 +50,6 @@ namespace Discovery.Core.Models
         }
 
         /// <summary>
-        /// 注册时间
-        /// </summary>
-        private DateTime _signUpTime;
-        public DateTime SignUpTime
-        {
-            get => _signUpTime;
-            set => SetProperty(ref _signUpTime, value);
-        }
-
-        /// <summary>
         /// 头像图片的路径
         /// </summary>
         private string _avatarPath;
@@ -77,16 +67,6 @@ namespace Discovery.Core.Models
         {
             get => _profileBackgroundImagePath;
             set => SetProperty(ref _profileBackgroundImagePath, value);
-        }
-
-        /// <summary>
-        /// 感兴趣的领域
-        /// </summary>
-        private Field _areaOfInterest;
-        public Field AreaOfInterest
-        {
-            get => _areaOfInterest;
-            set => SetProperty(ref _areaOfInterest, value);
         }
     }
 }

@@ -28,10 +28,16 @@ namespace Discovery.Client.SignIn.DataBaseService {
         System.Threading.Tasks.Task<Discovery.Core.Model.Discoverer> SignInAsync(string signInName, string password);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataBaseService/SignUp", ReplyAction="http://tempuri.org/IDataBaseService/SignUpResponse")]
-        void SignUp(string signInName, string password, string email, Discovery.Core.Enums.Field areaOfInterest);
+        void SignUp(string signInName, string password, string email);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataBaseService/SignUp", ReplyAction="http://tempuri.org/IDataBaseService/SignUpResponse")]
-        System.Threading.Tasks.Task SignUpAsync(string signInName, string password, string email, Discovery.Core.Enums.Field areaOfInterest);
+        System.Threading.Tasks.Task SignUpAsync(string signInName, string password, string email);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataBaseService/UploadFile", ReplyAction="http://tempuri.org/IDataBaseService/UploadFileResponse")]
+        void UploadFile(byte[] data, string path);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataBaseService/UploadFile", ReplyAction="http://tempuri.org/IDataBaseService/UploadFileResponse")]
+        System.Threading.Tasks.Task UploadFileAsync(byte[] data, string path);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataBaseService/GetDiscovererByID", ReplyAction="http://tempuri.org/IDataBaseService/GetDiscovererByIDResponse")]
         Discovery.Core.Model.Discoverer GetDiscovererByID(int discovererID);
@@ -251,12 +257,20 @@ namespace Discovery.Client.SignIn.DataBaseService {
             return base.Channel.SignInAsync(signInName, password);
         }
         
-        public void SignUp(string signInName, string password, string email, Discovery.Core.Enums.Field areaOfInterest) {
-            base.Channel.SignUp(signInName, password, email, areaOfInterest);
+        public void SignUp(string signInName, string password, string email) {
+            base.Channel.SignUp(signInName, password, email);
         }
         
-        public System.Threading.Tasks.Task SignUpAsync(string signInName, string password, string email, Discovery.Core.Enums.Field areaOfInterest) {
-            return base.Channel.SignUpAsync(signInName, password, email, areaOfInterest);
+        public System.Threading.Tasks.Task SignUpAsync(string signInName, string password, string email) {
+            return base.Channel.SignUpAsync(signInName, password, email);
+        }
+        
+        public void UploadFile(byte[] data, string path) {
+            base.Channel.UploadFile(data, path);
+        }
+        
+        public System.Threading.Tasks.Task UploadFileAsync(byte[] data, string path) {
+            return base.Channel.UploadFileAsync(data, path);
         }
         
         public Discovery.Core.Model.Discoverer GetDiscovererByID(int discovererID) {
