@@ -43,6 +43,7 @@
         <BitmapImage x:Key="UserDefaultAvatar"
                      UriSource="pack://application:,,,/Discovery.Client.Resource;component/Images/UserDefaultAvatar.png" />
         <converters:GenderToIconConverter x:Key="GenderToIcon" />
+        <converters:DateTimeToStringConverter x:Key="DateTimeToString" />
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -156,10 +157,39 @@
                                 <StackPanel Grid.Row="2"
                                             Orientation="Horizontal"
                                             TextBlock.FontSize="15">
-                                    <TextBlock Text="{Binding AuthorID}"
+                                    <Button x:Name="AvatarButton"
+                                            Padding="0"
+                                            Margin="10"
+                                            Height="40"
+                                            BorderBrush="White"
+                                            BorderThickness="1"
+                                            Width="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ActualHeight}"
+                                            HorizontalContentAlignment="Stretch"
+                                            VerticalContentAlignment="Stretch"
+                                            Style="{DynamicResource RoundButtonStyle}"
+                                            Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.ViewDiscovererHomePageCommand}"
+                                            CommandParameter="{Binding Author}">
+                                        <Grid>
+                                            <Ellipse>
+                                                <Ellipse.Fill>
+                                                    <ImageBrush ImageSource="{StaticResource UserDefaultAvatar}" />
+                                                </Ellipse.Fill>
+                                            </Ellipse>
+                                            <Ellipse>
+                                                <Ellipse.Fill>
+                                                    <ImageBrush x:Name="AuthorAvatarPath"
+                                                                ImageSource="{Binding Author.BasicInfo.AvatarPath, TargetNullValue={StaticResource UserDefaultAvatar}}"
+                                                                Stretch="UniformToFill" />
+                                                </Ellipse.Fill>
+                                            </Ellipse>
+                                        </Grid>
+                                    </Button>
+                                    <TextBlock Text="{Binding Author.BasicInfo.SignInName}"
+                                               VerticalAlignment="Center"
                                                Margin="5" />
-                                    <TextBlock Text="{Binding CreationTime, StringFormat={}{0:M月d日}}"
-                                               Margin="5" />
+                                    <TextBlock Text="{Binding CreationTime, Converter={StaticResource DateTimeToString}}"
+                                               Margin="5"
+                                               VerticalAlignment="Center" />
                                 </StackPanel>
                             </Grid>
                         </Grid>
