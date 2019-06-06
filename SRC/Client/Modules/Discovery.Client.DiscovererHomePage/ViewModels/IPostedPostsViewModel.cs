@@ -40,6 +40,7 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
             PostedIPost = new ObservableCollection<Post>();
             _regionManager = regionManager;
             ViewMyPostDetailCommand = new DelegateCommand<Post>(ViewMyPostDetail);
+            ViewMyHomePageCommand = new DelegateCommand(ViewMyHomePage);
             LoadData();
         }
 
@@ -63,6 +64,12 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
         /// 从Region离开时, 不保留此视图
         /// </summary>
         public bool KeepAlive => false;
+
+        public DelegateCommand ViewMyHomePageCommand { get; set; }
+        private void ViewMyHomePage()
+            => _regionManager.RequestNavigate(
+                RegionNames.MainMenuContent,
+                ViewNames.DiscovererHomePage);
 
         /// <summary>
         /// 查看帖子
