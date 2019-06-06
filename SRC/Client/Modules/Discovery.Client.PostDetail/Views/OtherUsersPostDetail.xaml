@@ -7,9 +7,10 @@
              xmlns:constants="clr-namespace:Discovery.Core.Constants;assembly=Discovery.Core"
              xmlns:prism="http://prismlibrary.com/"
              prism:ViewModelLocator.AutoWireViewModel="True"
+             xmlns:converters="clr-namespace:Discovery.Core.UI.Converters;assembly=Discovery.Core.UI"
              xmlns:coreui="clr-namespace:Discovery.Core.UI.AttachedProperties;assembly=Discovery.Core.UI"
              mc:Ignorable="d"
-             d:DesignHeight="450"
+             d:DesignHeight="977"
              d:DesignWidth="800">
     <UserControl.RenderTransform>
         <TranslateTransform Y="50" />
@@ -32,7 +33,7 @@
     <UserControl.Resources>
         <BitmapImage x:Key="UserDefaultAvatar"
                      UriSource="pack://application:,,,/Discovery.Client.Resource;component/Images/UserDefaultAvatar.png" />
-
+        <converters:DateTimeToStringConverter x:Key="DateTimeToString" />
     </UserControl.Resources>
     <Grid TextBlock.FontSize="20">
         <Grid.RowDefinitions>
@@ -134,11 +135,101 @@
                     <Rectangle Height="1"
                                Fill="Black"
                                Margin="0,20" />
-                    <TextBox Style="{DynamicResource TextBoxStyle}"
+                    <TextBox x:Name="CommentTextBox"
+                             Style="{DynamicResource TextBoxStyle}"
                              Tag=" 写下你的评论"
                              MinHeight="100"
                              Padding="5" />
-                    <ListBox Margin="0, 20" />
+                    <Button FontSize="20"
+                            Margin="10"
+                            Padding="25, 5"
+                            BorderBrush="#FF163D94"
+                            Foreground="White"
+                            BorderThickness="3"
+                            Content="发表评论"
+                            HorizontalAlignment="Right"
+                            coreui:ButtonBrush.ButtonPressBackground="#FF163D94"
+                            Style="{DynamicResource DefaultButtonStyle}"
+                            Command="{Binding AddCommentToThePostCommand}"
+                            CommandParameter="{Binding ElementName=CommentTextBox, Path=Text}" />
+                    <ListBox Margin="0, 20"
+                             FontSize="15"
+                             Background="Transparent"
+                             BorderThickness="0"
+                             ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                             Style="{DynamicResource ListBoxStyle}"
+                             ItemsSource="{Binding PostComments}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid MinHeight="80"
+                                      Margin="5">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+                                    <Button Grid.Row="0"
+                                            Grid.Column="0"
+                                            Padding="0"
+                                            Margin="10, 0"
+                                            Height="50"
+                                            BorderBrush="White"
+                                            BorderThickness="1"
+                                            VerticalAlignment="Top"
+                                            Width="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ActualHeight}"
+                                            HorizontalContentAlignment="Stretch"
+                                            VerticalContentAlignment="Stretch"
+                                            Style="{DynamicResource RoundButtonStyle}"
+                                            Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.ViewThisUsersHomePageCommand}"
+                                            CommandParameter="{Binding Author}">
+                                        <Grid>
+                                            <Ellipse>
+                                                <Ellipse.Fill>
+                                                    <ImageBrush ImageSource="{StaticResource UserDefaultAvatar}" />
+                                                </Ellipse.Fill>
+                                            </Ellipse>
+                                            <Ellipse>
+                                                <Ellipse.Fill>
+                                                    <ImageBrush x:Name="CommentAuthorAvatarPath"
+                                                                ImageSource="{Binding Author.BasicInfo.AvatarPath, TargetNullValue={x:Null}}"
+                                                                Stretch="UniformToFill" />
+                                                </Ellipse.Fill>
+                                            </Ellipse>
+                                        </Grid>
+                                    </Button>
+                                    <Grid Grid.Row="0"
+                                          Grid.Column="1">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                        <TextBlock Grid.Row="0"
+                                                   Margin="5, 0">
+                                            <Hyperlink Style="{DynamicResource HyperlinkStyle}"
+                                                       Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.ViewThisUsersHomePageCommand}"
+                                                       CommandParameter="{Binding Author}"
+                                                       TextDecorations="None">
+                                                <TextBlock FontWeight="Bold"
+                                                           Text="{Binding Author.BasicInfo.SignInName, StringFormat={}{0}: }" />
+                                            </Hyperlink>
+                                            <TextBlock Text="{Binding Comment}" />
+                                        </TextBlock>
+                                        <TextBlock Grid.Row="1"
+                                                   Margin="5"
+                                                   Text="{Binding CreationTime, Converter={StaticResource DateTimeToString}}" />
+                                    </Grid>
+                                    <Rectangle Grid.Row="1"
+                                               Grid.Column="1"
+                                               Height="1"
+                                               Margin="0, 5"
+                                               Fill="Gray" />
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
                 </StackPanel>
             </Border>
         </ScrollViewer>

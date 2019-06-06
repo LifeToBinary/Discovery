@@ -2,9 +2,12 @@
 using Discovery.Core.Constants;
 using Discovery.Core.GlobalData;
 using Discovery.Core.Model;
+using Discovery.Core.Models;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
+using System;
+using System.Collections.ObjectModel;
 using System.Windows;
 
 namespace Discovery.Client.PostDetail.ViewModels
@@ -31,7 +34,15 @@ namespace Discovery.Client.PostDetail.ViewModels
             get => _favoriteCount;
             set => SetProperty(ref _favoriteCount, value);
         }
-
+        /// <summary>
+        /// 帖子的全部评论
+        /// </summary>
+        private ObservableCollection<PostComment> _postComments;
+        public ObservableCollection<PostComment> PostComments
+        {
+            get => _postComments;
+            set => SetProperty(ref _postComments, value);
+        }
         /// <summary>
         /// 当前用户是否已经收藏了此帖子
         /// </summary>
@@ -80,7 +91,10 @@ namespace Discovery.Client.PostDetail.ViewModels
                 new DelegateCommand(FavoritedOrCancelFavoritedThePost);
             ConcernOrCancelConcernAuthorCommand =
                 new DelegateCommand(ConcernOrCancelConcernAuthor);
-
+            AddCommentToThePostCommand =
+                new DelegateCommand<string>(AddCommentToThePost);
+            ViewThisUsersHomePageCommand =
+                new DelegateCommand<Discoverer>(ViewThisUsersHomePage);
         }
 
         /// <summary>
@@ -108,7 +122,49 @@ namespace Discovery.Client.PostDetail.ViewModels
                 LoadData();
             }
         }
-
+        /// <summary>
+        /// 查看一个用户的主页
+        /// </summary>
+        public DelegateCommand<Discoverer> ViewThisUsersHomePageCommand { get; }
+        private void ViewThisUsersHomePage(Discoverer discoverer)
+        {
+            if (discoverer.BasicInfo.ID == GlobalObjectHolder.CurrentUser.BasicInfo.ID)
+            {
+                _regionManager.RequestNavigate(
+                    RegionNames.MainMenuContent,
+                    ViewNames.DiscovererHomePage);
+                return;
+            }
+            _regionManager.RequestNavigate(
+                RegionNames.MainMenuContent,
+                ViewNames.OtherUsersHomePage,
+                new NavigationParameters
+                {
+                    { "Discoverer", discoverer }
+                });
+        }
+        /// <summary>
+        /// 发表评论
+        /// </summary>
+        public DelegateCommand<string> AddCommentToThePostCommand { get; }
+        private async void AddCommentToThePost(string comment)
+        {
+            using (var databaseService = new DataBaseServiceClient())
+            {
+                int newCommentID = await databaseService.AddACommentAsync(
+                                       CurrentPost.ID,
+                                       GlobalObjectHolder.CurrentUser.BasicInfo.ID,
+                                       comment);
+                PostComments.Add(new PostComment
+                {
+                    ID = newCommentID,
+                    PostID = CurrentPost.ID,
+                    Author = GlobalObjectHolder.CurrentUser,
+                    Comment = comment,
+                    CreationTime = DateTime.Now
+                });
+            }
+        }
         /// <summary>
         /// 查询此帖子的作者, 被收藏的次数, 是否被当前用户收藏, 以及此帖子的作者是否被当前用户关注
         /// </summary>
@@ -119,17 +175,24 @@ namespace Discovery.Client.PostDetail.ViewModels
                 AuthorOfThePost = 
                     await databaseService.GetDiscovererByIDAsync(
                         CurrentPost.Author.BasicInfo.ID);
+
                 FavoriteCount =
                     await databaseService.GetFavoritesCountOfThePostAsync(
                         CurrentPost.ID);
+
                 CurrentUserIsFavoritedThisPost =
                     await databaseService.IsFavoritedAPostAsync(
                         GlobalObjectHolder.CurrentUser.BasicInfo.ID,
                         CurrentPost.ID);
+
                 CurrentUserIsAFunOfTheAuthor =
                     await databaseService.IsFunsAsync(
                         GlobalObjectHolder.CurrentUser.BasicInfo.ID,
                         AuthorOfThePost.BasicInfo.ID);
+
+                PostComments = new ObservableCollection<PostComment>(
+                    await databaseService.GetCommentsOfThePostAsync(
+                        CurrentPost.ID));
             }
         }
 
