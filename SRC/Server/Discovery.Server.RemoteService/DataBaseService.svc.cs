@@ -28,7 +28,7 @@ namespace Discovery.Server.RemoteService
                 new Dictionary<string, object>
                 {
                     ["@title"] = post.Title,
-                    ["@authorID"] = post.AuthorID,
+                    ["@authorID"] = post.Author.BasicInfo.ID,
                     ["@content"] = post.Content,
                 };
             using (var connection = new SqlConnection(GetDataBaseConnectionString()))
@@ -207,9 +207,26 @@ namespace Discovery.Server.RemoteService
                 ID = reader.GetInt32(0),
                 Title = reader.GetString(1),
                 CreationTime = reader.GetDateTime(2),
-                AuthorID = reader.GetInt32(3),
-                Content = reader.GetString(4)
+                Content = reader.GetString(3),
+                Author = new Discoverer
+                {
+                    BasicInfo = new BasicInfo
+                    {
+                        ID = reader.GetInt32(4),
+                        SignInName = reader.GetString(5),
+                        Password = reader.GetString(6),
+                        Sex = (Sex)reader.GetInt32(7),
+                        AvatarPath = reader.IsDBNull(8) ? null : reader.GetString(8),
+                        ProfileBackgroundImagePath = reader.IsDBNull(9) ? null : reader.GetString(9)
+                    },
+                    ContactInfo = new ContactInfo
+                    {
+                        Email = reader.IsDBNull(10) ? null : reader.GetString(10),
+                        BlogAddress = reader.IsDBNull(11) ? null : reader.GetString(11)
+                    }
+                }
             };
+
         /// <summary>
         /// 搜索一个用户的帖子
         /// </summary>
@@ -585,8 +602,9 @@ namespace Discovery.Server.RemoteService
                 foreach (KeyValuePair<string, object> parameter in
                          updateDiscovererProfileParameterValues)
                 {
-                        command.Parameters
-                               .AddWithValue(parameter.Key, parameter.Value ?? DBNull.Value);
+                        command.Parameters.AddWithValue(
+                            parameter.Key, 
+                            parameter.Value ?? DBNull.Value);
                 }
                 connection.Open();
                 command.ExecuteNonQuery();
@@ -606,7 +624,7 @@ namespace Discovery.Server.RemoteService
                     ["@id"] = post.ID,
                     ["@title"] = post.Title,
                     ["@creationTime"] = post.CreationTime,
-                    ["@authorID"] = post.AuthorID,
+                    ["@authorID"] = post.Author.BasicInfo.ID,
                     ["@content"] = post.Content
                 };
 
@@ -791,7 +809,7 @@ namespace Discovery.Server.RemoteService
                 {
                     yield return new KeyValuePair<Post, bool>(
                         CreatePostFromSqlDataReader(reader),
-                        reader.IsDBNull(5) ? false : true);
+                        reader.IsDBNull(12) ? false : true);
                 }
             }
         }
@@ -817,7 +835,7 @@ namespace Discovery.Server.RemoteService
                 {
                     yield return new KeyValuePair<Post, bool>(
                         CreatePostFromSqlDataReader(reader),
-                        reader.IsDBNull(5) ? false : true);
+                        reader.IsDBNull(12) ? false : true);
                 }
             }
         }
