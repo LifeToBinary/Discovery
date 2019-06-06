@@ -2,6 +2,7 @@
 <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Discovery.Core.Models" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Discovery.Core.Models" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://47.240.12.27:10004/DataBaseService.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/Discovery.Core.Enums" />
   <xs:import schemaLocation="http://47.240.12.27:10004/DataBaseService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Prism.Mvvm" />
+  <xs:import schemaLocation="http://47.240.12.27:10004/DataBaseService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Discovery.Core.Model" />
   <xs:complexType name="BasicInfo">
     <xs:complexContent mixed="false">
       <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/Prism.Mvvm" base="q1:BindableBase">
@@ -17,4 +18,24 @@
     </xs:complexContent>
   </xs:complexType>
   <xs:element name="BasicInfo" nillable="true" type="tns:BasicInfo" />
+  <xs:complexType name="ArrayOfPostComment">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PostComment" nillable="true" type="tns:PostComment" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPostComment" nillable="true" type="tns:ArrayOfPostComment" />
+  <xs:complexType name="PostComment">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q3="http://schemas.datacontract.org/2004/07/Prism.Mvvm" base="q3:BindableBase">
+        <xs:sequence>
+          <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Discovery.Core.Model" minOccurs="0" name="Author" nillable="true" type="q4:Discoverer" />
+          <xs:element minOccurs="0" name="Comment" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CreationTime" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="ID" type="xs:int" />
+          <xs:element minOccurs="0" name="PostID" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="PostComment" nillable="true" type="tns:PostComment" />
 </xs:schema>

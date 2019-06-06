@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ServiceModel;
 using Discovery.Core.Enums;
 using Discovery.Core.Model;
+using Discovery.Core.Models;
 
 namespace Discovery.Server.RemoteService
 {
@@ -109,5 +110,9 @@ namespace Discovery.Server.RemoteService
         IEnumerable<KeyValuePair<Post, bool>> ThisUsersRelationshipWithAnotherUsersFavoritedPosts(
             int userID,
             int anotherUserID);
+        [OperationContract]
+        IEnumerable<PostComment> GetCommentsOfThePost(int postID);
+        [OperationContract]
+        int AddAComment(int postID, int authorID, string comment);
     }
 }

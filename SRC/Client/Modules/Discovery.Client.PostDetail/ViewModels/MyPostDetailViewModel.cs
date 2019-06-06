@@ -2,9 +2,12 @@
 using Discovery.Core.Constants;
 using Discovery.Core.GlobalData;
 using Discovery.Core.Model;
+using Discovery.Core.Models;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
+using System;
+using System.Collections.ObjectModel;
 
 namespace Discovery.Client.PostDetail.ViewModels
 {
@@ -28,6 +31,16 @@ namespace Discovery.Client.PostDetail.ViewModels
         {
             get => _currentUser;
             set => SetProperty(ref _currentUser, value);
+        }
+
+        /// <summary>
+        /// 帖子的全部评论
+        /// </summary>
+        private ObservableCollection<PostComment> _postComments;
+        public ObservableCollection<PostComment> PostComments
+        {
+            get => _postComments;
+            set => SetProperty(ref _postComments, value);
         }
 
         /// <summary>
@@ -56,8 +69,30 @@ namespace Discovery.Client.PostDetail.ViewModels
             RemoveThisPostCommand = new DelegateCommand(RemoveThisPost);
             NavigateMyHomePageViewToMainMenuRegionCommand =
                 new DelegateCommand(NavigateMyHomePageViewToMainMenuRegion);
+            AddCommentToThePostCommand = 
+                new DelegateCommand<string>(AddCommentToThePost);
+            ViewThisUsersHomePageCommand =
+                new DelegateCommand<Discoverer>(ViewThisUsersHomePage);
         }
-
+        public DelegateCommand<Discoverer> ViewThisUsersHomePageCommand { get; }
+        private void ViewThisUsersHomePage(Discoverer discoverer)
+        {
+            if (discoverer.BasicInfo.ID == GlobalObjectHolder.CurrentUser.BasicInfo.ID)
+            {
+                _regionManager.RequestNavigate(
+                    RegionNames.MainMenuContent,
+                    ViewNames.DiscovererHomePage);
+                return;
+            }
+            _regionManager.RequestNavigate(
+                RegionNames.MainMenuContent,
+                ViewNames.OtherUsersHomePage,
+                new NavigationParameters
+                {
+                    { "Discoverer", discoverer }
+                });
+        }
+        
         /// <summary>
         /// 删除此帖子
         /// </summary>
@@ -73,6 +108,25 @@ namespace Discovery.Client.PostDetail.ViewModels
                 ViewNames.Recommended);
         }
         
+        public DelegateCommand<string> AddCommentToThePostCommand { get; }
+        private async void AddCommentToThePost(string comment)
+        {
+            using (var databaseService = new DataBaseServiceClient())
+            {
+                int newCommentID = await databaseService.AddACommentAsync(
+                                       CurrentPost.ID,
+                                       CurrentUser.BasicInfo.ID,
+                                       comment);
+                PostComments.Add(new PostComment
+                {
+                    ID = newCommentID,
+                    PostID = CurrentPost.ID,
+                    Author = CurrentUser,
+                    Comment = comment,
+                    CreationTime = DateTime.Now
+                });
+            }
+        }
 
         /// <summary>
         /// 编辑此帖子
@@ -102,6 +156,16 @@ namespace Discovery.Client.PostDetail.ViewModels
             if (navigationContext.Parameters["Post"] is Post post)
             {
                 CurrentPost = post;
+                LoadPostComments();
+            }
+        }
+        private async void LoadPostComments()
+        {
+            using (var databaseService = new DataBaseServiceClient())
+            {
+                PostComments = new ObservableCollection<PostComment>(
+                    await databaseService.GetCommentsOfThePostAsync(
+                        CurrentPost.ID));
             }
         }
 

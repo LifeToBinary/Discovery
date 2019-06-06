@@ -158,5 +158,15 @@ namespace Discovery.Core.Constants
         /// 查询一个用户与另一个用户收藏的帖子(s)的关系列表
         /// </summary>
         public const string ThisUsersRelationshipWithAnotherUsersFavoritedPosts = "ThisUsersRelationshipWithAnotherUsersFavoritedPosts";
+
+        /// <summary>
+        /// 查询一个帖子的全部评论
+        /// </summary>
+        public const string GetCommentsOfThePost = "GetCommentsOfThePost";
+
+        /// <summary>
+        /// 评论一个帖子
+        /// </summary>
+        public const string AddAComment = "AddAComment";
     }
 }

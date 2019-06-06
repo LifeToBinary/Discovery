@@ -254,8 +254,8 @@ namespace Discovery.Server.RemoteService
         /// <summary>
         /// 获取一个用户所收藏的所有帖子
         /// </summary>
-        /// <param name="discovererID"></param>
-        /// <returns></returns>
+        /// <param name="discovererID">一个用于读取数据的 SqlDataReader 实例</param>
+        /// <returns>一个新的PostComment 对象</returns>
         public IEnumerable<Post> GetFavoritePosts(int discovererID)
         {
             using (var connection = new SqlConnection(GetDataBaseConnectionString()))
@@ -837,6 +837,80 @@ namespace Discovery.Server.RemoteService
                         CreatePostFromSqlDataReader(reader),
                         reader.IsDBNull(12) ? false : true);
                 }
+            }
+        }
+        /// <summary>
+        /// 查询一个帖子的全部评论
+        /// </summary>
+        /// <param name="postID">帖子ID</param>
+        /// <returns>这个帖子的全部评论</returns>
+        public IEnumerable<PostComment> GetCommentsOfThePost(int postID)
+        {
+            using (var connection = new SqlConnection(GetDataBaseConnectionString()))
+            using (SqlCommand command = connection.CreateCommand())
+            {
+                command.CommandType = CommandType.StoredProcedure;
+                command.CommandText = StoredProcedureNames.GetCommentsOfThePost;
+                command.Parameters.AddWithValue("@postID", postID);
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    yield return CreatePostCommentFromSqlDataReader(reader);
+                }
+            }
+        }
+
+        /// <summary>
+        /// 读取一个 SqlDataReader 的数据以创建 PostComment 对象
+        /// </summary>
+        /// <param name="reader"></param>
+        /// <returns></returns>
+        private PostComment CreatePostCommentFromSqlDataReader(SqlDataReader reader)
+            => new PostComment
+            {
+                ID = reader.GetInt32(0),
+                PostID = reader.GetInt32(1),
+                Comment = reader.GetString(2),
+                CreationTime = reader.GetDateTime(3),
+                Author = new Discoverer
+                {
+                    BasicInfo = new BasicInfo
+                    {
+                        ID = reader.GetInt32(4),
+                        SignInName = reader.GetString(5),
+                        Password = reader.GetString(6),
+                        Sex = (Sex)reader.GetInt32(7),
+                        AvatarPath = reader.IsDBNull(8) ? null : reader.GetString(8),
+                        ProfileBackgroundImagePath = reader.IsDBNull(9) ? null : reader.GetString(9)
+                    },
+                    ContactInfo = new ContactInfo
+                    {
+                        Email = reader.IsDBNull(10) ? null : reader.GetString(10),
+                        BlogAddress = reader.IsDBNull(11) ? null : reader.GetString(11)
+                    }
+                }
+            };
+
+        public int AddAComment(int postID, int authorID, string comment)
+        {
+            using (var connection = new SqlConnection(GetDataBaseConnectionString()))
+            using (SqlCommand command = connection.CreateCommand())
+            {
+                command.CommandType = CommandType.StoredProcedure;
+                command.CommandText = StoredProcedureNames.AddAComment;
+                command.Parameters.AddWithValue("@postID", postID);
+                command.Parameters.AddWithValue("@authorID", authorID);
+                command.Parameters.AddWithValue("@comment", comment);
+                command.Parameters.Add(new SqlParameter
+                {
+                    ParameterName = "@newCommentID",
+                    SqlDbType = SqlDbType.Int,
+                    Direction = ParameterDirection.Output
+                });
+                connection.Open();
+                command.ExecuteNonQuery();
+                return Convert.ToInt32(command.Parameters[3].Value);
             }
         }
     }
