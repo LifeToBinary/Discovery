@@ -38,8 +38,10 @@ namespace Discovery.Client.Recommended.ViewModels
             _regionManager = regionManager;
             ViewPostDetailCommand = new DelegateCommand<Post>(ViewPostDetail);
             NavigateToSearchViewCommand = new DelegateCommand(NavigateToSearchView);
-            ReloadDataCommand = new DelegateCommand(LoadData);
+            ReloadDataCommand = new DelegateCommand(ReloadData);
             AddNewPostCommand = new DelegateCommand(AddNewPost);
+            ViewThisUsersHomePageCommand =
+                new DelegateCommand<Discoverer>(ViewThisUsersHomePage);
         }
 
         /// <summary>
@@ -72,11 +74,22 @@ namespace Discovery.Client.Recommended.ViewModels
                 {
                     { "Post", post }
                 });
+        public DelegateCommand<Discoverer> ViewThisUsersHomePageCommand { get; set; }
+        private void ViewThisUsersHomePage(Discoverer discoverer)
+            => _regionManager.RequestNavigate(
+                RegionNames.MainMenuContent,
+                ViewNames.OtherUsersHomePage,
+                new NavigationParameters
+                {
+                    { "Discoverer", discoverer }
+                });
 
         /// <summary>
         /// 刷新推荐内容
         /// </summary>
         public DelegateCommand ReloadDataCommand { get; }
+        private void ReloadData()
+            => LoadData();
         public bool KeepAlive => false;
 
         private async void LoadData()

@@ -5,6 +5,7 @@ using Discovery.Core.Model;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
+using System.Windows;
 
 namespace Discovery.Client.PostDetail.ViewModels
 {
@@ -94,7 +95,7 @@ namespace Discovery.Client.PostDetail.ViewModels
                 {
                     { "Discoverer", AuthorOfThePost }
                 });
-        
+   
         /// <summary>
         /// 导航到此视图时
         /// </summary>
@@ -117,7 +118,7 @@ namespace Discovery.Client.PostDetail.ViewModels
             {
                 AuthorOfThePost = 
                     await databaseService.GetDiscovererByIDAsync(
-                        CurrentPost.AuthorID);
+                        CurrentPost.Author.BasicInfo.ID);
                 FavoriteCount =
                     await databaseService.GetFavoritesCountOfThePostAsync(
                         CurrentPost.ID);

@@ -32,7 +32,7 @@ namespace Discovery.Client.PostDetail.ViewModels
         /// <param name="regionManager"></param>
         public NewPostViewModel(IRegionManager regionManager)
         {
-            NewPostForAdd = new Post { AuthorID = GlobalObjectHolder.CurrentUser.BasicInfo.ID };
+            NewPostForAdd = new Post { Author = GlobalObjectHolder.CurrentUser };
             AddNewPostCommand = new DelegateCommand(AddNewPost);
             _regionManager = regionManager;
         }

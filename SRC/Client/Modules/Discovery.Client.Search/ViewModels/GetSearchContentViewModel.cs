@@ -69,7 +69,7 @@ namespace Discovery.Client.Search.ViewModels
         private void ViewPostDetail(Post post)
             => _regionManager.RequestNavigate(
                 RegionNames.MainMenuContent,
-                post.AuthorID == GlobalObjectHolder.CurrentUser.BasicInfo.ID
+                post.Author.BasicInfo.ID == GlobalObjectHolder.CurrentUser.BasicInfo.ID
                     ? ViewNames.MyPostDetail
                     : ViewNames.OtherUsersPostDetail,
                 new NavigationParameters
