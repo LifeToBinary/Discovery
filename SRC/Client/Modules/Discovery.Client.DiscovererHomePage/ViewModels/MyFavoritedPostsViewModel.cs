@@ -35,6 +35,8 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
             MyFavoritedPosts = new ObservableCollection<Post>();
             _regionManager = regionManager;
             ViewThisPostDetailCommand = new DelegateCommand<Post>(ViewThisPostDetail);
+            ViewThisUsersHomePageCommand =
+                new DelegateCommand<Discoverer>(ViewThisUsersHomePage);
             LoadData();
         }
 
@@ -52,7 +54,15 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
                 }
             }
         }
-
+        public DelegateCommand<Discoverer> ViewThisUsersHomePageCommand { get; set; }
+        private void ViewThisUsersHomePage(Discoverer discoverer)
+            => _regionManager.RequestNavigate(
+                RegionNames.MainMenuContent,
+                ViewNames.OtherUsersHomePage,
+                new NavigationParameters
+                {
+                    { "Discoverer", discoverer }
+                });
         /// <summary>
         /// 查看帖子
         /// </summary>
