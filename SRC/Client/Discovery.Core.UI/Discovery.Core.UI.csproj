@@ -54,7 +54,7 @@
     <Compile Include="Converters\DateTimeToStringConverter.cs" />
     <Compile Include="Converters\EnumToBooleanConverter.cs" />
     <Compile Include="Converters\GenderToIconConverter.cs" />
-    <Compile Include="Converters\StringToBitmapImageConverter.cs" />
+    <Compile Include="Converters\NullImageConverter .cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

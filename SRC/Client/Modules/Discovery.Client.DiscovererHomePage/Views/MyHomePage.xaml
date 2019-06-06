@@ -49,7 +49,7 @@
                Stretch="UniformToFill"></Image>
         <Image Grid.Row="1"
                Height="250"
-               Source="{Binding CurrentUser.BasicInfo.ProfileBackgroundImagePath}"
+               Source="{Binding CurrentUser.BasicInfo.ProfileBackgroundImagePath, TargetNullValue={x:Null}}"
                Stretch="UniformToFill" />
         <Border Grid.Row="1"
                 Width="100"
@@ -72,7 +72,7 @@
                     </Ellipse>
                     <Ellipse>
                         <Ellipse.Fill>
-                            <ImageBrush ImageSource="{Binding CurrentUser.BasicInfo.AvatarPath}"
+                            <ImageBrush ImageSource="{Binding CurrentUser.BasicInfo.AvatarPath, TargetNullValue={x:Null}}"
                                         Stretch="UniformToFill" />
                         </Ellipse.Fill>
                     </Ellipse>

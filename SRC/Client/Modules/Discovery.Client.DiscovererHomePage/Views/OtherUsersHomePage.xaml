@@ -48,7 +48,7 @@
                Stretch="UniformToFill" />
         <Image Grid.Row="1"
                Height="250"
-               Source="{Binding Discoverer.BasicInfo.ProfileBackgroundImagePath}"
+               Source="{Binding Discoverer.BasicInfo.ProfileBackgroundImagePath, TargetNullValue={x:Null}}"
                Stretch="UniformToFill" />
         <Grid Grid.Row="1"
               HorizontalAlignment="Center"
@@ -73,7 +73,7 @@
                     </Ellipse>
                     <Ellipse>
                         <Ellipse.Fill>
-                            <ImageBrush ImageSource="{Binding Discoverer.BasicInfo.AvatarPath, TargetNullValue={StaticResource UserDefaultAvatar}}"
+                            <ImageBrush ImageSource="{Binding Discoverer.BasicInfo.AvatarPath, TargetNullValue={x:Null}}"
                                         Stretch="UniformToFill" />
                         </Ellipse.Fill>
                     </Ellipse>

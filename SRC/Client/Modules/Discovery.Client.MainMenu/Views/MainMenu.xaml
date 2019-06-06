@@ -15,7 +15,6 @@
              d:DesignHeight="550"
              d:DesignWidth="800">
     <UserControl.Resources>
-        <coreui:StringToBitmapImageConverter x:Key="stringToBitmapImage" />
         <BitmapImage x:Key="UserDefaultAvatar"
                      UriSource="pack://application:,,,/Discovery.Client.Resource;component/Images/UserDefaultAvatar.png" />
     </UserControl.Resources>
@@ -58,7 +57,7 @@
                         </Ellipse>
                         <Ellipse>
                             <Ellipse.Fill>
-                                <ImageBrush ImageSource="{Binding CurrentUser.BasicInfo.AvatarPath}"
+                                <ImageBrush ImageSource="{Binding CurrentUser.BasicInfo.AvatarPath, TargetNullValue={x:Null}}"
                                             Stretch="UniformToFill" />
                             </Ellipse.Fill>
                         </Ellipse>

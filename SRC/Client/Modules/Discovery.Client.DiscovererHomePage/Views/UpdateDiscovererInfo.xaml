@@ -83,7 +83,7 @@
         <Image Grid.Row="1"
                Height="250"
                Stretch="UniformToFill"
-               Source="{Binding CurrentUser.BasicInfo.ProfileBackgroundImagePath}" />
+               Source="{Binding CurrentUser.BasicInfo.ProfileBackgroundImagePath, TargetNullValue={x:Null}}" />
         <Button Grid.Row="1"
                 Background="#90000000"
                 Foreground="White"
@@ -116,7 +116,7 @@
                 CornerRadius="100"
                 Margin="20, -50, 20, 50">
             <Border.Background>
-                <ImageBrush ImageSource="{Binding CurrentUser.BasicInfo.AvatarPath}"
+                <ImageBrush ImageSource="{Binding CurrentUser.BasicInfo.AvatarPath, TargetNullValue={x:Null}}"
                             Stretch="UniformToFill" />
             </Border.Background>
             <Button BorderThickness="0"

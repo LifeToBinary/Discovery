@@ -103,7 +103,7 @@
                                             <Ellipse>
                                                 <Ellipse.Fill>
                                                     <ImageBrush x:Name="AuthorAvatarPath"
-                                                                ImageSource="{Binding Author.BasicInfo.AvatarPath, TargetNullValue={StaticResource UserDefaultAvatar}}"
+                                                                ImageSource="{Binding Author.BasicInfo.AvatarPath, TargetNullValue={x:Null}}"
                                                                 Stretch="UniformToFill" />
                                                 </Ellipse.Fill>
                                             </Ellipse>

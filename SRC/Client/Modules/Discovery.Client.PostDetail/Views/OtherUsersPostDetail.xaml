@@ -79,7 +79,7 @@
                         </Ellipse>
                         <Ellipse>
                             <Ellipse.Fill>
-                                <ImageBrush ImageSource="{Binding AuthorOfThePost.BasicInfo.AvatarPath}"
+                                <ImageBrush ImageSource="{Binding AuthorOfThePost.BasicInfo.AvatarPath, TargetNullValue={x:Null}}"
                                             Stretch="UniformToFill" />
                             </Ellipse.Fill>
                         </Ellipse>
