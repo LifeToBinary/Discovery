@@ -40,13 +40,13 @@ namespace Discovery.Core.Model
         }
 
         /// <summary>
-        /// 作者ID
+        /// 作者
         /// </summary>
-        private int _authorID;
-        public int AuthorID
+        private Discoverer _author;
+        public Discoverer Author
         {
-            get => _authorID;
-            set => SetProperty(ref _authorID, value);
+            get => _author;
+            set => SetProperty(ref _author, value);
         }
 
         /// <summary>
