@@ -9,7 +9,7 @@ using System.Windows.Data;
 namespace Discovery.Core.UI.Converters
 {
     [ValueConversion(typeof(DateTime), typeof(string))]
-    class DateTimeToStringConverter : IValueConverter
+    public class DateTimeToStringConverter : IValueConverter
     {
         public object Convert(
             object value, 
@@ -17,7 +17,8 @@ namespace Discovery.Core.UI.Converters
             object parameter, 
             CultureInfo culture)
         {
-            TimeSpan time = DateTime.Now - (DateTime)value;
+            var time = (DateTime)value;
+            TimeSpan TimeDifference = DateTime.Now - time;
             TimeSpan[] timeReferences =
             {
                 TimeSpan.FromMinutes(1),
@@ -29,14 +30,14 @@ namespace Discovery.Core.UI.Converters
             string[] values =
             {
                 "一分钟前",
-                $"{time.Minutes} 分钟前",
-                $"{time.Hours} 小时前",
-                $"{time.Days} 天前",
+                $"{TimeDifference.Minutes} 分钟前",
+                $"{TimeDifference.Hours} 小时前",
+                $"{TimeDifference.Days} 天前",
                 $"{time:yyyy年MM月dd日}"
             };
             return GetValue();
             string GetValue(int index = 0)
-                => time < timeReferences[index]
+                => TimeDifference < timeReferences[index]
                 ? values[index]
                 : GetValue(index + 1);
         }

@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:converters="clr-namespace:Discovery.Core.UI.Converters;assembly=Discovery.Core.UI"
              xmlns:local="clr-namespace:Discovery.Client.Recommended.Views"
              xmlns:prism="http://prismlibrary.com/"
              prism:ViewModelLocator.AutoWireViewModel="True"
@@ -29,6 +30,9 @@
             </BeginStoryboard>
         </EventTrigger>
     </UserControl.Triggers>
+    <UserControl.Resources>
+        <converters:DateTimeToStringConverter x:Key="DateTimeToString"/>
+    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -111,7 +115,7 @@
                                             TextBlock.FontSize="15">
                                     <TextBlock Text="{Binding AuthorID}"
                                                Margin="5" />
-                                    <TextBlock Text="{Binding CreationTime, StringFormat={}{0:M月d日}}"
+                                    <TextBlock Text="{Binding CreationTime, Converter={StaticResource DateTimeToString}}"
                                                Margin="5" />
                                 </StackPanel>
                             </Grid>
