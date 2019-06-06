@@ -45,6 +45,8 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
             _regionManager = regionManager;
             ViewThisPostDetailCommand = new DelegateCommand<Post>(ViewThisPostDetail);
             PostedPosts = new ObservableCollection<Post>();
+            ViewThisUsersHomePageCommand =
+                new DelegateCommand(ViewThisUsersHomePage);
         }
 
         /// <summary>
@@ -59,7 +61,15 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
                 {
                     { "Post", post }
                 });
-
+        public DelegateCommand ViewThisUsersHomePageCommand { get; }
+        private void ViewThisUsersHomePage()
+            => _regionManager.RequestNavigate(
+                RegionNames.MainMenuContent,
+                ViewNames.OtherUsersHomePage,
+                new NavigationParameters
+                {
+                    { "Discoverer", Discoverer }
+                });
         /// <summary>
         /// 导航到此视图时
         /// </summary>
