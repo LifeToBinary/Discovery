@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Discovery.Client.Theme
+namespace Discovery.Client.Theme.Views
 {
     /// <summary>
-    /// UserControl1.xaml 的交互逻辑
+    /// Theme.xaml 的交互逻辑
     /// </summary>
-    public partial class UserControl1 : UserControl
+    public partial class Theme : UserControl
     {
-        public UserControl1()
+        public Theme()
         {
             InitializeComponent();
         }

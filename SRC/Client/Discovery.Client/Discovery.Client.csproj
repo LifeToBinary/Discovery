@@ -221,6 +221,10 @@
       <Project>{1484968b-bb5f-4e32-b8f7-3305c920735f}</Project>
       <Name>Discovery.Client.SignIn</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Modules\Discovery.Client.Theme\Discovery.Client.Theme.csproj">
+      <Project>{5646f30a-c7ac-4c8e-8091-009429e7a2b6}</Project>
+      <Name>Discovery.Client.Theme</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
