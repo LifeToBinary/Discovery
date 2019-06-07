@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Discovery.Client.About.ViewNames
+namespace Discovery.Client.About.ViewModels
 {
     public class AboutViewModel : BindableBase, IRegionMemberLifetime
     {
