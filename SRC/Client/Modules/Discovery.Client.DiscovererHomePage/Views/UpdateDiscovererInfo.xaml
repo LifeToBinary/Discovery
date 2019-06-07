@@ -152,7 +152,7 @@
                     <RadioButton Content="男"
                                  Margin="5"
                                  Padding="5"
-                                 Style="{DynamicResource RadioButtonStyle}"
+                                 Style="{DynamicResource SexSelectorRadioButton}"
                                  Width="100"
                                  IsChecked="{Binding Path=CurrentUser.BasicInfo.Sex, 
                                                  Converter={StaticResource EnumToBoolean},
@@ -160,7 +160,7 @@
                     <RadioButton Content="女"
                                  Margin="5"
                                  Padding="5"
-                                 Style="{DynamicResource RadioButtonStyle}"
+                                 Style="{DynamicResource SexSelectorRadioButton}"
                                  Width="100"
                                  IsChecked="{Binding Path=CurrentUser.BasicInfo.Sex, 
                                                  Converter={StaticResource EnumToBoolean},
@@ -168,7 +168,7 @@
                     <RadioButton Content="保密"
                                  Margin="5"
                                  Padding="5"
-                                 Style="{DynamicResource RadioButtonStyle}"
+                                 Style="{DynamicResource SexSelectorRadioButton}"
                                  Width="100"
                                  IsChecked="{Binding Path=CurrentUser.BasicInfo.Sex, 
                                                  Converter={StaticResource EnumToBoolean},
