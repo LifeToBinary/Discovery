@@ -50,6 +50,7 @@
                  Style="{DynamicResource ListBoxStyle}"
                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                  HorizontalContentAlignment="Stretch"
+                 VirtualizingStackPanel.ScrollUnit="Pixel"
                  Background="#FFEDF1F7"
                  BorderThickness="0">
             <ListBox.ItemTemplate>

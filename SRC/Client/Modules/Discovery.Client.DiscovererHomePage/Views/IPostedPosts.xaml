@@ -48,6 +48,7 @@
                  ItemsSource="{Binding PostedIPost}"
                  Style="{DynamicResource ListBoxStyle}"
                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                 VirtualizingStackPanel.ScrollUnit="Pixel"
                  HorizontalContentAlignment="Stretch"
                  Background="#FFEDF1F7"
                  BorderThickness="0">

@@ -122,6 +122,7 @@
                  ItemsSource="{Binding SearchedPosts}"
                  Style="{DynamicResource ListBoxStyle}"
                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                 VirtualizingStackPanel.ScrollUnit="Pixel"
                  HorizontalContentAlignment="Stretch"
                  Background="#FFEDF1F7"
                  BorderThickness="0">
@@ -202,6 +203,7 @@
                  ItemsSource="{Binding SearchedDiscoverers}"
                  Style="{DynamicResource ListBoxStyle}"
                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                 VirtualizingStackPanel.ScrollUnit="Pixel"
                  HorizontalContentAlignment="Stretch"
                  Background="#FFEDF1F7"
                  BorderThickness="0">

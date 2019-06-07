@@ -159,6 +159,7 @@
                              Background="Transparent"
                              BorderThickness="0"
                              Style="{DynamicResource ListBoxStyle}"
+                             VirtualizingStackPanel.ScrollUnit="Pixel"
                              ItemsSource="{Binding PostComments}">
                         <i:Interaction.Behaviors>
                             <customBehaviors:IgnoreMouseWheelBehavior />

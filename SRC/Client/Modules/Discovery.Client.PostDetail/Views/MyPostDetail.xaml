@@ -160,6 +160,7 @@
                              FontSize="15"
                              Background="Transparent"
                              BorderThickness="0"
+                             VirtualizingStackPanel.ScrollUnit="Pixel"
                              Style="{DynamicResource ListBoxStyle}"
                              ItemsSource="{Binding PostComments}">
                         <i:Interaction.Behaviors>
