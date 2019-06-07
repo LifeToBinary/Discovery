@@ -5,6 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:Discovery.Client.PostDetail.Views"
              xmlns:prism="http://prismlibrary.com/"
+             xmlns:customBehaviors="clr-namespace:Discovery.Core.UI.Behaviors;assembly=Discovery.Core.UI"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:converters="clr-namespace:Discovery.Core.UI.Converters;assembly=Discovery.Core.UI"
              xmlns:coreui="clr-namespace:Discovery.Core.UI.AttachedProperties;assembly=Discovery.Core.UI"
              prism:ViewModelLocator.AutoWireViewModel="True"
@@ -158,9 +160,11 @@
                              FontSize="15"
                              Background="Transparent"
                              BorderThickness="0"
-                             ScrollViewer.VerticalScrollBarVisibility="Disabled"
                              Style="{DynamicResource ListBoxStyle}"
                              ItemsSource="{Binding PostComments}">
+                        <i:Interaction.Behaviors>
+                            <customBehaviors:IgnoreMouseWheelBehavior />
+                        </i:Interaction.Behaviors>
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <Grid MinHeight="80"
