@@ -145,9 +145,9 @@
                     <Rectangle Height="1"
                                Fill="Black"
                                Margin="0,20" />
-                    <TextBox x:Name="CommentTextBox"
-                             Style="{DynamicResource TextBoxStyle}"
+                    <TextBox Style="{DynamicResource TextBoxStyle}"
                              Tag=" 写下你的评论"
+                             Text="{Binding NewComment}"
                              MinHeight="100"
                              Padding="5" />
                     <Button FontSize="20"
@@ -160,8 +160,7 @@
                             HorizontalAlignment="Right"
                             coreui:ButtonBrush.ButtonPressBackground="{DynamicResource NormalElementBrush}"
                             Style="{DynamicResource DefaultButtonStyle}"
-                            Command="{Binding AddCommentToThePostCommand}"
-                            CommandParameter="{Binding ElementName=CommentTextBox, Path=Text}" />
+                            Command="{Binding AddCommentToThePostCommand}" />
                     <ListBox Margin="0, 20"
                              FontSize="15"
                              Background="Transparent"

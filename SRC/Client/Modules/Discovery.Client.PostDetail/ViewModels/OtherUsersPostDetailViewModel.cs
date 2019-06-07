@@ -34,6 +34,17 @@ namespace Discovery.Client.PostDetail.ViewModels
             get => _favoriteCount;
             set => SetProperty(ref _favoriteCount, value);
         }
+
+        /// <summary>
+        /// 新评论
+        /// </summary>
+        private string _newComment;
+        public string NewComment
+        {
+            get => _newComment;
+            set => SetProperty(ref _newComment, value);
+        }
+
         /// <summary>
         /// 帖子的全部评论
         /// </summary>
@@ -43,6 +54,7 @@ namespace Discovery.Client.PostDetail.ViewModels
             get => _postComments;
             set => SetProperty(ref _postComments, value);
         }
+
         /// <summary>
         /// 当前用户是否已经收藏了此帖子
         /// </summary>
@@ -92,7 +104,7 @@ namespace Discovery.Client.PostDetail.ViewModels
             ConcernOrCancelConcernAuthorCommand =
                 new DelegateCommand(ConcernOrCancelConcernAuthor);
             AddCommentToThePostCommand =
-                new DelegateCommand<string>(AddCommentToThePost);
+                new DelegateCommand(AddCommentToThePost);
             ViewThisUsersHomePageCommand =
                 new DelegateCommand<Discoverer>(ViewThisUsersHomePage);
         }
@@ -146,24 +158,25 @@ namespace Discovery.Client.PostDetail.ViewModels
         /// <summary>
         /// 发表评论
         /// </summary>
-        public DelegateCommand<string> AddCommentToThePostCommand { get; }
-        private async void AddCommentToThePost(string comment)
+        public DelegateCommand AddCommentToThePostCommand { get; }
+        private async void AddCommentToThePost()
         {
             using (var databaseService = new DataBaseServiceClient())
             {
                 int newCommentID = await databaseService.AddACommentAsync(
                                        CurrentPost.ID,
                                        GlobalObjectHolder.CurrentUser.BasicInfo.ID,
-                                       comment);
+                                       NewComment);
                 PostComments.Add(new PostComment
                 {
                     ID = newCommentID,
                     PostID = CurrentPost.ID,
                     Author = GlobalObjectHolder.CurrentUser,
-                    Comment = comment,
+                    Comment = NewComment,
                     CreationTime = DateTime.Now
                 });
             }
+            NewComment = String.Empty;
         }
         /// <summary>
         /// 查询此帖子的作者, 被收藏的次数, 是否被当前用户收藏, 以及此帖子的作者是否被当前用户关注
