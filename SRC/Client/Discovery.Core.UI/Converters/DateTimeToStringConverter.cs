@@ -21,6 +21,7 @@ namespace Discovery.Core.UI.Converters
             TimeSpan TimeDifference = DateTime.Now - time;
             TimeSpan[] timeReferences =
             {
+                TimeSpan.FromSeconds(1),
                 TimeSpan.FromMinutes(1),
                 TimeSpan.FromMinutes(60),
                 TimeSpan.FromHours(24),
@@ -29,7 +30,8 @@ namespace Discovery.Core.UI.Converters
             };
             string[] values =
             {
-                "一分钟前",
+                "1 秒前",
+                $"{TimeDifference.Seconds} 秒前",
                 $"{TimeDifference.Minutes} 分钟前",
                 $"{TimeDifference.Hours} 小时前",
                 $"{TimeDifference.Days} 天前",
