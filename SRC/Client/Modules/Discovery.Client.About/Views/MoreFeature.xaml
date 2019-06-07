@@ -56,10 +56,39 @@
                     </EventTrigger>
                 </TextBlock.Triggers>
             </TextBlock>
-            <TextBlock Text="开发中..."
+            <TextBlock Text="开发中"
                        Foreground="White"
                        Margin="10"
-                       FontSize="50" />
+                       FontSize="50">
+                <TextBlock.Triggers>
+                    <EventTrigger RoutedEvent="Loaded">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <StringAnimationUsingKeyFrames Storyboard.TargetProperty="Text"
+                                                               RepeatBehavior="Forever">
+                                    <DiscreteStringKeyFrame Value="开发中" 
+                                                            KeyTime="0:0:0"/>
+                                    <DiscreteStringKeyFrame Value="开发中." 
+                                                            KeyTime="0:0:.5"/>
+                                    <DiscreteStringKeyFrame Value="开发中.." 
+                                                            KeyTime="0:0:1"/>
+                                    <DiscreteStringKeyFrame Value="开发中..." 
+                                                            KeyTime="0:0:1.5"/>
+                                    <DiscreteStringKeyFrame Value="开发中...."
+                                                            KeyTime="0:0:2" />
+                                    <DiscreteStringKeyFrame Value="开发中....."
+                                                            KeyTime="0:0:2.5" />
+                                    <DiscreteStringKeyFrame Value="开发中......"
+                                                            KeyTime="0:0:3" />
+                                    <DiscreteStringKeyFrame Value="开发中"
+                                                            KeyTime="0:0:3.5" />
+                                </StringAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </TextBlock.Triggers>
+            </TextBlock>
+
         </StackPanel>
     </Grid>
 </UserControl>
