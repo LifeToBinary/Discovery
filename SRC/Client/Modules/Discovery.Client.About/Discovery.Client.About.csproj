@@ -95,5 +95,11 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Discovery.Client.Resource\Discovery.Client.Resource.csproj">
+      <Project>{20c56c15-3408-4563-a02b-b8f746ba0f9d}</Project>
+      <Name>Discovery.Client.Resource</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
