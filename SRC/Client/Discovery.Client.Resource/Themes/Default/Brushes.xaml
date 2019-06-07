@@ -1,0 +1,12 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Discovery.Client.Resource.Themes.Default">
+    <SolidColorBrush x:Key="NormalElementBrush"
+                     Color="#FF163D94" />
+    <SolidColorBrush x:Key="NormalPanelBackground"
+                     Color="#FF2465F7" />
+    <SolidColorBrush x:Key="SignOutButtonBrush"
+                     Color="#FFA92517" />
+    <SolidColorBrush x:Key="DeleteButtonBrush"
+                     Color="#FFA92517" />
+</ResourceDictionary>

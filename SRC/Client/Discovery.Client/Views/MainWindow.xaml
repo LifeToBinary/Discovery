@@ -24,8 +24,9 @@
             <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <Grid x:Name="AppGrid" Grid.Row="0"
-              Background="#FF2465F7"
+        <Grid x:Name="AppGrid" 
+              Grid.Row="0"
+              Background="{DynamicResource NormalPanelBackground}"
               Height="35"
               UseLayoutRounding="True">
             <Grid.ColumnDefinitions>
@@ -44,7 +45,7 @@
                     FontSize="15"
                     BorderThickness="0"
                     Padding="20, 5"
-                    coreui:ButtonBrush.ButtonPressBackground="#FF163D94"
+                    coreui:ButtonBrush.ButtonPressBackground="{DynamicResource NormalElementBrush}"
                     Style="{DynamicResource AppTitleButtonStyle}"
                     FontFamily="Segoe MDL2 Assets"
                     Content="&#xE72B;" />
@@ -55,7 +56,7 @@
                         BorderThickness="0"
                         Foreground="White"
                         FontFamily="Segoe MDL2 Assets"
-                        coreui:ButtonBrush.ButtonPressBackground="#FF163D94"
+                        coreui:ButtonBrush.ButtonPressBackground="{DynamicResource NormalElementBrush}"
                         Style="{DynamicResource AppTitleButtonStyle}"
                         FontSize="15">
                     <i:Interaction.Triggers>
@@ -75,7 +76,7 @@
                         Padding="15, 5"
                         BorderThickness="0"
                         Foreground="White"
-                        coreui:ButtonBrush.ButtonPressBackground="#FF163D94"
+                            coreui:ButtonBrush.ButtonPressBackground="{DynamicResource NormalElementBrush}"
                         FontFamily="Segoe MDL2 Assets">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="Click">
@@ -123,7 +124,7 @@
                             Foreground="White"
                             FontFamily="Segoe MDL2 Assets"
                             Style="{DynamicResource AppTitleButtonStyle}"
-                            coreui:ButtonBrush.ButtonPressBackground="#FFA92517"
+                        coreui:ButtonBrush.ButtonPressBackground="{DynamicResource NormalElementBrush}"
                             FontSize="15">
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="Click">

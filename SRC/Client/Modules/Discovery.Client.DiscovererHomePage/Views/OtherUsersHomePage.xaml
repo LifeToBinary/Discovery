@@ -100,7 +100,7 @@
                     coreui:ButtonBrush.ButtonPressBackground="#FF163D94" />
         </Grid>
         <Grid Grid.Row="0"
-              Background="#FF2465F7">
+              Background="{DynamicResource NormalPanelBackground}">
 
             <TextBlock Text="{Binding Discoverer.BasicInfo.SignInName, StringFormat={}{0} 的主页}"
                        Margin="20, 10"

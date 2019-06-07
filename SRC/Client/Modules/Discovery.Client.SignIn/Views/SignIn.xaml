@@ -118,11 +118,11 @@
                 <Button FontSize="25"
                         Margin="10, 20"
                         Padding="5"
-                        BorderBrush="#FF163D94"
+                        BorderBrush="{DynamicResource NormalElementBrush}"
                         Foreground="White"
                         BorderThickness="3"
                         Style="{DynamicResource SignInButtonStyle}"
-                        coreui:ButtonBrush.ButtonPressBackground="#FF163D94"
+                        coreui:ButtonBrush.ButtonPressBackground="{DynamicResource NormalElementBrush}"
                         Command="{Binding SignInCommand}"
                         CommandParameter="{Binding ElementName=passwordBox}" />
             </StackPanel>

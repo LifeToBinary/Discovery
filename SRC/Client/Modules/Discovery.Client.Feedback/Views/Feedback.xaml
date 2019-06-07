@@ -88,8 +88,8 @@
                      Margin="10"
                      Padding="5"
                      BorderThickness="3"
-                     BorderBrush="#FF163D94"
-                     coreui:ButtonBrush.ButtonPressBackground="#FF163D94"
+                     BorderBrush="{DynamicResource NormalElementBrush}"
+                     coreui:ButtonBrush.ButtonPressBackground="{DynamicResource NormalElementBrush}"
                      Style="{DynamicResource DefaultButtonStyle}"
                      Command="{Binding SendEmailCommand}"
                      Foreground="White" />

@@ -112,10 +112,10 @@
             <Button Padding="30,5"
                     Margin="10, 20"
                     FontSize="25"
-                    BorderBrush="#FF163D94"
+                    BorderBrush="{DynamicResource NormalElementBrush}"
                     Foreground="White"
                     BorderThickness="3"
-                    coreui:ButtonBrush.ButtonPressBackground="#FF163D94"
+                    coreui:ButtonBrush.ButtonPressBackground="{DynamicResource NormalElementBrush}"
                     Style="{DynamicResource SignUpButtonStyle}"
                     Command="{Binding SignUpAndNavigateToSignInCommand}"
                     CommandParameter="{Binding ElementName=passwordBox}" />

@@ -88,10 +88,10 @@
                             Foreground="White"
                             FontSize="18"
                             BorderThickness="3"
-                            BorderBrush="#FFA92517"
+                            BorderBrush="{DynamicResource SignOutButtonBrush}"
                             Style="{DynamicResource SignOutButtonStyle}"
                             Command="{Binding SignOutCommand}"
-                            coreui:ButtonBrush.ButtonPressBackground="#FFA92517"
+                            coreui:ButtonBrush.ButtonPressBackground="{DynamicResource SignOutButtonBrush}"
                             Padding="30, 5" />
                 </Grid>
             </Border>

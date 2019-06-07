@@ -42,7 +42,7 @@
         </Grid.RowDefinitions>
         <Grid Grid.Row="0"
               Height="60"
-              Background="#FF2465F7">
+              Background="{DynamicResource NormalPanelBackground}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition Width="Auto" />

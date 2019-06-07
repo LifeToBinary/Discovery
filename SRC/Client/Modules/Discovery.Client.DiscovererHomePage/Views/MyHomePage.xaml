@@ -89,7 +89,7 @@
             </Ellipse.Fill>
         </Ellipse>
         <Grid Grid.Row="0"
-              Background="#FF2465F7">
+              Background="{DynamicResource NormalPanelBackground}">
             
         <TextBlock
             Text="我的主页"

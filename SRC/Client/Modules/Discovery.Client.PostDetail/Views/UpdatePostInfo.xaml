@@ -48,7 +48,7 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
             <Grid Grid.Row="0"
-                  Background="#FF2465F7">
+                  Background="{DynamicResource NormalPanelBackground}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
                     <ColumnDefinition Width="Auto"/>

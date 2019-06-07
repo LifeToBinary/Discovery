@@ -44,7 +44,7 @@
                                  Value="True">
                             <Setter TargetName="line"
                                     Property="Fill"
-                                    Value="#FF710E9A" />
+                                    Value="#FF651590" />
                         </Trigger>
                         <Trigger Property="IsChecked"
                                  Value="True">

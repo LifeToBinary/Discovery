@@ -38,7 +38,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <TextBlock Background="#FF2465F7"
+        <TextBlock Background="{DynamicResource NormalPanelBackground}"
                    FontSize="20"
                    Text="{Binding Discoverer.BasicInfo.SignInName, StringFormat={}{0} 的收藏}"
                    Foreground="White"

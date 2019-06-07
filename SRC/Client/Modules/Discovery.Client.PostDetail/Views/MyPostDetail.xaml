@@ -112,9 +112,9 @@
                             Padding="30, 5"
                             FontSize="18"
                             BorderThickness="3"
-                            BorderBrush="#FF163D94"
+                            BorderBrush="{DynamicResource NormalElementBrush}"
                             Command="{Binding UpdatePostCommand}"
-                            coreui:ButtonBrush.ButtonPressBackground="#FF163D94" />
+                            coreui:ButtonBrush.ButtonPressBackground="{DynamicResource NormalElementBrush}" />
                     <Button Grid.Column="2"
                             Content="删除"
                             VerticalAlignment="Center"
@@ -122,10 +122,10 @@
                             FontSize="18"
                             Margin="5, 10, 20, 5"
                             BorderThickness="3"
-                            BorderBrush="#FFA92517"
+                            BorderBrush="{DynamicResource DeleteButtonBrush}"
                             Style="{DynamicResource SignOutButtonStyle}"
                             Command="{Binding RemoveThisPostCommand}"
-                            coreui:ButtonBrush.ButtonPressBackground="#FFA92517"
+                            coreui:ButtonBrush.ButtonPressBackground="{DynamicResource DeleteButtonBrush}"
                             Padding="30, 5" />
                 </StackPanel>
             </Grid>
@@ -155,12 +155,12 @@
                     <Button FontSize="20"
                             Margin="10"
                             Padding="25, 5"
-                            BorderBrush="#FF163D94"
+                            BorderBrush="{DynamicResource NormalElementBrush}"
                             Foreground="White"
                             BorderThickness="3"
                             Content="发表评论"
                             HorizontalAlignment="Right"
-                            coreui:ButtonBrush.ButtonPressBackground="#FF163D94"
+                            coreui:ButtonBrush.ButtonPressBackground="{DynamicResource NormalElementBrush}"
                             Style="{DynamicResource DefaultButtonStyle}"
                             Command="{Binding AddCommentToThePostCommand}"
                             CommandParameter="{Binding ElementName=CommentTextBox, Path=Text}" />

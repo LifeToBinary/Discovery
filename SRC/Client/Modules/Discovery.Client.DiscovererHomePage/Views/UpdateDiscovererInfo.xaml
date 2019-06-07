@@ -62,7 +62,7 @@
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0"
-              Background="#FF2465F7">
+              Background="{DynamicResource NormalPanelBackground}">
             <TextBlock Text="更新个人资料"
                        FontSize="20"
                        Foreground="White"

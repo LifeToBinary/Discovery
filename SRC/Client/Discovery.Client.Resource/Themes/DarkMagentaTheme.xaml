@@ -10,5 +10,6 @@
         <ResourceDictionary Source="DarkMagenta/RadioButton.xaml" />
         <ResourceDictionary Source="DarkMagenta/ListBox.xaml" />
         <ResourceDictionary Source="DarkMagenta/ComboBox.xaml" />
+        <ResourceDictionary Source="DarkMagenta/Brushes.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>
