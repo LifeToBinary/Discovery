@@ -5,7 +5,8 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/Discovery.Client.Resource;component/Themes/DefaultTheme.xaml" />
+                <!--<ResourceDictionary Source="pack://application:,,,/Discovery.Client.Resource;component/Themes/DefaultTheme.xaml" />-->
+                <ResourceDictionary Source="pack://application:,,,/Discovery.Client.Resource;component/Themes/DarkMagentaTheme.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

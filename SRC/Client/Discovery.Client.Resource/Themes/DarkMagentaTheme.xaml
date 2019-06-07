@@ -1,0 +1,14 @@
+﻿<ResourceDictionary x:Class="Discovery.Client.Resource.Themes.DarkMagentaTheme" 
+                    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Discovery.Client.Resource.Themes">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="DarkMagenta/Button.xaml" />
+        <ResourceDictionary Source="DarkMagenta/TextBox.xaml" />
+        <ResourceDictionary Source="DarkMagenta/Hyperlink.xaml" />
+        <ResourceDictionary Source="DarkMagenta/PasswordBox.xaml" />
+        <ResourceDictionary Source="DarkMagenta/RadioButton.xaml" />
+        <ResourceDictionary Source="DarkMagenta/ListBox.xaml" />
+        <ResourceDictionary Source="DarkMagenta/ComboBox.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+</ResourceDictionary>
