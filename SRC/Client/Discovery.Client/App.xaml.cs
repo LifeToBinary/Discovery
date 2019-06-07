@@ -5,6 +5,7 @@ using Discovery.Client.MainMenu;
 using Discovery.Client.Option;
 using Discovery.Client.PostDetail;
 using Discovery.Client.Recommended;
+using Discovery.Client.Resource.Themes;
 using Discovery.Client.Search;
 using Discovery.Client.SignIn;
 using Discovery.Client.Theme;
@@ -23,6 +24,11 @@ namespace Discovery.Client
     {
         protected override Window CreateShell()
             => Container.Resolve<MainWindow>();
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
+            Resources.MergedDictionaries.Add(DefaultTheme.Instance);
+        }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {

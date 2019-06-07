@@ -9,6 +9,7 @@ namespace Discovery.Client.Resource.Themes
 {
     public partial class DarkMagentaTheme : ResourceDictionary
     {
-        public DarkMagentaTheme() => InitializeComponent();
+        private DarkMagentaTheme() => InitializeComponent();
+        public static DarkMagentaTheme Instance { get; } = new DarkMagentaTheme();
     }
 }

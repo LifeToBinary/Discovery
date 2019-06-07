@@ -10,5 +10,6 @@ namespace Discovery.Client.Resource.Themes
     public partial class DefaultTheme : ResourceDictionary
     {
         public DefaultTheme() => InitializeComponent();
+        public static DefaultTheme Instance { get; } = new DefaultTheme();
     }
 }

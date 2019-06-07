@@ -24,13 +24,13 @@ namespace Discovery.Client.Theme.ViewModels
             if (newTheme == Core.Enums.Theme.DarkMagenta && 
                 Application.Current.Resources.MergedDictionaries[0].GetType() != typeof(DarkMagentaTheme))
             {
-                Application.Current.Resources.MergedDictionaries[0] = new DarkMagentaTheme();
+                Application.Current.Resources.MergedDictionaries[0] = DarkMagentaTheme.Instance;
                 return;
             }
             if (newTheme == Core.Enums.Theme.Default &&
                 Application.Current.Resources.MergedDictionaries[0].GetType() != typeof(DefaultTheme))
             {
-                Application.Current.Resources.MergedDictionaries[0] = new DefaultTheme();
+                Application.Current.Resources.MergedDictionaries[0] = DefaultTheme.Instance;
                 return;
             }
         }
