@@ -9,6 +9,7 @@
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:converters="clr-namespace:Discovery.Core.UI.Converters;assembly=Discovery.Core.UI"
              xmlns:coreui="clr-namespace:Discovery.Core.UI.AttachedProperties;assembly=Discovery.Core.UI"
+             xmlns:componentmodel="clr-namespace:System.ComponentModel;assembly=WindowsBase"
              prism:ViewModelLocator.AutoWireViewModel="True"
              mc:Ignorable="d"
              d:DesignHeight="812"
@@ -35,6 +36,13 @@
         <BitmapImage x:Key="UserDefaultAvatar"
                      UriSource="pack://application:,,,/Discovery.Client.Resource;component/Images/UserDefaultAvatar.png" />
         <converters:DateTimeToStringConverter x:Key="DateTimeToString" />
+        <CollectionViewSource x:Key="PostCommentsViewSource"
+                              Source="{Binding PostComments}">
+            <CollectionViewSource.SortDescriptions>
+                <componentmodel:SortDescription PropertyName="CreationTime"
+                                                Direction="Descending"/>
+            </CollectionViewSource.SortDescriptions>
+        </CollectionViewSource>
     </UserControl.Resources>
     <Grid TextBlock.FontSize="20">
         <Grid.RowDefinitions>
@@ -156,17 +164,17 @@
                             Style="{DynamicResource DefaultButtonStyle}"
                             Command="{Binding AddCommentToThePostCommand}"
                             CommandParameter="{Binding ElementName=CommentTextBox, Path=Text}" />
-                    <ListBox Margin="0, 20"
+                    <ListView Margin="0, 20"
                              FontSize="15"
                              Background="Transparent"
                              BorderThickness="0"
                              VirtualizingStackPanel.ScrollUnit="Pixel"
                              Style="{DynamicResource ListBoxStyle}"
-                             ItemsSource="{Binding PostComments}">
+                             ItemsSource="{Binding Source={StaticResource PostCommentsViewSource}}">
                         <i:Interaction.Behaviors>
                             <customBehaviors:IgnoreMouseWheelBehavior />
                         </i:Interaction.Behaviors>
-                        <ListBox.ItemTemplate>
+                        <ListView.ItemTemplate>
                             <DataTemplate>
                                 <Grid MinHeight="80"
                                       Margin="5">
@@ -235,8 +243,8 @@
                                                Fill="Gray" />
                                 </Grid>
                             </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
+                        </ListView.ItemTemplate>
+                    </ListView>
                 </StackPanel>
             </Border>
         </ScrollViewer>

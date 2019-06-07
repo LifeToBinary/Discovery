@@ -11,6 +11,7 @@
              prism:ViewModelLocator.AutoWireViewModel="True"
              xmlns:converters="clr-namespace:Discovery.Core.UI.Converters;assembly=Discovery.Core.UI"
              xmlns:coreui="clr-namespace:Discovery.Core.UI.AttachedProperties;assembly=Discovery.Core.UI"
+             xmlns:componentmodel="clr-namespace:System.ComponentModel;assembly=WindowsBase"
              mc:Ignorable="d"
              d:DesignHeight="977"
              d:DesignWidth="800">
@@ -36,6 +37,13 @@
         <BitmapImage x:Key="UserDefaultAvatar"
                      UriSource="pack://application:,,,/Discovery.Client.Resource;component/Images/UserDefaultAvatar.png" />
         <converters:DateTimeToStringConverter x:Key="DateTimeToString" />
+        <CollectionViewSource x:Key="PostCommentsViewSource"
+                              Source="{Binding PostComments}">
+            <CollectionViewSource.SortDescriptions>
+                <componentmodel:SortDescription PropertyName="CreationTime"
+                                                Direction="Descending" />
+            </CollectionViewSource.SortDescriptions>
+        </CollectionViewSource>
     </UserControl.Resources>
     <Grid TextBlock.FontSize="20">
         <Grid.RowDefinitions>
@@ -160,7 +168,7 @@
                              BorderThickness="0"
                              Style="{DynamicResource ListBoxStyle}"
                              VirtualizingStackPanel.ScrollUnit="Pixel"
-                             ItemsSource="{Binding PostComments}">
+                             ItemsSource="{Binding Source={StaticResource PostCommentsViewSource}}">
                         <i:Interaction.Behaviors>
                             <customBehaviors:IgnoreMouseWheelBehavior />
                         </i:Interaction.Behaviors>
