@@ -101,6 +101,20 @@
                 </RadioButton>
                 <RadioButton Padding="20, 15, 15, 15"
                              Command="{Binding NavigationToMainMenuContentRegionCommand}"
+                             CommandParameter="{x:Static constants:ViewNames.Option}"
+                             Style="{DynamicResource NavigationRadioButton}">
+                    <RadioButton.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock FontFamily="Segoe MDL2 Assets"
+                                       Text="&#xE790;"
+                                       Margin="10, 0"
+                                       VerticalAlignment="Center" />
+                            <TextBlock Text="主题" />
+                        </StackPanel>
+                    </RadioButton.Content>
+                </RadioButton>
+                <RadioButton Padding="20, 15, 15, 15"
+                             Command="{Binding NavigationToMainMenuContentRegionCommand}"
                              CommandParameter="{x:Static constants:ViewNames.Feedback}"
                              Style="{DynamicResource NavigationRadioButton}">
                     <RadioButton.Content>
