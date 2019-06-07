@@ -256,5 +256,8 @@
   <ItemGroup>
     <Resource Include="AppIcon.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <SplashScreen Include="StartupScreen.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
