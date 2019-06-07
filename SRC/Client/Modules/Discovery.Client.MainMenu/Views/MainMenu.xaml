@@ -101,7 +101,7 @@
                 </RadioButton>
                 <RadioButton Padding="20, 15, 15, 15"
                              Command="{Binding NavigationToMainMenuContentRegionCommand}"
-                             CommandParameter="{x:Static constants:ViewNames.Option}"
+                             CommandParameter="{x:Static constants:ViewNames.Theme}"
                              Style="{DynamicResource NavigationRadioButton}">
                     <RadioButton.Content>
                         <StackPanel Orientation="Horizontal">

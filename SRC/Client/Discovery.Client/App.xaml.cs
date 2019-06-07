@@ -7,6 +7,7 @@ using Discovery.Client.PostDetail;
 using Discovery.Client.Recommended;
 using Discovery.Client.Search;
 using Discovery.Client.SignIn;
+using Discovery.Client.Theme;
 using Discovery.Client.Views;
 using Prism.Ioc;
 using Prism.Modularity;
@@ -36,6 +37,7 @@ namespace Discovery.Client
                             .AddModule<FeedbackModule>()
                             .AddModule<AboutModule>()
                             .AddModule<PostDetailModule>()
-                            .AddModule<SearchModule>();
+                            .AddModule<SearchModule>()
+                            .AddModule<ThemeModule>();
     }
 }
