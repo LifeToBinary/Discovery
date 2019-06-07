@@ -9,4 +9,6 @@
                      Color="#FFA92517" />
     <SolidColorBrush x:Key="DeleteButtonBrush"
                      Color="#FFA92517" />
+    <SolidColorBrush x:Key="CloseWindowPressedBackground"
+                     Color="#FFA92517" />
 </ResourceDictionary>

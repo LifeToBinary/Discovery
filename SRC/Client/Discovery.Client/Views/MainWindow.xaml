@@ -24,7 +24,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <Grid x:Name="AppGrid" 
+        <Grid x:Name="AppGrid"
               Grid.Row="0"
               Background="{DynamicResource NormalPanelBackground}"
               Height="35"
@@ -68,71 +68,71 @@
                     </i:Interaction.Triggers>
                 </Button>
                 <Grid>
-                    
-                <Button x:Name="WindowMaxButton"
-                        Content="&#xE740;"
-                        Style="{DynamicResource AppTitleButtonStyle}"
-                        FontSize="15"
-                        Padding="15, 5"
-                        BorderThickness="0"
-                        Foreground="White"
-                            coreui:ButtonBrush.ButtonPressBackground="{DynamicResource NormalElementBrush}"
-                        FontFamily="Segoe MDL2 Assets">
-                    <i:Interaction.Triggers>
-                        <i:EventTrigger EventName="Click">
-                            <i:ChangePropertyAction TargetObject="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
-                                                    PropertyName="WindowState"
-                                                    Value="Maximized" />
-                            <i:ChangePropertyAction TargetName="WindowMaxButton"
-                                                    PropertyName="Visibility"
-                                                    Value="Hidden" />
-                            <i:ChangePropertyAction TargetName="WindowMinButton"
-                                                    PropertyName="Visibility"
-                                                    Value="Visible" />
-                        </i:EventTrigger>
-                    </i:Interaction.Triggers>
-                </Button>
 
-                <Button x:Name="WindowMinButton" 
-                        Content="&#xE73F;"
-                        Visibility="Hidden"
-                        Style="{DynamicResource AppTitleButtonStyle}"
-                        FontSize="15"
-                        Padding="15, 5"
-                        BorderThickness="0"
-                        Foreground="White"
-                        coreui:ButtonBrush.ButtonPressBackground="#FF163D94"
-                        FontFamily="Segoe MDL2 Assets">
-                    <i:Interaction.Triggers>
-                        <i:EventTrigger EventName="Click">
-                            <i:ChangePropertyAction TargetObject="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
-                                                    PropertyName="WindowState"
-                                                    Value="Normal"/>
-                            <i:ChangePropertyAction TargetName="WindowMaxButton"
-                                                    PropertyName="Visibility"
-                                                    Value="Visible" />
-                            <i:ChangePropertyAction TargetName="WindowMinButton"
-                                                    PropertyName="Visibility"
-                                                    Value="Hidden" />
-                        </i:EventTrigger>
-                    </i:Interaction.Triggers>
-                </Button>
-                </Grid>
-                    <Button Content="&#xE711;"
+                    <Button x:Name="WindowMaxButton"
+                            Content="&#xE740;"
+                            Style="{DynamicResource AppTitleButtonStyle}"
+                            FontSize="15"
                             Padding="15, 5"
                             BorderThickness="0"
                             Foreground="White"
-                            FontFamily="Segoe MDL2 Assets"
-                            Style="{DynamicResource AppTitleButtonStyle}"
-                        coreui:ButtonBrush.ButtonPressBackground="{DynamicResource NormalElementBrush}"
-                            FontSize="15">
+                            coreui:ButtonBrush.ButtonPressBackground="{DynamicResource NormalElementBrush}"
+                            FontFamily="Segoe MDL2 Assets">
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="Click">
-                                <i:CallMethodAction TargetObject="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
-                                                    MethodName="Close" />
+                                <i:ChangePropertyAction TargetObject="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                                        PropertyName="WindowState"
+                                                        Value="Maximized" />
+                                <i:ChangePropertyAction TargetName="WindowMaxButton"
+                                                        PropertyName="Visibility"
+                                                        Value="Hidden" />
+                                <i:ChangePropertyAction TargetName="WindowMinButton"
+                                                        PropertyName="Visibility"
+                                                        Value="Visible" />
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
                     </Button>
+
+                    <Button x:Name="WindowMinButton"
+                            Content="&#xE73F;"
+                            Visibility="Hidden"
+                            Style="{DynamicResource AppTitleButtonStyle}"
+                            FontSize="15"
+                            Padding="15, 5"
+                            BorderThickness="0"
+                            Foreground="White"
+                            coreui:ButtonBrush.ButtonPressBackground="{DynamicResource NormalElementBrush}"
+                            FontFamily="Segoe MDL2 Assets">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Click">
+                                <i:ChangePropertyAction TargetObject="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                                        PropertyName="WindowState"
+                                                        Value="Normal" />
+                                <i:ChangePropertyAction TargetName="WindowMaxButton"
+                                                        PropertyName="Visibility"
+                                                        Value="Visible" />
+                                <i:ChangePropertyAction TargetName="WindowMinButton"
+                                                        PropertyName="Visibility"
+                                                        Value="Hidden" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </Button>
+                </Grid>
+                <Button Content="&#xE711;"
+                        Padding="15, 5"
+                        BorderThickness="0"
+                        Foreground="White"
+                        FontFamily="Segoe MDL2 Assets"
+                        Style="{DynamicResource AppTitleButtonStyle}"
+                        coreui:ButtonBrush.ButtonPressBackground="{DynamicResource CloseWindowPressedBackground}"
+                        FontSize="15">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <i:CallMethodAction TargetObject="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                                MethodName="Close" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Button>
             </StackPanel>
         </Grid>
         <ContentControl Grid.Row="1"
