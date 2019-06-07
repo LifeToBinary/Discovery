@@ -1,4 +1,5 @@
-﻿using Prism.Ioc;
+﻿using Discovery.Client.About.Views;
+using Prism.Ioc;
 using Prism.Modularity;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,9 @@ namespace Discovery.Client.About
         }
 
         public void RegisterTypes(IContainerRegistry containerRegistry)
-            => containerRegistry.RegisterForNavigation<Views.About>();
+        {
+            containerRegistry.RegisterForNavigation<Views.About>();
+            containerRegistry.RegisterForNavigation<MoreFeature>();
+        }
     }
 }

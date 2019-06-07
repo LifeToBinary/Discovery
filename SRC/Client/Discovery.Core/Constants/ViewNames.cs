@@ -15,7 +15,7 @@ namespace Discovery.Core.Constants
         public const string Option = "Option";
         public const string Feedback = "Feedback";
         public const string About = "About";
-
+        public const string MoreFeature = "MoreFeature";
         public const string PostedPosts = "IPostedPosts";
         public const string FavoritedPosts = "MyFavoritedPosts";
         public const string MyConcern = "MyConcern";
