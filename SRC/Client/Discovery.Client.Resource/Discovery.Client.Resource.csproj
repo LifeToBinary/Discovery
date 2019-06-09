@@ -178,5 +178,9 @@
   <ItemGroup>
     <Resource Include="Images\Discovery.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\DarkMagentaTheme.png" />
+    <Resource Include="Images\DefaultTheme.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
