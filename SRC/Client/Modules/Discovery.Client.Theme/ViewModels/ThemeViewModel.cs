@@ -1,36 +1,57 @@
 ﻿using Discovery.Client.Resource.Themes;
+using Discovery.Core.GlobalData;
+using Discovery.Service;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace Discovery.Client.Theme.ViewModels
 {
     public class ThemeViewModel : BindableBase, IRegionMemberLifetime
     {
+        /// <summary>
+        /// 导航离开时, 不保留视图
+        /// </summary>
         public bool KeepAlive => false;
+
+        /// <summary>
+        /// 当前主题(枚举)
+        /// </summary>
+        private Core.Enums.Theme _currentTheme;
+        public Core.Enums.Theme CurrentTheme
+        {
+            get => _currentTheme;
+            set => SetProperty(ref _currentTheme, value);
+        }
+        
+        /// <summary>
+        /// 构造函数
+        /// </summary>
         public ThemeViewModel()
         {
-            ChangeAppThemeCommand = new DelegateCommand<Core.Enums.Theme?>(ChangeAppTheme);
+            ChangeAppThemeCommand = new DelegateCommand(ChangeAppTheme);
+            CurrentTheme = GlobalObjectHolder.CurrentTheme;
         }
-        public DelegateCommand<Core.Enums.Theme?> ChangeAppThemeCommand { get; }
-        private void ChangeAppTheme(Core.Enums.Theme? newTheme)
+
+        /// <summary>
+        /// 切换主题
+        /// </summary>
+        public DelegateCommand ChangeAppThemeCommand { get; }
+        private void ChangeAppTheme()
         {
-            if (newTheme == Core.Enums.Theme.DarkMagenta && 
+            if (CurrentTheme == Core.Enums.Theme.DarkMagenta && 
                 Application.Current.Resources.MergedDictionaries[0].GetType() != typeof(DarkMagentaTheme))
             {
                 Application.Current.Resources.MergedDictionaries[0] = DarkMagentaTheme.Instance;
+                AppFileHelper.WriteUserThemeSettings(CurrentTheme);
                 return;
             }
-            if (newTheme == Core.Enums.Theme.Default &&
+            if (CurrentTheme == Core.Enums.Theme.Default &&
                 Application.Current.Resources.MergedDictionaries[0].GetType() != typeof(DefaultTheme))
             {
                 Application.Current.Resources.MergedDictionaries[0] = DefaultTheme.Instance;
+                AppFileHelper.WriteUserThemeSettings(CurrentTheme);
                 return;
             }
         }

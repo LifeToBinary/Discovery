@@ -4,8 +4,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:Discovery.Client.Theme.Views"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:prism="http://prismlibrary.com/"
              xmlns:enums="clr-namespace:Discovery.Core.Enums;assembly=Discovery.Core"
+             xmlns:converters="clr-namespace:Discovery.Core.UI.Converters;assembly=Discovery.Core.UI"
              prism:ViewModelLocator.AutoWireViewModel="True"
              mc:Ignorable="d"
              d:DesignHeight="450"
@@ -28,6 +30,16 @@
             </BeginStoryboard>
         </EventTrigger>
     </UserControl.Triggers>
+    <UserControl.Resources>
+        <ObjectDataProvider x:Key="Themes"
+                            ObjectType="{x:Type sys:Enum}"
+                            MethodName="GetValues">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="enums:Theme" />
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+        <converters:EnumToBooleanConverter x:Key="EnumToBoolean" />
+    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -45,6 +57,9 @@
                          BorderBrush="{DynamicResource NormalElementBrush}"
                          Command="{Binding ChangeAppThemeCommand}"
                          CommandParameter="{x:Static enums:Theme.Default}"
+                         IsChecked="{Binding Path=CurrentTheme,
+                                             Converter={StaticResource EnumToBoolean},
+                                             ConverterParameter={x:Static enums:Theme.Default}}"
                          Background="Transparent"
                          Padding="5"
                          Margin="20"
@@ -57,6 +72,9 @@
                          BorderBrush="{DynamicResource NormalElementBrush}"
                          Command="{Binding ChangeAppThemeCommand}"
                          CommandParameter="{x:Static enums:Theme.DarkMagenta}"
+                         IsChecked="{Binding Path=CurrentTheme,
+                                             Converter={StaticResource EnumToBoolean},
+                                             ConverterParameter={x:Static enums:Theme.DarkMagenta}}"
                          BorderThickness="2"
                          Padding="5"
                          Margin="20"

@@ -9,7 +9,7 @@ namespace Discovery.Service
         /// <summary>
         /// 应用程序配置文件目录
         /// </summary>
-        private static string _settingsFileBasePath;
+        private static readonly string _settingsFileBasePath;
 
         /// <summary>
         /// 应用程序配置文件完整路径

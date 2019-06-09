@@ -10,6 +10,8 @@ using Discovery.Client.Search;
 using Discovery.Client.SignIn;
 using Discovery.Client.Theme;
 using Discovery.Client.Views;
+using Discovery.Core.GlobalData;
+using Discovery.Service;
 using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Unity;
@@ -26,9 +28,20 @@ namespace Discovery.Client
             => Container.Resolve<MainWindow>();
         protected override void OnStartup(StartupEventArgs e)
         {
+            AppFileHelper.ValidateApplicationFiles();
+            Core.Enums.Theme userTheme = AppFileHelper.ReadUserThemeSettings();
+            GlobalObjectHolder.CurrentTheme = userTheme;
+            Resources.MergedDictionaries
+                     .Add(GetThemeResource(AppFileHelper.ReadUserThemeSettings()));
             base.OnStartup(e);
-            Resources.MergedDictionaries.Add(DefaultTheme.Instance);
         }
+
+        private ResourceDictionary GetThemeResource(Core.Enums.Theme theme)
+            => new[]
+            {
+                DefaultTheme.Instance as ResourceDictionary,
+                DarkMagentaTheme.Instance as ResourceDictionary
+            }[(int)theme];
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
