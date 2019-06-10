@@ -5,7 +5,7 @@ using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
 using System.Windows;
-
+using ThemeEnum = Discovery.Core.Enums.Theme;
 namespace Discovery.Client.Theme.ViewModels
 {
     public class ThemeViewModel : BindableBase, IRegionMemberLifetime
@@ -46,19 +46,20 @@ namespace Discovery.Client.Theme.ViewModels
         public DelegateCommand ChangeAppThemeCommand { get; }
         private void ChangeAppTheme()
         {
-            if (CurrentTheme == Core.Enums.Theme.DarkMagenta && 
-                Application.Current.Resources.MergedDictionaries[0].GetType() != typeof(DarkMagentaTheme))
+            var enumValues = new ThemeEnum[] { ThemeEnum.Default, ThemeEnum.DarkMagenta };
+            var resources = new ResourceDictionary[] { DefaultTheme.Instance, DarkMagentaTheme.Instance };
+            SetTheme();
+
+            void SetTheme(int index = 0)
             {
-                Application.Current.Resources.MergedDictionaries[0] = DarkMagentaTheme.Instance;
-                AppFileHelper.WriteUserThemeSettings(CurrentTheme);
-                return;
-            }
-            if (CurrentTheme == Core.Enums.Theme.Default &&
-                Application.Current.Resources.MergedDictionaries[0].GetType() != typeof(DefaultTheme))
-            {
-                Application.Current.Resources.MergedDictionaries[0] = DefaultTheme.Instance;
-                AppFileHelper.WriteUserThemeSettings(CurrentTheme);
-                return;
+                if (CurrentTheme == enumValues[index] &&
+                    Application.Current.Resources.MergedDictionaries[0].GetType() != resources[index].GetType())
+                {
+                    Application.Current.Resources.MergedDictionaries[0] = resources[index];
+                    AppFileHelper.WriteUserThemeSettings(CurrentTheme);
+                    return;
+                }
+                SetTheme(index + 1);
             }
         }
     }

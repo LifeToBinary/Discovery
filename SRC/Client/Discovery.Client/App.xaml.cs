@@ -31,8 +31,7 @@ namespace Discovery.Client
             AppFileHelper.ValidateApplicationFiles();
             Core.Enums.Theme userTheme = AppFileHelper.ReadUserThemeSettings();
             GlobalObjectHolder.CurrentTheme = userTheme;
-            Resources.MergedDictionaries
-                     .Add(GetThemeResource(AppFileHelper.ReadUserThemeSettings()));
+            Resources.MergedDictionaries[0] = GetThemeResource(AppFileHelper.ReadUserThemeSettings());
             base.OnStartup(e);
         }
 
