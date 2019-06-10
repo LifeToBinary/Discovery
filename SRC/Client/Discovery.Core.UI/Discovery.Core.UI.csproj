@@ -72,6 +72,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Selectors\UsersListDataTemplateSelector.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -83,6 +84,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Discovery.Core.RelationalModel\Discovery.Core.RelationalModel.csproj">
+      <Project>{179D19C5-0BBA-4C07-9A56-79DBA454F04B}</Project>
+      <Name>Discovery.Core.RelationalModel</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Discovery.Core\Discovery.Core.csproj">
       <Project>{dbfd6e0a-1cbe-4fc7-b87c-bdd11ae41f89}</Project>
       <Name>Discovery.Core</Name>
