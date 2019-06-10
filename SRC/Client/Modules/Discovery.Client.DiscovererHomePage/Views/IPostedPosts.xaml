@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:Discovery.Client.DiscovererHomePage.Views"
              xmlns:converters="clr-namespace:Discovery.Core.UI.Converters;assembly=Discovery.Core.UI"
              xmlns:prism="http://prismlibrary.com/"
+             xmlns:componentmodel="clr-namespace:System.ComponentModel;assembly=WindowsBase"
              prism:ViewModelLocator.AutoWireViewModel="True"
              mc:Ignorable="d"
              d:DesignHeight="450"
@@ -33,6 +34,13 @@
         <converters:GenderToIconConverter x:Key="GenderToIcon" />
         <BitmapImage x:Key="UserDefaultAvatar"
                      UriSource="pack://application:,,,/Discovery.Client.Resource;component/Images/UserDefaultAvatar.png" />
+        <CollectionViewSource x:Key="PostedIPost"
+                              Source="{Binding PostedIPost}">
+            <CollectionViewSource.SortDescriptions>
+                <componentmodel:SortDescription PropertyName="CreationTime"
+                                                Direction="Descending" />
+            </CollectionViewSource.SortDescriptions>
+        </CollectionViewSource>
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -45,7 +53,7 @@
                    Foreground="White"
                    Padding="10" />
         <ListBox Grid.Row="1"
-                 ItemsSource="{Binding PostedIPost}"
+                 ItemsSource="{Binding Source={StaticResource PostedIPost}}"
                  Style="{DynamicResource ListBoxStyle}"
                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                  VirtualizingStackPanel.ScrollUnit="Pixel"

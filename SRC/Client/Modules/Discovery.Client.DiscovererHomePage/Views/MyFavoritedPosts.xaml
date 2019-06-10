@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:Discovery.Client.DiscovererHomePage.Views"
              xmlns:converters="clr-namespace:Discovery.Core.UI.Converters;assembly=Discovery.Core.UI"
              xmlns:prism="http://prismlibrary.com/"
+             xmlns:componentmodel="clr-namespace:System.ComponentModel;assembly=WindowsBase"
              prism:ViewModelLocator.AutoWireViewModel="True"
              mc:Ignorable="d"
              d:DesignHeight="450"
@@ -32,6 +33,13 @@
         <converters:DateTimeToStringConverter x:Key="DateTimeToString"/>
         <BitmapImage x:Key="UserDefaultAvatar"
                      UriSource="pack://application:,,,/Discovery.Client.Resource;component/Images/UserDefaultAvatar.png" />
+        <CollectionViewSource x:Key="FavoritedPosts"
+                              Source="{Binding MyFavoritedPosts}">
+            <CollectionViewSource.SortDescriptions>
+                <componentmodel:SortDescription PropertyName="CreationTime"
+                                                Direction="Descending" />
+            </CollectionViewSource.SortDescriptions>
+        </CollectionViewSource>
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -44,7 +52,7 @@
                    Foreground="White"
                    Padding="10" />
         <ListBox Grid.Row="1"
-                 ItemsSource="{Binding MyFavoritedPosts}"
+                 ItemsSource="{Binding Source={StaticResource FavoritedPosts}}"
                  Style="{DynamicResource ListBoxStyle}"
                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                  HorizontalContentAlignment="Stretch"
