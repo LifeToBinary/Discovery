@@ -18,11 +18,17 @@ namespace Discovery.Client.Theme.ViewModels
         /// <summary>
         /// 当前主题(枚举)
         /// </summary>
-        private Core.Enums.Theme _currentTheme;
         public Core.Enums.Theme CurrentTheme
         {
-            get => _currentTheme;
-            set => SetProperty(ref _currentTheme, value);
+            get => GlobalObjectHolder.CurrentTheme;
+            set
+            {
+                if (value != CurrentTheme)
+                {
+                    GlobalObjectHolder.CurrentTheme = value;
+                    RaisePropertyChanged();
+                }
+            }
         }
         
         /// <summary>
