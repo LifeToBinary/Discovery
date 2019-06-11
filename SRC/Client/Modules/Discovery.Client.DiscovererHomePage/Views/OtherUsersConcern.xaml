@@ -161,19 +161,6 @@
                                    VerticalAlignment="Center"
                                    FontSize="20"
                                    Text="{Binding Discoverer.BasicInfo.SignInName}" />
-                        <!--<Button Grid.Column="1"
-                                HorizontalAlignment="Right"
-                                VerticalAlignment="Center"
-                                Foreground="White"
-                                FontSize="15"
-                                Margin="40, 0"
-                                BorderThickness="3"
-                                BorderBrush="#FF163D94"
-                                Style="{DynamicResource ConcernOrCancelConcernListItemButtonStyle}"
-                                Command="{Binding ConcernOrCancelConcernCommand}"
-                                CommandParameter="{Binding}"
-                                coreui:ButtonBrush.ButtonPressBackground="#FF163D94"
-                                Padding="20, 8" />-->
                     </Grid>
                 </Grid>
             </Button>

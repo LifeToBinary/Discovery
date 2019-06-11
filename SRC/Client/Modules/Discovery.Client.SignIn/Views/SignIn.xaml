@@ -108,16 +108,6 @@
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <Grid Grid.Column="0">
-            <Image Grid.Column="0"
-                   Stretch="UniformToFill"
-                   Source="{StaticResource SignInBackground}" />
-            <TextBlock Text="欢迎回来 ;)"
-                       FontSize="50"
-                       HorizontalAlignment="Center"
-                       Margin="0,100,0,0"
-                       Foreground="White" />
-        </Grid>
         <Grid Grid.Column="1">
             <StackPanel x:Name="SignInStackPanel"
                         VerticalAlignment="Center"
@@ -193,6 +183,16 @@
                            FontSize="20"
                            Foreground="White" />
             </Border>
+        </Grid>
+        <Grid Grid.Column="0">
+            <Image Grid.Column="0"
+                   Stretch="UniformToFill"
+                   Source="{StaticResource SignInBackground}" />
+            <TextBlock Text="欢迎回来 ;)"
+                       FontSize="50"
+                       HorizontalAlignment="Center"
+                       Margin="0,100,0,0"
+                       Foreground="White" />
         </Grid>
     </Grid>
 </UserControl>
