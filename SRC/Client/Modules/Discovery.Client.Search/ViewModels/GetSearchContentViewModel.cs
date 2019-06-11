@@ -6,6 +6,7 @@ using Discovery.Core.Model;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
+using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 
@@ -20,7 +21,7 @@ namespace Discovery.Client.Search.ViewModels
         public string SearchContent
         {
             get => _searchContent;
-            set => SetProperty(ref _searchContent, value);
+            set => SetProperty(ref _searchContent, value.Trim());
         }
 
         /// <summary>
@@ -105,6 +106,10 @@ namespace Discovery.Client.Search.ViewModels
         public DelegateCommand<SearchType?> SearchCommand { get; }
         private async void Search(SearchType? searchType)
         {
+            if (String.IsNullOrEmpty(_searchContent))
+            {
+                return;
+            }
             ClearData();
             using (var databaseService = new DataBaseServiceClient())
             {
