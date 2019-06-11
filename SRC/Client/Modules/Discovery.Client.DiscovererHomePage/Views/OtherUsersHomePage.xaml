@@ -95,9 +95,9 @@
                     Padding="30, 8"
                     FontSize="14"
                     BorderThickness="3"
-                    BorderBrush="#FF163D94"
+                    BorderBrush="{DynamicResource NormalElementBrush}"
                     Command="{Binding ConcernOrCancelConcernCommand}"
-                    coreui:ButtonBrush.ButtonPressBackground="#FF163D94" />
+                    coreui:ButtonBrush.ButtonPressBackground="{DynamicResource NormalElementBrush}" />
         </Grid>
         <Grid Grid.Row="0"
               Background="{DynamicResource NormalPanelBackground}">
