@@ -17,8 +17,62 @@
         <EventTrigger RoutedEvent="Loaded">
             <BeginStoryboard>
                 <Storyboard>
-                    <DoubleAnimation Storyboard.TargetName="SignUpStackPanel"
-                                     Storyboard.TargetProperty="(StackPanel.RenderTransform).(TranslateTransform.X)"
+                    <DoubleAnimation Storyboard.TargetName="SignUpTextBlock"
+                                     Storyboard.TargetProperty="(TextBlock.RenderTransform).(TranslateTransform.X)"
+                                     To="0"
+                                     Duration="0:0:.3">
+                        <DoubleAnimation.EasingFunction>
+                            <QuarticEase EasingMode="EaseOut" />
+                        </DoubleAnimation.EasingFunction>
+                    </DoubleAnimation>
+                    <DoubleAnimation Storyboard.TargetName="SignInTextBlock"
+                                     Storyboard.TargetProperty="(TextBlock.RenderTransform).(TranslateTransform.X)"
+                                     BeginTime="0:0:0.015"
+                                     To="0"
+                                     Duration="0:0:.3">
+                        <DoubleAnimation.EasingFunction>
+                            <QuarticEase EasingMode="EaseOut" />
+                        </DoubleAnimation.EasingFunction>
+                    </DoubleAnimation>
+                    <DoubleAnimation Storyboard.TargetName="UserNameTextBox"
+                                     Storyboard.TargetProperty="(TextBox.RenderTransform).(TranslateTransform.X)"
+                                     BeginTime="0:0:0.03"
+                                     To="0"
+                                     Duration="0:0:.3">
+                        <DoubleAnimation.EasingFunction>
+                            <QuarticEase EasingMode="EaseOut" />
+                        </DoubleAnimation.EasingFunction>
+                    </DoubleAnimation>
+                    <DoubleAnimation Storyboard.TargetName="passwordBox"
+                                     Storyboard.TargetProperty="(PasswordBox.RenderTransform).(TranslateTransform.X)"
+                                     BeginTime="0:0:0.045"
+                                     To="0"
+                                     Duration="0:0:.3">
+                        <DoubleAnimation.EasingFunction>
+                            <QuarticEase EasingMode="EaseOut" />
+                        </DoubleAnimation.EasingFunction>
+                    </DoubleAnimation>
+                    <DoubleAnimation Storyboard.TargetName="EmailTextBox"
+                                     Storyboard.TargetProperty="(TextBox.RenderTransform).(TranslateTransform.X)"
+                                     BeginTime="0:0:0.06"
+                                     To="0"
+                                     Duration="0:0:.3">
+                        <DoubleAnimation.EasingFunction>
+                            <QuarticEase EasingMode="EaseOut" />
+                        </DoubleAnimation.EasingFunction>
+                    </DoubleAnimation>
+                    <DoubleAnimation Storyboard.TargetName="EmailCodePanel"
+                                     Storyboard.TargetProperty="(DockPanel.RenderTransform).(TranslateTransform.X)"
+                                     BeginTime="0:0:0.075"
+                                     To="0"
+                                     Duration="0:0:.3">
+                        <DoubleAnimation.EasingFunction>
+                            <QuarticEase EasingMode="EaseOut" />
+                        </DoubleAnimation.EasingFunction>
+                    </DoubleAnimation>
+                    <DoubleAnimation Storyboard.TargetName="SignUpButton"
+                                     Storyboard.TargetProperty="(Button.RenderTransform).(TranslateTransform.X)"
+                                     BeginTime="0:0:0.09"
                                      To="0"
                                      Duration="0:0:.3">
                         <DoubleAnimation.EasingFunction>
@@ -38,27 +92,34 @@
             <ColumnDefinition Width="4*" />
             <ColumnDefinition Width="3*" />
         </Grid.ColumnDefinitions>
-        <StackPanel x:Name="SignUpStackPanel" 
+        <StackPanel x:Name="SignUpStackPanel"
                     Grid.Column="0"
                     Margin="70"
                     VerticalAlignment="Center">
-            <StackPanel.RenderTransform>
-                <TranslateTransform X="100" />
-            </StackPanel.RenderTransform>
-            <TextBlock FontSize="30"
+            <TextBlock x:Name="SignUpTextBlock" 
+                       FontSize="30"
                        Text="注册账户"
                        Margin="10, 20, 0, 0"
                        VerticalAlignment="Center"
-                       HorizontalAlignment="Left" />
-            <TextBlock FontSize="15"
+                       HorizontalAlignment="Left">
+                <TextBlock.RenderTransform>
+                    <TranslateTransform X="150" />
+                </TextBlock.RenderTransform>
+            </TextBlock>
+            <TextBlock x:Name="SignInTextBlock"
+                       FontSize="15"
                        Margin="10, 5, 0, 10">
+                <TextBlock.RenderTransform>
+                    <TranslateTransform X="150" />
+                </TextBlock.RenderTransform>
                 已经有了一个账户?
                 <Hyperlink Style="{DynamicResource HyperlinkStyle}"
                            Command="{Binding BackToSignInCommand}">
                     现在去登录
                 </Hyperlink>
             </TextBlock>
-            <TextBox InputMethod.IsInputMethodEnabled="False"
+            <TextBox x:Name="UserNameTextBox"
+                     InputMethod.IsInputMethodEnabled="False"
                      Text="{Binding SignInName}"
                      Style="{DynamicResource TextBoxStyle}"
                      Tag=" 用户名"
@@ -67,6 +128,9 @@
                      FontSize="20"
                      ContextMenu="{x:Null}"
                      Margin="10">
+                <TextBox.RenderTransform>
+                    <TranslateTransform X="150" />
+                </TextBox.RenderTransform>
                 <TextBox.InputBindings>
                     <KeyBinding Command="{x:Static ApplicationCommands.NotACommand}"
                                 Key="V"
@@ -78,18 +142,31 @@
                          Tag=" 密码"
                          Padding="5"
                          FontSize="20"
-                         Style="{DynamicResource PasswordBoxStyle}" />
-            <TextBox Text="{Binding Email}"
+                         Style="{DynamicResource PasswordBoxStyle}">
+                <PasswordBox.RenderTransform>
+                    <TranslateTransform X="150" />
+                </PasswordBox.RenderTransform>
+            </PasswordBox>
+            <TextBox x:Name="EmailTextBox"
+                     Text="{Binding Email}"
                      Tag=" 邮箱地址"
                      Padding="5"
                      FontSize="20"
                      BorderThickness="0, 0, 0, 1"
                      Margin="10"
-                     Style="{DynamicResource TextBoxStyle}" />
-            <DockPanel Grid.Row="3"
+                     Style="{DynamicResource TextBoxStyle}">
+                <TextBox.RenderTransform>
+                    <TranslateTransform X="150" />
+                </TextBox.RenderTransform>
+            </TextBox>
+            <DockPanel x:Name="EmailCodePanel"
+                       Grid.Row="3"
                        Grid.Column="0"
                        Grid.ColumnSpan="2"
                        LastChildFill="True">
+                <DockPanel.RenderTransform>
+                    <TranslateTransform X="150" />
+                </DockPanel.RenderTransform>
                 <Button DockPanel.Dock="Right"
                         Style="{DynamicResource SendAuthenticationCodeButtonStyle}"
                         Padding="20, 5"
@@ -109,7 +186,8 @@
                          Text="{Binding InputedCode}" />
             </DockPanel>
 
-            <Button Padding="30,5"
+            <Button x:Name="SignUpButton"
+                    Padding="30,5"
                     Margin="10, 20"
                     FontSize="25"
                     BorderBrush="{DynamicResource NormalElementBrush}"
@@ -118,7 +196,11 @@
                     coreui:ButtonBrush.ButtonPressBackground="{DynamicResource NormalElementBrush}"
                     Style="{DynamicResource SignUpButtonStyle}"
                     Command="{Binding SignUpAndNavigateToSignInCommand}"
-                    CommandParameter="{Binding ElementName=passwordBox}" />
+                    CommandParameter="{Binding ElementName=passwordBox}">
+                <Button.RenderTransform>
+                    <TranslateTransform X="150" />
+                </Button.RenderTransform>
+            </Button>
         </StackPanel>
         <Grid Grid.Column="1">
             <Image Source="{StaticResource SignUpBackground}"

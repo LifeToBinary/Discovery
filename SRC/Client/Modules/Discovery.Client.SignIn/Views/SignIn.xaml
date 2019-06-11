@@ -15,8 +15,44 @@
         <EventTrigger RoutedEvent="Loaded">
             <BeginStoryboard>
                 <Storyboard>
-                    <DoubleAnimation Storyboard.TargetName="SignInStackPanel" 
-                                     Storyboard.TargetProperty="(StackPanel.RenderTransform).(TranslateTransform.X)"
+                    <DoubleAnimation Storyboard.TargetName="SignInTextBlock"
+                                     Storyboard.TargetProperty="(TextBlock.RenderTransform).(TranslateTransform.X)"
+                                     To="0"
+                                     Duration="0:0:.3">
+                        <DoubleAnimation.EasingFunction>
+                            <QuarticEase EasingMode="EaseOut" />
+                        </DoubleAnimation.EasingFunction>
+                    </DoubleAnimation>
+                    <DoubleAnimation Storyboard.TargetName="UserNameTextBox"
+                                     Storyboard.TargetProperty="(TextBox.RenderTransform).(TranslateTransform.X)"
+                                     BeginTime="0:0:0.02"
+                                     To="0"
+                                     Duration="0:0:.3">
+                        <DoubleAnimation.EasingFunction>
+                            <QuarticEase EasingMode="EaseOut" />
+                        </DoubleAnimation.EasingFunction>
+                    </DoubleAnimation>
+                    <DoubleAnimation Storyboard.TargetName="passwordBox"
+                                     Storyboard.TargetProperty="(PasswordBox.RenderTransform).(TranslateTransform.X)"
+                                     BeginTime="0:0:0.04"
+                                     To="0"
+                                     Duration="0:0:.3">
+                        <DoubleAnimation.EasingFunction>
+                            <QuarticEase EasingMode="EaseOut" />
+                        </DoubleAnimation.EasingFunction>
+                    </DoubleAnimation>
+                    <DoubleAnimation Storyboard.TargetName="CreateAccountTextBlock"
+                                     Storyboard.TargetProperty="(TextBlock.RenderTransform).(TranslateTransform.X)"
+                                     BeginTime="0:0:0.06"
+                                     To="0"
+                                     Duration="0:0:.3">
+                        <DoubleAnimation.EasingFunction>
+                            <QuarticEase EasingMode="EaseOut" />
+                        </DoubleAnimation.EasingFunction>
+                    </DoubleAnimation>
+                    <DoubleAnimation Storyboard.TargetName="SigInButton"
+                                     Storyboard.TargetProperty="(Button.RenderTransform).(TranslateTransform.X)"
+                                     BeginTime="0:0:0.08"
                                      To="0"
                                      Duration="0:0:.3">
                         <DoubleAnimation.EasingFunction>
@@ -83,30 +119,44 @@
                        Foreground="White" />
         </Grid>
         <Grid Grid.Column="1">
-            <StackPanel x:Name="SignInStackPanel" VerticalAlignment="Center"
+            <StackPanel x:Name="SignInStackPanel"
+                        VerticalAlignment="Center"
                         Margin="70">
-                <StackPanel.RenderTransform>
-                    <TranslateTransform X="-100" />
-                </StackPanel.RenderTransform>
-                <TextBlock FontSize="40"
+                <TextBlock x:Name="SignInTextBlock" 
+                           FontSize="40"
                            Text="请先登录"
                            Margin="10, 30"
                            VerticalAlignment="Center"
-                           HorizontalAlignment="Left" />
-                <TextBox Margin="10"
+                           HorizontalAlignment="Left">
+                    <TextBlock.RenderTransform>
+                        <TranslateTransform X="-150" />
+                    </TextBlock.RenderTransform>
+                </TextBlock>
+
+                <TextBox x:Name="UserNameTextBox"
+                         Margin="10"
                          Tag=" 用户名"
                          Padding="5"
                          FontSize="25"
                          BorderThickness="0, 0, 0, 1"
                          Text="{Binding SignInName}"
-                         Style="{DynamicResource TextBoxStyle}" />
+                         Style="{DynamicResource TextBoxStyle}">
+                    <TextBox.RenderTransform>
+                        <TranslateTransform X="-150" />
+                    </TextBox.RenderTransform>
+                </TextBox>
                 <PasswordBox x:Name="passwordBox"
                              Margin="10"
                              Tag=" 密码"
                              Padding="5"
                              FontSize="25"
-                             Style="{DynamicResource PasswordBoxStyle}" />
-                <TextBlock HorizontalAlignment="Right"
+                             Style="{DynamicResource PasswordBoxStyle}">
+                    <PasswordBox.RenderTransform>
+                        <TranslateTransform X="-150" />
+                    </PasswordBox.RenderTransform>
+                </PasswordBox>
+                <TextBlock x:Name="CreateAccountTextBlock"
+                           HorizontalAlignment="Right"
                            Margin="0,0,10,10"
                            FontSize="15">
                     没有账户?
@@ -114,8 +164,12 @@
                                Style="{DynamicResource HyperlinkStyle}">
                         创建一个!
                     </Hyperlink>
+                    <TextBlock.RenderTransform>
+                        <TranslateTransform X="-150" />
+                    </TextBlock.RenderTransform>
                 </TextBlock>
-                <Button FontSize="25"
+                <Button x:Name="SigInButton"
+                        FontSize="25"
                         Margin="10, 20"
                         Padding="5"
                         BorderBrush="{DynamicResource NormalElementBrush}"
@@ -124,7 +178,11 @@
                         Style="{DynamicResource SignInButtonStyle}"
                         coreui:ButtonBrush.ButtonPressBackground="{DynamicResource NormalElementBrush}"
                         Command="{Binding SignInCommand}"
-                        CommandParameter="{Binding ElementName=passwordBox}" />
+                        CommandParameter="{Binding ElementName=passwordBox}">
+                    <Button.RenderTransform>
+                        <TranslateTransform X="-150" />
+                    </Button.RenderTransform>
+                </Button>
             </StackPanel>
             <Border Padding="10"
                     Background="#B2000000"
