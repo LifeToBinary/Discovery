@@ -20,8 +20,8 @@ namespace Discovery.Core.UI.Converters
             CultureInfo culture)
             => new[]
             {
-                new BitmapImage(new Uri("http://47.240.12.27:10003/Discovery/DiscoveryWebFiles/Default/Images/MaleIcon.png")),
-                new BitmapImage(new Uri("http://47.240.12.27:10003/Discovery/DiscoveryWebFiles/Default/Images/FemaleIcon.png")),
+                new BitmapImage(new Uri("http://www.suence.art:10003/Discovery/DiscoveryWebFiles/Default/Images/MaleIcon.png")),
+                new BitmapImage(new Uri("http://www.suence.art:10003/Discovery/DiscoveryWebFiles/Default/Images/FemaleIcon.png")),
                 null
             }[(int)(Sex)value];
 
