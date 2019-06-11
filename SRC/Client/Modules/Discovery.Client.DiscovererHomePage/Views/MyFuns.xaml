@@ -133,11 +133,11 @@
                                         FontSize="15"
                                         Margin="40, 0"
                                         BorderThickness="3"
-                                        BorderBrush="#FF163D94"
+                                        BorderBrush="{DynamicResource NormalElementBrush}"
                                         Style="{DynamicResource ConcernOrCancelConcernListItemButtonStyle}"
                                         Command="{Binding ConcernOrCancelConcernCommand}"
                                         CommandParameter="{Binding}"
-                                        coreui:ButtonBrush.ButtonPressBackground="#FF163D94"
+                                        coreui:ButtonBrush.ButtonPressBackground="{DynamicResource NormalElementBrush}"
                                         Padding="20, 8" />
                             </Grid>
                         </Grid>
