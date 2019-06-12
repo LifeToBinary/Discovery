@@ -259,10 +259,17 @@
                                         <ImageBrush ImageSource="{Binding BasicInfo.Sex, Converter={StaticResource GenderToIcon}}" />
                                     </Ellipse.Fill>
                                 </Ellipse>
-                                <TextBlock Grid.Column="1"
-                                           VerticalAlignment="Center"
-                                           FontSize="20"
-                                           Text="{Binding BasicInfo.SignInName}" />
+                                <StackPanel Grid.Column="1"
+                                            VerticalAlignment="Center">
+                                    <TextBlock FontSize="20"
+                                               FontWeight="Bold"
+                                               Margin="5, 0"
+                                               Text="{Binding BasicInfo.SignInName}" />
+                                    <TextBlock FontSize="18"
+                                               Foreground="Gray"
+                                               Margin="5"
+                                               Text="{Binding BasicInfo.Introduction}" />
+                                </StackPanel>
                             </Grid>
                         </Grid>
                     </Button>

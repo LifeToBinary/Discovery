@@ -105,10 +105,17 @@
                                         <ImageBrush ImageSource="{Binding BasicInfo.Sex, Converter={StaticResource GenderToIcon}}" />
                                     </Ellipse.Fill>
                                 </Ellipse>
-                                <TextBlock Grid.Column="1"
-                                           VerticalAlignment="Center"
-                                           FontSize="20"
+                                <StackPanel Grid.Column="1"
+                                            VerticalAlignment="Center">
+                                <TextBlock FontSize="20"
+                                           FontWeight="Bold"
+                                           Margin="5, 0"
                                            Text="{Binding BasicInfo.SignInName}" />
+                                <TextBlock FontSize="18"
+                                           Foreground="Gray"
+                                           Margin="5"
+                                           Text="{Binding BasicInfo.Introduction}" />
+                                </StackPanel>
                                 <Button Grid.Column="1"
                                         Content="取消关注"
                                         HorizontalAlignment="Right"
