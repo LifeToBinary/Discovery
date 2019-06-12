@@ -101,6 +101,7 @@
                                 VerticalAlignment="Center"
                                 Foreground="White"
                                 FontSize="15"
+                                Width="100"
                                 Margin="40, 0"
                                 BorderThickness="3"
                                 BorderBrush="{DynamicResource NormalElementBrush}"
