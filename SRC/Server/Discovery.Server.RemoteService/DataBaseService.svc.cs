@@ -59,8 +59,15 @@ namespace Discovery.Server.RemoteService
         private string GetDataBaseConnectionString()
             => ConfigurationManager.ConnectionStrings["DiscoveryDataBase"]
                                    .ConnectionString;
+
+        /// <summary>
+        /// 上传文件到Discovery目录下
+        /// </summary>
+        /// <param name="data">文件数据</param>
+        /// <param name="path">相对与Discovery目录的路径</param>
         public void UploadFile(byte[] data, string path)
             => File.WriteAllBytes(@"C:\ToBinary\WebFiles\Discovery\DiscoveryWebFiles\Discoverer\Images/" + path, data);
+
         /// <summary>
         /// 取消关注一个用户
         /// </summary>
@@ -217,12 +224,13 @@ namespace Discovery.Server.RemoteService
                         Password = reader.GetString(6),
                         Sex = (Sex)reader.GetInt32(7),
                         AvatarPath = reader.IsDBNull(8) ? null : reader.GetString(8),
-                        ProfileBackgroundImagePath = reader.IsDBNull(9) ? null : reader.GetString(9)
+                        ProfileBackgroundImagePath = reader.IsDBNull(9) ? null : reader.GetString(9),
+                        Introduction = reader.IsDBNull(10) ? null : reader.GetString(10)
                     },
                     ContactInfo = new ContactInfo
                     {
-                        Email = reader.IsDBNull(10) ? null : reader.GetString(10),
-                        BlogAddress = reader.IsDBNull(11) ? null : reader.GetString(11)
+                        Email = reader.IsDBNull(11) ? null : reader.GetString(11),
+                        BlogAddress = reader.IsDBNull(12) ? null : reader.GetString(12)
                     }
                 }
             };
@@ -360,12 +368,13 @@ namespace Discovery.Server.RemoteService
                     Password = reader.GetString(2),
                     Sex = (Sex)reader.GetInt32(3),
                     AvatarPath = reader.IsDBNull(4) ? null : reader.GetString(4),
-                    ProfileBackgroundImagePath = reader.IsDBNull(5) ? null : reader.GetString(5)
+                    ProfileBackgroundImagePath = reader.IsDBNull(5) ? null : reader.GetString(5),
+                    Introduction = reader.IsDBNull(6) ? null : reader.GetString(6)
                 },
                 ContactInfo = new ContactInfo
                 {
-                    Email = reader.IsDBNull(6) ? null : reader.GetString(6),
-                    BlogAddress = reader.IsDBNull(7) ? null : reader.GetString(7)
+                    Email = reader.IsDBNull(7) ? null : reader.GetString(7),
+                    BlogAddress = reader.IsDBNull(8) ? null : reader.GetString(8)
                 }
             };
 
@@ -591,7 +600,8 @@ namespace Discovery.Server.RemoteService
                     ["@avatarPath"] = discoverer.BasicInfo.AvatarPath,
                     ["@profileBackgroundImagePath"] = discoverer.BasicInfo.ProfileBackgroundImagePath,
                     ["@email"] = discoverer.ContactInfo.Email,
-                    ["@blogAddress"] = discoverer.ContactInfo.BlogAddress
+                    ["@blogAddress"] = discoverer.ContactInfo.BlogAddress,
+                    ["@introduction"] = discoverer.BasicInfo.Introduction
                 };
             using (var connection = new SqlConnection(GetDataBaseConnectionString()))
             using (SqlCommand command = connection.CreateCommand())
@@ -757,7 +767,7 @@ namespace Discovery.Server.RemoteService
                 {
                     yield return new KeyValuePair<Discoverer, bool>(
                         CreateDiscovererFromSqlDataReader(reader),
-                        reader.IsDBNull(8) ? false : true);
+                        reader.IsDBNull(9) ? false : true);
                 }
             }
         }
@@ -783,7 +793,7 @@ namespace Discovery.Server.RemoteService
                 {
                     yield return new KeyValuePair<Discoverer, bool>(
                         CreateDiscovererFromSqlDataReader(reader),
-                        reader.IsDBNull(8) ? false : true);
+                        reader.IsDBNull(9) ? false : true);
                 }
             }
         }
@@ -809,7 +819,7 @@ namespace Discovery.Server.RemoteService
                 {
                     yield return new KeyValuePair<Post, bool>(
                         CreatePostFromSqlDataReader(reader),
-                        reader.IsDBNull(12) ? false : true);
+                        reader.IsDBNull(13) ? false : true);
                 }
             }
         }
@@ -835,7 +845,7 @@ namespace Discovery.Server.RemoteService
                 {
                     yield return new KeyValuePair<Post, bool>(
                         CreatePostFromSqlDataReader(reader),
-                        reader.IsDBNull(12) ? false : true);
+                        reader.IsDBNull(13) ? false : true);
                 }
             }
         }
@@ -882,12 +892,13 @@ namespace Discovery.Server.RemoteService
                         Password = reader.GetString(6),
                         Sex = (Sex)reader.GetInt32(7),
                         AvatarPath = reader.IsDBNull(8) ? null : reader.GetString(8),
-                        ProfileBackgroundImagePath = reader.IsDBNull(9) ? null : reader.GetString(9)
+                        ProfileBackgroundImagePath = reader.IsDBNull(9) ? null : reader.GetString(9),
+                        Introduction = reader.IsDBNull(10) ? null : reader.GetString(10)
                     },
                     ContactInfo = new ContactInfo
                     {
-                        Email = reader.IsDBNull(10) ? null : reader.GetString(10),
-                        BlogAddress = reader.IsDBNull(11) ? null : reader.GetString(11)
+                        Email = reader.IsDBNull(11) ? null : reader.GetString(11),
+                        BlogAddress = reader.IsDBNull(12) ? null : reader.GetString(12)
                     }
                 }
             };

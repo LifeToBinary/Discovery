@@ -2,6 +2,7 @@
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://47.240.12.27:10004/DataBaseService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Discovery.Core.Model" />
   <xs:import schemaLocation="http://47.240.12.27:10004/DataBaseService.svc?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/System.Collections.Generic" />
+  <xs:import schemaLocation="http://47.240.12.27:10004/DataBaseService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/Discovery.Core.Models" />
   <xs:element name="DiscovererIsExists">
     <xs:complexType>
       <xs:sequence>
@@ -430,6 +431,36 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/System.Collections.Generic" minOccurs="0" name="ThisUsersRelationshipWithAnotherUsersFavoritedPostsResult" nillable="true" type="q17:ArrayOfKeyValuePairOfPostbooleanU8_PbWge3" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCommentsOfThePost">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="postID" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCommentsOfThePostResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/Discovery.Core.Models" minOccurs="0" name="GetCommentsOfThePostResult" nillable="true" type="q18:ArrayOfPostComment" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddAComment">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="postID" type="xs:int" />
+        <xs:element minOccurs="0" name="authorID" type="xs:int" />
+        <xs:element minOccurs="0" name="comment" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddACommentResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="AddACommentResult" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
