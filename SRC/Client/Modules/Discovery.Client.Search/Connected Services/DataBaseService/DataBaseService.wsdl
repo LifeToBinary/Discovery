@@ -197,6 +197,18 @@
   <wsdl:message name="IDataBaseService_ThisUsersRelationshipWithAnotherUsersFavoritedPosts_OutputMessage">
     <wsdl:part name="parameters" element="tns:ThisUsersRelationshipWithAnotherUsersFavoritedPostsResponse" />
   </wsdl:message>
+  <wsdl:message name="IDataBaseService_GetCommentsOfThePost_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCommentsOfThePost" />
+  </wsdl:message>
+  <wsdl:message name="IDataBaseService_GetCommentsOfThePost_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCommentsOfThePostResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDataBaseService_AddAComment_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddAComment" />
+  </wsdl:message>
+  <wsdl:message name="IDataBaseService_AddAComment_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddACommentResponse" />
+  </wsdl:message>
   <wsdl:portType name="IDataBaseService">
     <wsdl:operation name="DiscovererIsExists">
       <wsdl:input wsaw:Action="http://tempuri.org/IDataBaseService/DiscovererIsExists" message="tns:IDataBaseService_DiscovererIsExists_InputMessage" />
@@ -321,6 +333,14 @@
     <wsdl:operation name="ThisUsersRelationshipWithAnotherUsersFavoritedPosts">
       <wsdl:input wsaw:Action="http://tempuri.org/IDataBaseService/ThisUsersRelationshipWithAnotherUsersFavoritedPosts" message="tns:IDataBaseService_ThisUsersRelationshipWithAnotherUsersFavoritedPosts_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IDataBaseService/ThisUsersRelationshipWithAnotherUsersFavoritedPostsResponse" message="tns:IDataBaseService_ThisUsersRelationshipWithAnotherUsersFavoritedPosts_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCommentsOfThePost">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDataBaseService/GetCommentsOfThePost" message="tns:IDataBaseService_GetCommentsOfThePost_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDataBaseService/GetCommentsOfThePostResponse" message="tns:IDataBaseService_GetCommentsOfThePost_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddAComment">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDataBaseService/AddAComment" message="tns:IDataBaseService_AddAComment_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDataBaseService/AddACommentResponse" message="tns:IDataBaseService_AddAComment_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IDataBaseService" type="tns:IDataBaseService">
@@ -597,6 +617,24 @@
     </wsdl:operation>
     <wsdl:operation name="ThisUsersRelationshipWithAnotherUsersFavoritedPosts">
       <soap:operation soapAction="http://tempuri.org/IDataBaseService/ThisUsersRelationshipWithAnotherUsersFavoritedPosts" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCommentsOfThePost">
+      <soap:operation soapAction="http://tempuri.org/IDataBaseService/GetCommentsOfThePost" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddAComment">
+      <soap:operation soapAction="http://tempuri.org/IDataBaseService/AddAComment" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

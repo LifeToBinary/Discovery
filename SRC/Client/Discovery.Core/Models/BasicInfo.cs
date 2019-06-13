@@ -68,5 +68,15 @@ namespace Discovery.Core.Models
             get => _profileBackgroundImagePath;
             set => SetProperty(ref _profileBackgroundImagePath, value);
         }
+
+        /// <summary>
+        /// 一句话介绍
+        /// </summary>
+        private string _introduction;
+        public string Introduction
+        {
+            get => _introduction;
+            set => SetProperty(ref _introduction, value);
+        }
     }
 }

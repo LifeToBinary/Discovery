@@ -212,6 +212,18 @@ namespace Discovery.Client.DataBaseService {
             "dPosts", ReplyAction="http://tempuri.org/IDataBaseService/ThisUsersRelationshipWithAnotherUsersFavorite" +
             "dPostsResponse")]
         System.Threading.Tasks.Task<System.Collections.Generic.KeyValuePair<Discovery.Core.Model.Post, bool>[]> ThisUsersRelationshipWithAnotherUsersFavoritedPostsAsync(int userID, int anotherUserID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataBaseService/GetCommentsOfThePost", ReplyAction="http://tempuri.org/IDataBaseService/GetCommentsOfThePostResponse")]
+        Discovery.Core.Models.PostComment[] GetCommentsOfThePost(int postID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataBaseService/GetCommentsOfThePost", ReplyAction="http://tempuri.org/IDataBaseService/GetCommentsOfThePostResponse")]
+        System.Threading.Tasks.Task<Discovery.Core.Models.PostComment[]> GetCommentsOfThePostAsync(int postID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataBaseService/AddAComment", ReplyAction="http://tempuri.org/IDataBaseService/AddACommentResponse")]
+        int AddAComment(int postID, int authorID, string comment);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataBaseService/AddAComment", ReplyAction="http://tempuri.org/IDataBaseService/AddACommentResponse")]
+        System.Threading.Tasks.Task<int> AddACommentAsync(int postID, int authorID, string comment);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -487,6 +499,22 @@ namespace Discovery.Client.DataBaseService {
         
         public System.Threading.Tasks.Task<System.Collections.Generic.KeyValuePair<Discovery.Core.Model.Post, bool>[]> ThisUsersRelationshipWithAnotherUsersFavoritedPostsAsync(int userID, int anotherUserID) {
             return base.Channel.ThisUsersRelationshipWithAnotherUsersFavoritedPostsAsync(userID, anotherUserID);
+        }
+        
+        public Discovery.Core.Models.PostComment[] GetCommentsOfThePost(int postID) {
+            return base.Channel.GetCommentsOfThePost(postID);
+        }
+        
+        public System.Threading.Tasks.Task<Discovery.Core.Models.PostComment[]> GetCommentsOfThePostAsync(int postID) {
+            return base.Channel.GetCommentsOfThePostAsync(postID);
+        }
+        
+        public int AddAComment(int postID, int authorID, string comment) {
+            return base.Channel.AddAComment(postID, authorID, comment);
+        }
+        
+        public System.Threading.Tasks.Task<int> AddACommentAsync(int postID, int authorID, string comment) {
+            return base.Channel.AddACommentAsync(postID, authorID, comment);
         }
     }
 }

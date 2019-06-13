@@ -8,9 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System;
-using System.Threading.Tasks;
-
 namespace Discovery.Client.PostDetail.DataBaseService {
     
     
@@ -519,7 +516,5 @@ namespace Discovery.Client.PostDetail.DataBaseService {
         public System.Threading.Tasks.Task<int> AddACommentAsync(int postID, int authorID, string comment) {
             return base.Channel.AddACommentAsync(postID, authorID, comment);
         }
-
-        internal Task<int> AddACommentAsync(int iD1, object iD2, string comment) => throw new NotImplementedException();
     }
 }
