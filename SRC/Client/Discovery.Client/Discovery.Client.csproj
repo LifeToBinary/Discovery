@@ -31,8 +31,8 @@
     <PublisherName>Suence</PublisherName>
     <SuiteName>Suence%27s Apps</SuiteName>
     <DisallowUrlActivation>true</DisallowUrlActivation>
-    <ApplicationRevision>3</ApplicationRevision>
-    <ApplicationVersion>1.3.0.%2a</ApplicationVersion>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>1.4.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -194,6 +194,7 @@
     <None Include="packages.config" />
     <None Include="Properties\DataSources\Discovery.Core.Model.Discoverer.datasource" />
     <None Include="Properties\DataSources\Discovery.Core.Model.Post.datasource" />
+    <None Include="Properties\DataSources\Discovery.Core.Models.PostComment.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

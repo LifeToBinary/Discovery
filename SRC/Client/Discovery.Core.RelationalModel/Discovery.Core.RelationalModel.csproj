@@ -82,6 +82,7 @@
     <None Include="packages.config" />
     <None Include="Properties\DataSources\Discovery.Core.Model.Discoverer.datasource" />
     <None Include="Properties\DataSources\Discovery.Core.Model.Post.datasource" />
+    <None Include="Properties\DataSources\Discovery.Core.Models.PostComment.datasource" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Discovery.Core\Discovery.Core.csproj">

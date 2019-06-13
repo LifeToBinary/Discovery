@@ -9,6 +9,7 @@
         <xs:sequence>
           <xs:element minOccurs="0" name="AvatarPath" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="ID" type="xs:int" />
+          <xs:element minOccurs="0" name="Introduction" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="ProfileBackgroundImagePath" nillable="true" type="xs:string" />
           <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Discovery.Core.Enums" minOccurs="0" name="Sex" type="q2:Sex" />
