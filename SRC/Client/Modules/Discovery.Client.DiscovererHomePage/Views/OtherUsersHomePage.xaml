@@ -110,113 +110,150 @@
         <Button Grid.Row="0"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Top" />
-        <StackPanel Grid.Row="2"
-                    TextBlock.FontSize="30">
-            <Button Margin="0, 5"
-                    Padding="20, 10"
-                    FontSize="20"
-                    BorderBrush="Gray"
-                    BorderThickness="0"
-                    coreui:ButtonBrush.ButtonPressBackground="White"
-                    Style="{DynamicResource SecondaryButtonStyle}"
-                    Command="{Binding NavigateViewToMainMenuContentRegionCommand}"
-                    CommandParameter="{x:Static constants:ViewNames.OtherUsersPostedPosts}"
-                    HorizontalContentAlignment="Stretch">
-                <Button.Content>
-                    <Grid>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock FontFamily="Segoe MDL2 Assets"
-                                       Text="&#xE724;"
-                                       Margin="10, 0"
-                                       VerticalAlignment="Center" />
-                            <TextBlock Text="他的帖子" />
-                        </StackPanel>
-                        <TextBlock FontFamily="Segoe MDL2 Assets"
-                                   Text="&#xE76C;"
-                                   VerticalAlignment="Center"
-                                   HorizontalAlignment="Right" />
-                    </Grid>
-                </Button.Content>
-            </Button>
+        <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0"
+                        Background="White"
+                        TextBlock.FontSize="20">
+                <TextBlock Margin="10"
+                           Text="{Binding Discoverer.BasicInfo.Introduction}" />
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0"
+                                Margin="5">
+                        <TextBlock Foreground="Gray"
+                                   FontSize="15"
+                                   Margin="5, 5, 5, 0"
+                                   Text="邮箱:" />
+                        <TextBlock Margin="5"
+                                   Text="{Binding Discoverer.ContactInfo.Email}" />
+                    </StackPanel>
+                    <StackPanel Grid.Column="1"
+                                Margin="5">
 
-            <Button Margin="0, 5"
-                    Padding="20, 10"
-                    FontSize="20"
-                    BorderBrush="Gray"
-                    BorderThickness="0"
-                    coreui:ButtonBrush.ButtonPressBackground="White"
-                    Style="{DynamicResource SecondaryButtonStyle}"
-                    Command="{Binding NavigateViewToMainMenuContentRegionCommand}"
-                    CommandParameter="{x:Static constants:ViewNames.OtherUsersFavoritedPosts}"
-                    HorizontalContentAlignment="Stretch">
-                <Button.Content>
-                    <Grid>
-                        <StackPanel Orientation="Horizontal">
+                        <TextBlock Foreground="Gray"
+                                   FontSize="15"
+                                   Margin="5, 5, 5, 0"
+                                   Text="个人主页:" />
+                        <TextBlock Margin="5"
+                                   Text="{Binding Discoverer.ContactInfo.BlogAddress}" />
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+            <StackPanel Grid.Row="1"
+                        TextBlock.FontSize="30">
+                <Button Margin="0, 5"
+                        Padding="20, 10"
+                        FontSize="20"
+                        BorderBrush="Gray"
+                        BorderThickness="0"
+                        coreui:ButtonBrush.ButtonPressBackground="White"
+                        Style="{DynamicResource SecondaryButtonStyle}"
+                        Command="{Binding NavigateViewToMainMenuContentRegionCommand}"
+                        CommandParameter="{x:Static constants:ViewNames.OtherUsersPostedPosts}"
+                        HorizontalContentAlignment="Stretch">
+                    <Button.Content>
+                        <Grid>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock FontFamily="Segoe MDL2 Assets"
+                                           Text="&#xE724;"
+                                           Margin="10, 0"
+                                           VerticalAlignment="Center" />
+                                <TextBlock Text="他的帖子" />
+                            </StackPanel>
                             <TextBlock FontFamily="Segoe MDL2 Assets"
-                                       Text="&#xE734;"
-                                       Margin="10, 0"
-                                       VerticalAlignment="Center" />
-                            <TextBlock Text="他的收藏" />
-                        </StackPanel>
-                        <TextBlock FontFamily="Segoe MDL2 Assets"
-                                   Text="&#xE76C;"
-                                   VerticalAlignment="Center"
-                                   HorizontalAlignment="Right" />
-                    </Grid>
-                </Button.Content>
-            </Button>
-            <Button Padding="20, 10"
-                    FontSize="20"
-                    BorderBrush="Gray"
-                    Margin="0, 5"
-                    BorderThickness="0"
-                    coreui:ButtonBrush.ButtonPressBackground="White"
-                    Style="{DynamicResource SecondaryButtonStyle}"
-                    Command="{Binding NavigateViewToMainMenuContentRegionCommand}"
-                    CommandParameter="{x:Static constants:ViewNames.OtherUsersConcern}"
-                    HorizontalContentAlignment="Stretch">
-                <Button.Content>
-                    <Grid>
-                        <StackPanel Orientation="Horizontal">
+                                       Text="&#xE76C;"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Right" />
+                        </Grid>
+                    </Button.Content>
+                </Button>
+
+                <Button Margin="0, 5"
+                        Padding="20, 10"
+                        FontSize="20"
+                        BorderBrush="Gray"
+                        BorderThickness="0"
+                        coreui:ButtonBrush.ButtonPressBackground="White"
+                        Style="{DynamicResource SecondaryButtonStyle}"
+                        Command="{Binding NavigateViewToMainMenuContentRegionCommand}"
+                        CommandParameter="{x:Static constants:ViewNames.OtherUsersFavoritedPosts}"
+                        HorizontalContentAlignment="Stretch">
+                    <Button.Content>
+                        <Grid>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock FontFamily="Segoe MDL2 Assets"
+                                           Text="&#xE734;"
+                                           Margin="10, 0"
+                                           VerticalAlignment="Center" />
+                                <TextBlock Text="他的收藏" />
+                            </StackPanel>
                             <TextBlock FontFamily="Segoe MDL2 Assets"
-                                       Text="&#xEB51;"
-                                       Margin="10, 0"
-                                       VerticalAlignment="Center" />
-                            <TextBlock Text="他关注的人" />
-                        </StackPanel>
-                        <TextBlock FontFamily="Segoe MDL2 Assets"
-                                   Text="&#xE76C;"
-                                   VerticalAlignment="Center"
-                                   HorizontalAlignment="Right" />
-                    </Grid>
-                </Button.Content>
-            </Button>
-            <Button Padding="20, 10"
-                    FontSize="20"
-                    Margin="0, 5"
-                    BorderBrush="Gray"
-                    BorderThickness="0"
-                    coreui:ButtonBrush.ButtonPressBackground="White"
-                    Style="{DynamicResource SecondaryButtonStyle}"
-                    Command="{Binding NavigateViewToMainMenuContentRegionCommand}"
-                    CommandParameter="{x:Static constants:ViewNames.OtherUsersFuns}"
-                    HorizontalContentAlignment="Stretch">
-                <Button.Content>
-                    <Grid>
-                        <StackPanel Orientation="Horizontal">
+                                       Text="&#xE76C;"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Right" />
+                        </Grid>
+                    </Button.Content>
+                </Button>
+                <Button Padding="20, 10"
+                        FontSize="20"
+                        BorderBrush="Gray"
+                        Margin="0, 5"
+                        BorderThickness="0"
+                        coreui:ButtonBrush.ButtonPressBackground="White"
+                        Style="{DynamicResource SecondaryButtonStyle}"
+                        Command="{Binding NavigateViewToMainMenuContentRegionCommand}"
+                        CommandParameter="{x:Static constants:ViewNames.OtherUsersConcern}"
+                        HorizontalContentAlignment="Stretch">
+                    <Button.Content>
+                        <Grid>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock FontFamily="Segoe MDL2 Assets"
+                                           Text="&#xEB51;"
+                                           Margin="10, 0"
+                                           VerticalAlignment="Center" />
+                                <TextBlock Text="他关注的人" />
+                            </StackPanel>
                             <TextBlock FontFamily="Segoe MDL2 Assets"
-                                       Text="&#xE899;"
-                                       Margin="10, 0"
-                                       VerticalAlignment="Center" />
-                            <TextBlock Text="关注他的人" />
-                        </StackPanel>
-                        <TextBlock FontFamily="Segoe MDL2 Assets"
-                                   Text="&#xE76C;"
-                                   VerticalAlignment="Center"
-                                   HorizontalAlignment="Right" />
-                    </Grid>
-                </Button.Content>
-            </Button>
-        </StackPanel>
+                                       Text="&#xE76C;"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Right" />
+                        </Grid>
+                    </Button.Content>
+                </Button>
+                <Button Padding="20, 10"
+                        FontSize="20"
+                        Margin="0, 5"
+                        BorderBrush="Gray"
+                        BorderThickness="0"
+                        coreui:ButtonBrush.ButtonPressBackground="White"
+                        Style="{DynamicResource SecondaryButtonStyle}"
+                        Command="{Binding NavigateViewToMainMenuContentRegionCommand}"
+                        CommandParameter="{x:Static constants:ViewNames.OtherUsersFuns}"
+                        HorizontalContentAlignment="Stretch">
+                    <Button.Content>
+                        <Grid>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock FontFamily="Segoe MDL2 Assets"
+                                           Text="&#xE899;"
+                                           Margin="10, 0"
+                                           VerticalAlignment="Center" />
+                                <TextBlock Text="关注他的人" />
+                            </StackPanel>
+                            <TextBlock FontFamily="Segoe MDL2 Assets"
+                                       Text="&#xE76C;"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Right" />
+                        </Grid>
+                    </Button.Content>
+                </Button>
+            </StackPanel>
+        </Grid>
     </Grid>
 </UserControl>
