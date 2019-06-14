@@ -143,6 +143,7 @@
                                    Text="个人主页:" />
                         <TextBlock Margin="5">
                             <Hyperlink TextDecorations="None"
+                                       Style="{DynamicResource HyperlinkStyle}"
                                        Command="{Binding OpenLinkInBroswerCommand}"
                                        CommandParameter="{Binding Discoverer.ContactInfo.BlogAddress}">
                                 <TextBlock Text="{Binding Discoverer.ContactInfo.BlogAddress}"/>
