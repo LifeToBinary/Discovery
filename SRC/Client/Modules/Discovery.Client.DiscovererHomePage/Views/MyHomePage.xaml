@@ -152,8 +152,14 @@
                                    FontSize="15"
                                    Margin="5, 5, 5, 0"
                                    Text="个人主页:" />
-                        <TextBlock Margin="5"
-                                   Text="{Binding CurrentUser.ContactInfo.BlogAddress}" />
+                        <TextBlock Margin="5">
+                            <Hyperlink TextDecorations="None"
+                                       Style="{DynamicResource HyperlinkStyle}"
+                                       Command="{Binding OpenLinkInBroswerCommand}"
+                                       CommandParameter="{Binding CurrentUser.ContactInfo.BlogAddress}">
+                                <TextBlock Text="{Binding CurrentUser.ContactInfo.BlogAddress}" />
+                            </Hyperlink>
+                        </TextBlock>
                     </StackPanel>
                 </Grid>
             </StackPanel>

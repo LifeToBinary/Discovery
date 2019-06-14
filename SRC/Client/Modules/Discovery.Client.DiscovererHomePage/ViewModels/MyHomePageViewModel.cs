@@ -4,6 +4,7 @@ using Discovery.Core.Model;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
+using System.Diagnostics;
 
 namespace Discovery.Client.DiscovererHomePage.ViewModels
 {
@@ -28,6 +29,7 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
             CurrentUser = GlobalObjectHolder.CurrentUser;
             _regionManager = regionManager;
             NavigateViewToMainMenuRegionCommand = new DelegateCommand<string>(NavigateViewToMainMenuRegion);
+            OpenLinkInBroswerCommand = new DelegateCommand<string>(OpenLinkInBroswer);
         }
 
         /// <summary>
@@ -38,6 +40,12 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
             => _regionManager.RequestNavigate(
                 RegionNames.MainMenuContent,
                 viewName);
+
+        /// <summary>
+        /// 使用默认浏览器程序打开链接
+        /// </summary>
+        public DelegateCommand<string> OpenLinkInBroswerCommand { get; }
+        private void OpenLinkInBroswer(string link) => Process.Start(link);
 
         /// <summary>
         /// 从 Region 离开时, 不保留此视图

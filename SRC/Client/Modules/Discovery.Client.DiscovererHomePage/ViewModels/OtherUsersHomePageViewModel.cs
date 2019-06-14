@@ -5,6 +5,7 @@ using Discovery.Core.Model;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
+using System.Diagnostics;
 
 namespace Discovery.Client.DiscovererHomePage.ViewModels
 {
@@ -58,6 +59,7 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
             NavigateViewToMainMenuContentRegionCommand =
                 new DelegateCommand<string>(NavigateViewToMainMenuContentRegion);
             ConcernOrCancelConcernCommand = new DelegateCommand(ConcernOrCancelConcern);
+            OpenLinkInBroswerCommand = new DelegateCommand<string>(OpenLinkInBroswer);
         }
 
         /// <summary>
@@ -84,6 +86,12 @@ namespace Discovery.Client.DiscovererHomePage.ViewModels
                 }
             }
         }
+
+        /// <summary>
+        /// 使用默认浏览器程序打开链接
+        /// </summary>
+        public DelegateCommand<string> OpenLinkInBroswerCommand { get; }
+        private void OpenLinkInBroswer(string link) => Process.Start(link);
 
         /// <summary>
         /// 导航到此视图时
