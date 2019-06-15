@@ -107,9 +107,6 @@
                        Foreground="White"
                        FontSize="20" />
         </Grid>
-        <Button Grid.Row="0"
-                HorizontalAlignment="Right"
-                VerticalAlignment="Top" />
         <Grid Grid.Row="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
