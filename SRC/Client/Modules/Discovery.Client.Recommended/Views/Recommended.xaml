@@ -163,7 +163,7 @@
                 VerticalAlignment="Bottom"
                 Margin="50"
                 FontWeight="Bold"
-                Background="Orange"
+                Background="{DynamicResource NormalPanelBackground}"
                 Foreground="White"
                 Width="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ActualHeight}"
                 Style="{DynamicResource RoundButtonStyle}"
