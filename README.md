@@ -10,6 +10,7 @@
 ![image.png](README/Images/PostDetail.png)
 ![image.png](README/Images/DarkMagentaTheme.png)
 ![image.png](README/Images/BlueTheme.png)
+![image.png](README/Images/PinkTheme.png)
 ![image.png](README/Images/MyHomePage.png)
 ![image.png](README/Images/MyFavoritedUsers.png)
 
