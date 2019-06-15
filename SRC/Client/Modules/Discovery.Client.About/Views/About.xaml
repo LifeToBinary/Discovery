@@ -48,7 +48,7 @@
                            Text="Discovery"
                            HorizontalAlignment="Center" />
             <TextBlock HorizontalAlignment="Center"
-                       Text="Version: 1.4.1"
+                       Text="Version: 1.4.2"
                        Margin="0,5,0,10" />
         </StackPanel>
     </Border>
