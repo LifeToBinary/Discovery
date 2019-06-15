@@ -7,9 +7,9 @@ using System.Windows;
 
 namespace Discovery.Client.Resource.Themes
 {
-    public partial class DefaultTheme : ResourceDictionary
+    public partial class PinkTheme : ResourceDictionary
     {
-        private DefaultTheme() => InitializeComponent();
-        public static DefaultTheme Instance { get; } = new DefaultTheme();
+        private PinkTheme() => InitializeComponent();
+        public static PinkTheme Instance { get; } = new PinkTheme();
     }
 }

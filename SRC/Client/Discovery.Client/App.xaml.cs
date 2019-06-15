@@ -39,7 +39,8 @@ namespace Discovery.Client
             => new[]
             {
                 DefaultTheme.Instance as ResourceDictionary,
-                DarkMagentaTheme.Instance as ResourceDictionary
+                DarkMagentaTheme.Instance as ResourceDictionary,
+                PinkTheme.Instance as ResourceDictionary
             }[(int)theme];
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
