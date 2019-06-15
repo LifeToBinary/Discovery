@@ -60,10 +60,11 @@ namespace Discovery.Service
         /// </summary>
         /// <returns></returns>
         public static Theme ReadUserThemeSettings()
-            => XDocument.Load(_settingsFileFullPath)
-                        .Root.Element(nameof(Theme))
-                        .Value == nameof(Theme.DarkMagenta)
-            ? Theme.DarkMagenta
+            => Enum.TryParse(
+                XDocument.Load(_settingsFileFullPath)
+                               .Root.Element(nameof(Theme))
+                               .Value, out Theme theme)
+            ? theme
             : Theme.Default;
 
         /// <summary>

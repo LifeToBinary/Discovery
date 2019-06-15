@@ -16,6 +16,10 @@ namespace Discovery.Core.Enums
         /// <summary>
         /// 紫色主题
         /// </summary>
-        DarkMagenta
+        DarkMagenta,
+        /// <summary>
+        /// 粉色主题
+        /// </summary>
+        Pink
     }
 }

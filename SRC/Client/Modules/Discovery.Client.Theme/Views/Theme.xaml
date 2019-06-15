@@ -83,6 +83,21 @@
                        Height="200"
                        Source="pack://application:,,,/Discovery.Client.Resource;component/Images/DarkMagentaTheme.png" />
             </RadioButton>
+            <RadioButton Style="{DynamicResource ThemeSelectorRadioButton}"
+                         BorderBrush="{DynamicResource NormalElementBrush}"
+                         Command="{Binding ChangeAppThemeCommand}"
+                         CommandParameter="{x:Static enums:Theme.Pink}"
+                         IsChecked="{Binding Path=CurrentTheme,
+                                             Converter={StaticResource EnumToBoolean},
+                                             ConverterParameter={x:Static enums:Theme.Pink}}"
+                         BorderThickness="2"
+                         Padding="5"
+                         Margin="20"
+                         Background="Transparent">
+                <Image Width="200"
+                       Height="200"
+                       Source="pack://application:,,,/Discovery.Client.Resource;component/Images/PinkTheme.png" />
+            </RadioButton>
         </WrapPanel>
     </Grid>
 </UserControl>

@@ -46,8 +46,8 @@ namespace Discovery.Client.Theme.ViewModels
         public DelegateCommand ChangeAppThemeCommand { get; }
         private void ChangeAppTheme()
         {
-            var enumValues = new ThemeEnum[] { ThemeEnum.Default, ThemeEnum.DarkMagenta };
-            var resources = new ResourceDictionary[] { DefaultTheme.Instance, DarkMagentaTheme.Instance };
+            var enumValues = new ThemeEnum[] { ThemeEnum.Default, ThemeEnum.DarkMagenta, ThemeEnum.Pink };
+            var resources = new ResourceDictionary[] { DefaultTheme.Instance, DarkMagentaTheme.Instance, PinkTheme.Instance };
             SetTheme();
 
             void SetTheme(int index = 0)
